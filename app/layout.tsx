@@ -11,13 +11,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ahmed Qeshta - Software Engineer',
     description: 'Ahmed Qeshta - Software Engineer',
-    images: ['/favicon.ico'],
+    images: ['/ahmed-qeshta-og.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Ahmed Qeshta - Software Engineer',
     description: 'Ahmed Qeshta - Software Engineer',
-    images: ['/favicon.ico'],
+    images: ['/ahmed-qeshta-og.png'],
   },
   robots: {
     index: true,
