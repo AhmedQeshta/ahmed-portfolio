@@ -1,18 +1,41 @@
+// Technology interface
+export interface Technology {
+  _id: string;
+  name: string;
+  website?: string;
+  order: number;
+  logo: string;
+}
+
+// Technology response type
+export interface TechnologyResponse extends Technology {}
+
 export interface WorkExperience {
   _id: string;
   title: string;
   company: string;
+  companyUrl?: string;
+  location?: string;
+  locationType: 'remote' | 'on-site' | 'hybrid';
   slug: {
     current: string;
   };
-  technologies: string[];
-  period: string;
+  employmentType:
+    | 'full-time'
+    | 'part-time'
+    | 'freelance'
+    | 'contract'
+    | 'internship'
+    | 'volunteer'
+    | 'other';
+  technologies: TechnologyResponse[];
   startDate: string;
   endDate?: string;
   current: boolean;
   logo?: string;
   description?: string;
   achievements?: string[];
+  skills?: string;
   order: number;
 }
 
@@ -24,7 +47,7 @@ export interface Project {
   };
   description: string;
   fullDescription?: any[]; // Rich text blocks
-  technologies: string[];
+  technologies: TechnologyResponse[];
   screenshot: string;
   gallery?: string[];
   repoUrl?: string;

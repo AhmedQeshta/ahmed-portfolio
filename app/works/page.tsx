@@ -1,9 +1,8 @@
-import WorkGrid from '@/components/WorkGrid';
-import Link from 'next/link';
+import WorkGrid from '@/components/WorkExperiences/WorkGrid';
 import React from 'react';
 
 const page = () => {
-  return <WorkGrid workItems={[]} readMore={false} />;
+  return <WorkGrid />;
 };
 
 export default page;

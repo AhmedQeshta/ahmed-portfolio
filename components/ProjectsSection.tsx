@@ -29,13 +29,21 @@ export default async function ProjectsSection() {
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                 <p className="text-gray-600 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-3 mb-4">
                   {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
-                      {tech}
-                    </span>
+                    <div
+                      key={tech._id}
+                      className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg border">
+                      <div className="relative w-5 h-5">
+                        <Image
+                          src={getImageUrl(tech.logo, 20, 20, 90)}
+                          alt={tech.name}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                      <span className="text-sm font-medium text-gray-700">{tech.name}</span>
+                    </div>
                   ))}
                 </div>
                 <div className="flex gap-4">

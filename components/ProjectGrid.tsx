@@ -1,7 +1,6 @@
-import { featuredProjectsQuery } from '@/sanity/lib/queries';
+import { allProjectsQuery, featuredProjectsQuery } from '@/sanity/lib/queries';
 import { sanityFetch } from '@/sanity/lib/client';
 import { createSlug } from '@/utils/slug';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ProjectResponse } from '@/sanity/lib/types';
 
@@ -21,12 +20,6 @@ interface ProjectGridProps {
 }
 
 export default async function ProjectGrid({ projects = [], readMore = true }: ProjectGridProps) {
-  const projectsData = await sanityFetch<ProjectResponse[]>({
-    query: featuredProjectsQuery,
-    tags: ['project'],
-  });
-  console.log(projectsData);
-
   // Default example item as specified in requirements
   const defaultProjects: Project[] = [
     {

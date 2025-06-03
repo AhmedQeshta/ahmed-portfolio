@@ -38,7 +38,12 @@ export const project = defineType({
       name: 'technologies',
       title: 'Technologies',
       type: 'array',
-      of: [{ type: 'string' }],
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'technology' }],
+        },
+      ],
       validation: (rule) => rule.required(),
     }),
     defineField({

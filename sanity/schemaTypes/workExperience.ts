@@ -18,6 +18,29 @@ export const workExperience = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'companyUrl',
+      title: 'Company URL',
+      type: 'url',
+    }),
+    defineField({
+      name: 'location',
+      title: 'Location',
+      type: 'string',
+    }),
+    defineField({
+      name: 'locationType',
+      title: 'Location Type',
+      type: 'string',
+      validation: (rule) => rule.required(),
+      options: {
+        list: [
+          { title: 'Remote', value: 'remote' },
+          { title: 'On-site', value: 'on-site' },
+          { title: 'Hybrid', value: 'hybrid' },
+        ],
+      },
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -31,13 +54,29 @@ export const workExperience = defineType({
       name: 'technologies',
       title: 'Technologies',
       type: 'array',
-      of: [{ type: 'string' }],
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'technology' }],
+        },
+      ],
     }),
     defineField({
-      name: 'period',
-      title: 'Period',
+      name: 'employmentType',
+      title: 'Employment Type',
       type: 'string',
       validation: (rule) => rule.required(),
+      options: {
+        list: [
+          { title: 'Full-time', value: 'full-time' },
+          { title: 'Part-time', value: 'part-time' },
+          { title: 'Freelance', value: 'freelance' },
+          { title: 'Contract', value: 'contract' },
+          { title: 'Internship', value: 'internship' },
+          { title: 'Volunteer', value: 'volunteer' },
+          { title: 'Other', value: 'other' },
+        ],
+      },
     }),
     defineField({
       name: 'startDate',
@@ -75,6 +114,11 @@ export const workExperience = defineType({
       title: 'Key Achievements',
       type: 'array',
       of: [{ type: 'text' }],
+    }),
+    defineField({
+      name: 'skills',
+      title: 'Skills',
+      type: 'text',
     }),
     defineField({
       name: 'order',
