@@ -5,10 +5,21 @@ export const durationOfWork = (startDate: string, endDate: string, current: bool
   }
   const start = new Date(startDate);
   const end = new Date(endDate);
-  const duration = end.getTime() - start.getTime();
-  const years = Math.floor(duration / (1000 * 60 * 60 * 24 * 365));
-  const months = Math.floor(duration / (1000 * 60 * 60 * 24 * 30));
-  return `${formatDate(startDate)} - ${formatDate(endDate)}  |  ${years}y ${months}m`;
+
+  // Calculate total months between dates
+  const totalMonths =
+    (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+
+  const years = Math.floor(totalMonths / 12);
+  const remainingMonths = totalMonths % 12;
+
+  if (years === 0) {
+    return `${formatDate(startDate)} - ${formatDate(endDate)}  |  ${totalMonths}m`;
+  } else if (remainingMonths === 0) {
+    return `${formatDate(startDate)} - ${formatDate(endDate)}  |  ${years}y`;
+  } else {
+    return `${formatDate(startDate)} - ${formatDate(endDate)}  |  ${years}y ${remainingMonths}m`;
+  }
 };
 
 // format date to be like this (2023 jan)
