@@ -1,4 +1,9 @@
+import { featuredProjectsQuery } from '@/sanity/lib/queries';
+import { sanityFetch } from '@/sanity/lib/client';
+import { createSlug } from '@/utils/slug';
 import Image from 'next/image';
+import Link from 'next/link';
+import { ProjectResponse } from '@/sanity/lib/types';
 
 interface Project {
   id: string;
@@ -12,15 +17,31 @@ interface Project {
 
 interface ProjectGridProps {
   projects?: Project[];
+  readMore?: boolean;
 }
 
-export default function ProjectGrid({ projects = [] }: ProjectGridProps) {
+export default async function ProjectGrid({ projects = [], readMore = true }: ProjectGridProps) {
+  const projectsData = await sanityFetch<ProjectResponse[]>({
+    query: featuredProjectsQuery,
+    tags: ['project'],
+  });
+  console.log(projectsData);
+
   // Default example item as specified in requirements
   const defaultProjects: Project[] = [
     {
       id: '1',
       title: 'Example E-com',
       technologies: 'Next.js, Node.js, MongoDB',
+      description: 'A full-stack e-commerce site with payment integration and admin panel.',
+      screenshot: '/screenshots/example-project.png',
+      repoUrl: 'https://github.com/AhmedQeshta/example',
+      liveUrl: 'https://example.com',
+    },
+    {
+      id: '2',
+      title: 'Example E-com 2',
+      technologies: 'React.js, Node.js, MongoDB',
       description: 'A full-stack e-commerce site with payment integration and admin panel.',
       screenshot: '/screenshots/example-project.png',
       repoUrl: 'https://github.com/AhmedQeshta/example',
@@ -33,15 +54,14 @@ export default function ProjectGrid({ projects = [] }: ProjectGridProps) {
   return (
     <section id="projects" className="py-20 bg-[rgba(0,0,0,0.6)] rounded-2xl">
       <div className="mx-auto max-w-5xl px-4">
-        <h2 className="text-3xl font-semibold mb-8 bg-clip-text text-transparent bg-[linear-gradient(to-r,#ffffff,#e9d5ff,#c084fc)]">
-          Projects
-        </h2>
+        <h2 className="text-3xl font-semibold mb-8 gradient-text">Projects</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {items.map((project) => (
             <div
               key={project.id}
               className="bg-card-bg backdrop-blur-md border border-white/20 rounded-xl overflow-hidden hover:bg-card-hover transition">
+              {/* fix this "bg-gradient-to-br from-purple-500 to-pink-500" */}
               <div className="w-full h-48 bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
                 <span className="text-white text-4xl font-bold">{project.title.charAt(0)}</span>
               </div>
@@ -52,13 +72,11 @@ export default function ProjectGrid({ projects = [] }: ProjectGridProps) {
                 <p className="text-text-secondary text-sm mb-4">{project.description}</p>
 
                 <div className="flex gap-4">
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href={`projects/${createSlug(project.title)}`}
                     className="text-sm text-white/80 hover:text-white underline">
-                    View Repo
-                  </a>
+                    Load More
+                  </Link>
                   <a
                     href={project.liveUrl}
                     target="_blank"
@@ -72,11 +90,15 @@ export default function ProjectGrid({ projects = [] }: ProjectGridProps) {
           ))}
         </div>
 
-        <div className="flex justify-center mt-12">
-          <button className="px-6 py-3 bg-[linear-gradient(to-r,#9333ea,#db2777)] rounded-full text-white hover:bg-[linear-gradient(to-r,#7c3aed,#be185d)] transition">
-            View All Projects
-          </button>
-        </div>
+        {readMore && (
+          <div className="flex justify-center mt-12">
+            <Link
+              href="/projects"
+              className="px-6 py-3 gradient-button-primary rounded-full font-semibold">
+              View All Projects
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -4,22 +4,29 @@ import Link from 'next/link';
 interface BlogPost {
   id: string;
   title: string;
+  html: string;
   description: string;
+  tags: string[];
+  category: string;
   thumbnail: string;
   slug: string;
 }
 
 interface BlogGridProps {
   blogs?: BlogPost[];
+  readMore?: boolean;
 }
 
-export default function BlogGrid({ blogs = [] }: BlogGridProps) {
+export default function BlogGrid({ blogs = [], readMore = true }: BlogGridProps) {
   // Default example item as specified in requirements
   const defaultBlogs: BlogPost[] = [
     {
       id: '1',
       title: 'How to Master React',
       description: 'Tips and tricks for building scalable React apps with Next.js.',
+      html: '<h1>this is title</h1>',
+      tags: ['tag1', 'tag2', 'tag3'],
+      category: 'Category Blog',
       thumbnail: '/images/sample-blog.png',
       slug: 'how-to-master-react',
     },
@@ -28,11 +35,10 @@ export default function BlogGrid({ blogs = [] }: BlogGridProps) {
   const items = blogs.length > 0 ? blogs : defaultBlogs;
 
   return (
+    // add the tags as a badge and the category and do not add html
     <section id="blog" className="py-20">
       <div className="mx-auto max-w-5xl px-4">
-        <h2 className="text-3xl font-semibold mb-8 bg-clip-text text-transparent bg-[linear-gradient(to-r,#ffffff,#e9d5ff,#c084fc)]">
-          Blogs
-        </h2>
+        <h2 className="text-3xl font-semibold mb-8 gradient-text">Blogs</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {items.map((blog) => (
@@ -48,7 +54,7 @@ export default function BlogGrid({ blogs = [] }: BlogGridProps) {
                 <p className="text-text-secondary text-sm mb-4">{blog.description}</p>
 
                 <Link
-                  href={`/blog/${blog.slug}`}
+                  href={`/blogs/${blog.slug}`}
                   className="text-sm text-white/80 hover:text-white underline">
                   Read Blog
                 </Link>
@@ -57,11 +63,15 @@ export default function BlogGrid({ blogs = [] }: BlogGridProps) {
           ))}
         </div>
 
-        <div className="flex justify-center mt-12">
-          <button className="px-6 py-3 bg-[linear-gradient(to-r,#9333ea,#db2777)] rounded-full text-white hover:bg-[linear-gradient(to-r,#7c3aed,#be185d)] transition">
-            View All Blogs
-          </button>
-        </div>
+        {readMore && (
+          <div className="flex justify-center mt-12">
+            <Link
+              href="/blogs"
+              className="px-6 py-3 gradient-button-primary rounded-full font-semibold">
+              View All Blogs
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

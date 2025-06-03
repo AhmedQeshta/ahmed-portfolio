@@ -1,4 +1,6 @@
+import { createSlug } from '@/utils/slug';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface WorkItem {
   id: string;
@@ -12,13 +14,24 @@ interface WorkItem {
 
 interface WorkGridProps {
   workItems?: WorkItem[];
+  readMore?: boolean;
 }
 
-export default function WorkGrid({ workItems = [] }: WorkGridProps) {
+export default function WorkGrid({ workItems = [], readMore = true }: WorkGridProps) {
   // Default example item as specified in requirements
   const defaultWorkItems: WorkItem[] = [
     {
       id: '1',
+      title: 'FrontEnd Developer',
+      company: 'Google for Startups',
+      technologies: 'React, Next.js, TailwindCSS',
+      period: 'Jan 2023 – Dec 2023',
+      logo: '/logos/example-company-logo.png',
+      description:
+        'Built E-commerce sites, learned new skills, and tackled tough problems at Google for Startups program.',
+    },
+    {
+      id: '2',
       title: 'FrontEnd Developer',
       company: 'Google for Startups',
       technologies: 'React, Next.js, TailwindCSS',
@@ -32,11 +45,10 @@ export default function WorkGrid({ workItems = [] }: WorkGridProps) {
   const items = workItems.length > 0 ? workItems : defaultWorkItems;
 
   return (
+    // change it to be scroll y use any packages
     <section id="work" className="py-20">
       <div className="mx-auto max-w-5xl px-4">
-        <h2 className="text-3xl font-semibold mb-8 bg-clip-text text-transparent bg-[linear-gradient(to-r,#ffffff,#e9d5ff,#c084fc)]">
-          Work Experience
-        </h2>
+        <h2 className="text-3xl font-semibold mb-8 gradient-text">Work Experience</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {items.map((item) => (
@@ -56,12 +68,23 @@ export default function WorkGrid({ workItems = [] }: WorkGridProps) {
                 <p className="text-text-secondary text-sm mb-4">{item.description}</p>
               )}
 
-              <button className="px-4 py-2 bg-[linear-gradient(to-r,#9333ea,#db2777)] rounded-md text-white text-sm hover:bg-[linear-gradient(to-r,#7c3aed,#be185d)] transition">
+              <Link
+                href={`works/${createSlug(item.title)}`}
+                className="px-4 py-2 gradient-button rounded-md text-sm font-medium">
                 Read More
-              </button>
+              </Link>
             </div>
           ))}
         </div>
+        {readMore && (
+          <div className="flex justify-center mt-12">
+            <Link
+              href="/works"
+              className="px-6 py-3 gradient-button-primary rounded-full font-semibold">
+              View All Work
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

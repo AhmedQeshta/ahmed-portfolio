@@ -2,9 +2,7 @@ export default function ContactForm() {
   return (
     <section id="contact" className="py-20 bg-[rgba(0,0,0,0.6)] rounded-2xl">
       <div className="mx-auto max-w-5xl px-4">
-        <h2 className="text-3xl font-semibold mb-8 bg-clip-text text-transparent bg-[linear-gradient(to-r,#ffffff,#e9d5ff,#c084fc)]">
-          Contact Us
-        </h2>
+        <h2 className="text-3xl font-semibold mb-8 gradient-text">Contact Us</h2>
 
         <div className="flex flex-col md:flex-row gap-8">
           {/* Left - Contact Info */}
@@ -62,7 +60,7 @@ export default function ContactForm() {
 
               <button
                 type="submit"
-                className="px-6 py-3 bg-[linear-gradient(to-r,#9333ea,#db2777)] rounded-full text-white hover:bg-[linear-gradient(to-r,#7c3aed,#be185d)] transition">
+                className="px-6 py-3 gradient-button-primary rounded-full font-semibold">
                 Send Message
               </button>
             </form>

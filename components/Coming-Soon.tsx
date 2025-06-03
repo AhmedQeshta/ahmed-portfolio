@@ -15,7 +15,7 @@ const ComingSoon = () => {
         <div className="relative z-10 space-y-8">
           {/* Logo/Brand area */}
           <div className="space-y-4 pt-8">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent animate-pulse px-4">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold gradient-text animate-pulse px-4">
               Coming Soon
             </h1>
             <div className="h-1 w-32 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>

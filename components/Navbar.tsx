@@ -9,9 +9,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <Link href="/">
-            <span className="bg-clip-text text-transparent bg-[linear-gradient(to-r,#ffffff,#e9d5ff,#c084fc)] font-bold uppercase text-xl">
-              Ahmed Q.
-            </span>
+            <span className="gradient-text font-bold uppercase text-xl">Ahmed Q.</span>
           </Link>
 
           {/* Navigation Links */}

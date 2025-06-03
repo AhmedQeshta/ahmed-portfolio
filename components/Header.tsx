@@ -7,9 +7,7 @@ export default function Header() {
         <div className="flex flex-col lg:flex-row items-center">
           {/* Left Content */}
           <div className="w-full lg:w-1/2">
-            <h1 className="text-4xl lg:text-6xl font-bold bg-clip-text text-transparent bg-[linear-gradient(to-r,#ffffff,#e9d5ff,#c084fc)]">
-              Ahmed Qeshta
-            </h1>
+            <h1 className="text-4xl lg:text-6xl font-bold gradient-text">Ahmed Qeshta</h1>
             <p className="text-text-secondary mt-4 text-lg leading-relaxed">
               I'm Ahmed Qeshta, a Computer Engineering graduate from the Islamic University of Gaza
               with a Bachelor's degree and Code Academy alumnus. I've worked as a freelance FrontEnd
