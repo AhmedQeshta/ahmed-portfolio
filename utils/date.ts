@@ -13,13 +13,14 @@ export const durationOfWork = (startDate: string, endDate: string, current: bool
   const years = Math.floor(totalMonths / 12);
   const remainingMonths = totalMonths % 12;
 
-  if (years === 0) {
-    return `${formatDateDuration(startDate, endDate)} |  ${totalMonths}m`;
-  } else if (remainingMonths === 0) {
-    return `${formatDateDuration(startDate, endDate)}  |  ${years}y`;
-  } else {
-    return `${formatDateDuration(startDate, endDate)}  |  ${years}y ${remainingMonths}m`;
-  }
+  const durationTime =
+    years === 0
+      ? `${totalMonths}m`
+      : remainingMonths === 0
+        ? `${years}y`
+        : `${years}y ${remainingMonths}m`;
+
+  return `${formatDateDuration(startDate, endDate)}  |  ${durationTime}`;
 };
 
 // format date to be like this (2023 jan)
