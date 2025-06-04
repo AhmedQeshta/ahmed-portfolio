@@ -7,7 +7,7 @@ export default async function WorkGrid() {
   try {
     const works = await sanityFetch<WorkExperienceResponse[]>({
       query: workExperienceQuery,
-      tags: ['workExperience'],
+      tags: ['workExperiences'],
     });
 
     return (

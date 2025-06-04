@@ -2,10 +2,10 @@
 
 import { getImageUrl } from '@/sanity/lib/image';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
-import { durationOfWork } from '@/utils/durationOfWork';
-import { createSlug } from '@/utils/slug';
+import { durationOfWork } from '@/utils/date';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -16,6 +16,8 @@ interface WorkSliderProps {
 }
 
 export default function WorkSlider({ works, readMore = true }: WorkSliderProps) {
+  const router = useRouter();
+
   const sliderSettings = {
     dots: false,
     infinite: works.length > 1,
@@ -49,12 +51,23 @@ export default function WorkSlider({ works, readMore = true }: WorkSliderProps) 
     // dotsClass: 'slick-dots !bottom-[-50px] !flex !justify-center !gap-2',
   };
 
+  const handleCardClick = (slug: string, event: React.MouseEvent) => {
+    // Don't navigate if clicking on a link or button
+    const target = event.target as HTMLElement;
+    if (target.tagName === 'A' || target.closest('a') || target.tagName === 'BUTTON') {
+      return;
+    }
+    router.push(`/works/${slug}`);
+  };
+
   return (
     <div className="relative px-4">
       <Slider {...sliderSettings}>
         {works.map((work) => (
           <div key={work._id} className="px-4">
-            <div className="bg-card-bg backdrop-blur-md border border-white/20 rounded-xl p-6 hover:bg-card-hover transition-all duration-300 h-full group">
+            <div
+              className="bg-card-bg backdrop-blur-md border border-white/20 rounded-xl p-6 hover:bg-card-hover transition-all duration-300 h-full group cursor-pointer"
+              onClick={(e) => handleCardClick(work.slug, e)}>
               {/* Company Logo */}
               <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mb-4 overflow-hidden group-hover:scale-110 transition-transform duration-300">
                 {work.logo ? (
@@ -113,9 +126,9 @@ export default function WorkSlider({ works, readMore = true }: WorkSliderProps) 
                     </div>
                   ))}
                   {work.technologies.length > 4 && (
-                    <span className="text-xs text-gray-400 px-2 py-1">
+                    <Link href={`/works/${work.slug}`} className="text-xs text-gray-400 px-2 py-1">
                       +{work.technologies.length - 4} more
-                    </span>
+                    </Link>
                   )}
                 </div>
               </div>
