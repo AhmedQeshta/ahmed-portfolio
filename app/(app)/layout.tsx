@@ -1,7 +1,7 @@
 import '@/app/globals.css';
 import Footer from '@/components/Layout/Footer';
 import Navbar from '@/components/Layout/Navbar';
-import OrbBackground from '@/components/OrbBackground';
+import OrbBackground from '@/components/ui/OrbBackground';
 import { linksApp } from '@/utils/navLinks';
 
 export { metadata, viewport } from '@/utils/metaData';

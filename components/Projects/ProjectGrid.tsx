@@ -5,6 +5,7 @@ import { ProjectResponse } from '@/sanity/lib/types';
 import Image from 'next/image';
 import { getImageUrl } from '@/sanity/lib/image';
 import { formatDateDuration } from '@/utils/date';
+import ErrorHandle from '@/components/ui/ErrorHandle';
 
 interface ProjectGridProps {
   readMore?: boolean;
@@ -16,8 +17,6 @@ export default async function ProjectGrid({ readMore = true }: ProjectGridProps)
       query: projectsQuery,
       tags: ['projects'],
     });
-
-    console.log(projects);
 
     return (
       <section id="projects" className="py-20 bg-section-glass rounded-2xl">
@@ -112,6 +111,13 @@ export default async function ProjectGrid({ readMore = true }: ProjectGridProps)
                           className="text-sm text-white/80 hover:text-white underline gradient-button rounded-md px-4 py-2">
                           Live Demo
                         </a>
+                        <a
+                          href={project.repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-white/80 hover:text-white underline gradient-button rounded-md px-4 py-2">
+                          GitHub
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -135,14 +141,11 @@ export default async function ProjectGrid({ readMore = true }: ProjectGridProps)
     console.error('Error fetching featured projects:', error);
 
     return (
-      <section id="projects" className="py-20 bg-section-glass rounded-2xl">
-        <div className="mx-auto max-w-5xl px-4">
-          <h2 className="text-3xl font-semibold mb-8 gradient-text">Projects</h2>
-          <div className="text-center text-red-400">
-            <p>Failed to load featured projects. Please try again later.</p>
-          </div>
-        </div>
-      </section>
+      <ErrorHandle
+        id={'projects'}
+        title={'WProjects'}
+        description={'Failed to load featured projects. Please try again later.'}
+      />
     );
   }
 }

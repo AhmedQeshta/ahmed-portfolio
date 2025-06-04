@@ -1,5 +1,5 @@
 import { sanityFetch } from '@/sanity/lib/client';
-import { featuredProjectsQuery } from '@/sanity/lib/queries';
+import { projectsQuery } from '@/sanity/lib/queries';
 import { ProjectResponse } from '@/sanity/lib/types';
 import { getImageUrl } from '@/sanity/lib/image';
 import Image from 'next/image';
@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default async function ProjectsSection() {
   try {
     const projects = await sanityFetch<ProjectResponse[]>({
-      query: featuredProjectsQuery,
+      query: projectsQuery,
       tags: ['project'],
     });
 

@@ -3,11 +3,51 @@
 import { FormState, sendMessage } from '@/utils/actions/contact';
 import { useActionState } from 'react';
 
+// export interface ContactInputs {
+//   name: string;
+//   email: string;
+//   message: string;
+// }
+
+// export interface Errors {
+//   name?: string;
+//   email?: string;
+//   message?: string;
+// }
+
 export default function ContactForm() {
   const initialStatus: FormState = {
     errors: {},
   };
+
   const [state, formAction, isPending] = useActionState(sendMessage, initialStatus);
+
+  // const sendMessageAction: ContactInputs = (formData: FormData) => {
+  //   const name = formData.get('name') as string;
+  //   const email = formData.get('email') as string;
+  //   const message = formData.get('message') as string;
+
+  //   const errors: Errors = {};
+
+  //   if (!name) {
+  //     errors.name = 'name is required';
+  //   }
+
+  //   if (!email) {
+  //     errors.email = 'email is required';
+  //   }
+
+  //   if (!message) {
+  //     errors.message = 'message is required';
+  //   }
+
+  //   if (Object.keys(errors).length > 0) {
+  //     return { errors };
+  //   }
+
+  //   // use zod instance of this error handel
+  //   window.location.href = `mailto:ahmed.qeshta.dev@gmail.com?subject=${email}&body=Hi my name is ${name}. ${message} (${email}))`;
+  // };
 
   return (
     <form action={formAction} className="space-y-4">

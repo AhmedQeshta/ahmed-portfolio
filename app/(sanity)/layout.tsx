@@ -1,5 +1,5 @@
 import '@/app/globals.css';
-import OrbBackground from '@/components/OrbBackground';
+import OrbBackground from '@/components/ui/OrbBackground';
 
 export { metadata, viewport } from '@/utils/metaData';
 

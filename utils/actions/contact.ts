@@ -40,5 +40,8 @@ export async function sendMessage(prevState: FormState, formData: FormData) {
 
   // show message
 
+  // send message
+  // window.location.href = `mailto:ahmed.qeshta.dev@gmail.com?subject=${email}&body=Hi my name is ${name}. ${message} (${email}))`;
+
   return { name, email, message };
 }

@@ -1,8 +1,8 @@
 import { sanityFetch } from '@/sanity/lib/client';
 import { blogPostsQuery } from '@/sanity/lib/queries';
 import { BlogPostResponse } from '@/sanity/lib/types';
-import Image from 'next/image';
 import Link from 'next/link';
+import ErrorHandle from '@/components/ui/ErrorHandle';
 
 interface BlogPost {
   id: string;
@@ -74,15 +74,11 @@ export default async function BlogGrid({ readMore = true }: BlogGridProps) {
     console.error('Error fetching featured projects:', error);
 
     return (
-      <section id="blog" className="py-20">
-        <div className="mx-auto max-w-5xl px-4">
-          <h2 className="text-3xl font-semibold mb-8 gradient-text">Blogs</h2>
-
-          <div className="text-center text-red-400">
-            <p>Failed to load Blogs. Please try again later.</p>
-          </div>
-        </div>
-      </section>
+      <ErrorHandle
+        id={'blog'}
+        title={'Blogs'}
+        description={'Failed to load Blogs. Please try again later.'}
+      />
     );
   }
 }
