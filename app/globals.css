@@ -8,6 +8,7 @@
   /* Custom colors */
   --card-bg: rgba(15, 15, 15, 0.8);
   --card-bg-glass: rgba(25, 25, 25, 0.2);
+  --card-bg-glass-dark: rgba(25, 25, 25, 0.5);
   --card-hover: rgba(25, 25, 25, 0.9);
   --text-primary: #ffffff;
   --text-secondary: #a1a1aa;
@@ -95,6 +96,20 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* section styles */
+.bg-section-glass {
+  background-color: var(--card-bg-glass-dark);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Card styles */
+.bg-navbar-glass {
+  background-color: var(--card-bg-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
 .bg-card-hover:hover {
   background-color: var(--card-hover);
 }
@@ -109,10 +124,6 @@ a {
 
 .text-text-accent {
   color: var(--text-accent);
-}
-
-.text-footer-text {
-  color: var(--footer-text);
 }
 
 /* Orb background colors */
