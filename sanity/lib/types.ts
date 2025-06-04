@@ -7,9 +7,6 @@ export interface Technology {
   logo: string;
 }
 
-// Technology response type
-export interface TechnologyResponse extends Technology {}
-
 export interface WorkExperience {
   _id: string;
   title: string;
@@ -29,6 +26,7 @@ export interface WorkExperience {
     | 'volunteer'
     | 'other';
   technologies: TechnologyResponse[];
+  categories: CategoryResponse[];
   startDate: string;
   endDate?: string;
   current: boolean;
@@ -48,6 +46,7 @@ export interface Project {
   description: string;
   fullDescription?: any[]; // Rich text blocks
   technologies: TechnologyResponse[];
+  categories: CategoryResponse[];
   screenshot: string;
   gallery?: string[];
   repoUrl?: string;
@@ -69,13 +68,24 @@ export interface BlogPost {
   content: any[]; // Rich text blocks
   thumbnail: string;
   tags?: string[];
-  category?: string;
+  categories: CategoryResponse[];
+  technologies: TechnologyResponse[];
   featured: boolean;
   publishedAt: string;
   readingTime?: number;
   seo?: {
     metaTitle?: string;
     metaDescription?: string;
+  };
+}
+
+// Technology interface
+export interface Category {
+  _id: string;
+  name: string;
+  order: number;
+  slug: {
+    current: string;
   };
 }
 
@@ -89,5 +99,12 @@ export interface ProjectResponse extends Omit<Project, 'slug'> {
 }
 
 export interface BlogPostResponse extends Omit<BlogPost, 'slug'> {
+  slug: string;
+}
+
+// Technology response type
+export interface TechnologyResponse extends Technology {}
+
+export interface CategoryResponse extends Omit<Category, 'slug'> {
   slug: string;
 }

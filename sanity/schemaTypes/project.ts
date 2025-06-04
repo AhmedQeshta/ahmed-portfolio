@@ -67,6 +67,7 @@ export const project = defineType({
           },
         },
       ],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'repoUrl',
@@ -119,7 +120,20 @@ export const project = defineType({
           { title: 'On Hold', value: 'on-hold' },
         ],
       },
+      validation: (rule) => rule.required(),
       initialValue: 'completed',
+    }),
+    defineField({
+      name: 'category',
+      title: 'category',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'category' }],
+        },
+      ],
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {

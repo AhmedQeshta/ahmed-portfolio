@@ -122,21 +122,27 @@ export const blogPost = defineType({
     }),
     defineField({
       name: 'category',
-      title: 'Category',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Web Development', value: 'web-development' },
-          { title: 'React', value: 'react' },
-          { title: 'Next.js', value: 'nextjs' },
-          { title: 'JavaScript', value: 'javascript' },
-          { title: 'TypeScript', value: 'typescript' },
-          { title: 'CSS', value: 'css' },
-          { title: 'Design', value: 'design' },
-          { title: 'Tutorial', value: 'tutorial' },
-          { title: 'Tips & Tricks', value: 'tips-tricks' },
-        ],
-      },
+      title: 'category',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'category' }],
+        },
+      ],
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'technologies',
+      title: 'Technologies',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'technology' }],
+        },
+      ],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'featured',

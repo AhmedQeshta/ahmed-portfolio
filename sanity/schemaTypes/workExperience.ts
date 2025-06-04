@@ -21,11 +21,13 @@ export const workExperience = defineType({
       name: 'companyUrl',
       title: 'Company URL',
       type: 'url',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'location',
       title: 'Location',
       type: 'string',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'locationType',
@@ -60,6 +62,7 @@ export const workExperience = defineType({
           to: [{ type: 'technology' }],
         },
       ],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'employmentType',
@@ -125,6 +128,18 @@ export const workExperience = defineType({
       title: 'Order',
       type: 'number',
       initialValue: 0,
+    }),
+    defineField({
+      name: 'category',
+      title: 'category',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'category' }],
+        },
+      ],
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {
