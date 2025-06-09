@@ -89,6 +89,17 @@ export interface Category {
   };
 }
 
+export interface BaseInfo {
+  _id: string;
+  name: string;
+  bio: string;
+  technologies: TechnologyResponse[];
+  profilePicture: string;
+  email: string;
+  phone: string;
+  address: string;
+}
+
 // Query response types (flattened slug)
 export interface WorkExperienceResponse extends Omit<WorkExperience, 'slug'> {
   slug: string;

@@ -1,4 +1,9 @@
+import { sanityFetch } from '@/sanity/lib/client';
+import { projectBySlugQuery } from '@/sanity/lib/queries';
+import { ProjectResponse } from '@/sanity/lib/types';
 import React from 'react';
+import Project from '@/components/Projects/Project';
+import ErrorHandle from '@/components/ui/ErrorHandle';
 
 interface ProjectPageInterface {
   params: Promise<{ slug: string }>;
@@ -6,7 +11,24 @@ interface ProjectPageInterface {
 
 const ProjectPage = async ({ params }: ProjectPageInterface) => {
   const { slug } = await params;
-  return <div>div second time run : {slug}</div>;
+
+  try {
+    const project = await sanityFetch<ProjectResponse>({
+      query: projectBySlugQuery,
+      params: { slug },
+      tags: ['project'],
+    });
+
+    return <Project project={project} />;
+  } catch (error) {
+    return (
+      <ErrorHandle
+        id={'projects'}
+        title={'WProjects'}
+        description={'Failed to load projects. Please try again later.'}
+      />
+    );
+  }
 };
 
 export default ProjectPage;

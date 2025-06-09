@@ -1,16 +1,35 @@
+import ProjectModal from '@/components/Projects/ProjectModal';
+import ErrorHandle from '@/components/ui/ErrorHandle';
+import { sanityFetch } from '@/sanity/lib/client';
+import { projectBySlugQuery } from '@/sanity/lib/queries';
+
+import { ProjectResponse } from '@/sanity/lib/types';
 import React from 'react';
 
-interface ProjectModalInterface {
+interface ProjectInterface {
   params: Promise<{ slug: string }>;
 }
 
-const ProjectModal = async ({ params }: ProjectModalInterface) => {
+const Project = async ({ params }: ProjectInterface) => {
   const { slug } = await params;
-  /*
-    create modal the content has this ( id ,title ,company ,technologies ,period ,logo ,description)
-    use fake data it will replace from server
-  */
-  return <div>modal first time run : {slug}</div>;
+
+  try {
+    const project = await sanityFetch<ProjectResponse>({
+      query: projectBySlugQuery,
+      params: { slug },
+      tags: ['project'],
+    });
+
+    return <ProjectModal project={project} />;
+  } catch (error) {
+    return (
+      <ErrorHandle
+        id={'projects'}
+        title={'WProjects'}
+        description={'Failed to load projects. Please try again later.'}
+      />
+    );
+  }
 };
 
-export default ProjectModal;
+export default Project;

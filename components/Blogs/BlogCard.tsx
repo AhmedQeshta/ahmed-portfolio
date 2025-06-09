@@ -1,0 +1,95 @@
+import { getImageUrl } from '@/sanity/lib/image';
+import { BlogPostResponse } from '@/sanity/lib/types';
+import Link from 'next/link';
+import Image from 'next/image';
+import { formatDate, formatDateDuration } from '@/utils/date';
+
+interface BlogCardProps {
+  blogs: BlogPostResponse[];
+}
+
+export default async function BlogCard({ blogs }: BlogCardProps) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {blogs.map((blog) => (
+        <div
+          key={blog._id}
+          className="bg-card-bg backdrop-blur-md border border-white/20 rounded-xl overflow-hidden hover:bg-card-hover transition">
+          {blog.thumbnail ? (
+            <Image
+              src={getImageUrl(blog.thumbnail, 200, 140, 100)}
+              alt={blog.title}
+              width={200}
+              height={140}
+              className="object-cover w-full h-48"
+              priority
+            />
+          ) : (
+            <div className="w-full h-48 bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+              <span className="text-white text-4xl font-bold">{blog.title.charAt(0)}</span>
+            </div>
+          )}
+
+          <div className="p-4">
+            <h3 className="text-xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors line-clamp-1 capitalize">
+              {blog.title}
+            </h3>
+
+            {/* Technologies */}
+            <div className="mb-3">
+              <p className="text-text-accent text-sm mb-2 font-medium">Technologies:</p>
+              <div className="flex flex-wrap gap-2">
+                {blog.technologies.slice(0, 4).map((tech) => (
+                  <div
+                    key={tech._id}
+                    className="flex items-center gap-1 bg-gray-800 px-2 py-1 rounded-md">
+                    <div className="relative w-4 h-4">
+                      <Image
+                        src={getImageUrl(tech.logo, 16, 16, 90)}
+                        alt={tech.name}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <span className="text-xs text-gray-300">{tech.name}</span>
+                  </div>
+                ))}
+                {blog.technologies.length > 4 && (
+                  <Link href={`/blogs/${blog.slug}`} className="text-xs text-gray-400 px-2 py-1">
+                    +{blog.technologies.length - 4} more
+                  </Link>
+                )}
+              </div>
+            </div>
+
+            <div className="flex justify-between">
+              {/* Duration */}
+              <p className="text-text-secondary text-sm mb-4 font-medium flex items-center gap-2">
+                <span className="text-text-secondary">🗓️</span>
+                <span className="text-text-secondary px-1">{formatDate(blog.publishedAt)}</span>
+              </p>
+
+              {/* readingTime */}
+              <p className="text-text-secondary text-sm mb-4 font-medium flex items-center gap-2">
+                <span className="text-text-secondary">🕒</span>
+                <span className="text-text-secondary px-1">{blog.readingTime} min read</span>
+              </p>
+            </div>
+
+            {blog.description && (
+              <p className="text-text-secondary text-sm mb-4 line-clamp-3">{blog.description}</p>
+            )}
+
+            <div className="flex gap-4">
+              <Link
+                href={`blogs/${blog.slug}`}
+                className="text-sm text-white/80 hover:text-white underline bg-gradient-to-br from-purple-500 to-pink-500 rounded-md px-2 py-2">
+                See blog
+              </Link>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}

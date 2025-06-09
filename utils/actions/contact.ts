@@ -1,47 +1,91 @@
 'use server';
 
+import nodemailer from 'nodemailer';
+import { z } from 'zod';
+import { getHtml, getText } from '@/utils/email';
+
+// Create transporter for nodemailer
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: parseInt(process.env.SMTP_PORT || '587'),
+  secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
+
+// Zod schema for contact form validation
+const contactSchema = z.object({
+  name: z.string().min(1, 'Name is required').trim(),
+  email: z.string().min(1, 'Email is required').email('Please enter a valid email address').trim(),
+  message: z.string().min(1, 'Message is required').trim(),
+});
+
 export interface Errors {
   name?: string;
   email?: string;
   message?: string;
+  general?: string;
 }
 
 export interface FormState {
   errors: Errors;
+  success?: boolean;
+  message?: string;
 }
 
 export async function sendMessage(prevState: FormState, formData: FormData) {
-  const name = formData.get('name') as string;
-  const email = formData.get('email') as string;
-  const message = formData.get('message') as string;
+  const formInput = {
+    name: formData.get('name') as string,
+    email: formData.get('email') as string,
+    message: formData.get('message') as string,
+  };
 
-  // use zod instanse of this error handel
-  const errors: Errors = {};
+  // Validate input using Zod
+  const validation = contactSchema.safeParse(formInput);
 
-  if (!name) {
-    errors.name = 'name is required';
-  }
+  if (!validation.success) {
+    const errors: Errors = {};
 
-  if (!email) {
-    errors.email = 'email is required';
-  }
+    validation.error.errors.forEach((error) => {
+      const field = error.path[0] as keyof Errors;
+      if (field && field !== 'general') {
+        errors[field] = error.message;
+      }
+    });
 
-  if (!message) {
-    errors.message = 'message is required';
-  }
-
-  if (Object.keys(errors).length > 0) {
     return { errors };
   }
 
-  console.log('====================================');
-  console.log('send a message via email to my email');
-  console.log('====================================');
+  const { name, email, message } = validation.data;
 
-  // show message
+  // Send email
+  try {
+    const mailOptions = {
+      from: `"${name}" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
+      to: process.env.TO_EMAIL || 'ahmed.qeshta.dev@gmail.com',
+      replyTo: email,
+      subject: `Portfolio Contact from ${name}`,
+      html: getHtml({ name, email, message }),
+      text: getText({ name, email, message }),
+    };
 
-  // send message
-  // window.location.href = `mailto:ahmed.qeshta.dev@gmail.com?subject=${email}&body=Hi my name is ${name}. ${message} (${email}))`;
+    const info = await transporter.sendMail(mailOptions);
 
-  return { name, email, message };
+    console.log('Email sent successfully:', info.messageId);
+
+    return {
+      errors: {},
+      success: true,
+      message: "Thank you for your message! I'll get back to you soon.",
+    };
+  } catch (error) {
+    console.error('Email sending error:', error);
+    return {
+      errors: {
+        general: 'An unexpected error occurred. Please try again later.',
+      },
+    };
+  }
 }

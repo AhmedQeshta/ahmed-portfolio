@@ -20,7 +20,7 @@ export const category = defineType({
   fields: [
     defineField({
       name: 'name',
-      title: 'Technology Name',
+      title: 'Category Name',
       type: 'string',
       validation: (rule) => rule.required(),
     }),

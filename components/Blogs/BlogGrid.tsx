@@ -3,20 +3,9 @@ import { blogPostsQuery } from '@/sanity/lib/queries';
 import { BlogPostResponse } from '@/sanity/lib/types';
 import Link from 'next/link';
 import ErrorHandle from '@/components/ui/ErrorHandle';
-
-interface BlogPost {
-  id: string;
-  title: string;
-  html: string;
-  description: string;
-  tags: string[];
-  category: string;
-  thumbnail: string;
-  slug: string;
-}
+import BlogCard from '@/components/Blogs/BlogCard';
 
 interface BlogGridProps {
-  blogs?: BlogPost[];
   readMore?: boolean;
 }
 
@@ -33,30 +22,13 @@ export default async function BlogGrid({ readMore = true }: BlogGridProps) {
         <div className="mx-auto max-w-5xl px-4">
           <h2 className="text-3xl font-semibold mb-8 gradient-text">Blogs</h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogs.map((blog) => (
-              <div
-                key={blog._id}
-                className="bg-card-bg backdrop-blur-md border border-white/20 rounded-xl overflow-hidden hover:bg-card-hover transition">
-                <div className="w-full h-48 bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
-                  <span className="text-white text-4xl font-bold">📝</span>
-                </div>
-
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold text-white mb-2">{blog.title}</h3>
-                  <p className="text-text-secondary text-sm mb-4 line-clamp-3">
-                    {blog.description}
-                  </p>
-
-                  <Link
-                    href={`/blogs/${blog.slug}`}
-                    className="text-sm text-white/80 hover:text-white underline">
-                    Read Blog
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
+          {blogs.length === 0 ? (
+            <div className="text-center text-gray-400">
+              <p>No blogs found.</p>
+            </div>
+          ) : (
+            <BlogCard blogs={blogs} />
+          )}
 
           {readMore && (
             <div className="flex justify-center mt-12">

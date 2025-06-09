@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { handleCardClick } from '@/utils/handleCardLInk';
 
 interface WorkSliderProps {
   works: WorkExperienceResponse[];
@@ -45,19 +46,6 @@ export default function WorkSlider({ works, readMore = true }: WorkSliderProps) 
         },
       },
     ],
-    // customPaging: () => (
-    //   <div className="w-3 h-3 bg-white/30 rounded-full hover:bg-white/60 transition-all"></div>
-    // ),
-    // dotsClass: 'slick-dots !bottom-[-50px] !flex !justify-center !gap-2',
-  };
-
-  const handleCardClick = (slug: string, event: React.MouseEvent) => {
-    // Don't navigate if clicking on a link or button
-    const target = event.target as HTMLElement;
-    if (target.tagName === 'A' || target.closest('a') || target.tagName === 'BUTTON') {
-      return;
-    }
-    router.push(`/works/${slug}`);
   };
 
   return (
@@ -67,7 +55,7 @@ export default function WorkSlider({ works, readMore = true }: WorkSliderProps) 
           <div key={work._id} className="px-4">
             <div
               className="bg-card-bg backdrop-blur-md border border-white/20 rounded-xl p-6 hover:bg-card-hover transition-all duration-300 h-full group cursor-pointer"
-              onClick={(e) => handleCardClick(work.slug, e)}>
+              onClick={(e) => handleCardClick({ link: `/works/${work.slug}`, router, event: e })}>
               {/* Company Logo */}
               <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mb-4 overflow-hidden group-hover:scale-110 transition-transform duration-300">
                 {work.logo ? (
@@ -147,7 +135,7 @@ export default function WorkSlider({ works, readMore = true }: WorkSliderProps) 
               {readMore && (
                 <Link
                   href={`/works/${work.slug}`}
-                  className="inline-block px-4 py-2 gradient-button rounded-md text-sm font-medium hover:scale-105 transition-transform">
+                  className="inline-block px-4 py-2 bg-gradient-to-br from-purple-500 to-pink-500 rounded-md text-sm font-medium hover:scale-105 transition-transform">
                   Read about position →
                 </Link>
               )}

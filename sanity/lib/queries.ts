@@ -126,7 +126,10 @@ export const blogPostsQuery = groq`
     },
     description,
     tags,
-    category,
+    categories[]->{
+      _id,
+      name,
+    },
     featured,
     publishedAt,
     readingTime,
@@ -148,7 +151,10 @@ export const blogPostBySlugQuery = groq`
     description,
     content,
     tags,
-    category,
+    categories[]->{
+      _id,
+      name,
+    },
     featured,
     publishedAt,
     readingTime,
@@ -164,24 +170,29 @@ export const featuredBlogPostsQuery = groq`
     "slug": slug.current,
     description,
     tags,
-    category,
+    categories[]->{
+      _id,
+      name,
+    },
     publishedAt,
     readingTime,
     "thumbnail": thumbnail.asset->url
   }
 `;
 
-export const blogPostsByCategoryQuery = groq`
-  *[_type == "blogPost" && category == $category && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+export const baseInfoQuery = groq`
+  *[_type == "baseInfo"][0] {
     _id,
-    title,
-    "slug": slug.current,
-    description,
-    tags,
-    category,
-    featured,
-    publishedAt,
-    readingTime,
-    "thumbnail": thumbnail.asset->url
+    name,
+    bio,
+    technologies[]->{
+      _id,
+      name,
+      "logo": logo.asset->url
+    },
+    "profilePicture": profilePicture.asset->url,
+    email,
+    phone,
+    address
   }
 `;
