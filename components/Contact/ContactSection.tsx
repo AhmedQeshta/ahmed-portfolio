@@ -1,26 +1,45 @@
 import ContactForm from '@/components/Contact/ContactForm';
+import ErrorHandle from '@/components/ui/ErrorHandle';
+import { sanityFetch } from '@/sanity/lib/client';
+import { baseInfoQuery } from '@/sanity/lib/queries';
+import { BaseInfoResponse } from '@/sanity/lib/types';
+import ContactInfo from '@/components/Contact/ContactInfo';
 
-export default function ContactSection() {
-  return (
-    <section id="contact" className="py-20 bg-section-glass rounded-2xl">
-      <div className="mx-auto max-w-5xl px-4">
-        <h2 className="text-3xl font-semibold mb-8 gradient-text">Contact Us</h2>
+export default async function ContactSection() {
+  try {
+    const baseInfo = await sanityFetch<BaseInfoResponse>({
+      query: baseInfoQuery,
+      tags: ['baseInfo'],
+    });
 
-        <div className="flex flex-col md:flex-row gap-8">
-          {/* Left - Contact Info */}
-          <div className="md:w-1/2">
-            <h3 className="text-lg font-semibold text-white mb-4">Get in Touch</h3>
-            <p className="text-text-secondary mb-2">Phone: +970-592-175-001</p>
-            <p className="text-text-secondary mb-2">Email: ahmedqeshta1999@gmail.com</p>
-            <p className="text-text-secondary mb-2">Location: Gaza, Palestine</p>
-          </div>
+    return (
+      <section id="contact" className="py-20 bg-section-glass rounded-2xl">
+        <div className="mx-auto max-w-5xl px-4">
+          <h2 className="text-3xl font-semibold mb-8 gradient-text">Contact Us</h2>
 
-          {/* Right - Contact Form */}
-          <div className="md:w-1/2">
-            <ContactForm />
+          <div className="flex flex-col md:flex-row gap-8">
+            {/* Left - Contact Info */}
+            <div className="md:w-1/2">
+              <ContactInfo baseInfo={baseInfo} />
+            </div>
+
+            {/* Right - Contact Form */}
+            <div className="md:w-1/2">
+              <ContactForm />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  } catch (error) {
+    console.error('Error fetching featured projects:', error);
+
+    return (
+      <ErrorHandle
+        id={'footer'}
+        title={'Footer'}
+        description={'Failed to load Footer. Please try again later.'}
+      />
+    );
+  }
 }

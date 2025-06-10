@@ -7,6 +7,7 @@ import { sanityFetch } from '@/sanity/lib/client';
 import { baseInfoQuery } from '@/sanity/lib/queries';
 import BaseInfo from '@/components/Header/BaseInfo';
 import ProfileImage from '@/components/Header/ProfileImage';
+import Loading from '@/components/ui/Loading';
 
 export default async function Header() {
   try {
@@ -20,10 +21,14 @@ export default async function Header() {
         <div className="mx-auto max-w-5xl px-4 w-full">
           <div className="flex flex-col lg:flex-row items-center">
             {/* Left Content */}
-            <BaseInfo baseInfo={baseInfo} />
+            <Suspense fallback={<Loading />}>
+              <BaseInfo baseInfo={baseInfo} />
+            </Suspense>
 
             {/* Right Content - Profile Image */}
-            <ProfileImage baseInfo={baseInfo} />
+            <Suspense fallback={<Loading />}>
+              <ProfileImage baseInfo={baseInfo} />
+            </Suspense>
           </div>
         </div>
       </section>
