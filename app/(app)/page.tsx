@@ -1,4 +1,4 @@
-import Header from '@/components/Header';
+import Header from '@/components/Header/Header';
 import WorkGridSlider from '@/components/WorkExperiences/WorkGridSlider';
 import ProjectGrid from '@/components/Projects/ProjectGrid';
 import BlogGrid from '@/components/Blogs/BlogGrid';
