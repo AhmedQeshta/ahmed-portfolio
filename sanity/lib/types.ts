@@ -92,7 +92,7 @@ export interface Category {
 export interface BaseInfo {
   _id: string;
   name: string;
-  bio: string;
+  bio: any[];
   technologies: TechnologyResponse[];
   profilePicture: string;
   email: string;
@@ -119,3 +119,5 @@ export interface TechnologyResponse extends Technology {}
 export interface CategoryResponse extends Omit<Category, 'slug'> {
   slug: string;
 }
+
+export interface BaseInfoResponse extends BaseInfo {}

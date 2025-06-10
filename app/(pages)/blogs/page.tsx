@@ -7,7 +7,7 @@ const BlogPage = () => {
   return (
     <>
       <Search action="/blogs" />
-      <BlogGrid blogs={[]} readMore={false} />
+      <BlogGrid readMore={false} />
     </>
   );
 };

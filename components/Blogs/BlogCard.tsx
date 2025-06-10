@@ -12,7 +12,8 @@ export default async function BlogCard({ blogs }: BlogCardProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {blogs.map((blog) => (
-        <div
+        <Link
+        href={`blogs/${blog.slug}`}
           key={blog._id}
           className="bg-card-bg backdrop-blur-md border border-white/20 rounded-xl overflow-hidden hover:bg-card-hover transition">
           {blog.thumbnail ? (
@@ -88,7 +89,7 @@ export default async function BlogCard({ blogs }: BlogCardProps) {
               </Link>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

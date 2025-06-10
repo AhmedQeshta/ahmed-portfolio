@@ -2,26 +2,26 @@ import { workExperienceQuery } from '@/sanity/lib/queries';
 import { sanityFetch } from '@/sanity/lib/client';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/components/ui/ErrorHandle';
-import WorkCard from '@/components/WorkExperiences/WorkCard';
+import WorkSlider from './WorkSlider';
 
-export default async function WorkGrid() {
+export default async function WorkGridSlider() {
   try {
+    // if readMore true take first 6 Project
     const works = await sanityFetch<WorkExperienceResponse[]>({
       query: workExperienceQuery,
-      tags: ['workExperiences'],
+      tags: ['works'],
     });
 
     return (
-      <section id="work" className="py-20">
+      <section id="works" className="py-20 bg-section-glass rounded-2xl">
         <div className="mx-auto max-w-5xl px-4">
-          <h2 className="text-3xl font-semibold mb-8 gradient-text">Work Experience</h2>
-
+          <h2 className="text-3xl font-semibold mb-8 gradient-text">Works</h2>
           {works.length === 0 ? (
             <div className="text-center text-gray-400">
-              <p>No work experience found.</p>
+              <p>No works found.</p>
             </div>
           ) : (
-            <WorkCard works={works} />
+            <WorkSlider works={works} />
           )}
         </div>
       </section>

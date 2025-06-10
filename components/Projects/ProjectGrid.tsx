@@ -11,6 +11,7 @@ interface ProjectGridProps {
 
 export default async function ProjectGrid({ readMore = true }: ProjectGridProps) {
   try {
+     // if readMore true take first 6 Project
     const projects = await sanityFetch<ProjectResponse[]>({
       query: projectsQuery,
       tags: ['projects'],

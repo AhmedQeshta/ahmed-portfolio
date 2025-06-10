@@ -11,6 +11,7 @@ interface BlogGridProps {
 
 export default async function BlogGrid({ readMore = true }: BlogGridProps) {
   try {
+    // if readMore true take first 6 blogs
     const blogs = await sanityFetch<BlogPostResponse[]>({
       query: blogPostsQuery,
       tags: ['blogPosts'],

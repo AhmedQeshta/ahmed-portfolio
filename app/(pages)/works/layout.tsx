@@ -6,9 +6,9 @@ export default function AppLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <div>
+    <>
       {modal}
       {children}
-    </div>
+    </>
   );
 }

@@ -48,10 +48,13 @@ export const workExperienceBySlugQuery = groq`
     technologies[]->{
       _id,
       name,
-      "logo": logo.asset->url,
-      
+      website,
+      "logo": logo.asset->url
     },
-    period,
+    companyUrl,
+    location,
+    locationType,
+    employmentType,
     startDate,
     endDate,
     current,
