@@ -23,12 +23,26 @@ export const durationOfWork = (startDate: string, endDate: string, current: bool
   return `${formatDateDuration(startDate, endDate)}  |  ${durationTime}`;
 };
 
-// format date to be like this (2023 jan)
-export const formatDate = (date: string) => {
-  const start = new Date(date);
-  return `${start.getFullYear()} ${start.toLocaleString('default', { month: 'short' })}`;
+export const formatDateDuration = (startDate: string, endDate: string) => {
+  return `${formatDate(startDate, false)} - ${formatDate(endDate, false)}`;
 };
 
-export const formatDateDuration = (startDate: string, endDate: string) => {
-  return `${formatDate(startDate)} - ${formatDate(endDate)}`;
+export const formatDate = (dateString: string, hasDay = true) => {
+  return new Date(dateString).toLocaleDateString(
+    'en-US',
+    hasDay
+      ? {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }
+      : {
+          year: 'numeric',
+          month: 'short',
+        },
+  );
+};
+
+export const formatReadingTime = (time?: number) => {
+  return time ? `${time} min read` : '5 min read';
 };
