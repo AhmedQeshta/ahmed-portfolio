@@ -5,19 +5,13 @@ import { ProjectResponse } from '@/sanity/lib/types';
 import Image from 'next/image';
 import { getImageUrl } from '@/sanity/lib/image';
 import { formatDateDuration } from '@/utils/date';
-import Technologies from '../ui/Technologies';
-// import { useRouter } from 'next/navigation';
-// import { handleCardClick } from '@/utils/handleCardLInk';
+import TechnologiesHome from '@/components/ui/TechnologiesHome';
 
 interface ProjectCardProps {
   projects: ProjectResponse[];
 }
 
 export default function ProjectCard({ projects }: ProjectCardProps) {
-  // const router = useRouter();
-
-  // onClick={(e) => handleCardClick({ link: `/projects/${project.slug}`, router, event: e })}
-
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {projects.map((project) => (
@@ -46,7 +40,10 @@ export default function ProjectCard({ projects }: ProjectCardProps) {
             </h3>
 
             {/* Technologies */}
-            <Technologies technologies={project.technologies} link={`/projects/${project.slug}`} />
+            <TechnologiesHome
+              technologies={project.technologies}
+              link={`/projects/${project.slug}`}
+            />
 
             {/* Duration */}
             <p className="text-text-secondary text-sm mb-4 font-medium flex items-center gap-2">
