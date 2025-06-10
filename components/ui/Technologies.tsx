@@ -1,43 +1,27 @@
-import { getImageUrl } from '@/sanity/lib/image';
-import { Link } from 'lucide-react';
-import Image from 'next/image';
 import { TechnologyResponse } from '@/sanity/lib/types';
+import { Tag } from 'lucide-react';
 
 interface TechnologiesProps {
   technologies: TechnologyResponse[];
-  link: string;
 }
 
-export default function Technologies({ technologies, link }: TechnologiesProps) {
+export default function Technologies({ technologies }: TechnologiesProps) {
   if (!technologies || technologies.length === 0) return null;
+
   return (
-    <div className="mb-4">
-      <p className="text-text-accent text-xs mb-2 font-medium">Technologies:</p>
-      <div className="flex flex-wrap gap-1.5">
-        {technologies.slice(0, 4).map(({ _id, logo, name }) => (
-          <div
-            key={_id}
-            className="flex items-center gap-1 bg-white/5 hover:bg-white/10 px-2 py-1 rounded-md transition-colors border border-white/5">
-            {logo && (
-              <div className="relative w-3 h-3">
-                <Image
-                  src={getImageUrl(logo, 12, 12, 90)}
-                  alt={name}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            )}
-            <span className="text-xs text-gray-300">{name}</span>
-          </div>
+    <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 mb-8">
+      <h3 className="flex items-center gap-3 text-xl font-bold text-white mb-4">
+        <Tag size={24} className="text-purple-400" />
+        Technologies
+      </h3>
+      <div className="flex flex-wrap gap-2">
+        {technologies.map((tech) => (
+          <span
+            key={tech._id}
+            className="px-3 py-2 bg-gradient-to-r from-gray-800 to-gray-700 text-gray-200 rounded-lg text-sm font-medium border border-gray-600 hover:border-gray-500 transition-colors">
+            {tech.name}
+          </span>
         ))}
-        {technologies.length > 4 && (
-          <Link
-            href={link}
-            className="text-xs text-gray-400 px-2 py-1 bg-white/5 rounded-md border border-white/5">
-            +{technologies.length - 4}
-          </Link>
-        )}
       </div>
     </div>
   );
