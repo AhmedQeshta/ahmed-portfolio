@@ -2,7 +2,8 @@ import { getImageUrl } from '@/sanity/lib/image';
 import { BlogPostResponse } from '@/sanity/lib/types';
 import Link from 'next/link';
 import Image from 'next/image';
-import { formatDate, formatDateDuration } from '@/utils/date';
+import { formatDate } from '@/utils/date';
+import Technologies from '@/components/ui/Technologies';
 
 interface BlogCardProps {
   blogs: BlogPostResponse[];
@@ -13,7 +14,7 @@ export default async function BlogCard({ blogs }: BlogCardProps) {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {blogs.map((blog) => (
         <Link
-        href={`blogs/${blog.slug}`}
+          href={`blogs/${blog.slug}`}
           key={blog._id}
           className="bg-card-bg backdrop-blur-md border border-white/20 rounded-xl overflow-hidden hover:bg-card-hover transition">
           {blog.thumbnail ? (
@@ -37,31 +38,7 @@ export default async function BlogCard({ blogs }: BlogCardProps) {
             </h3>
 
             {/* Technologies */}
-            <div className="mb-3">
-              <p className="text-text-accent text-sm mb-2 font-medium">Technologies:</p>
-              <div className="flex flex-wrap gap-2">
-                {blog.technologies.slice(0, 4).map((tech) => (
-                  <div
-                    key={tech._id}
-                    className="flex items-center gap-1 bg-gray-800 px-2 py-1 rounded-md">
-                    <div className="relative w-4 h-4">
-                      <Image
-                        src={getImageUrl(tech.logo, 16, 16, 90)}
-                        alt={tech.name}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    <span className="text-xs text-gray-300">{tech.name}</span>
-                  </div>
-                ))}
-                {blog.technologies.length > 4 && (
-                  <Link href={`/blogs/${blog.slug}`} className="text-xs text-gray-400 px-2 py-1">
-                    +{blog.technologies.length - 4} more
-                  </Link>
-                )}
-              </div>
-            </div>
+            <Technologies technologies={blog.technologies} link={`/blogs/${blog.slug}`} />
 
             <div className="flex justify-between">
               {/* Duration */}

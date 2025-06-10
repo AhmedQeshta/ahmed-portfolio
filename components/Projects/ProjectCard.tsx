@@ -5,6 +5,7 @@ import { ProjectResponse } from '@/sanity/lib/types';
 import Image from 'next/image';
 import { getImageUrl } from '@/sanity/lib/image';
 import { formatDateDuration } from '@/utils/date';
+import Technologies from '../ui/Technologies';
 // import { useRouter } from 'next/navigation';
 // import { handleCardClick } from '@/utils/handleCardLInk';
 
@@ -45,33 +46,7 @@ export default function ProjectCard({ projects }: ProjectCardProps) {
             </h3>
 
             {/* Technologies */}
-            <div className="mb-3">
-              <p className="text-text-accent text-sm mb-2 font-medium">Technologies:</p>
-              <div className="flex flex-wrap gap-2">
-                {project.technologies.slice(0, 4).map((tech) => (
-                  <div
-                    key={tech._id}
-                    className="flex items-center gap-1 bg-gray-800 px-2 py-1 rounded-md">
-                    <div className="relative w-4 h-4">
-                      <Image
-                        src={getImageUrl(tech.logo, 16, 16, 90)}
-                        alt={tech.name}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    <span className="text-xs text-gray-300">{tech.name}</span>
-                  </div>
-                ))}
-                {project.technologies.length > 4 && (
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="text-xs text-gray-400 px-2 py-1">
-                    +{project.technologies.length - 4} more
-                  </Link>
-                )}
-              </div>
-            </div>
+            <Technologies technologies={project.technologies} link={`/projects/${project.slug}`} />
 
             {/* Duration */}
             <p className="text-text-secondary text-sm mb-4 font-medium flex items-center gap-2">

@@ -4,6 +4,7 @@ import { durationOfWork } from '@/utils/date';
 import { ExternalLink, MapPin, Calendar, Briefcase } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Technologies from '@/components/ui/Technologies';
 
 interface WorkCardProps {
   works: WorkExperienceResponse[];
@@ -117,35 +118,7 @@ export default function WorkCard({ works }: WorkCardProps) {
           )}
 
           {/* Technologies */}
-          {work.technologies && work.technologies.length > 0 && (
-            <div className="mb-4">
-              <p className="text-text-accent text-xs mb-2 font-medium">Technologies:</p>
-              <div className="flex flex-wrap gap-1.5">
-                {work.technologies.slice(0, 4).map((tech) => (
-                  <div
-                    key={tech._id}
-                    className="flex items-center gap-1 bg-white/5 hover:bg-white/10 px-2 py-1 rounded-md transition-colors border border-white/5">
-                    {tech.logo && (
-                      <div className="relative w-3 h-3">
-                        <Image
-                          src={getImageUrl(tech.logo, 12, 12, 90)}
-                          alt={tech.name}
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                    )}
-                    <span className="text-xs text-gray-300">{tech.name}</span>
-                  </div>
-                ))}
-                {work.technologies.length > 4 && (
-                  <div className="text-xs text-gray-400 px-2 py-1 bg-white/5 rounded-md border border-white/5">
-                    +{work.technologies.length - 4}
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
+          <Technologies technologies={work.technologies} link={`/works/${work.slug}`} />
 
           {/* View More Indicator */}
           <div className="flex items-center justify-between pt-3 border-t border-white/10">
