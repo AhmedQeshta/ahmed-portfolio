@@ -1,21 +1,40 @@
 import { ProjectResponse } from '@/sanity/lib/types';
-import { ExternalLink, Github } from 'lucide-react';
 import Technologies from '@/components/ui/Technologies';
 import NavigationHeader from '@/components/ui/NavigationHeader';
 import BackgroundEffects from '@/components/ui/BackgroundEffects';
-import HeroProject from '@/components/Projects/HeroProject';
-import ActionButtons from '@/components/Projects/ActionButtons';
-import ProjectGallery from '@/components/Projects/ProjectGallery';
-import TimelineProject from '@/components/Projects/TimelineProject';
-import StatsProject from '@/components/Projects/StatsProject';
-import FullDescription from '@/components/Projects/FullDescription';
+import HeroProject from '@/components/Projects/Features/HeroProject';
+import ActionButtons from '@/components/ui/ActionButtons';
+import ProjectGallery from '@/components/Projects/Features/ProjectGallery';
+import TimelineProject from '@/components/Projects/Features/TimelineProject';
+import StatsProject from '@/components/Projects/Features/StatsProject';
+import FullDescription from '@/components/Projects/Features/FullDescription';
+import { ExternalLink, Github } from 'lucide-react';
 
 interface ProjectModalProps {
   project: ProjectResponse;
 }
 
 export default function Project({ project }: ProjectModalProps) {
-  const { technologies, fullDescription } = project;
+  const { technologies, liveUrl, repoUrl } = project;
+
+  const listLinks = [
+    {
+      id: 1,
+      text: 'Live Demo',
+      link: liveUrl,
+      customStyle:
+        'flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl',
+      icon: <ExternalLink size={20} />,
+    },
+    {
+      id: 2,
+      text: 'Source Code',
+      link: repoUrl,
+      customStyle:
+        'flex items-center gap-3 px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-gray-700',
+      icon: <Github size={20} />,
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
@@ -31,17 +50,24 @@ export default function Project({ project }: ProjectModalProps) {
         <div className="max-w-6xl mx-auto px-8 md:px-12">
           {/* Action Buttons */}
 
-          <ActionButtons project={project} />
+          <div className="flex flex-wrap gap-4 mb-12">
+            <ActionButtons listLinks={listLinks} />
+          </div>
 
           {/* Content Grid */}
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-10">
               {/* Full Description */}
-              <FullDescription project={project} />
+              <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8">
+                <FullDescription project={project} />
+              </div>
 
               {/* Gallery */}
-              <ProjectGallery project={project} />
+
+              <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8">
+                <ProjectGallery project={project} />
+              </div>
             </div>
 
             {/* Sidebar */}
