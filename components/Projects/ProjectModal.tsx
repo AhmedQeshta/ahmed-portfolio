@@ -10,6 +10,7 @@ import Technologies from '@/components/ui/Technologies';
 import TimelineProject from '@/components/Projects/Features/TimelineProject';
 import ActionButtons from '@/components/ui/ActionButtons';
 import HeroModal from './Features/HeroModal';
+import ScrollAnimation from '../ui/ScrollAnimation';
 
 interface ProjectModalProps {
   project: ProjectResponse;
@@ -51,7 +52,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
       {/* Content */}
       <div className="p-6 space-y-6">
         {/* Header */}
-        <div className="space-y-4">
+        <ScrollAnimation direction="down" delay={0.3} className="space-y-4">
           <h1 className="text-2xl md:text-3xl font-bold text-white">{project.title}</h1>
 
           <p className="text-gray-300 text-lg leading-relaxed">{project.description}</p>
@@ -60,7 +61,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
           <div className="flex flex-wrap gap-3">
             <ActionButtons listLinks={listLinks} />
           </div>
-        </div>
+        </ScrollAnimation>
 
         {/* Project Details */}
         <div className="grid md:grid-cols-2 gap-6">

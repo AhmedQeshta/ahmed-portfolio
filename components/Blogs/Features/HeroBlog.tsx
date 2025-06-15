@@ -1,3 +1,4 @@
+import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { BlogPostResponse, TechnologyResponse } from '@/sanity/lib/types';
 import { formatDate, formatReadingTime } from '@/utils/date';
 import { Calendar, Clock } from 'lucide-react';
@@ -22,35 +23,48 @@ export default function HeroBlog({ blog }: HeroBlogProps) {
       <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
         <div className="max-w-6xl mx-auto">
           {/* Categories and Tags */}
-          <div className="flex flex-wrap gap-2 mb-4">
+          <ScrollAnimation direction="down" delay={0.3} className="flex flex-wrap gap-2 mb-4">
             {categories?.map(({ _id, name }) => (
-              <span
+              <ScrollAnimation
                 key={_id}
+                direction="down"
+                delay={0.4}
                 className="px-3 py-1 bg-purple-600/80 text-white text-sm rounded-full backdrop-blur-sm">
                 {name}
-              </span>
+              </ScrollAnimation>
             ))}
-          </div>
+          </ScrollAnimation>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">{title}</h1>
+          <ScrollAnimation
+            direction="down"
+            delay={0.5}
+            className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+            {title}
+          </ScrollAnimation>
 
           {/* Meta Info */}
-          <div className="flex flex-wrap items-center gap-6 text-gray-200">
-            <div className="flex items-center gap-2">
+          <ScrollAnimation
+            direction="down"
+            delay={0.6}
+            className="flex flex-wrap items-center gap-6 text-gray-200">
+            <ScrollAnimation direction="down" delay={0.7} className="flex items-center gap-2">
               <Calendar size={16} />
               <span>{formatDate(publishedAt)}</span>
-            </div>
-            <div className="flex items-center gap-2">
+            </ScrollAnimation>
+            <ScrollAnimation direction="down" delay={0.8} className="flex items-center gap-2">
               <Clock size={16} />
               <span>{formatReadingTime(readingTime)}</span>
-            </div>
+            </ScrollAnimation>
             {featured && (
-              <span className="px-2 py-1 bg-yellow-500/20 text-yellow-300 text-xs rounded border border-yellow-500/30">
+              <ScrollAnimation
+                direction="down"
+                delay={0.9}
+                className="px-2 py-1 bg-yellow-500/20 text-yellow-300 text-xs rounded border border-yellow-500/30">
                 FEATURED
-              </span>
+              </ScrollAnimation>
             )}
-          </div>
+          </ScrollAnimation>
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { ProjectResponse } from '@/sanity/lib/types';
 import { getStatusColor } from '@/utils/statusColor';
 import Image from 'next/image';
@@ -15,14 +16,14 @@ export default function HeroModal({ project }: HeroModalProps) {
       <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
 
       {/* Status Badge */}
-      <div className="absolute top-4 left-4">
+      <ScrollAnimation direction="down" delay={0.2} className="absolute top-4 left-4">
         <span
           className={`px-3 py-1 text-xs font-medium rounded-full border ${getStatusColor(
             project.status,
           )}`}>
           {project.status.replace('-', ' ').toUpperCase()}
         </span>
-      </div>
+      </ScrollAnimation>
     </div>
   );
 }

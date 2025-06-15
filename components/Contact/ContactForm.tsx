@@ -3,6 +3,7 @@
 import { FormState, sendMessage } from '@/utils/actions/contact';
 import { useActionState, useState } from 'react';
 import { z } from 'zod';
+import ScrollAnimation from '../ui/ScrollAnimation';
 
 // Client-side validation schema (matches server-side)
 const contactSchema = z.object({
@@ -119,71 +120,75 @@ export default function ContactForm() {
 
   return (
     <form action={formAction} onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label htmlFor="name" className="block text-sm text-white mb-1">
-          Name
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={(e) => handleInputChange('name', e.target.value)}
-          placeholder="Your Name"
-          className={`w-full px-4 py-2 bg-transparent border rounded-md text-white placeholder:text-placeholder focus:outline-none focus:ring-2 transition-colors ${
-            displayErrors.name
-              ? 'border-red-500/50 focus:ring-red-500'
-              : 'border-white/30 focus:ring-purple-500'
-          }`}
-        />
-        {displayErrors.name && (
-          <span className="text-red-400 text-sm mt-1 block">{displayErrors.name}</span>
-        )}
-      </div>
-
-      <div>
-        <label htmlFor="email" className="block text-sm text-white mb-1">
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={(e) => handleInputChange('email', e.target.value)}
-          placeholder="you@example.com"
-          className={`w-full px-4 py-2 bg-transparent border rounded-md text-white placeholder:text-placeholder focus:outline-none focus:ring-2 transition-colors ${
-            displayErrors.email
-              ? 'border-red-500/50 focus:ring-red-500'
-              : 'border-white/30 focus:ring-purple-500'
-          }`}
-        />
-        {displayErrors.email && (
-          <span className="text-red-400 text-sm mt-1 block">{displayErrors.email}</span>
-        )}
-      </div>
-
-      <div>
-        <label htmlFor="message" className="block text-sm text-white mb-1">
-          Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          rows={4}
-          value={formData.message}
-          onChange={(e) => handleInputChange('message', e.target.value)}
-          placeholder="Your message…"
-          className={`w-full px-4 py-2 bg-transparent border rounded-md text-white placeholder:text-placeholder focus:outline-none focus:ring-2 transition-colors resize-vertical ${
-            displayErrors.message
-              ? 'border-red-500/50 focus:ring-red-500'
-              : 'border-white/30 focus:ring-purple-500'
-          }`}
-        />
-        {displayErrors.message && (
-          <span className="text-red-400 text-sm mt-1 block">{displayErrors.message}</span>
-        )}
-      </div>
+      <ScrollAnimation direction="down" delay={0.2}>
+        <div>
+          <label htmlFor="name" className="block text-sm text-white mb-1">
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={(e) => handleInputChange('name', e.target.value)}
+            placeholder="Your Name"
+            className={`w-full px-4 py-2 bg-transparent border rounded-md text-white placeholder:text-placeholder focus:outline-none focus:ring-2 transition-colors ${
+              displayErrors.name
+                ? 'border-red-500/50 focus:ring-red-500'
+                : 'border-white/30 focus:ring-purple-500'
+            }`}
+          />
+          {displayErrors.name && (
+            <span className="text-red-400 text-sm mt-1 block">{displayErrors.name}</span>
+          )}
+        </div>
+      </ScrollAnimation>
+      <ScrollAnimation direction="down" delay={0.2}>
+        <div>
+          <label htmlFor="email" className="block text-sm text-white mb-1">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={(e) => handleInputChange('email', e.target.value)}
+            placeholder="you@example.com"
+            className={`w-full px-4 py-2 bg-transparent border rounded-md text-white placeholder:text-placeholder focus:outline-none focus:ring-2 transition-colors ${
+              displayErrors.email
+                ? 'border-red-500/50 focus:ring-red-500'
+                : 'border-white/30 focus:ring-purple-500'
+            }`}
+          />
+          {displayErrors.email && (
+            <span className="text-red-400 text-sm mt-1 block">{displayErrors.email}</span>
+          )}
+        </div>
+      </ScrollAnimation>
+      <ScrollAnimation direction="down" delay={0.2}>
+        <div>
+          <label htmlFor="message" className="block text-sm text-white mb-1">
+            Message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows={4}
+            value={formData.message}
+            onChange={(e) => handleInputChange('message', e.target.value)}
+            placeholder="Your message…"
+            className={`w-full px-4 py-2 bg-transparent border rounded-md text-white placeholder:text-placeholder focus:outline-none focus:ring-2 transition-colors resize-vertical ${
+              displayErrors.message
+                ? 'border-red-500/50 focus:ring-red-500'
+                : 'border-white/30 focus:ring-purple-500'
+            }`}
+          />
+          {displayErrors.message && (
+            <span className="text-red-400 text-sm mt-1 block">{displayErrors.message}</span>
+          )}
+        </div>
+      </ScrollAnimation>
 
       {displayErrors.general && (
         <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-md">

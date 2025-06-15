@@ -1,3 +1,4 @@
+import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 import { getEmploymentTypeColor, getLocationTypeColor } from '@/utils/statusColor';
 import { Building, ExternalLink } from 'lucide-react';
@@ -25,45 +26,63 @@ export default function HeroWork({ work }: HeroWorkProps) {
         <div className="max-w-6xl mx-auto">
           {/* Status Badges */}
           <div className="flex flex-wrap gap-3 mb-4">
-            <span
-              className={`inline-block px-4 py-2 text-sm font-medium rounded-full border ${getEmploymentTypeColor(employmentType)}`}>
-              {employmentType.replace('-', ' ').toUpperCase()}
-            </span>
-            {current && (
-              <span className="inline-block px-4 py-2 text-sm font-medium rounded-full border border-emerald-500/30 text-emerald-400 bg-emerald-500/10">
-                CURRENT POSITION
+            <ScrollAnimation direction="down" delay={0.1}>
+              <span
+                className={`inline-block px-4 py-2 text-sm font-medium rounded-full border ${getEmploymentTypeColor(
+                  employmentType,
+                )}`}>
+                {employmentType.replace('-', ' ').toUpperCase()}
               </span>
+            </ScrollAnimation>
+            {current && (
+              <ScrollAnimation direction="down" delay={0.1}>
+                <span className="inline-block px-4 py-2 text-sm font-medium rounded-full border border-emerald-500/30 text-emerald-400 bg-emerald-500/10">
+                  CURRENT POSITION
+                </span>
+              </ScrollAnimation>
             )}
             {locationType && (
-              <span
-                className={`inline-block px-4 py-2 text-sm font-medium rounded-full border ${getLocationTypeColor(locationType)}`}>
-                {locationType.replace('-', ' ').toUpperCase()}
-              </span>
+              <ScrollAnimation direction="down" delay={0.1}>
+                <span
+                  className={`inline-block px-4 py-2 text-sm font-medium rounded-full border ${getLocationTypeColor(
+                    locationType,
+                  )}`}>
+                  {locationType.replace('-', ' ').toUpperCase()}
+                </span>
+              </ScrollAnimation>
             )}
           </div>
 
           {/* Title and Company */}
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">{title}</h1>
-          <div className="flex items-center gap-3 mb-4">
-            <Building size={28} className="text-purple-400" />
-            {companyUrl ? (
-              <a
-                href={companyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl md:text-3xl text-purple-300 hover:text-purple-200 transition-colors flex items-center gap-2">
-                {company}
-                <ExternalLink size={24} />
-              </a>
-            ) : (
-              <span className="text-2xl md:text-3xl text-gray-200">{company}</span>
+          <ScrollAnimation direction="down" delay={0.1}>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
+              {title}
+            </h1>
+          </ScrollAnimation>
+          <ScrollAnimation direction="down" delay={0.2}>
+            <div className="flex items-center gap-3 mb-4">
+              <Building size={28} className="text-purple-400" />
+              {companyUrl ? (
+                <a
+                  href={companyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-2xl md:text-3xl text-purple-300 hover:text-purple-200 transition-colors flex items-center gap-2">
+                  {company}
+                  <ExternalLink size={24} />
+                </a>
+              ) : (
+                <span className="text-2xl md:text-3xl text-gray-200">{company}</span>
+              )}
+            </div>
+            {description && (
+              <ScrollAnimation direction="down" delay={0.3}>
+                <p className="text-lg md:text-xl text-gray-200 max-w-3xl leading-relaxed">
+                  {description}
+                </p>
+              </ScrollAnimation>
             )}
-          </div>
-          {description && (
-            <p className="text-lg md:text-xl text-gray-200 max-w-3xl leading-relaxed">
-              {description}
-            </p>
-          )}
+          </ScrollAnimation>
         </div>
       </div>
     </div>

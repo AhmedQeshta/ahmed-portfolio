@@ -1,3 +1,4 @@
+import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { ProjectResponse } from '@/sanity/lib/types';
 import { getStatusColor } from '@/utils/statusColor';
 import Image from 'next/image';
@@ -22,18 +23,28 @@ export default function HeroProject({ project }: HeroProjectProps) {
       <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
         <div className="max-w-6xl mx-auto">
           {/* Status Badge */}
-          <div className="mb-4">
-            <span
-              className={`inline-block px-4 py-2 text-sm font-medium rounded-full border ${getStatusColor(status)}`}>
-              {status.replace('-', ' ').toUpperCase()}
-            </span>
-          </div>
+          <ScrollAnimation direction="down" delay={0.1}>
+            <ScrollAnimation direction="down" delay={0.3} className="mb-4">
+              <span
+                className={`inline-block px-4 py-2 text-sm font-medium rounded-full border ${getStatusColor(
+                  status,
+                )}`}>
+                {status.replace('-', ' ').toUpperCase()}
+              </span>
+            </ScrollAnimation>
 
-          {/* Title and Description */}
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">{title}</h1>
-          <p className="text-xl md:text-2xl text-gray-200 max-w-3xl leading-relaxed">
-            {description}
-          </p>
+            {/* Title and Description */}
+            <ScrollAnimation direction="down" delay={0.4}>
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
+                {title}
+              </h1>
+            </ScrollAnimation>
+            <ScrollAnimation direction="down" delay={0.5}>
+              <p className="text-xl md:text-2xl text-gray-200 max-w-3xl leading-relaxed">
+                {description}
+              </p>
+            </ScrollAnimation>
+          </ScrollAnimation>
         </div>
       </div>
     </div>

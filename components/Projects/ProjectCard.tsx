@@ -42,10 +42,7 @@ export default function ProjectCard({
     },
   ];
   return (
-    <Link
-      href={`/projects/${slug}`}
-      key={_id}
-      className="bg-card-bg backdrop-blur-md border border-white/20 rounded-xl overflow-hidden hover:bg-card-hover transition cursor-pointer">
+    <Link href={`/projects/${slug}`}>
       <div className="w-full h-48 bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
         {screenshot ? (
           <Image

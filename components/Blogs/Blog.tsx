@@ -9,6 +9,7 @@ import HeroBlog from '@/components/Blogs/Features/HeroBlog';
 import NavigationHeader from '@/components/ui/NavigationHeader';
 import BlogContent from '@/components/Blogs/Features/BlogContent';
 import BackgroundEffects from '@/components/ui/BackgroundEffects';
+import ScrollAnimation from '../ui/ScrollAnimation';
 
 interface BlogProps {
   blog: BlogPostResponse;
@@ -16,8 +17,9 @@ interface BlogProps {
   relatedBlogs?: BlogPostResponse[];
 }
 
-export default function Blog({ blog, latestBlogs = [], relatedBlogs = [] }: BlogProps) {
-  const { technologies, tags, description } = blog;
+export default function Blog({ blog, latestBlogs, relatedBlogs }: BlogProps) {
+  const { technologies, tags, description, slug, title } = blog;
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}/blogs/${slug}`;
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
       {/* Navigation Header */}
@@ -35,9 +37,12 @@ export default function Blog({ blog, latestBlogs = [], relatedBlogs = [] }: Blog
             {/* Main Content Column */}
             <div className="lg:col-span-2">
               {/* Blog Description */}
-              <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 mb-8">
+              <ScrollAnimation
+                direction="down"
+                delay={0.2}
+                className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 mb-8">
                 <p className="text-xl text-gray-300 leading-relaxed">{description}</p>
-              </div>
+              </ScrollAnimation>
 
               {/* Blog Content */}
               <BlogContent blog={blog} />
@@ -51,7 +56,7 @@ export default function Blog({ blog, latestBlogs = [], relatedBlogs = [] }: Blog
             {/* Sidebar Column */}
             <div className="space-y-8">
               {/* Share Card */}
-              <ShareCard />
+              <ShareCard url={url} title={title} />
 
               {/* Latest Blogs Card */}
               <LatestBlogs latestBlogs={latestBlogs} />

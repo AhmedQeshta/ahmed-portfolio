@@ -1,7 +1,7 @@
 import Blog from '@/components/Blogs/Blog';
 import ErrorHandle from '@/components/ui/ErrorHandle';
 import { sanityFetch } from '@/sanity/lib/client';
-import { blogPostBySlugQuery } from '@/sanity/lib/queries';
+import { blogPostBySlugQuery, blogPostsQuery } from '@/sanity/lib/queries';
 import { BlogPostResponse } from '@/sanity/lib/types';
 import React from 'react';
 
@@ -16,10 +16,30 @@ const BlogPage = async ({ params }: BlogPageInterface) => {
     const blog = await sanityFetch<BlogPostResponse>({
       query: blogPostBySlugQuery,
       params: { slug },
+      tags: ['blogPost'],
+    });
+    const latestBlogs = await sanityFetch<BlogPostResponse[]>({
+      query: blogPostsQuery,
       tags: ['blogPosts'],
+      params: {
+        limit: 3,
+        order: 'desc',
+        orderBy: 'publishedAt',
+      },
     });
 
-    return <Blog blog={blog} />;
+    const relatedBlogs = await sanityFetch<BlogPostResponse[]>({
+      query: blogPostsQuery,
+      tags: ['blogPosts'],
+      params: {
+        limit: 3,
+        order: 'desc',
+        orderBy: 'publishedAt',
+        exclude: [blog._id],
+      },
+    });
+
+    return <Blog blog={blog} latestBlogs={latestBlogs} relatedBlogs={relatedBlogs} />;
   } catch (error) {
     return (
       <ErrorHandle
