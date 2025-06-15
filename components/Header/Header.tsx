@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import SkillsIcons from '@/components/Header/SkillsIconsHeader';
 import { Suspense } from 'react';
 import ErrorHandle from '@/components/ui/ErrorHandle';
 import { BaseInfoResponse } from '@/sanity/lib/types';

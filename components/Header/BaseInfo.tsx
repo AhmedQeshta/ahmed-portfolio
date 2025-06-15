@@ -1,8 +1,8 @@
 import { BaseInfoResponse } from '@/sanity/lib/types';
-import { PortableText } from '@portabletext/react';
 import { Suspense } from 'react';
 import Loading from '@/components/ui/Loading';
 import SkillsIconsHeader from '@/components/Header/SkillsIconsHeader';
+import { PortableText } from '@portabletext/react';
 
 interface BaseInfoProps {
   baseInfo: BaseInfoResponse;
