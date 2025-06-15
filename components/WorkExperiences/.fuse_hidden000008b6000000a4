@@ -1,0 +1,38 @@
+import { workExperienceQuery } from '@/sanity/lib/queries';
+import { sanityFetch } from '@/sanity/lib/client';
+import { WorkExperienceResponse } from '@/sanity/lib/types';
+import ErrorHandle from '@/components/ui/ErrorHandle';
+import WorkSlider from './WorkSlider';
+
+export default async function WorkGridSlider() {
+  try {
+    // if readMore true take first 6 Project
+    const works = await sanityFetch<WorkExperienceResponse[]>({
+      query: workExperienceQuery,
+      tags: ['works'],
+    });
+
+    return (
+      <section id="works" className="py-20 bg-section-glass rounded-2xl">
+        <div className="mx-auto max-w-5xl px-4">
+          <h2 className="text-3xl font-semibold mb-8 gradient-text">Works</h2>
+          {works.length === 0 ? (
+            <div className="text-center text-gray-400">
+              <p>No works found.</p>
+            </div>
+          ) : (
+            <WorkSlider works={works} />
+          )}
+        </div>
+      </section>
+    );
+  } catch (error) {
+    return (
+      <ErrorHandle
+        id={'work'}
+        title={'Work Experience'}
+        description={'Failed to load work experience. Please try again later.'}
+      />
+    );
+  }
+}
