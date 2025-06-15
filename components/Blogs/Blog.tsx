@@ -2,12 +2,12 @@ import { BlogPostResponse } from '@/sanity/lib/types';
 import Technologies from '@/components/ui/Technologies';
 import Tags from '@/components/ui/Tags';
 import ShareCard from '@/components/ui/ShareCard';
-import LatestBlogs from '@/components/Blogs/LatestBlogs';
-import RelatedBlogs from '@/components/Blogs/RelatedBlogs';
-import PostDetails from '@/components/Blogs/PostDetails';
-import HeroBlog from '@/components/Blogs/HeroBlog';
+import LatestBlogs from '@/components/Blogs/Features/LatestBlogs';
+import RelatedBlogs from '@/components/Blogs/Features/RelatedBlogs';
+import PostDetails from '@/components/Blogs/Features/PostDetails';
+import HeroBlog from '@/components/Blogs/Features/HeroBlog';
 import NavigationHeader from '@/components/ui/NavigationHeader';
-import BlogContent from '@/components/Blogs/BlogContent';
+import BlogContent from '@/components/Blogs/Features/BlogContent';
 import BackgroundEffects from '@/components/ui/BackgroundEffects';
 
 interface BlogProps {

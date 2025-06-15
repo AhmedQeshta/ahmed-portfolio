@@ -1,9 +1,9 @@
 import { sanityFetch } from '@/sanity/lib/client';
 import { blogPostsQuery } from '@/sanity/lib/queries';
 import { BlogPostResponse } from '@/sanity/lib/types';
-import Link from 'next/link';
 import ErrorHandle from '@/components/ui/ErrorHandle';
 import BlogCard from '@/components/Blogs/BlogCard';
+import ReadMore from '@/components/ui/ReadMore';
 
 interface BlogGridProps {
   readMore?: boolean;
@@ -31,15 +31,7 @@ export default async function BlogGrid({ readMore = true }: BlogGridProps) {
             <BlogCard blogs={blogs} />
           )}
 
-          {readMore && (
-            <div className="flex justify-center mt-12">
-              <Link
-                href="/blogs"
-                className="px-6 py-3 gradient-button-primary rounded-full font-semibold">
-                View All Blogs
-              </Link>
-            </div>
-          )}
+          {readMore && <ReadMore link="/blogs" text="View All Blogs" />}
         </div>
       </section>
     );
