@@ -3,14 +3,15 @@
 import { getImageUrl } from '@/sanity/lib/image';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 import { durationOfWork } from '@/utils/date';
-import { ExternalLink, MapPin, Calendar, Briefcase, ArrowRight } from 'lucide-react';
+import { MapPin, Calendar, Briefcase, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Slider from 'react-slick';
+import { handleCardClick } from '@/utils/handleCardLInk';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { handleCardClick } from '@/utils/handleCardLInk';
+import { getEmploymentTypeColor, getLocationTypeColor } from '@/utils/statusColor';
 
 interface WorkSliderProps {
   works: WorkExperienceResponse[];
@@ -19,36 +20,6 @@ interface WorkSliderProps {
 
 export default function WorkSlider({ works, readMore = true }: WorkSliderProps) {
   const router = useRouter();
-
-  const getEmploymentTypeColor = (type: string) => {
-    switch (type) {
-      case 'full-time':
-        return 'bg-green-500/20 text-green-300 border-green-500/30';
-      case 'part-time':
-        return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
-      case 'freelance':
-        return 'bg-purple-500/20 text-purple-300 border-purple-500/30';
-      case 'contract':
-        return 'bg-orange-500/20 text-orange-300 border-orange-500/30';
-      case 'internship':
-        return 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30';
-      default:
-        return 'bg-gray-500/20 text-gray-300 border-gray-500/30';
-    }
-  };
-
-  const getLocationTypeColor = (type: string) => {
-    switch (type) {
-      case 'remote':
-        return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
-      case 'on-site':
-        return 'bg-green-500/20 text-green-300 border-green-500/30';
-      case 'hybrid':
-        return 'bg-purple-500/20 text-purple-300 border-purple-500/30';
-      default:
-        return 'bg-gray-500/20 text-gray-300 border-gray-500/30';
-    }
-  };
 
   const sliderSettings = {
     dots: false,
