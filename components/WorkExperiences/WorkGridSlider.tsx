@@ -3,7 +3,6 @@ import { sanityFetch } from '@/sanity/lib/client';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/components/ui/ErrorHandle';
 import WorkSlider from './WorkSlider';
-import ScrollAnimation from '@/components/ui/ScrollAnimation';
 
 export default async function WorkGridSlider() {
   try {
@@ -16,15 +15,11 @@ export default async function WorkGridSlider() {
     return (
       <section id="works" className="py-20">
         <div className="mx-auto max-w-5xl px-4">
-          <ScrollAnimation direction="down" delay={0.1} className="mb-8">
-            <h2 className="text-3xl font-semibold mb-8 gradient-text">Works</h2>
-          </ScrollAnimation>
+          <h2 className="text-3xl font-semibold mb-8 gradient-text">Works</h2>
           {works.length === 0 ? (
-            <ScrollAnimation direction="down" delay={0.1}>
-              <div className="text-center text-gray-400">
-                <p>No works found.</p>
-              </div>
-            </ScrollAnimation>
+            <div className="text-center text-gray-400">
+              <p>No works found.</p>
+            </div>
           ) : (
             <WorkSlider works={works} />
           )}
