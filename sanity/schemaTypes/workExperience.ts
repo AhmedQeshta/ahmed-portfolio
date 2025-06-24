@@ -162,3 +162,5 @@ export const workExperience = defineType({
     },
   ],
 });
+
+export { metadata, viewport } from 'next-sanity/studio';
