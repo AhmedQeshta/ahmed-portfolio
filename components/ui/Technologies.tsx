@@ -35,7 +35,8 @@ export default function Technologies({ technologies }: TechnologiesProps) {
                   <Image
                     src={getImageUrl(logo, 16, 16, 90)}
                     alt={name}
-                    fill
+                    width={16}
+                    height={16}
                     className="object-contain"
                   />
                 </div>
