@@ -2,12 +2,16 @@ import BlogGrid from '@/components/Blogs/BlogGrid';
 import Search from '@/components/Search';
 import React from 'react';
 
-const BlogPage = () => {
-  // add search and use query like  this "example.com?q=text"
+interface BlogPageProps {
+  searchParams?: Promise<{ q?: string }>;
+}
+
+const BlogPage = async ({ searchParams }: BlogPageProps) => {
+  const query = (await searchParams)?.q ?? '';
   return (
     <>
       <Search action="/blogs" />
-      <BlogGrid readMore={false} />
+      <BlogGrid readMore={false} query={query} />
     </>
   );
 };
