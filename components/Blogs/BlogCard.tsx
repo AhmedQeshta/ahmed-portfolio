@@ -6,6 +6,7 @@ import TechnologiesHome from '@/components/ui/TechnologiesHome';
 import { formatDate, formatReadingTime } from '@/utils/date';
 import { Calendar, Clock } from 'lucide-react';
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
+import SeeBlogButton from '@/components/Blogs/Features/SeeBlogButton';
 
 interface BlogCardProps {
   blog: BlogPostResponse;
@@ -61,11 +62,7 @@ export default async function BlogCard({ blog }: BlogCardProps) {
           )}
 
           <div className="flex gap-4">
-            <Link
-              href={`blogs/${slug}`}
-              className="text-sm text-white/80 hover:text-white underline bg-gradient-to-br from-purple-500 to-pink-500 rounded-md px-2 py-2">
-              See blog
-            </Link>
+            <SeeBlogButton slug={slug} />
           </div>
         </div>
       </Link>

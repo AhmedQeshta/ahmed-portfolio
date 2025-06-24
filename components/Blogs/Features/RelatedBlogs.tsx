@@ -1,4 +1,5 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
+import { getImageUrl } from '@/sanity/lib/image';
 import { BlogPostResponse, TechnologyResponse } from '@/sanity/lib/types';
 import { formatDate, formatReadingTime } from '@/utils/date';
 import Image from 'next/image';
@@ -24,7 +25,13 @@ export default function RelatedBlogs({ relatedBlogs }: RelatedBlogsProps) {
           <Link key={_id} href={`/blogs/${slug}`} className="block group">
             <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-800/50 transition-colors">
               <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                <Image src={thumbnail} alt={title} fill className="object-cover" />
+                <Image
+                  src={getImageUrl(thumbnail, 64, 64, 90)}
+                  alt={title}
+                  width={64}
+                  height={64}
+                  className="object-cover"
+                />
               </div>
               <div className="flex-1 min-w-0">
                 <h4 className="text-white text-sm font-medium line-clamp-2 group-hover:text-purple-300 transition-colors">

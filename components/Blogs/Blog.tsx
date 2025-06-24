@@ -13,8 +13,8 @@ import ScrollAnimation from '../ui/ScrollAnimation';
 
 interface BlogProps {
   blog: BlogPostResponse;
-  latestBlogs?: BlogPostResponse[];
-  relatedBlogs?: BlogPostResponse[];
+  latestBlogs: BlogPostResponse[];
+  relatedBlogs: BlogPostResponse[];
 }
 
 export default function Blog({ blog, latestBlogs, relatedBlogs }: BlogProps) {

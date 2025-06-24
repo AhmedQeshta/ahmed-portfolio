@@ -8,23 +8,32 @@ import ScrollAnimation from '@/components/ui/ScrollAnimation';
 
 interface BlogGridProps {
   readMore?: boolean;
+  query?: string;
 }
 
-export default async function BlogGrid({ readMore = true }: BlogGridProps) {
+export default async function BlogGrid({ readMore = true, query }: BlogGridProps) {
   try {
     // if readMore true take first 6 blogs
-    const blogs = await sanityFetch<BlogPostResponse[]>({
+    let blogs = await sanityFetch<BlogPostResponse[]>({
       query: blogPostsQuery,
       tags: ['blogPosts'],
     });
 
+    if (query) {
+      blogs = blogs.filter(
+        (blog) =>
+          blog.title.toLowerCase().includes(query.toLowerCase()) ||
+          blog.description.toLowerCase().includes(query.toLowerCase()) ||
+          blog.tags?.some((tag) => tag.toLowerCase().includes(query.toLowerCase())) ||
+          blog.categories?.some((cat) => cat.name.toLowerCase().includes(query.toLowerCase())),
+      );
+    }
+
     return (
       // add the tags as a badge and the category and do not add html
-      <section id="blog" className="py-20">
+      <section id="blog" className="py-10">
         <div className="mx-auto max-w-5xl px-4">
-          <ScrollAnimation direction="down" delay={0.1} className="mb-8">
-            <h2 className="text-3xl font-semibold mb-8 gradient-text">Blogs</h2>
-          </ScrollAnimation>
+          <h2 className="text-3xl font-semibold mb-8 gradient-text">Blogs</h2>
 
           {blogs.length === 0 ? (
             <ScrollAnimation direction="down" delay={0.1}>
@@ -35,10 +44,10 @@ export default async function BlogGrid({ readMore = true }: BlogGridProps) {
           ) : (
             <ScrollAnimation
               direction="left"
-              delay={0.3}
+              delay={0.2}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogs.map((blog) => (
-                <ScrollAnimation key={blog._id} direction="right" delay={0.5}>
+                <ScrollAnimation key={blog._id} direction="right" delay={0.3}>
                   <BlogCard blog={blog} />
                 </ScrollAnimation>
               ))}
