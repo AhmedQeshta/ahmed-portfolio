@@ -19,18 +19,6 @@ const Work = async ({ params }: WorkModalInterface) => {
       tags: ['workExperience'],
     });
 
-    if (!workExperience) {
-      return (
-        <ErrorHandle
-          id={'work'}
-          title={'Work Experience Not Found'}
-          description={
-            'The requested work experience could not be found. Please check the URL or try again later.'
-          }
-        />
-      );
-    }
-
     return <WorkModal work={workExperience} />;
   } catch (error) {
     console.error('Error fetching work experience:', error);

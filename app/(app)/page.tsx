@@ -5,7 +5,6 @@ import BlogGrid from '@/components/Blogs/BlogGrid';
 import ContactSection from '@/components/Contact/ContactSection';
 import { Suspense } from 'react';
 import Loading from '@/components/ui/Loading';
-import ScrollAnimation from '@/components/ui/ScrollAnimation';
 
 export default function Home() {
   return (
