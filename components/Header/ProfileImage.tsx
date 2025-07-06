@@ -1,6 +1,7 @@
 import { getImageUrl } from '@/sanity/lib/image';
 import { BaseInfoResponse } from '@/sanity/lib/types';
 import Image from 'next/image';
+import MouseMoveWrapper from '../ui/MouseMoveWrapper';
 
 interface ProfileImageProps {
   baseInfo: BaseInfoResponse;
@@ -10,7 +11,7 @@ export default function ProfileImage({ baseInfo }: ProfileImageProps) {
   const { profilePicture, name } = baseInfo;
   return (
     <div className="w-full lg:w-1/2 mt-10 lg:mt-0 flex justify-center">
-      <div className="relative">
+      <MouseMoveWrapper className="relative overflow-ellipsis rounded-full">
         {profilePicture ? (
           <div className="relative">
             <div className="absolute inset-0 rounded-full border-4 border-purple-500/50 animate-pulse" />
@@ -33,7 +34,7 @@ export default function ProfileImage({ baseInfo }: ProfileImageProps) {
             {name.charAt(0)}
           </div>
         )}
-      </div>
+      </MouseMoveWrapper>
     </div>
   );
 }
