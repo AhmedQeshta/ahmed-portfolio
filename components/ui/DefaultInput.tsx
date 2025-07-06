@@ -1,17 +1,9 @@
 import { cn } from '@/utils/statusColor';
 
-interface DefaultInputInterFace {
+interface DefaultInputInterFace extends React.InputHTMLAttributes<HTMLInputElement> {
   handleInputChange: any;
   displayErrors?: string;
-  name: string;
-  value: string;
-  placeholder: string;
-  type?: string;
   customStyle?: string;
-  autoFocus?: boolean;
-  autoComplete?: string;
-  autoCorrect?: string;
-  style?: any;
 }
 
 export default function DefaultInput({

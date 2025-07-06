@@ -1,12 +1,8 @@
 import { cn } from '@/utils/statusColor';
 
-interface DefaultTextareaInterFace {
+interface DefaultTextareaInterFace extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   handleInputChange: any;
   displayErrors?: string;
-  name: string;
-  rows?: number;
-  value: string;
-  placeholder: string;
   customStyle?: string;
 }
 export default function DefaultTextarea({
@@ -16,9 +12,8 @@ export default function DefaultTextarea({
 }: DefaultTextareaInterFace) {
   return (
     <>
-      <input
+      <textarea
         id={restProps?.name}
-        type="text"
         onChange={(e) => handleInputChange([restProps?.name], e.target.value)}
         className={cn(
           `w-full px-4 py-2 bg-transparent border rounded-md text-white placeholder:text-placeholder focus:outline-none focus:ring-2 transition-colors ${
