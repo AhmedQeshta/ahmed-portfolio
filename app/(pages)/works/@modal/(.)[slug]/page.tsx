@@ -3,13 +3,10 @@ import WorkModal from '@/components/WorkExperiences/WorkModal';
 import { sanityFetch } from '@/sanity/lib/client';
 import { workExperienceBySlugQuery } from '@/sanity/lib/queries';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
+import { IWorkPage } from '@/utils/types/work';
 import React from 'react';
 
-interface IWorkModal {
-  params: Promise<{ slug: string }>;
-}
-
-const Work = async ({ params }: IWorkModal) => {
+const Work = async ({ params }: IWorkPage) => {
   const { slug } = await params;
 
   try {

@@ -4,10 +4,9 @@ import { workExperienceBySlugQuery } from '@/sanity/lib/queries';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 import Work from '@/components/WorkExperiences/Work';
 import ErrorHandle from '@/components/ui/ErrorHandle';
+import { IWorkPage } from '@/utils/types/work';
 
-interface IWorkPage {
-  params: Promise<{ slug: string }>;
-}
+
 
 const WorkPage = async ({ params }: IWorkPage) => {
   const { slug } = await params;

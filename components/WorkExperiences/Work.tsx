@@ -1,4 +1,3 @@
-import { WorkExperienceResponse } from '@/sanity/lib/types';
 import NavigationHeader from '@/components/ui/NavigationHeader';
 import Technologies from '@/components/ui/Technologies';
 import HeroWork from '@/components/WorkExperiences/Features/HeroWork';
@@ -10,12 +9,9 @@ import Skills from '@/components/WorkExperiences/Features/Skills';
 import Achievements from '@/components/WorkExperiences/Features/Achievements';
 import CompanyInformation from '@/components/WorkExperiences/Features/CompanyInformation';
 import { ExternalLink } from 'lucide-react';
+import { IWorkResponse } from '@/utils/types/work';
 
-interface IWork {
-  work: WorkExperienceResponse;
-}
-
-export default function Work({ work }: IWork) {
+export default function Work({ work }: IWorkResponse) {
   const { technologies, companyUrl } = work;
   const listLinks = [
     {

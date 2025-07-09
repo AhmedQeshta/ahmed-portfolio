@@ -1,24 +1,11 @@
 'use client';
 
-import { getImageUrl } from '@/sanity/lib/image';
-import { WorkExperienceResponse } from '@/sanity/lib/types';
-import { durationOfWork } from '@/utils/date';
-import { MapPin, Calendar, Briefcase, ArrowRight } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Slider from 'react-slick';
-import { handleCardClick } from '@/utils/handleCardLInk';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { getEmploymentTypeColor, getLocationTypeColor } from '@/utils/statusColor';
-import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import Card from './Features/Card';
-
-interface IWorkSlider {
-  works: WorkExperienceResponse[];
-  readMore?: boolean;
-}
+import { IWorkSlider } from '@/utils/types/work';
 
 export default function WorkSlider({ works, readMore = true }: IWorkSlider) {
   const router = useRouter();

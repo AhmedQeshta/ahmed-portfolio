@@ -1,12 +1,10 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
-import { WorkExperienceResponse } from '@/sanity/lib/types';
 import { durationOfWork, formatDate } from '@/utils/date';
+import { IWorkResponse } from '@/utils/types/work';
 import { Calendar } from 'lucide-react';
 
-interface ITimeline {
-  work: WorkExperienceResponse;
-}
-export default function Timeline({ work }: ITimeline) {
+
+export default function Timeline({ work }: IWorkResponse) {
   if (!work) return null;
 
   const { endDate, startDate, current } = work;

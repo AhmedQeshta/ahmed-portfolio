@@ -1,11 +1,8 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
-import { WorkExperienceResponse } from '@/sanity/lib/types';
 import { getEmploymentTypeColor, getLocationTypeColor } from '@/utils/statusColor';
+import { IWorkResponse } from '@/utils/types/work';
 
-interface IWorkDetails {
-  work: WorkExperienceResponse;
-}
-export default function WorkDetails({ work }: IWorkDetails) {
+export default function WorkDetails({ work }: IWorkResponse) {
   if (!work) return null;
 
   const { employmentType, locationType, current } = work;

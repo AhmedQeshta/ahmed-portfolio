@@ -1,10 +1,6 @@
-export default function AppLayout({
-  children,
-  modal,
-}: Readonly<{
-  children: React.ReactNode;
-  modal: React.ReactNode;
-}>) {
+import { IWorkLayout } from '@/utils/types/work';
+
+export default function WorkLayout({ children, modal }: IWorkLayout) {
   return (
     <>
       {modal}

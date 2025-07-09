@@ -1,11 +1,8 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
-import { WorkExperienceResponse } from '@/sanity/lib/types';
+import { IWorkResponse } from '@/utils/types/work';
 import { Award } from 'lucide-react';
 
-interface IAchievements {
-  work: WorkExperienceResponse;
-}
-export default function Achievements({ work: { achievements } }: IAchievements) {
+export default function Achievements({ work: { achievements } }: IWorkResponse) {
   if (!achievements || achievements.length == 0) return null;
 
   return (

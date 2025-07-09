@@ -1,6 +1,5 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { WorkExperienceResponse } from '@/sanity/lib/types';
 import { ExternalLink } from 'lucide-react';
 import Modal from '@/components/ui/Modal';
 import ActionButtons from '@/components/ui/ActionButtons';
@@ -12,12 +11,9 @@ import Timeline from '@/components/WorkExperiences/Features/Timeline';
 import Location from '@/components/WorkExperiences/Features/Location';
 import Technologies from '@/components/ui/Technologies';
 import WorkDetails from '@/components/WorkExperiences/Features/WorkDetails';
+import { IWorkResponse } from '@/utils/types/work';
 
-interface IWorkModal {
-  work: WorkExperienceResponse;
-}
-
-export default function WorkModal({ work }: IWorkModal) {
+export default function WorkModal({ work }: IWorkResponse) {
   const router = useRouter();
 
   const handleClose = () => {

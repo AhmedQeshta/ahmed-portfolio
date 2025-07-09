@@ -1,15 +1,10 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { getImageUrl } from '@/sanity/lib/image';
-import { WorkExperienceResponse } from '@/sanity/lib/types';
+import { IWorkResponse } from '@/utils/types/work';
 import { Building, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 
-interface ICompanyInformation {
-  work: WorkExperienceResponse;
-}
-export default function CompanyInformation({
-  work: { logo, company, companyUrl },
-}: ICompanyInformation) {
+export default function CompanyInformation({ work: { logo, company, companyUrl } }: IWorkResponse) {
   if (!logo) return null;
 
   return (

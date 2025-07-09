@@ -1,5 +1,4 @@
 import { getImageUrl } from '@/sanity/lib/image';
-import { WorkExperienceResponse } from '@/sanity/lib/types';
 import Link from 'next/link';
 import Image from 'next/image';
 import { durationOfWork } from '@/utils/date';
@@ -8,12 +7,9 @@ import TechnologiesHome from '@/components/ui/TechnologiesHome';
 import { Briefcase, Calendar, MapPin, ExternalLink } from 'lucide-react';
 import React from 'react';
 import MouseMoveWrapper from '@/components/ui/MouseMoveWrapper';
+import { IWorkResponse } from '@/utils/types/work';
 
-interface ICard {
-  work: WorkExperienceResponse;
-}
-
-export default function Card({ work }: ICard) {
+export default function Card({ work }: IWorkResponse) {
   const {
     _id,
     slug,

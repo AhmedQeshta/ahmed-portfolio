@@ -1,13 +1,9 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
-import { WorkExperienceResponse } from '@/sanity/lib/types';
 import { getEmploymentTypeColor, getLocationTypeColor } from '@/utils/statusColor';
+import { IWorkResponse } from '@/utils/types/work';
 import { Building, ExternalLink } from 'lucide-react';
 
-interface IHeroWork {
-  work: WorkExperienceResponse;
-}
-
-export default function HeroWork({ work }: IHeroWork) {
+export default function HeroWork({ work }: IWorkResponse) {
   if (!work) return null;
   const { employmentType, current, locationType, title, companyUrl, company, description } = work;
   //  make it
