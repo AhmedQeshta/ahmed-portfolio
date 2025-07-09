@@ -1,10 +1,10 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { formatDate, formatReadingTime } from '@/utils/date';
-import { IHeroBlog } from '@/utils/types/blog';
+import { IBlogPostResponse } from '@/utils/types/blog';
 import { Calendar, Clock } from 'lucide-react';
 import Image from 'next/image';
 
-export default function HeroBlog({ blog }: IHeroBlog) {
+export default function HeroBlog({ blog }: IBlogPostResponse) {
   if (!blog) return null;
   const { thumbnail, title, categories, publishedAt, readingTime, featured } = blog;
   //  make it

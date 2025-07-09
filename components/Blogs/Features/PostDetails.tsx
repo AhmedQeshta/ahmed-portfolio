@@ -1,9 +1,8 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { formatDate, formatReadingTime } from '@/utils/date';
-import { IPostDetails } from '@/utils/types/blog';
+import { IBlogPostResponse } from '@/utils/types/blog';
 
-
-export default function PostDetails({ blog }: IPostDetails) {
+export default function PostDetails({ blog }: IBlogPostResponse) {
   if (!blog) return null;
   const { publishedAt, readingTime, categories, tags } = blog;
   //  make it

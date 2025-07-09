@@ -13,36 +13,19 @@ export interface IBlogGrid {
   query?: string;
 }
 
-export interface IBlogCard {
-  blog: BlogPostResponse;
-}
-
-export interface IBlog {
-  blog: BlogPostResponse;
-  latestBlogs: BlogPostResponse[];
-  relatedBlogs: BlogPostResponse[];
-}
-
-export interface ISeeBlogButton {
-  slug: string;
-}
-
 export interface IRelatedBlogs {
   relatedBlogs: BlogPostResponse[];
-}
-
-export interface IPostDetails {
-  blog: BlogPostResponse;
 }
 
 export interface ILatestBlogs {
   latestBlogs: BlogPostResponse[];
 }
-
-export interface IHeroBlog {
+export interface IBlogPostResponse {
   blog: BlogPostResponse;
 }
 
-export interface IBlogContent {
-  blog: BlogPostResponse;
+export interface IBlog extends IRelatedBlogs, ILatestBlogs, IBlogPostResponse {}
+
+export interface ISeeBlogButton {
+  slug: string;
 }

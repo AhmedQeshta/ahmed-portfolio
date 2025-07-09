@@ -1,9 +1,9 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
-import { IBlogContent } from '@/utils/types/blog';
+import { IBlogPostResponse } from '@/utils/types/blog';
 import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
 
-export default function BlogContent({ blog }: IBlogContent) {
+export default function BlogContent({ blog }: IBlogPostResponse) {
   if (!blog) return null;
   const { content } = blog;
   //  make it
