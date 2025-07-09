@@ -1,13 +1,10 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { getImageUrl } from '@/sanity/lib/image';
-import { BlogPostResponse, TechnologyResponse } from '@/sanity/lib/types';
-import { formatDate, formatReadingTime } from '@/utils/date';
+import { formatReadingTime } from '@/utils/date';
+import { IRelatedBlogs } from '@/utils/types/blog';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface IRelatedBlogs {
-  relatedBlogs: BlogPostResponse[];
-}
 
 export default function RelatedBlogs({ relatedBlogs }: IRelatedBlogs) {
   if (!relatedBlogs || relatedBlogs.length === 0) return null;

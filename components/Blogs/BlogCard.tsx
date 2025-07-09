@@ -1,5 +1,4 @@
 import { getImageUrl } from '@/sanity/lib/image';
-import { BlogPostResponse } from '@/sanity/lib/types';
 import Link from 'next/link';
 import Image from 'next/image';
 import TechnologiesHome from '@/components/ui/TechnologiesHome';
@@ -8,10 +7,9 @@ import { Calendar, Clock } from 'lucide-react';
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import SeeBlogButton from '@/components/Blogs/Features/SeeBlogButton';
 import MouseMoveWrapper from '@/components/ui/MouseMoveWrapper';
+import { IBlogCard } from '@/utils/types/blog';
 
-interface IBlogCard {
-  blog: BlogPostResponse;
-}
+
 
 export default async function BlogCard({ blog }: IBlogCard) {
   const { _id, slug, thumbnail, title, technologies, publishedAt, readingTime, description } = blog;

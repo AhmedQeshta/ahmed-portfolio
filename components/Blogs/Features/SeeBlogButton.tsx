@@ -1,11 +1,9 @@
 'use client';
 
+import { ISeeBlogButton } from '@/utils/types/blog';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-interface ISeeBlogButton {
-  slug: string;
-}
 
 export default function SeeBlogButton({ slug }: ISeeBlogButton) {
   const router = useRouter();

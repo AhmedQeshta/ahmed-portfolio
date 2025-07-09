@@ -5,11 +5,8 @@ import ErrorHandle from '@/components/ui/ErrorHandle';
 import BlogCard from '@/components/Blogs/BlogCard';
 import ReadMore from '@/components/ui/ReadMore';
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
+import { IBlogGrid } from '@/utils/types/blog';
 
-interface IBlogGrid {
-  readMore?: boolean;
-  query?: string;
-}
 
 export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
   try {

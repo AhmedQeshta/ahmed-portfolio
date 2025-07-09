@@ -1,4 +1,3 @@
-import { BlogPostResponse } from '@/sanity/lib/types';
 import Technologies from '@/components/ui/Technologies';
 import Tags from '@/components/ui/Tags';
 import ShareCard from '@/components/ui/ShareCard';
@@ -10,12 +9,7 @@ import NavigationHeader from '@/components/ui/NavigationHeader';
 import BlogContent from '@/components/Blogs/Features/BlogContent';
 import BackgroundEffects from '@/components/ui/BackgroundEffects';
 import ScrollAnimation from '../ui/ScrollAnimation';
-
-interface IBlog {
-  blog: BlogPostResponse;
-  latestBlogs: BlogPostResponse[];
-  relatedBlogs: BlogPostResponse[];
-}
+import { IBlog } from '@/utils/types/blog';
 
 export default function Blog({ blog, latestBlogs, relatedBlogs }: IBlog) {
   const { technologies, tags, description, slug, title } = blog;

@@ -1,12 +1,8 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
-import { BlogPostResponse, TechnologyResponse } from '@/sanity/lib/types';
 import { formatDate, formatReadingTime } from '@/utils/date';
+import { IHeroBlog } from '@/utils/types/blog';
 import { Calendar, Clock } from 'lucide-react';
 import Image from 'next/image';
-
-interface IHeroBlog {
-  blog: BlogPostResponse;
-}
 
 export default function HeroBlog({ blog }: IHeroBlog) {
   if (!blog) return null;

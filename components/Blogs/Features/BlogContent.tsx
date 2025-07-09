@@ -1,11 +1,7 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
-import { BlogPostResponse, TechnologyResponse } from '@/sanity/lib/types';
+import { IBlogContent } from '@/utils/types/blog';
 import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
-
-interface IBlogContent {
-  blog: BlogPostResponse;
-}
 
 export default function BlogContent({ blog }: IBlogContent) {
   if (!blog) return null;

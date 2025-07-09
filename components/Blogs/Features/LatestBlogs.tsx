@@ -1,13 +1,11 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { getImageUrl } from '@/sanity/lib/image';
-import { BlogPostResponse } from '@/sanity/lib/types';
 import { formatDate } from '@/utils/date';
+import { ILatestBlogs } from '@/utils/types/blog';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface ILatestBlogs {
-  latestBlogs: BlogPostResponse[];
-}
+
 
 export default function LatestBlogs({ latestBlogs }: ILatestBlogs) {
   if (!latestBlogs || latestBlogs.length === 0) return null;

@@ -3,6 +3,7 @@ import ErrorHandle from '@/components/ui/ErrorHandle';
 import { sanityFetch } from '@/sanity/lib/client';
 import { blogPostBySlugQuery, blogPostsQuery } from '@/sanity/lib/queries';
 import { BlogPostResponse } from '@/sanity/lib/types';
+import { IBlogPage } from '@/utils/types/blog';
 import React from 'react';
 
 export { generateBlogMetadata as generateMetadata } from '@/utils/metaData';
@@ -37,10 +38,6 @@ export { generateBlogMetadata as generateMetadata } from '@/utils/metaData';
 //     },
 //   };
 // }
-
-interface IBlogPage {
-  params: Promise<{ slug: string }>;
-}
 
 const BlogPage = async ({ params }: IBlogPage) => {
   const { slug } = await params;
