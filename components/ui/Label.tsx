@@ -6,9 +6,12 @@ interface DefaultLabelInterFace {
   customStyle?: string;
 }
 
-export default function Label({ title, ...restProps }: DefaultLabelInterFace) {
+export default function Label({ title, customStyle, ...restProps }: DefaultLabelInterFace) {
   return (
-    <label className={cn('block text-sm text-white mb-1', restProps.customStyle)} {...restProps}>
+    <label
+      className={cn('block text-sm text-white mb-1', customStyle)}
+      data-testid="label"
+      {...restProps}>
       {title}
     </label>
   );

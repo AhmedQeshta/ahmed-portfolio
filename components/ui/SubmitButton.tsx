@@ -5,13 +5,17 @@ interface SubmitButtonInterface {
   customStyle?: string;
 }
 
-export default function SubmitButton({ isPending, ...restProps }: SubmitButtonInterface) {
+export default function SubmitButton({
+  isPending,
+  customStyle,
+  ...restProps
+}: SubmitButtonInterface) {
   return (
     <button
       type="submit"
       className={cn(
         'px-6 py-3 gradient-button-primary rounded-full font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-opacity',
-        restProps?.customStyle,
+        customStyle,
       )}
       disabled={isPending}
       {...restProps}>

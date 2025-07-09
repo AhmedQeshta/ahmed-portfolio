@@ -8,7 +8,9 @@ export default function Tags({ tags }: TagsProps) {
   if (!tags || tags.length === 0) return null;
 
   return (
-    <ScrollAnimation className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8">
+    <ScrollAnimation
+      className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8"
+      data-testid="tags-container">
       <ScrollAnimation direction="down" delay={0.2}>
         <h3 className="text-lg font-bold text-white mb-4">Tags</h3>
       </ScrollAnimation>

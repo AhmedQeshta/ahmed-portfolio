@@ -42,7 +42,9 @@ export default function ShareCard({ url = '', title = '' }: ShareCardProps) {
 
   return (
     <ScrollAnimation direction="up" delay={0.2}>
-      <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
+      <div
+        className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6"
+        data-testid="share-card">
         <h3 className="flex items-center gap-3 text-lg font-bold text-white mb-4">
           <Share2 size={20} className="text-blue-400" />
           Share This Post

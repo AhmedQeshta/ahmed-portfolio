@@ -47,7 +47,9 @@ export default function Modal({ isOpen, onClose, children, title, maxWidth = 'lg
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
 
       {/* Modal Content */}
-      <div className={`relative w-full ${maxWidthClasses[maxWidth]} max-h-[90vh] overflow-hidden`}>
+      <div
+        className={`relative w-full ${maxWidthClasses[maxWidth]} max-h-[90vh] overflow-hidden`}
+        data-testid="modal-content">
         <div className="bg-gray-900 border border-white/20 rounded-xl shadow-2xl">
           {/* Header */}
           {title && (

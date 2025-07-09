@@ -8,6 +8,7 @@ interface DefaultTextareaInterFace extends React.TextareaHTMLAttributes<HTMLText
 export default function DefaultTextarea({
   handleInputChange,
   displayErrors = '',
+  customStyle,
   ...restProps
 }: DefaultTextareaInterFace) {
   return (
@@ -21,7 +22,7 @@ export default function DefaultTextarea({
               ? 'border-red-500/50 focus:ring-red-500'
               : 'border-white/30 focus:ring-purple-500'
           }`,
-          restProps?.customStyle,
+          customStyle,
         )}
         {...restProps}
       />

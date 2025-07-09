@@ -10,8 +10,8 @@ export interface ErrorHandleType {
 
 export default function ErrorHandle({ id, title, description }: ErrorHandleType) {
   return (
-    <section id={id} className="py-20">
-      <div className="mx-auto max-w-5xl px-4">
+    <section id={id} className="py-20" data-testid={id}>
+      <div className="mx-auto max-w-5xl px-4" data-testid="error-container">
         <motion.h2
           className="text-3xl font-semibold mb-8 gradient-text"
           initial={{ filter: 'blur(10px)', opacity: 0 }}

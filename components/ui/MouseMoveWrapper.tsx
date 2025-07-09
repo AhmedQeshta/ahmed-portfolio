@@ -18,7 +18,8 @@ export default function MouseMoveWrapper({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
-      className={cn('relative overflow-hidden rounded-2xl', className)}>
+      className={cn('relative overflow-hidden rounded-2xl', className)}
+      data-testid="mouse-move-wrapper">
       {/* Gradient Overlay (uses card's bg color, clipped to border radius) */}
       <div
         style={{
@@ -33,6 +34,7 @@ export default function MouseMoveWrapper({
             'radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, rgba(236, 72, 153, 0) 70%)',
           ...gradientStyle,
         }}
+        data-testid="gradient-overlay"
       />
       {children}
     </div>

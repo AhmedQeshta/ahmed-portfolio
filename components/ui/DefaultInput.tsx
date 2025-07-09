@@ -9,6 +9,7 @@ interface DefaultInputInterFace extends React.InputHTMLAttributes<HTMLInputEleme
 export default function DefaultInput({
   handleInputChange,
   displayErrors = '',
+  customStyle,
   ...restProps
 }: DefaultInputInterFace) {
   return (
@@ -23,7 +24,7 @@ export default function DefaultInput({
               ? 'border-red-500/50 focus:ring-red-500'
               : 'border-white/30 focus:ring-purple-500'
           }`,
-          restProps?.customStyle,
+          customStyle,
         )}
         {...restProps}
       />
