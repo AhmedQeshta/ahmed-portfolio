@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import RelatedBlogs from '../../Features/RelatedBlogs';
+import RelatedBlogs from '@/components/Blogs/Features/RelatedBlogs';
 
 // Mock ScrollAnimation
 jest.mock('@/components/ui/ScrollAnimation', () => {

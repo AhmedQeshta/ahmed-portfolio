@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import SeeBlogButton from '../../Features/SeeBlogButton';
+import SeeBlogButton from '@/components/Blogs/Features/SeeBlogButton';
 
 // Mock useRouter
 const mockPush = jest.fn();
