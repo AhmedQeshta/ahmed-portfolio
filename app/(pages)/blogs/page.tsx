@@ -1,5 +1,5 @@
 import BlogGrid from '@/components/Blogs/BlogGrid';
-import Search from '@/components/Search';
+import Search from '@/components/ui/Search';
 import React from 'react';
 
 interface BlogPageProps {
