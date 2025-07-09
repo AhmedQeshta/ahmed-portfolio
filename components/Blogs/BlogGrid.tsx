@@ -6,12 +6,12 @@ import BlogCard from '@/components/Blogs/BlogCard';
 import ReadMore from '@/components/ui/ReadMore';
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
 
-interface BlogGridProps {
+interface IBlogGrid {
   readMore?: boolean;
   query?: string;
 }
 
-export default async function BlogGrid({ readMore = true, query }: BlogGridProps) {
+export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
   try {
     // if readMore true take first 6 blogs
     let blogs = await sanityFetch<BlogPostResponse[]>({

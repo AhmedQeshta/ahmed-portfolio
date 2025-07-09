@@ -6,11 +6,11 @@ import ProjectCard from '@/components/Projects/ProjectCard';
 import ReadMore from '@/components/ui/ReadMore';
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
 
-interface ProjectGridProps {
+interface IProjectGrid {
   readMore?: boolean;
 }
 
-export default async function ProjectGrid({ readMore = true }: ProjectGridProps) {
+export default async function ProjectGrid({ readMore = true }: IProjectGrid) {
   try {
     // if readMore true take first 6 blogs
     const projects = await sanityFetch<ProjectResponse[]>({

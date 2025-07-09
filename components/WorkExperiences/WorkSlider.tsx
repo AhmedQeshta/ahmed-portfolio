@@ -15,12 +15,12 @@ import { getEmploymentTypeColor, getLocationTypeColor } from '@/utils/statusColo
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import Card from './Features/Card';
 
-interface WorkSliderProps {
+interface IWorkSlider {
   works: WorkExperienceResponse[];
   readMore?: boolean;
 }
 
-export default function WorkSlider({ works, readMore = true }: WorkSliderProps) {
+export default function WorkSlider({ works, readMore = true }: IWorkSlider) {
   const router = useRouter();
 
   const sliderSettings = {

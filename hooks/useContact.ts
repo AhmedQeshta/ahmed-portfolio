@@ -9,13 +9,13 @@ const contactSchema = z.object({
   message: z.string().min(1, 'Message is required').trim(),
 });
 
-export interface ContactInputs {
+export interface IContactInputs {
   name: string;
   email: string;
   message: string;
 }
 
-export interface Errors {
+export interface IErrors {
   name?: string;
   email?: string;
   message?: string;
@@ -30,15 +30,15 @@ export function useContact() {
   } as const;
 
   const [state, formAction, isPending] = useActionState(sendMessage, initialStatus);
-  const [formData, setFormData] = useState<ContactInputs>({
+  const [formData, setFormData] = useState<IContactInputs>({
     name: '',
     email: '',
     message: '',
   });
-  const [clientErrors, setClientErrors] = useState<Errors>({});
+  const [clientErrors, setClientErrors] = useState<IErrors>({});
 
   // Handle input changes and real-time validation
-  const handleInputChange = (field: keyof ContactInputs, value: string) => {
+  const handleInputChange = (field: keyof IContactInputs, value: string) => {
     const updatedData = { ...formData, [field]: value };
     setFormData(updatedData);
 
@@ -75,10 +75,10 @@ export function useContact() {
 
     if (!validation.success) {
       event.preventDefault();
-      const errors: Errors = {};
+      const errors: IErrors = {};
 
       validation.error.errors.forEach((error) => {
-        const field = error.path[0] as keyof Errors;
+        const field = error.path[0] as keyof IErrors;
         if (field && field !== 'general') {
           errors[field] = error.message;
         }
@@ -94,10 +94,10 @@ export function useContact() {
 
   // Combine server and client errors (client errors take precedence)
   const displayErrors = {
-    name: clientErrors.name || (state?.errors as Errors)?.name,
-    email: clientErrors.email || (state?.errors as Errors)?.email,
-    message: clientErrors.message || (state?.errors as Errors)?.message,
-    general: (state?.errors as Errors)?.general,
+    name: clientErrors.name || (state?.errors as IErrors)?.name,
+    email: clientErrors.email || (state?.errors as IErrors)?.email,
+    message: clientErrors.message || (state?.errors as IErrors)?.message,
+    general: (state?.errors as IErrors)?.general,
   };
 
   return { formData, state, formAction, isPending, handleInputChange, handleSubmit, displayErrors };

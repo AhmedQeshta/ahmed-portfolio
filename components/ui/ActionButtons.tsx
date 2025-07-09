@@ -3,18 +3,18 @@ import { cn } from '@/utils/statusColor';
 import ScrollAnimation from './ScrollAnimation';
 import Link from 'next/link';
 
-interface listLinks {
+interface IListLinks {
   id?: number;
   text?: string;
   link?: string;
   customStyle?: string;
   icon?: string | React.ReactNode;
 }
-interface ActionButtonsProps {
-  listLinks: listLinks[];
+interface IActionButtons {
+  listLinks: IListLinks[];
 }
 
-export default function ActionButtons({ listLinks }: ActionButtonsProps) {
+export default function ActionButtons({ listLinks }: IActionButtons) {
   if (!listLinks) return null;
 
   // const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>, link?: string) => {

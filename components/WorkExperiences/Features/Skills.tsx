@@ -1,10 +1,10 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 
-interface SkillsProps {
+interface ISkills {
   work: WorkExperienceResponse;
 }
-export default function Skills({ work: { skills } }: SkillsProps) {
+export default function Skills({ work: { skills } }: ISkills) {
   if (!skills) return null;
 
   return (

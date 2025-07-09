@@ -38,8 +38,12 @@ export { generateBlogMetadata as generateMetadata } from '@/utils/metaData';
 //   };
 // }
 
-const BlogPage = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = params;
+interface IBlogPage {
+  params: Promise<{ slug: string }>;
+}
+
+const BlogPage = async ({ params }: IBlogPage) => {
+  const { slug } = await params;
 
   try {
     const blog = await sanityFetch<BlogPostResponse>({

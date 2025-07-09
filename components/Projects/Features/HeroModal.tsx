@@ -3,11 +3,11 @@ import { ProjectResponse } from '@/sanity/lib/types';
 import { getStatusColor } from '@/utils/statusColor';
 import Image from 'next/image';
 
-interface HeroModalProps {
+interface IHeroModal {
   project: ProjectResponse;
 }
 
-export default function HeroModal({ project }: HeroModalProps) {
+export default function HeroModal({ project }: IHeroModal) {
   if (!project) return null;
 
   return (

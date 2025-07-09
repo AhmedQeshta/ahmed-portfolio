@@ -1,8 +1,8 @@
 'use client';
-import { linksAppType } from '@/utils/navLinks';
+import { ILinksApp } from '@/utils/navLinks';
 import Link from 'next/link';
 
-export default function Navbar({ links }: linksAppType[]) {
+export default function Navbar({ links }: ILinksApp[]) {
   // add menu btn have links when it on mobile device and small the media icon on mobile device
   return (
     <nav
@@ -17,7 +17,7 @@ export default function Navbar({ links }: linksAppType[]) {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            {links?.map(({ id, name, url }: linksAppType) => {
+            {links?.map(({ id, name, url }: ILinksApp) => {
               return (
                 <Link
                   key={id}

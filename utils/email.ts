@@ -1,10 +1,10 @@
-interface EmailProps {
+interface IEmail {
   name: string;
   email: string;
   message: string;
 }
 
-export const getHtml = ({ name, email, message }: EmailProps) => `
+export const getHtml = ({ name, email, message }: IEmail) => `
         <!DOCTYPE html>
         <html>
         <head>
@@ -80,7 +80,7 @@ export const getHtml = ({ name, email, message }: EmailProps) => `
         </html>
       `;
 
-export const getText = ({ name, email, message }: EmailProps) => `
+export const getText = ({ name, email, message }: IEmail) => `
         New Contact Form Submission
         
         From: ${name}

@@ -5,11 +5,11 @@ import { workExperienceBySlugQuery } from '@/sanity/lib/queries';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 import React from 'react';
 
-interface WorkModalInterface {
+interface IWorkModal {
   params: Promise<{ slug: string }>;
 }
 
-const Work = async ({ params }: WorkModalInterface) => {
+const Work = async ({ params }: IWorkModal) => {
   const { slug } = await params;
 
   try {

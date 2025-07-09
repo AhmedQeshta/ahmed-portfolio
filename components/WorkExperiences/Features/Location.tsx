@@ -2,10 +2,10 @@ import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 import { MapPin } from 'lucide-react';
 
-interface LocationProps {
+interface ILocation {
   work: WorkExperienceResponse;
 }
-export default function Location({ work: { locationType, location } }: LocationProps) {
+export default function Location({ work: { locationType, location } }: ILocation) {
   if (!location) return null;
 
   return (

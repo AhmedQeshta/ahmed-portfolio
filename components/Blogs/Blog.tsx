@@ -11,13 +11,13 @@ import BlogContent from '@/components/Blogs/Features/BlogContent';
 import BackgroundEffects from '@/components/ui/BackgroundEffects';
 import ScrollAnimation from '../ui/ScrollAnimation';
 
-interface BlogProps {
+interface IBlog {
   blog: BlogPostResponse;
   latestBlogs: BlogPostResponse[];
   relatedBlogs: BlogPostResponse[];
 }
 
-export default function Blog({ blog, latestBlogs, relatedBlogs }: BlogProps) {
+export default function Blog({ blog, latestBlogs, relatedBlogs }: IBlog) {
   const { technologies, tags, description, slug, title } = blog;
   const url = `${process.env.NEXT_PUBLIC_SITE_URL}/blogs/${slug}`;
   return (

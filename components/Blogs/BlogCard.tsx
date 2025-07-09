@@ -9,11 +9,11 @@ import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import SeeBlogButton from '@/components/Blogs/Features/SeeBlogButton';
 import MouseMoveWrapper from '@/components/ui/MouseMoveWrapper';
 
-interface BlogCardProps {
+interface IBlogCard {
   blog: BlogPostResponse;
 }
 
-export default async function BlogCard({ blog }: BlogCardProps) {
+export default async function BlogCard({ blog }: IBlogCard) {
   const { _id, slug, thumbnail, title, technologies, publishedAt, readingTime, description } = blog;
   return (
     <MouseMoveWrapper>

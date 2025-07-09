@@ -5,11 +5,11 @@ import { formatDate } from '@/utils/date';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface LatestBlogsProps {
+interface ILatestBlogs {
   latestBlogs: BlogPostResponse[];
 }
 
-export default function LatestBlogs({ latestBlogs }: LatestBlogsProps) {
+export default function LatestBlogs({ latestBlogs }: ILatestBlogs) {
   if (!latestBlogs || latestBlogs.length === 0) return null;
   //  make it
   return (

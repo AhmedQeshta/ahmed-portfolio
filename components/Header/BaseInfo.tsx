@@ -4,11 +4,11 @@ import Loading from '@/components/ui/Loading';
 import SkillsIconsHeader from '@/components/Header/SkillsIconsHeader';
 import { PortableText } from '@portabletext/react';
 
-interface BaseInfoProps {
+interface IBaseInfo {
   baseInfo: BaseInfoResponse;
 }
 
-export default function BaseInfo({ baseInfo }: BaseInfoProps) {
+export default function BaseInfo({ baseInfo }: IBaseInfo) {
   const { name, bio, technologies } = baseInfo;
   return (
     <div className="w-full lg:w-1/2">

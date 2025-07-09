@@ -8,7 +8,7 @@ import { Calendar, ExternalLink, Github } from 'lucide-react';
 import ActionButtons from '@/components/ui/ActionButtons';
 import MouseMoveWrapper from '@/components/ui/MouseMoveWrapper';
 
-interface ProjectCardProps {
+interface IProjectCard {
   project: ProjectResponse;
 }
 
@@ -25,7 +25,7 @@ export default function ProjectCard({
     liveUrl,
     repoUrl,
   },
-}: ProjectCardProps) {
+}: IProjectCard) {
   const listLinks = [
     {
       id: 1,

@@ -2,11 +2,11 @@ import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { ProjectResponse } from '@/sanity/lib/types';
 import { PortableText } from '@portabletext/react';
 
-interface FullDescriptionProps {
+interface IFullDescription {
   project: ProjectResponse;
 }
 
-export default function FullDescription({ project }: FullDescriptionProps) {
+export default function FullDescription({ project }: IFullDescription) {
   if (!project) return null;
 
   const { fullDescription } = project;

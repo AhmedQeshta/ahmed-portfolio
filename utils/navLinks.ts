@@ -1,10 +1,10 @@
-export interface linksAppType {
+export interface ILinksApp {
   id: number;
   name: string;
   url: string;
 }
 
-export const linksApp: linksAppType[] = [
+export const linksApp: ILinksApp[] = [
   {
     id: 1,
     name: 'Home',
@@ -34,7 +34,7 @@ export const linksApp: linksAppType[] = [
   },
 ];
 
-export const linksPages: linksAppType[] = [
+export const linksPages: ILinksApp[] = [
   {
     id: 1,
     name: 'Home',

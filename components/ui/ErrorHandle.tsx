@@ -2,13 +2,13 @@
 
 import { motion } from 'framer-motion';
 
-export interface ErrorHandleType {
+export interface IErrorHandle {
   id: string;
   title: string;
   description: string;
 }
 
-export default function ErrorHandle({ id, title, description }: ErrorHandleType) {
+export default function ErrorHandle({ id, title, description }: IErrorHandle) {
   return (
     <section id={id} className="py-20" data-testid={id}>
       <div className="mx-auto max-w-5xl px-4" data-testid="error-container">

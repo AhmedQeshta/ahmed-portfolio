@@ -3,11 +3,11 @@ import { ProjectResponse } from '@/sanity/lib/types';
 import { getStatusColor } from '@/utils/statusColor';
 import Image from 'next/image';
 
-interface HeroProjectProps {
+interface IHeroProject {
   project: ProjectResponse;
 }
 
-export default function HeroProject({ project }: HeroProjectProps) {
+export default function HeroProject({ project }: IHeroProject) {
   if (!project) return null;
   const { screenshot, title, status, description } = project;
   //  make it

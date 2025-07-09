@@ -3,11 +3,11 @@ import { ProjectResponse } from '@/sanity/lib/types';
 import { formatDate } from '@/utils/date';
 import { Calendar, ExternalLink, Github } from 'lucide-react';
 
-interface TimelineProjectProps {
+interface ITimelineProject {
   project: ProjectResponse;
 }
 
-export default function TimelineProject({ project }: TimelineProjectProps) {
+export default function TimelineProject({ project }: ITimelineProject) {
   if (!project) return null;
 
   const { startDate, endDate } = project;

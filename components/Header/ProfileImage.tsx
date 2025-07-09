@@ -3,11 +3,11 @@ import { BaseInfoResponse } from '@/sanity/lib/types';
 import Image from 'next/image';
 import MouseMoveWrapper from '../ui/MouseMoveWrapper';
 
-interface ProfileImageProps {
+interface IProfileImage {
   baseInfo: BaseInfoResponse;
 }
 
-export default function ProfileImage({ baseInfo }: ProfileImageProps) {
+export default function ProfileImage({ baseInfo }: IProfileImage) {
   const { profilePicture, name } = baseInfo;
   return (
     <div className="w-full lg:w-1/2 mt-10 lg:mt-0 flex justify-center">

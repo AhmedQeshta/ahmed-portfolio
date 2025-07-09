@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { X } from 'lucide-react';
 
-interface ModalProps {
+interface IModal {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
@@ -11,7 +11,7 @@ interface ModalProps {
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 }
 
-export default function Modal({ isOpen, onClose, children, title, maxWidth = 'lg' }: ModalProps) {
+export default function Modal({ isOpen, onClose, children, title, maxWidth = 'lg' }: IModal) {
   // Handle escape key press
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {

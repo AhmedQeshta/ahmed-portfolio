@@ -4,12 +4,12 @@ import { Share2, Twitter, Linkedin, Link as LinkIcon } from 'lucide-react';
 import ScrollAnimation from './ScrollAnimation';
 import { useState } from 'react';
 
-interface ShareCardProps {
+interface IShareCard {
   url?: string;
   title?: string;
 }
 
-export default function ShareCard({ url = '', title = '' }: ShareCardProps) {
+export default function ShareCard({ url = '', title = '' }: IShareCard) {
   const [copied, setCopied] = useState(false);
 
   const handleShare = async (platform: 'twitter' | 'linkedin') => {

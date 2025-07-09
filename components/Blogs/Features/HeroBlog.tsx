@@ -4,11 +4,11 @@ import { formatDate, formatReadingTime } from '@/utils/date';
 import { Calendar, Clock } from 'lucide-react';
 import Image from 'next/image';
 
-interface HeroBlogProps {
+interface IHeroBlog {
   blog: BlogPostResponse;
 }
 
-export default function HeroBlog({ blog }: HeroBlogProps) {
+export default function HeroBlog({ blog }: IHeroBlog) {
   if (!blog) return null;
   const { thumbnail, title, categories, publishedAt, readingTime, featured } = blog;
   //  make it

@@ -11,11 +11,11 @@ import Achievements from '@/components/WorkExperiences/Features/Achievements';
 import CompanyInformation from '@/components/WorkExperiences/Features/CompanyInformation';
 import { ExternalLink } from 'lucide-react';
 
-interface WorkProps {
+interface IWork {
   work: WorkExperienceResponse;
 }
 
-export default function Work({ work }: WorkProps) {
+export default function Work({ work }: IWork) {
   const { technologies, companyUrl } = work;
   const listLinks = [
     {

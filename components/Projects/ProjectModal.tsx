@@ -12,11 +12,11 @@ import ActionButtons from '@/components/ui/ActionButtons';
 import HeroModal from './Features/HeroModal';
 import ScrollAnimation from '../ui/ScrollAnimation';
 
-interface ProjectModalProps {
+interface IProjectModal {
   project: ProjectResponse;
 }
 
-export default function ProjectModal({ project }: ProjectModalProps) {
+export default function ProjectModal({ project }: IProjectModal) {
   const { technologies, liveUrl, repoUrl } = project;
   const router = useRouter();
 

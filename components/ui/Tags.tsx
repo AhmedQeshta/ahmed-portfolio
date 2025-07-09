@@ -1,10 +1,10 @@
 import ScrollAnimation from './ScrollAnimation';
 
-interface TagsProps {
+interface ITags {
   tags?: string[];
 }
 
-export default function Tags({ tags }: TagsProps) {
+export default function Tags({ tags }: ITags) {
   if (!tags || tags.length === 0) return null;
 
   return (

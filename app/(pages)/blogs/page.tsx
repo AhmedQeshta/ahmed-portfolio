@@ -2,11 +2,11 @@ import BlogGrid from '@/components/Blogs/BlogGrid';
 import Search from '@/components/ui/Search';
 import React from 'react';
 
-interface BlogPageProps {
+interface IBlogPage {
   searchParams?: Promise<{ q?: string }>;
 }
 
-const BlogPage = async ({ searchParams }: BlogPageProps) => {
+const BlogPage = async ({ searchParams }: IBlogPage) => {
   const query = (await searchParams)?.q ?? '';
   return (
     <>

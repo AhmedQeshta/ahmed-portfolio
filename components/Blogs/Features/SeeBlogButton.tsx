@@ -3,11 +3,11 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-interface SeeBlogButtonProps {
+interface ISeeBlogButton {
   slug: string;
 }
 
-export default function SeeBlogButton({ slug }: SeeBlogButtonProps) {
+export default function SeeBlogButton({ slug }: ISeeBlogButton) {
   const router = useRouter();
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {

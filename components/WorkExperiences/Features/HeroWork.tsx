@@ -3,11 +3,11 @@ import { WorkExperienceResponse } from '@/sanity/lib/types';
 import { getEmploymentTypeColor, getLocationTypeColor } from '@/utils/statusColor';
 import { Building, ExternalLink } from 'lucide-react';
 
-interface HeroWorkProps {
+interface IHeroWork {
   work: WorkExperienceResponse;
 }
 
-export default function HeroWork({ work }: HeroWorkProps) {
+export default function HeroWork({ work }: IHeroWork) {
   if (!work) return null;
   const { employmentType, current, locationType, title, companyUrl, company, description } = work;
   //  make it

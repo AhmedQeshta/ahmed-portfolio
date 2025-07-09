@@ -4,11 +4,11 @@ import { useSearch } from '@/hooks/useSearch';
 import { XIcon } from 'lucide-react';
 import DefaultInput from '@/components/ui/DefaultInput';
 
-interface SearchInterface {
+interface ISearch {
   action: string;
 }
 
-const Search = ({ action }: SearchInterface) => {
+const Search = ({ action }: ISearch) => {
   const { query, setQuery, handleSearch } = useSearch(action);
 
   return (

@@ -1,9 +1,9 @@
-interface SuccessMessageInterFace {
+interface ISuccessMessage {
   state: {
     message: string;
   };
 }
-export default function SuccessMessage({ state }: SuccessMessageInterFace) {
+export default function SuccessMessage({ state }: ISuccessMessage) {
   return (
     <div className="text-center p-6 bg-green-500/10 border border-green-500/30 rounded-lg">
       <div className="text-green-400 mb-2">✓ Message Sent!</div>

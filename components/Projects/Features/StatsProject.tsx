@@ -2,11 +2,11 @@ import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { ProjectResponse } from '@/sanity/lib/types';
 import { getStatusColor } from '@/utils/statusColor';
 
-interface StateProjectProps {
+interface IStateProject {
   project: ProjectResponse;
 }
 
-export default function StatsProject({ project }: StateProjectProps) {
+export default function StatsProject({ project }: IStateProject) {
   if (!project) return null;
 
   const { status, technologies, gallery } = project;

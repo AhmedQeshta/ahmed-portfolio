@@ -3,10 +3,10 @@ import { WorkExperienceResponse } from '@/sanity/lib/types';
 import { durationOfWork, formatDate } from '@/utils/date';
 import { Calendar } from 'lucide-react';
 
-interface TimelineProps {
+interface ITimeline {
   work: WorkExperienceResponse;
 }
-export default function Timeline({ work }: TimelineProps) {
+export default function Timeline({ work }: ITimeline) {
   if (!work) return null;
 
   const { endDate, startDate, current } = work;

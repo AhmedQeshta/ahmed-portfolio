@@ -8,11 +8,11 @@ import TechnologiesHome from '@/components/ui/TechnologiesHome';
 import { getEmploymentTypeColor, getLocationTypeColor } from '@/utils/statusColor';
 import Card from './Features/Card';
 
-interface WorkCardProps {
+interface IWorkCard {
   works: WorkExperienceResponse[];
 }
 
-export default function WorkCard({ works }: WorkCardProps) {
+export default function WorkCard({ works }: IWorkCard) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
       {works.map((work) => (

@@ -4,12 +4,12 @@ import { WorkExperienceResponse } from '@/sanity/lib/types';
 import { Building, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 
-interface CompanyInformationProps {
+interface ICompanyInformation {
   work: WorkExperienceResponse;
 }
 export default function CompanyInformation({
   work: { logo, company, companyUrl },
-}: CompanyInformationProps) {
+}: ICompanyInformation) {
   if (!logo) return null;
 
   return (

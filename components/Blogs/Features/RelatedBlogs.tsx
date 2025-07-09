@@ -5,11 +5,11 @@ import { formatDate, formatReadingTime } from '@/utils/date';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface RelatedBlogsProps {
+interface IRelatedBlogs {
   relatedBlogs: BlogPostResponse[];
 }
 
-export default function RelatedBlogs({ relatedBlogs }: RelatedBlogsProps) {
+export default function RelatedBlogs({ relatedBlogs }: IRelatedBlogs) {
   if (!relatedBlogs || relatedBlogs.length === 0) return null;
   //  make it
   return (

@@ -10,11 +10,11 @@ import StatsProject from '@/components/Projects/Features/StatsProject';
 import FullDescription from '@/components/Projects/Features/FullDescription';
 import { ExternalLink, Github } from 'lucide-react';
 
-interface ProjectModalProps {
+interface IProjectModal {
   project: ProjectResponse;
 }
 
-export default function Project({ project }: ProjectModalProps) {
+export default function Project({ project }: IProjectModal) {
   const { technologies, liveUrl, repoUrl } = project;
 
   const listLinks = [

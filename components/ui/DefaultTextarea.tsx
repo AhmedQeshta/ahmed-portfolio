@@ -1,6 +1,6 @@
 import { cn } from '@/utils/statusColor';
 
-interface DefaultTextareaInterFace extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface IDefaultTextarea extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   handleInputChange: any;
   displayErrors?: string;
   customStyle?: string;
@@ -10,7 +10,7 @@ export default function DefaultTextarea({
   displayErrors = '',
   customStyle,
   ...restProps
-}: DefaultTextareaInterFace) {
+}: IDefaultTextarea) {
   return (
     <>
       <textarea

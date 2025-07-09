@@ -2,11 +2,11 @@ import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { BlogPostResponse, TechnologyResponse } from '@/sanity/lib/types';
 import { formatDate, formatReadingTime } from '@/utils/date';
 
-interface PostDetailsProps {
+interface IPostDetails {
   blog: BlogPostResponse;
 }
 
-export default function PostDetails({ blog }: PostDetailsProps) {
+export default function PostDetails({ blog }: IPostDetails) {
   if (!blog) return null;
   const { publishedAt, readingTime, categories, tags } = blog;
   //  make it

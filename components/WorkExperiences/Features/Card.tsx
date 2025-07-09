@@ -9,11 +9,11 @@ import { Briefcase, Calendar, MapPin, ExternalLink } from 'lucide-react';
 import React from 'react';
 import MouseMoveWrapper from '@/components/ui/MouseMoveWrapper';
 
-interface CardProps {
+interface ICard {
   work: WorkExperienceResponse;
 }
 
-export default function Card({ work }: CardProps) {
+export default function Card({ work }: ICard) {
   const {
     _id,
     slug,

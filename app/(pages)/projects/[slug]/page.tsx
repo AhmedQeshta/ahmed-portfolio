@@ -5,11 +5,11 @@ import React from 'react';
 import Project from '@/components/Projects/Project';
 import ErrorHandle from '@/components/ui/ErrorHandle';
 
-interface ProjectPageInterface {
+interface IProjectPage {
   params: Promise<{ slug: string }>;
 }
 
-const ProjectPage = async ({ params }: ProjectPageInterface) => {
+const ProjectPage = async ({ params }: IProjectPage) => {
   const { slug } = await params;
 
   try {

@@ -3,11 +3,11 @@ import { ProjectResponse } from '@/sanity/lib/types';
 import { ExternalLink, Github } from 'lucide-react';
 import Image from 'next/image';
 
-interface ProjectGalleryProps {
+interface IProjectGallery {
   project: ProjectResponse;
 }
 
-export default function ProjectGallery({ project }: ProjectGalleryProps) {
+export default function ProjectGallery({ project }: IProjectGallery) {
   if (!project.gallery || project.gallery.length == 0) return null;
 
   const { title, gallery } = project;

@@ -22,20 +22,20 @@ const contactSchema = z.object({
   message: z.string().min(1, 'Message is required').trim(),
 });
 
-export interface Errors {
+export interface IErrors {
   name?: string;
   email?: string;
   message?: string;
   general?: string;
 }
 
-export interface FormState {
-  errors: Errors;
+export interface IFormState {
+  errors: IErrors;
   success?: boolean;
   message?: string;
 }
 
-export async function sendMessage(prevState: FormState, formData: FormData) {
+export async function sendMessage(prevState: IFormState, formData: FormData) {
   const formInput = {
     name: formData.get('name') as string,
     email: formData.get('email') as string,
@@ -46,10 +46,10 @@ export async function sendMessage(prevState: FormState, formData: FormData) {
   const validation = contactSchema.safeParse(formInput);
 
   if (!validation.success) {
-    const errors: Errors = {};
+    const errors: IErrors = {};
 
     validation.error.errors.forEach((error) => {
-      const field = error.path[0] as keyof Errors;
+      const field = error.path[0] as keyof IErrors;
       if (field && field !== 'general') {
         errors[field] = error.message;
       }

@@ -1,15 +1,11 @@
 import { cn } from '@/utils/statusColor';
 
-interface SubmitButtonInterface {
+interface ISubmitButton {
   isPending: boolean;
   customStyle?: string;
 }
 
-export default function SubmitButton({
-  isPending,
-  customStyle,
-  ...restProps
-}: SubmitButtonInterface) {
+export default function SubmitButton({ isPending, customStyle, ...restProps }: ISubmitButton) {
   return (
     <button
       type="submit"

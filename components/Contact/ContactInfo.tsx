@@ -1,9 +1,9 @@
 import { BaseInfoResponse } from '@/sanity/lib/types';
 
-interface ContactInfoProps {
+interface IContactInfo {
   baseInfo: BaseInfoResponse;
 }
-export default function ContactInfo({ baseInfo }: ContactInfoProps) {
+export default function ContactInfo({ baseInfo }: IContactInfo) {
   const { email, phone, address } = baseInfo;
   return (
     <>

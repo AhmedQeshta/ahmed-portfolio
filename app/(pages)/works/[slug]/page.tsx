@@ -5,11 +5,11 @@ import { WorkExperienceResponse } from '@/sanity/lib/types';
 import Work from '@/components/WorkExperiences/Work';
 import ErrorHandle from '@/components/ui/ErrorHandle';
 
-interface WorkPageInterface {
+interface IWorkPage {
   params: Promise<{ slug: string }>;
 }
 
-const WorkPage = async ({ params }: WorkPageInterface) => {
+const WorkPage = async ({ params }: IWorkPage) => {
   const { slug } = await params;
 
   try {

@@ -4,11 +4,11 @@ import { Briefcase, Tag } from 'lucide-react';
 import Image from 'next/image';
 import ScrollAnimation from './ScrollAnimation';
 
-interface TechnologiesProps {
+interface ITechnologies {
   technologies: TechnologyResponse[];
 }
 
-export default function Technologies({ technologies }: TechnologiesProps) {
+export default function Technologies({ technologies }: ITechnologies) {
   if (!technologies || technologies.length === 0) return null;
 
   return (

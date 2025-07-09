@@ -3,7 +3,7 @@
 import { motion, useInView, Variants } from 'framer-motion';
 import { useRef } from 'react';
 
-interface ScrollAnimationProps {
+interface IScrollAnimation {
   children: React.ReactNode;
   className?: string;
   delay?: number;
@@ -17,7 +17,7 @@ export default function ScrollAnimation({
   delay = 0,
   direction = 'up',
   duration = 0.5,
-}: ScrollAnimationProps) {
+}: IScrollAnimation) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 

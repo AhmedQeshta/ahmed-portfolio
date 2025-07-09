@@ -13,11 +13,11 @@ import Location from '@/components/WorkExperiences/Features/Location';
 import Technologies from '@/components/ui/Technologies';
 import WorkDetails from '@/components/WorkExperiences/Features/WorkDetails';
 
-interface WorkModalProps {
+interface IWorkModal {
   work: WorkExperienceResponse;
 }
 
-export default function WorkModal({ work }: WorkModalProps) {
+export default function WorkModal({ work }: IWorkModal) {
   const router = useRouter();
 
   const handleClose = () => {

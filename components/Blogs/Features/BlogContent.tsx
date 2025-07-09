@@ -3,11 +3,11 @@ import { BlogPostResponse, TechnologyResponse } from '@/sanity/lib/types';
 import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
 
-interface BlogContentProps {
+interface IBlogContent {
   blog: BlogPostResponse;
 }
 
-export default function BlogContent({ blog }: BlogContentProps) {
+export default function BlogContent({ blog }: IBlogContent) {
   if (!blog) return null;
   const { content } = blog;
   //  make it

@@ -6,11 +6,11 @@ import { projectBySlugQuery } from '@/sanity/lib/queries';
 import { ProjectResponse } from '@/sanity/lib/types';
 import React from 'react';
 
-interface ProjectInterface {
+interface IProject {
   params: Promise<{ slug: string }>;
 }
 
-const Project = async ({ params }: ProjectInterface) => {
+const Project = async ({ params }: IProject) => {
   const { slug } = await params;
 
   try {
