@@ -1,13 +1,8 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
-import { ProjectResponse } from '@/sanity/lib/types';
-import { ExternalLink, Github } from 'lucide-react';
+import { IProjectResponse } from '@/utils/types/project';
 import Image from 'next/image';
 
-interface IProjectGallery {
-  project: ProjectResponse;
-}
-
-export default function ProjectGallery({ project }: IProjectGallery) {
+export default function ProjectGallery({ project }: IProjectResponse) {
   if (!project.gallery || project.gallery.length == 0) return null;
 
   const { title, gallery } = project;

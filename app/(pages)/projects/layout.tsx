@@ -1,10 +1,6 @@
-export default function AppLayout({
-  children,
-  modal,
-}: Readonly<{
-  children: React.ReactNode;
-  modal: React.ReactNode;
-}>) {
+import { IProjectLayout } from '@/utils/types/project';
+
+export default function ProjectLayout({ children, modal }: IProjectLayout) {
   return (
     <>
       {modal}

@@ -2,15 +2,11 @@ import ProjectModal from '@/components/Projects/ProjectModal';
 import ErrorHandle from '@/components/ui/ErrorHandle';
 import { sanityFetch } from '@/sanity/lib/client';
 import { projectBySlugQuery } from '@/sanity/lib/queries';
-
 import { ProjectResponse } from '@/sanity/lib/types';
+import { IProjectPageModal } from '@/utils/types/project';
 import React from 'react';
 
-interface IProject {
-  params: Promise<{ slug: string }>;
-}
-
-const Project = async ({ params }: IProject) => {
+const Project = async ({ params }: IProjectPageModal) => {
   const { slug } = await params;
 
   try {

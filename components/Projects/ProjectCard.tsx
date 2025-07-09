@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { ProjectResponse } from '@/sanity/lib/types';
 import Image from 'next/image';
 import { getImageUrl } from '@/sanity/lib/image';
 import { formatDateDuration } from '@/utils/date';
@@ -7,10 +6,8 @@ import TechnologiesHome from '@/components/ui/TechnologiesHome';
 import { Calendar, ExternalLink, Github } from 'lucide-react';
 import ActionButtons from '@/components/ui/ActionButtons';
 import MouseMoveWrapper from '@/components/ui/MouseMoveWrapper';
+import { IProjectResponse } from '@/utils/types/project';
 
-interface IProjectCard {
-  project: ProjectResponse;
-}
 
 export default function ProjectCard({
   project: {
@@ -25,7 +22,7 @@ export default function ProjectCard({
     liveUrl,
     repoUrl,
   },
-}: IProjectCard) {
+}: IProjectResponse) {
   const listLinks = [
     {
       id: 1,

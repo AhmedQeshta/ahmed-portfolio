@@ -5,10 +5,7 @@ import ErrorHandle from '@/components/ui/ErrorHandle';
 import ProjectCard from '@/components/Projects/ProjectCard';
 import ReadMore from '@/components/ui/ReadMore';
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
-
-interface IProjectGrid {
-  readMore?: boolean;
-}
+import { IProjectGrid } from '@/utils/types/project';
 
 export default async function ProjectGrid({ readMore = true }: IProjectGrid) {
   try {

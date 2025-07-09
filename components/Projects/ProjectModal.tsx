@@ -1,6 +1,5 @@
 'use client';
 
-import { ProjectResponse } from '@/sanity/lib/types';
 import { ExternalLink, Github, Calendar, Tag } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Modal from '@/components/ui/Modal';
@@ -11,12 +10,11 @@ import TimelineProject from '@/components/Projects/Features/TimelineProject';
 import ActionButtons from '@/components/ui/ActionButtons';
 import HeroModal from './Features/HeroModal';
 import ScrollAnimation from '../ui/ScrollAnimation';
+import { IProjectResponse } from '@/utils/types/project';
 
-interface IProjectModal {
-  project: ProjectResponse;
-}
 
-export default function ProjectModal({ project }: IProjectModal) {
+
+export default function ProjectModal({ project }: IProjectResponse) {
   const { technologies, liveUrl, repoUrl } = project;
   const router = useRouter();
 

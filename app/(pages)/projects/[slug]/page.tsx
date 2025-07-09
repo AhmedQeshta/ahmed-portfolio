@@ -4,10 +4,7 @@ import { ProjectResponse } from '@/sanity/lib/types';
 import React from 'react';
 import Project from '@/components/Projects/Project';
 import ErrorHandle from '@/components/ui/ErrorHandle';
-
-interface IProjectPage {
-  params: Promise<{ slug: string }>;
-}
+import { IProjectPage } from '@/utils/types/project';
 
 const ProjectPage = async ({ params }: IProjectPage) => {
   const { slug } = await params;

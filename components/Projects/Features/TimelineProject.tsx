@@ -1,13 +1,10 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { ProjectResponse } from '@/sanity/lib/types';
 import { formatDate } from '@/utils/date';
+import { IProjectResponse } from '@/utils/types/project';
 import { Calendar, ExternalLink, Github } from 'lucide-react';
 
-interface ITimelineProject {
-  project: ProjectResponse;
-}
-
-export default function TimelineProject({ project }: ITimelineProject) {
+export default function TimelineProject({ project }: IProjectResponse) {
   if (!project) return null;
 
   const { startDate, endDate } = project;

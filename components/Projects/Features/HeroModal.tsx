@@ -1,13 +1,9 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
-import { ProjectResponse } from '@/sanity/lib/types';
 import { getStatusColor } from '@/utils/statusColor';
+import { IProjectResponse } from '@/utils/types/project';
 import Image from 'next/image';
 
-interface IHeroModal {
-  project: ProjectResponse;
-}
-
-export default function HeroModal({ project }: IHeroModal) {
+export default function HeroModal({ project }: IProjectResponse) {
   if (!project) return null;
 
   return (

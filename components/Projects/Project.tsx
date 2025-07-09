@@ -1,4 +1,3 @@
-import { ProjectResponse } from '@/sanity/lib/types';
 import Technologies from '@/components/ui/Technologies';
 import NavigationHeader from '@/components/ui/NavigationHeader';
 import BackgroundEffects from '@/components/ui/BackgroundEffects';
@@ -9,12 +8,9 @@ import TimelineProject from '@/components/Projects/Features/TimelineProject';
 import StatsProject from '@/components/Projects/Features/StatsProject';
 import FullDescription from '@/components/Projects/Features/FullDescription';
 import { ExternalLink, Github } from 'lucide-react';
+import { IProjectResponse } from '@/utils/types/project';
 
-interface IProjectModal {
-  project: ProjectResponse;
-}
-
-export default function Project({ project }: IProjectModal) {
+export default function Project({ project }: IProjectResponse) {
   const { technologies, liveUrl, repoUrl } = project;
 
   const listLinks = [
