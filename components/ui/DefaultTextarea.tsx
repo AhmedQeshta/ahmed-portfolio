@@ -1,10 +1,6 @@
 import { cn } from '@/utils/statusColor';
+import { IDefaultTextarea } from '@/utils/types/contact';
 
-interface IDefaultTextarea extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  handleInputChange: any;
-  displayErrors?: string;
-  customStyle?: string;
-}
 export default function DefaultTextarea({
   handleInputChange,
   displayErrors = '',

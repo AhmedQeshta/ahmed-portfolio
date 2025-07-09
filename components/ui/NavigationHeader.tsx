@@ -1,12 +1,8 @@
+import { ILinkNavigation } from '@/utils/types/common';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
-interface INavigationHeader {
-  link: string;
-  text: string;
-}
-
-export default function NavigationHeader({ link, text }: INavigationHeader) {
+export default function NavigationHeader({ link, text }: ILinkNavigation) {
   //
   return (
     <div className="relative z-10 p-6" data-testid="navigation-header">

@@ -1,12 +1,7 @@
 import { getImageUrl } from '@/sanity/lib/image';
 import { Link } from 'lucide-react';
 import Image from 'next/image';
-import { TechnologyResponse } from '@/sanity/lib/types';
-
-interface ITechnologies {
-  technologies: TechnologyResponse[];
-  link: string;
-}
+import { ITechnologies } from '@/utils/types/technology';
 
 export default function TechnologiesHome({ technologies, link }: ITechnologies) {
   if (!technologies || technologies.length === 0) return null;

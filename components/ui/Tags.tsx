@@ -1,8 +1,5 @@
+import { ITags } from '@/utils/types/common';
 import ScrollAnimation from './ScrollAnimation';
-
-interface ITags {
-  tags?: string[];
-}
 
 export default function Tags({ tags }: ITags) {
   if (!tags || tags.length === 0) return null;

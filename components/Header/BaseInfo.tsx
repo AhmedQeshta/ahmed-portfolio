@@ -1,14 +1,10 @@
-import { BaseInfoResponse } from '@/sanity/lib/types';
 import { Suspense } from 'react';
 import Loading from '@/components/ui/Loading';
 import SkillsIconsHeader from '@/components/Header/SkillsIconsHeader';
 import { PortableText } from '@portabletext/react';
+import { IBaseInfoResponse } from '@/utils/types/header';
 
-interface IBaseInfo {
-  baseInfo: BaseInfoResponse;
-}
-
-export default function BaseInfo({ baseInfo }: IBaseInfo) {
+export default function BaseInfo({ baseInfo }: IBaseInfoResponse) {
   const { name, bio, technologies } = baseInfo;
   return (
     <div className="w-full lg:w-1/2">

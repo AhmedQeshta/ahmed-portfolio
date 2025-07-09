@@ -3,11 +3,7 @@
 import { Share2, Twitter, Linkedin, Link as LinkIcon } from 'lucide-react';
 import ScrollAnimation from './ScrollAnimation';
 import { useState } from 'react';
-
-interface IShareCard {
-  url?: string;
-  title?: string;
-}
+import { IShareCard } from '@/utils/types/common';
 
 export default function ShareCard({ url = '', title = '' }: IShareCard) {
   const [copied, setCopied] = useState(false);

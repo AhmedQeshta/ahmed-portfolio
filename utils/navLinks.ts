@@ -1,8 +1,4 @@
-export interface ILinksApp {
-  id: number;
-  name: string;
-  url: string;
-}
+import { ILinksApp } from '@/utils/types/common';
 
 export const linksApp: ILinksApp[] = [
   {

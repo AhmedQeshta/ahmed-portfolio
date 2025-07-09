@@ -2,11 +2,7 @@
 
 import { useMouseMove } from '@/hooks/useMouseMove';
 import { cn } from '@/utils/statusColor';
-
-interface IMouseMoveWrapper {
-  children: React.ReactNode;
-  className?: string;
-}
+import { IMouseMoveWrapper } from '@/utils/types/common';
 
 export default function MouseMoveWrapper({ children, className }: IMouseMoveWrapper) {
   const { cardRef, handleMouseMove, handleMouseLeave, handleMouseEnter, gradientStyle } =

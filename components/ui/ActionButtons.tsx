@@ -2,17 +2,7 @@
 import { cn } from '@/utils/statusColor';
 import ScrollAnimation from './ScrollAnimation';
 import Link from 'next/link';
-
-interface IListLinks {
-  id?: number;
-  text?: string;
-  link?: string;
-  customStyle?: string;
-  icon?: string | React.ReactNode;
-}
-interface IActionButtons {
-  listLinks: IListLinks[];
-}
+import { IActionButtons } from '@/utils/types/common';
 
 export default function ActionButtons({ listLinks }: IActionButtons) {
   if (!listLinks) return null;

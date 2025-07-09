@@ -2,14 +2,7 @@
 
 import { useEffect } from 'react';
 import { X } from 'lucide-react';
-
-interface IModal {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-  title?: string;
-  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-}
+import { IModal } from '@/utils/types/common';
 
 export default function Modal({ isOpen, onClose, children, title, maxWidth = 'lg' }: IModal) {
   // Handle escape key press

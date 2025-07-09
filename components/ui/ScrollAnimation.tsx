@@ -1,15 +1,8 @@
 'use client';
 
+import { IScrollAnimation } from '@/utils/types/common';
 import { motion, useInView, Variants } from 'framer-motion';
 import { useRef } from 'react';
-
-interface IScrollAnimation {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-  direction?: 'up' | 'down' | 'left' | 'right';
-  duration?: number;
-}
 
 export default function ScrollAnimation({
   children,

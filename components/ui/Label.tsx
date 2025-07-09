@@ -1,10 +1,5 @@
 import { cn } from '@/utils/statusColor';
-
-interface IDefaultLabel {
-  title: string;
-  htmlFor: string;
-  customStyle?: string;
-}
+import { IDefaultLabel } from '@/utils/types/contact';
 
 export default function Label({ title, customStyle, ...restProps }: IDefaultLabel) {
   return (

@@ -1,12 +1,9 @@
 import { getImageUrl } from '@/sanity/lib/image';
-import { TechnologyResponse } from '@/sanity/lib/types';
+import { ITechnologiesResponse } from '@/utils/types/technology';
 import Image from 'next/image';
 
-interface ISkillsIconsHeader {
-  technologies: TechnologyResponse[];
-}
 
-export default function SkillsIconsHeader({ technologies }: ISkillsIconsHeader) {
+export default function SkillsIconsHeader({ technologies }: ITechnologiesResponse) {
   return (
     <div className="flex flex-wrap gap-4 mt-6">
       {technologies.map((technology) => (

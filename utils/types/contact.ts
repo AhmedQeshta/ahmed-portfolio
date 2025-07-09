@@ -16,3 +16,26 @@ export interface IContactInputs {
   email: string;
   message: string;
 }
+
+export interface IDefaultInput extends React.InputHTMLAttributes<HTMLInputElement> {
+  handleInputChange: any;
+  displayErrors?: string;
+  customStyle?: string;
+}
+
+export interface IDefaultTextarea extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  handleInputChange: any;
+  displayErrors?: string;
+  customStyle?: string;
+}
+
+export interface IDefaultLabel extends React.LabelHTMLAttributes<HTMLLabelElement> {
+  title: string;
+  htmlFor: string;
+  customStyle?: string;
+}
+
+export interface ISubmitButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  isPending: boolean;
+  customStyle?: string;
+}

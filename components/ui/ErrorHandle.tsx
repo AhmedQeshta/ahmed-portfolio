@@ -1,12 +1,5 @@
-'use client';
-
+import { IErrorHandle } from '@/utils/types/common';
 import { motion } from 'framer-motion';
-
-export interface IErrorHandle {
-  id: string;
-  title: string;
-  description: string;
-}
 
 export default function ErrorHandle({ id, title, description }: IErrorHandle) {
   return (

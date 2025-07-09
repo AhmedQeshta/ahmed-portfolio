@@ -1,14 +1,10 @@
 import { getImageUrl } from '@/sanity/lib/image';
-import { TechnologyResponse } from '@/sanity/lib/types';
-import { Briefcase, Tag } from 'lucide-react';
+import { Tag } from 'lucide-react';
 import Image from 'next/image';
 import ScrollAnimation from './ScrollAnimation';
+import { ITechnologiesResponse } from '@/utils/types/technology';
 
-interface ITechnologies {
-  technologies: TechnologyResponse[];
-}
-
-export default function Technologies({ technologies }: ITechnologies) {
+export default function Technologies({ technologies }: ITechnologiesResponse) {
   if (!technologies || technologies.length === 0) return null;
 
   return (

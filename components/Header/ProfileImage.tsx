@@ -1,13 +1,11 @@
 import { getImageUrl } from '@/sanity/lib/image';
-import { BaseInfoResponse } from '@/sanity/lib/types';
 import Image from 'next/image';
 import MouseMoveWrapper from '../ui/MouseMoveWrapper';
+import { IBaseInfoResponse } from '@/utils/types/header';
 
-interface IProfileImage {
-  baseInfo: BaseInfoResponse;
-}
 
-export default function ProfileImage({ baseInfo }: IProfileImage) {
+
+export default function ProfileImage({ baseInfo }: IBaseInfoResponse) {
   const { profilePicture, name } = baseInfo;
   return (
     <div className="w-full lg:w-1/2 mt-10 lg:mt-0 flex justify-center">

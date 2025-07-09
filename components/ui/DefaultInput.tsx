@@ -1,10 +1,5 @@
 import { cn } from '@/utils/statusColor';
-
-interface IDefaultInput extends React.InputHTMLAttributes<HTMLInputElement> {
-  handleInputChange: any;
-  displayErrors?: string;
-  customStyle?: string;
-}
+import { IDefaultInput } from '@/utils/types/contact';
 
 export default function DefaultInput({
   handleInputChange,
