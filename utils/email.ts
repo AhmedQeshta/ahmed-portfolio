@@ -1,10 +1,6 @@
-interface IEmail {
-  name: string;
-  email: string;
-  message: string;
-}
+import { IContactInputs } from '@/utils/types/contact';
 
-export const getHtml = ({ name, email, message }: IEmail) => `
+export const getHtml = ({ name, email, message }: IContactInputs) => `
         <!DOCTYPE html>
         <html>
         <head>
@@ -80,7 +76,7 @@ export const getHtml = ({ name, email, message }: IEmail) => `
         </html>
       `;
 
-export const getText = ({ name, email, message }: IEmail) => `
+export const getText = ({ name, email, message }: IContactInputs) => `
         New Contact Form Submission
         
         From: ${name}

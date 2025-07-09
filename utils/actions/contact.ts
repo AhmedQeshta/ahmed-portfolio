@@ -3,6 +3,7 @@
 import nodemailer from 'nodemailer';
 import { z } from 'zod';
 import { getHtml, getText } from '@/utils/email';
+import { IErrors, IFormState } from '@/utils/types/contact';
 
 // Create transporter for nodemailer
 const transporter = nodemailer.createTransport({
@@ -21,19 +22,6 @@ const contactSchema = z.object({
   email: z.string().min(1, 'Email is required').email('Please enter a valid email address').trim(),
   message: z.string().min(1, 'Message is required').trim(),
 });
-
-export interface IErrors {
-  name?: string;
-  email?: string;
-  message?: string;
-  general?: string;
-}
-
-export interface IFormState {
-  errors: IErrors;
-  success?: boolean;
-  message?: string;
-}
 
 export async function sendMessage(prevState: IFormState, formData: FormData) {
   const formInput = {
