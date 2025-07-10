@@ -2,10 +2,14 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
 
+interface IMockDiv extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  className: string;
+}
 // Mock framer-motion
 jest.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, className, ...props }: any) => (
+    div: ({ children, className, ...props }: IMockDiv) => (
       <div className={className} data-testid="scroll-animation-container" {...props}>
         {children}
       </div>

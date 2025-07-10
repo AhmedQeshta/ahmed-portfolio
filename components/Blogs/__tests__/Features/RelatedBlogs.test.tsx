@@ -1,10 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import RelatedBlogs from '@/components/Blogs/Features/RelatedBlogs';
+import { BlogPostResponse } from '@/sanity/lib/types';
 
 // Mock ScrollAnimation
 jest.mock('@/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({ children, className }: any) {
+  return function MockScrollAnimation({
+    children,
+    className,
+  }: {
+    readonly children: React.ReactNode;
+    readonly className: string;
+  }) {
     return (
       <div data-testid="scroll-animation" className={className}>
         {children}
@@ -15,14 +22,20 @@ jest.mock('@/components/ui/ScrollAnimation', () => {
 
 // Mock Image
 jest.mock('next/image', () => {
-  return function MockImage(props: any) {
+  return function MockImage(props: React.ImgHTMLAttributes<HTMLImageElement>) {
     return <img data-testid="related-image" {...props} />;
   };
 });
 
 // Mock Link
 jest.mock('next/link', () => {
-  return function MockLink({ children, href }: any) {
+  return function MockLink({
+    children,
+    href,
+  }: {
+    readonly children: React.ReactNode;
+    href: string;
+  }) {
     return (
       <a href={href} data-testid="related-link">
         {children}
@@ -42,7 +55,7 @@ jest.mock('@/utils/date', () => ({
 }));
 
 describe('RelatedBlogs', () => {
-  const mockBlogs = [
+  const mockBlogs: BlogPostResponse[] = [
     {
       _id: '1',
       slug: 'blog-1',
@@ -54,6 +67,7 @@ describe('RelatedBlogs', () => {
       categories: [],
       publishedAt: '2023-01-01',
       featured: false,
+      description: '',
     },
     {
       _id: '2',
@@ -66,6 +80,7 @@ describe('RelatedBlogs', () => {
       categories: [],
       publishedAt: '2023-01-02',
       featured: false,
+      description: '',
     },
   ];
 
@@ -75,7 +90,7 @@ describe('RelatedBlogs', () => {
   });
 
   it('renders related blogs with links and images', () => {
-    render(<RelatedBlogs relatedBlogs={mockBlogs as any} />);
+    render(<RelatedBlogs relatedBlogs={mockBlogs} />);
     expect(screen.getByText('Related Posts')).toBeInTheDocument();
     expect(screen.getAllByTestId('related-link').length).toBeGreaterThan(0);
     expect(screen.getAllByTestId('related-image').length).toBeGreaterThan(0);

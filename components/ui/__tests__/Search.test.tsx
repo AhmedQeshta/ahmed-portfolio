@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Search from '@/components/ui/Search';
+import { IDefaultInput } from '@/utils/types/contact';
 
 // Mock the useSearch hook
 const mockSetQuery = jest.fn();
@@ -26,7 +27,7 @@ jest.mock('@/components/ui/DefaultInput', () => {
     autoComplete,
     autoCorrect,
     style,
-  }: any) {
+  }: IDefaultInput) {
     return (
       <input
         data-testid="search-input"

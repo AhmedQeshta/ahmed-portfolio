@@ -1,10 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import LatestBlogs from '@/components/Blogs/Features/LatestBlogs';
+import { BlogPostResponse } from '@/sanity/lib/types';
 
 // Mock ScrollAnimation
 jest.mock('@/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({ children, className }: any) {
+  return function MockScrollAnimation({
+    children,
+    className,
+  }: {
+    readonly children: React.ReactNode;
+    readonly className: string;
+  }) {
     return (
       <div data-testid="scroll-animation" className={className}>
         {children}
@@ -15,14 +22,20 @@ jest.mock('@/components/ui/ScrollAnimation', () => {
 
 // Mock Image
 jest.mock('next/image', () => {
-  return function MockImage(props: any) {
+  return function MockImage(props: React.ImgHTMLAttributes<HTMLImageElement>) {
     return <img data-testid="latest-image" {...props} />;
   };
 });
 
 // Mock Link
 jest.mock('next/link', () => {
-  return function MockLink({ children, href }: any) {
+  return function MockLink({
+    children,
+    href,
+  }: {
+    readonly children: React.ReactNode;
+    href: string;
+  }) {
     return (
       <a href={href} data-testid="latest-link">
         {children}
@@ -42,7 +55,7 @@ jest.mock('@/utils/date', () => ({
 }));
 
 describe('LatestBlogs', () => {
-  const mockBlogs = [
+  const mockBlogs: BlogPostResponse[] = [
     {
       _id: '1',
       slug: 'blog-1',
@@ -54,6 +67,7 @@ describe('LatestBlogs', () => {
       categories: [],
       readingTime: 5,
       featured: false,
+      description: '',
     },
     {
       _id: '2',
@@ -66,6 +80,7 @@ describe('LatestBlogs', () => {
       categories: [],
       readingTime: 5,
       featured: false,
+      description: '',
     },
   ];
 
@@ -75,7 +90,7 @@ describe('LatestBlogs', () => {
   });
 
   it('renders latest blogs with links and images', () => {
-    render(<LatestBlogs latestBlogs={mockBlogs as any} />);
+    render(<LatestBlogs latestBlogs={mockBlogs} />);
     expect(screen.getByText('Latest Posts')).toBeInTheDocument();
     expect(screen.getAllByTestId('latest-link').length).toBeGreaterThan(0);
     expect(screen.getAllByTestId('latest-image').length).toBeGreaterThan(0);

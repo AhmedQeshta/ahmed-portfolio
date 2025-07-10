@@ -103,6 +103,103 @@ const mockBlogs = [
   },
 ];
 
+/***
+ * make it pass,
+  PASS  components/Blogs/__tests__/BlogGrid.test.tsx
+  ● Console
+
+    console.error
+      Error fetching featured projects: Error: Fetch failed
+          at Object.<anonymous> (/home/ahmed/Desktop/projects/ahmed-portfolio/components/Blogs/__tests__/BlogGrid.test.tsx:218:35)
+          at Promise.finally.completed (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:1559:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:1499:10)
+          at _callCircusTest (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:1009:40)
+          at processTicksAndRejections (node:internal/process/task_queues:105:5)
+          at _runTest (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:949:3)
+          at _runTestsForDescribeBlock (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:839:13)
+          at _runTestsForDescribeBlock (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:829:11)
+          at run (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:757:3)
+          at runAndTransformResultsToJestFormat (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:1920:21)
+          at jestAdapter (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/runner.js:101:19)
+          at runTestInternal (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-runner/build/testWorker.js:272:16)
+          at runTest (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-runner/build/testWorker.js:340:7)
+          at Object.worker (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-runner/build/testWorker.js:494:12)
+
+      57 |     );
+      58 |   } catch (error) {
+    > 59 |     console.error('Error fetching featured projects:', error);
+         |             ^
+      60 |
+      61 |     return (
+      62 |       <ErrorHandle
+
+      at error (components/Blogs/BlogGrid.tsx:59:13)
+      at Object.<anonymous> (components/Blogs/__tests__/BlogGrid.test.tsx:220:12)
+  PASS  components/Blogs/__tests__/BlogGrid.test.tsx
+  ● Console
+
+    console.error
+      Error fetching featured projects: Error: Fetch failed
+          at Object.<anonymous> (/home/ahmed/Desktop/projects/ahmed-portfolio/components/Blogs/__tests__/BlogGrid.test.tsx:218:35)
+          at Promise.finally.completed (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:1559:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:1499:10)
+          at _callCircusTest (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:1009:40)
+          at processTicksAndRejections (node:internal/process/task_queues:105:5)
+          at _runTest (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:949:3)
+          at _runTestsForDescribeBlock (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:839:13)
+          at _runTestsForDescribeBlock (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:829:11)
+          at run (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:757:3)
+          at runAndTransformResultsToJestFormat (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:1920:21)
+          at jestAdapter (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/runner.js:101:19)
+          at runTestInternal (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-runner/build/testWorker.js:272:16)
+          at runTest (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-runner/build/testWorker.js:340:7)
+          at Object.worker (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-runner/build/testWorker.js:494:12)
+
+      57 |     );
+      58 |   } catch (error) {
+    > 59 |     console.error('Error fetching featured projects:', error);
+         |             ^
+      60 |
+      61 |     return (
+      62 |       <ErrorHandle
+
+      at error (components/Blogs/BlogGrid.tsx:59:13)
+      at Object.<anonymous> (components/Blogs/__tests__/BlogGrid.test.tsx:220:12)
+  PASS  components/Blogs/__tests__/BlogGrid.test.tsx
+  ● Console
+
+    console.error
+      Error fetching featured projects: Error: Fetch failed
+          at Object.<anonymous> (/home/ahmed/Desktop/projects/ahmed-portfolio/components/Blogs/__tests__/BlogGrid.test.tsx:218:35)
+          at Promise.finally.completed (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:1559:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:1499:10)
+          at _callCircusTest (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:1009:40)
+          at processTicksAndRejections (node:internal/process/task_queues:105:5)
+          at _runTest (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:949:3)
+          at _runTestsForDescribeBlock (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:839:13)
+          at _runTestsForDescribeBlock (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:829:11)
+          at run (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:757:3)
+          at runAndTransformResultsToJestFormat (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/jestAdapterInit.js:1920:21)
+          at jestAdapter (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-circus/build/runner.js:101:19)
+          at runTestInternal (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-runner/build/testWorker.js:272:16)
+          at runTest (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-runner/build/testWorker.js:340:7)
+          at Object.worker (/home/ahmed/Desktop/projects/ahmed-portfolio/node_modules/jest-runner/build/testWorker.js:494:12)
+
+      57 |     );
+      58 |   } catch (error) {
+    > 59 |     console.error('Error fetching featured projects:', error);
+         |             ^
+      60 |
+      61 |     return (
+      62 |       <ErrorHandle
+
+      at error (components/Blogs/BlogGrid.tsx:59:13)
+      at Object.<anonymous> (components/Blogs/__tests__/BlogGrid.test.tsx:220:12)
+ */
+
 describe('BlogGrid', () => {
   beforeEach(() => {
     jest.clearAllMocks();

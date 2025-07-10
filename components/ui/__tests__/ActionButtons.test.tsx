@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ActionButtons from '@/components/ui/ActionButtons';
 import { ExternalLink, Github } from 'lucide-react';
+import { IActionButtons } from '@/utils/types/common';
 
 // Mock the ScrollAnimation component
 jest.mock('@/components/ui/ScrollAnimation', () => {

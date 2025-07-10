@@ -1,58 +1,62 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Blog from '@/components/Blogs/Blog';
+import { ITechnologies } from '@/utils/types/technology';
+import { ILinkNavigation, IShareCard, ITags } from '@/utils/types/common';
+import { IBlog, ILatestBlogs, IRelatedBlogs } from '@/utils/types/blog';
+import { BlogPostResponse } from '@/sanity/lib/types';
 
 // Mock all child components
 jest.mock('@/components/ui/Technologies', () => {
-  return function MockTechnologies({ technologies }: any) {
+  return function MockTechnologies({ technologies }: ITechnologies) {
     return <div data-testid="technologies">Technologies: {technologies?.length || 0}</div>;
   };
 });
 
 jest.mock('@/components/ui/Tags', () => {
-  return function MockTags({ tags }: any) {
+  return function MockTags({ tags }: ITags) {
     return <div data-testid="tags">Tags: {tags?.length || 0}</div>;
   };
 });
 
 jest.mock('@/components/ui/ShareCard', () => {
-  return function MockShareCard({ url, title }: any) {
+  return function MockShareCard({ url, title }: IShareCard) {
     return <div data-testid="share-card">Share: {title}</div>;
   };
 });
 
 jest.mock('@/components/Blogs/Features/LatestBlogs', () => {
-  return function MockLatestBlogs({ latestBlogs }: any) {
+  return function MockLatestBlogs({ latestBlogs }: ILatestBlogs) {
     return <div data-testid="latest-blogs">Latest: {latestBlogs?.length || 0}</div>;
   };
 });
 
 jest.mock('@/components/Blogs/Features/RelatedBlogs', () => {
-  return function MockRelatedBlogs({ relatedBlogs }: any) {
+  return function MockRelatedBlogs({ relatedBlogs }: IRelatedBlogs) {
     return <div data-testid="related-blogs">Related: {relatedBlogs?.length || 0}</div>;
   };
 });
 
 jest.mock('@/components/Blogs/Features/PostDetails', () => {
-  return function MockPostDetails({ blog }: any) {
+  return function MockPostDetails({ blog }: IBlog) {
     return <div data-testid="post-details">Post Details: {blog.title}</div>;
   };
 });
 
 jest.mock('@/components/Blogs/Features/HeroBlog', () => {
-  return function MockHeroBlog({ blog }: any) {
+  return function MockHeroBlog({ blog }: IBlog) {
     return <div data-testid="hero-blog">Hero: {blog.title}</div>;
   };
 });
 
 jest.mock('@/components/Blogs/Features/BlogContent', () => {
-  return function MockBlogContent({ blog }: any) {
+  return function MockBlogContent({ blog }: IBlog) {
     return <div data-testid="blog-content">Content: {blog.title}</div>;
   };
 });
 
 jest.mock('@/components/ui/NavigationHeader', () => {
-  return function MockNavigationHeader({ link, text }: any) {
+  return function MockNavigationHeader({ link, text }: ILinkNavigation) {
     return <div data-testid="navigation-header">{text}</div>;
   };
 });
@@ -64,7 +68,13 @@ jest.mock('@/components/ui/BackgroundEffects', () => {
 });
 
 jest.mock('@/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({ children, className }: any) {
+  return function MockScrollAnimation({
+    children,
+    className,
+  }: {
+    readonly children: React.ReactNode;
+    readonly className: string;
+  }) {
     return (
       <div data-testid="scroll-animation" className={className}>
         {children}
@@ -83,7 +93,7 @@ afterAll(() => {
   process.env = originalEnv;
 });
 
-const mockBlog = {
+const mockBlog: BlogPostResponse = {
   _id: '1',
   title: 'Test Blog Post',
   slug: 'test-blog-post',

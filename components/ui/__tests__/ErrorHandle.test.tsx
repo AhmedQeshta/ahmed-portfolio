@@ -2,20 +2,30 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ErrorHandle from '@/components/ui/ErrorHandle';
 
+interface IMockHeading extends React.HTMLAttributes<HTMLHeadingElement> {
+  children: React.ReactNode;
+}
+interface IMockDiv extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
+
+interface IMockParagraph extends React.HTMLAttributes<HTMLParagraphElement> {
+  children: React.ReactNode;
+}
 // Mock framer-motion
 jest.mock('framer-motion', () => ({
   motion: {
-    h2: ({ children, className, ...props }: any) => (
+    h2: ({ children, className, ...props }: IMockHeading) => (
       <h2 className={className} {...props}>
         {children}
       </h2>
     ),
-    div: ({ children, className, ...props }: any) => (
+    div: ({ children, className, ...props }: IMockDiv) => (
       <div className={className} {...props}>
         {children}
       </div>
     ),
-    p: ({ children, ...props }: any) => <p {...props}>{children}</p>,
+    p: ({ children, ...props }: IMockParagraph) => <p {...props}>{children}</p>,
   },
 }));
 

@@ -1,10 +1,19 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import BlogCard from '@/components/Blogs/BlogCard';
+import { ITechnologies } from '@/utils/types/technology';
+import { ISeeBlogButton } from '@/utils/types/blog';
+import { BlogPostResponse } from '@/sanity/lib/types';
 
 // Mock Next.js components
 jest.mock('next/link', () => {
-  return function MockLink({ children, href }: any) {
+  return function MockLink({
+    children,
+    href,
+  }: {
+    readonly children: React.ReactNode;
+    readonly href: string;
+  }) {
     return (
       <a href={href} data-testid="blog-link">
         {children}
@@ -12,31 +21,31 @@ jest.mock('next/link', () => {
     );
   };
 });
-
+interface IMockImage extends React.ImgHTMLAttributes<HTMLImageElement> {
+  priority: Boolean;
+}
 jest.mock('next/image', () => {
-  return function MockImage({ src, alt, width, height, className, priority }: any) {
-    return (
-      <img
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        className={className}
-        data-testid="blog-image"
-      />
-    );
+  // { src, alt, width, height, className, priority }
+  return function MockImage({ ...resetProps }: IMockImage) {
+    return <img data-testid="blog-image" {...resetProps} />;
   };
 });
 
 // Mock child components
 jest.mock('@/components/ui/TechnologiesHome', () => {
-  return function MockTechnologiesHome({ technologies, link }: any) {
+  return function MockTechnologiesHome({ technologies, link }: ITechnologies) {
     return <div data-testid="technologies-home">Technologies: {technologies?.length || 0}</div>;
   };
 });
 
 jest.mock('@/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({ children, className }: any) {
+  return function MockScrollAnimation({
+    children,
+    className,
+  }: {
+    readonly children: React.ReactNode;
+    readonly className: string;
+  }) {
     return (
       <div data-testid="scroll-animation" className={className}>
         {children}
@@ -46,13 +55,13 @@ jest.mock('@/components/ui/ScrollAnimation', () => {
 });
 
 jest.mock('@/components/ui/MouseMoveWrapper', () => {
-  return function MockMouseMoveWrapper({ children }: any) {
+  return function MockMouseMoveWrapper({ children }: { readonly children: React.ReactNode }) {
     return <div data-testid="mouse-move-wrapper">{children}</div>;
   };
 });
 
 jest.mock('@/components/Blogs/Features/SeeBlogButton', () => {
-  return function MockSeeBlogButton({ slug }: any) {
+  return function MockSeeBlogButton({ slug }: ISeeBlogButton) {
     return <button data-testid="see-blog-button">See blog</button>;
   };
 });
@@ -71,7 +80,7 @@ jest.mock('@/utils/date', () => ({
   formatReadingTime: jest.fn(() => '5 min read'),
 }));
 
-const mockBlog = {
+const mockBlog: BlogPostResponse = {
   _id: '1',
   slug: 'test-blog-post',
   thumbnail: 'https://example.com/thumbnail.jpg',
@@ -159,7 +168,7 @@ describe('BlogCard', () => {
   });
 
   it('should render fallback div when no thumbnail', async () => {
-    const blogWithoutThumbnail = { ...mockBlog, thumbnail: null } as any;
+    const blogWithoutThumbnail = { ...mockBlog, thumbnail: null } as unknown as BlogPostResponse;
     render(await BlogCard({ blog: blogWithoutThumbnail }));
 
     const fallbackDiv = screen.getByText('T');
@@ -174,7 +183,7 @@ describe('BlogCard', () => {
   });
 
   it('should render first letter of title in fallback', async () => {
-    const blogWithoutThumbnail = { ...mockBlog, thumbnail: null } as any;
+    const blogWithoutThumbnail = { ...mockBlog, thumbnail: null } as unknown as BlogPostResponse;
     render(await BlogCard({ blog: blogWithoutThumbnail }));
 
     expect(screen.getByText('T')).toBeInTheDocument();
@@ -209,7 +218,10 @@ describe('BlogCard', () => {
   });
 
   it('should handle blog without description', async () => {
-    const blogWithoutDescription = { ...mockBlog, description: null } as any;
+    const blogWithoutDescription = {
+      ...mockBlog,
+      description: null,
+    } as unknown as BlogPostResponse;
     render(await BlogCard({ blog: blogWithoutDescription }));
 
     expect(

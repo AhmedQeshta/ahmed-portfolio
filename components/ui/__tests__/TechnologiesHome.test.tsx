@@ -7,10 +7,14 @@ jest.mock('@/sanity/lib/image', () => ({
   getImageUrl: jest.fn(() => 'https://example.com/image.jpg'),
 }));
 
+interface IMockImage extends React.ImgHTMLAttributes<HTMLImageElement> {
+  fill: boolean;
+}
+
 // Mock Next.js Image component
 jest.mock('next/image', () => ({
   __esModule: true,
-  default: (props: any) => {
+  default: (props: IMockImage) => {
     const { fill, ...restProps } = props;
     return <img {...restProps} />;
   },
