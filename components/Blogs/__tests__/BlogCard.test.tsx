@@ -26,8 +26,8 @@ interface IMockImage extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 jest.mock('next/image', () => {
   // { src, alt, width, height, className, priority }
-  return function MockImage({ ...resetProps }: IMockImage) {
-    return <img data-testid="blog-image" {...resetProps} />;
+  return function MockImage({ priority, ...restProps }: any) {
+    return <img data-testid="blog-image" {...restProps} />;
   };
 });
 
