@@ -5,20 +5,13 @@ import { linksPages } from '@/utils/navLinks';
 
 export { metadata, viewport } from '@/utils/metaData';
 
-export default function RootLayout({
-  children,
-  modal,
-}: Readonly<{
-  children: React.ReactNode;
-  modal: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
         <OrbBackground />
 
         <Navbar links={linksPages} />
-        {modal}
         {children}
       </body>
     </html>

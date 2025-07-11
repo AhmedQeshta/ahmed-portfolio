@@ -1,3 +1,5 @@
+'use client';
+
 import { IErrorHandle } from '@/utils/types/common';
 import { motion } from 'framer-motion';
 

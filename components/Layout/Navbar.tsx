@@ -1,8 +1,8 @@
 'use client';
-import { ILinksApp } from '@/utils/navLinks';
+import { ILinksApp } from '@/utils/types/common';
 import Link from 'next/link';
 
-export default function Navbar({ links }: ILinksApp[]) {
+export default function Navbar({ links }: { links: ILinksApp[] }) {
   // add menu btn have links when it on mobile device and small the media icon on mobile device
   return (
     <nav

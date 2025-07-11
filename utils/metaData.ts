@@ -61,10 +61,11 @@ export const viewport: Viewport = {
 };
 
 // export generateMetadata for single blog
-export async function generateBlogMetadata({ params }: { params: { slug: string } }) {
+export async function generateBlogMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const blog = await sanityFetch<BlogPostResponse>({
     query: blogPostBySlugQuery,
-    params: { slug: params.slug },
+    params: { slug },
     tags: ['blogPost'],
   });
   if (!blog) return {};
