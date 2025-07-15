@@ -11,7 +11,6 @@ import { IWorkResponse } from '@/utils/types/work';
 
 export default function Card({ work }: IWorkResponse) {
   const {
-    _id,
     slug,
     logo,
     company,
@@ -29,7 +28,6 @@ export default function Card({ work }: IWorkResponse) {
   return (
     <MouseMoveWrapper>
       <Link
-        key={_id}
         href={`/works/${slug}`}
         className="block bg-card-bg backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:border-white/20 hover:bg-card-hover transition-all duration-300 group hover:scale-[1.02] hover:shadow-2xl relative z-10">
         {/* Header with Logo and Company */}

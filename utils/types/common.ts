@@ -60,3 +60,12 @@ export interface ILinksApp {
   name: string;
   url: string;
 }
+
+export interface IMediaList {
+  title: string;
+  href: string;
+  icon?: string | unknown;
+  iconSvg?: any;
+  rel: string;
+  target: string;
+}

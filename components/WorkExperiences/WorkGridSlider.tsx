@@ -2,7 +2,7 @@ import { workExperienceQuery } from '@/sanity/lib/queries';
 import { sanityFetch } from '@/sanity/lib/client';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/components/ui/ErrorHandle';
-import WorkSlider from './WorkSlider';
+import WorkSlider from '@/components/WorkExperiences/WorkSlider';
 
 export default async function WorkGridSlider() {
   try {
