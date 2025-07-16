@@ -2,7 +2,6 @@ import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { IWorkResponse } from '@/utils/types/work';
 import { MapPin } from 'lucide-react';
 
-
 export default function Location({ work: { locationType, location } }: IWorkResponse) {
   if (!location) return null;
 
@@ -20,7 +19,11 @@ export default function Location({ work: { locationType, location } }: IWorkResp
       <ScrollAnimation direction="down" delay={0.3}>
         <div className="text-gray-300">
           <p className="font-medium">{location}</p>
-          <p className="text-sm text-gray-400 capitalize mt-1">{locationType?.replace('-', ' ')}</p>
+          {locationType && (
+            <p className="text-sm text-gray-400 capitalize mt-1">
+              {locationType.replace('-', ' ')}
+            </p>
+          )}
         </div>
       </ScrollAnimation>
     </ScrollAnimation>
