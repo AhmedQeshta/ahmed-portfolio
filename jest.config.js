@@ -11,6 +11,7 @@ const customJestConfig = {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
+    'nanoid': require.resolve('nanoid'),
   },
   collectCoverageFrom: [
     'app/**/*.{js,jsx,ts,tsx}',
