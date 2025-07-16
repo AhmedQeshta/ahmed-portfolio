@@ -3,11 +3,10 @@ import Image from 'next/image';
 import { getImageUrl } from '@/sanity/lib/image';
 import { formatDateDuration } from '@/utils/date';
 import TechnologiesHome from '@/components/ui/TechnologiesHome';
-import { Calendar, ExternalLink, Github } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import ActionButtons from '@/components/ui/ActionButtons';
 import MouseMoveWrapper from '@/components/ui/MouseMoveWrapper';
 import { IProjectResponse } from '@/utils/types/project';
-
 
 export default function ProjectCard({
   project: {
@@ -76,12 +75,13 @@ export default function ProjectCard({
           {description && (
             <p className="text-text-secondary text-sm mb-4 line-clamp-3">{description}</p>
           )}
-
-          <div className="flex gap-4">
-            <ActionButtons listLinks={listLinks} />
-          </div>
         </div>
       </Link>
+      <div className="p-4 pt-0">
+        <div className="flex gap-4">
+          <ActionButtons listLinks={listLinks} />
+        </div>
+      </div>
     </MouseMoveWrapper>
   );
 }
