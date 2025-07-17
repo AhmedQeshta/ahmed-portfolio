@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     title: 'Ahmed Qeshta - Software Engineer',
     description: 'Ahmed Qeshta - Software Engineer',
     images: ['images/ahmed-qeshta-og.png'],
+    creator: '@ahmedqeshta',
   },
   robots: {
     index: true,
@@ -89,6 +90,7 @@ export async function generateBlogMetadata({ params }: { params: Promise<{ slug:
       title,
       description,
       images: image ? [image] : undefined,
+      creator: '@ahmedqeshta',
     },
   };
 }

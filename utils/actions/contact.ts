@@ -5,17 +5,6 @@ import { z } from 'zod';
 import { getHtml, getText } from '@/utils/email';
 import { IErrors, IFormState } from '@/utils/types/contact';
 
-// Create transporter for nodemailer
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
-
 // Zod schema for contact form validation
 const contactSchema = z.object({
   name: z.string().min(1, 'Name is required').trim(),
@@ -50,6 +39,17 @@ export async function sendMessage(prevState: IFormState, formData: FormData) {
 
   // Send email
   try {
+    // Create transporter for nodemailer
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT || '587'),
+      secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
     const mailOptions = {
       from: `"${name}" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
       to: process.env.TO_EMAIL || 'ahmed.qeshta.dev@gmail.com',
