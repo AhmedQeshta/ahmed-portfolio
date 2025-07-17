@@ -1,4 +1,9 @@
-import { cn, getStatusColor, getEmploymentTypeColor, getLocationTypeColor } from '../statusColor';
+import {
+  cn,
+  getStatusColor,
+  getEmploymentTypeColor,
+  getLocationTypeColor,
+} from '@/utils/statusColor';
 
 describe('statusColor utilities', () => {
   describe('cn function', () => {

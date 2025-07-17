@@ -1,4 +1,4 @@
-import { linksApp, linksPages, mediaList } from '../navLinks';
+import { linksApp, linksPages, mediaList } from '@/utils/navLinks';
 
 describe('navLinks utilities', () => {
   describe('linksApp', () => {

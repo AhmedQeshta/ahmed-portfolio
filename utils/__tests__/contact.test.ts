@@ -1,10 +1,10 @@
 jest.mock('nodemailer');
 import nodemailer from 'nodemailer';
-import { sendMessage } from '../actions/contact';
-import { getHtml, getText } from '../email';
+import { sendMessage } from '@/utils/actions/contact';
+import { getHtml, getText } from '@/utils/email';
 
 // Mock email utilities
-jest.mock('../email', () => ({
+jest.mock('@/utils/email', () => ({
   getHtml: jest.fn().mockReturnValue('<html>Mock HTML</html>'),
   getText: jest.fn().mockReturnValue('Mock text'),
 }));

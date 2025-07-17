@@ -1,4 +1,4 @@
-import { metadata, viewport, generateBlogMetadata } from '../metaData';
+import { metadata, viewport, generateBlogMetadata } from '@/utils/metaData';
 import { sanityFetch } from '@/sanity/lib/client';
 
 // Mock sanityFetch

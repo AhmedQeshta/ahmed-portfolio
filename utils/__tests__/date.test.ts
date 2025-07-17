@@ -1,4 +1,4 @@
-import { durationOfWork, formatDateDuration, formatDate, formatReadingTime } from '../date';
+import { durationOfWork, formatDateDuration, formatDate, formatReadingTime } from '@/utils/date';
 
 describe('date utilities', () => {
   describe('formatDate function', () => {
