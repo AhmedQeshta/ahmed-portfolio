@@ -5,7 +5,6 @@ import Link from 'next/link';
 
 export default function Navbar({ links }: { links: ILinksApp[] }) {
   // add menu btn have links when it on mobile device and small the media icon on mobile device
-  //  TODO:: create list of social media
 
   return (
     <nav

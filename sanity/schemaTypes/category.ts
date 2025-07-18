@@ -1,18 +1,5 @@
 import { defineField, defineType } from 'sanity';
 
-/**
- * data for that 
- *  { title: 'Web Development', value: 'web-development' },
-          { title: 'React', value: 'react' },
-          { title: 'Next.js', value: 'nextjs' },
-          { title: 'JavaScript', value: 'javascript' },
-          { title: 'TypeScript', value: 'typescript' },
-          { title: 'CSS', value: 'css' },
-          { title: 'Design', value: 'design' },
-          { title: 'Tutorial', value: 'tutorial' },
-          { title: 'Tips & Tricks', value: 'tips-tricks' },
- */
-
 export const category = defineType({
   name: 'category',
   title: 'Category',
