@@ -27,6 +27,10 @@ body {
   background-position: center;
   color: #ffffff;
   font-family: sans-serif;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Custom gradient text class */
