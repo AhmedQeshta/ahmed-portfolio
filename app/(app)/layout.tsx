@@ -1,4 +1,5 @@
 import '@/app/globals.css';
+import '@/app/work-slider.css';
 import Footer from '@/components/Layout/Footer';
 import Navbar from '@/components/Layout/Navbar';
 import OrbBackground from '@/components/ui/OrbBackground';

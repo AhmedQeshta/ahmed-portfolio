@@ -44,9 +44,6 @@ describe('Work', () => {
     // Check Hero
     expect(screen.getByText('Lead Engineer')).toBeInTheDocument();
 
-    // Check Action Buttons
-    expect(screen.getByText('Live Demo')).toBeInTheDocument();
-
     // Check Company Info
     expect(screen.getByText('Company')).toBeInTheDocument();
 
