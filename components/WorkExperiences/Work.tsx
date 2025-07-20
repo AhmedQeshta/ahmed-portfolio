@@ -16,6 +16,14 @@ export default function Work({ work }: IWorkResponse) {
   const listLinks = [
     {
       id: 1,
+      text: 'Company Link',
+      link: companyUrl,
+      customStyle:
+        'flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl',
+      icon: <ExternalLink size={20} />,
+    },
+    {
+      id: 2,
       text: 'Live Demo',
       link: companyUrl,
       customStyle:

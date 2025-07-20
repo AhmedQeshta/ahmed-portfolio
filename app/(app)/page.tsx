@@ -3,26 +3,69 @@ import WorkGridSlider from '@/components/WorkExperiences/WorkGridSlider';
 import ProjectGrid from '@/components/Projects/ProjectGrid';
 import BlogGrid from '@/components/Blogs/BlogGrid';
 import ContactSection from '@/components/Contact/ContactSection';
-import { Suspense } from 'react';
+import { Fragment, Suspense } from 'react';
 import Loading from '@/components/ui/Loading';
+import { featuresQuery } from '@/sanity/lib/queries';
+import { sanityFetch } from '@/sanity/lib/client';
+import { FeatureResponse } from '@/sanity/lib/types';
+import ErrorHandle from '@/components/ui/ErrorHandle';
 
-export default function Home() {
-  return (
-    <main>
-      <Header />
-      <Suspense fallback={<Loading />}>
-        <WorkGridSlider />
-      </Suspense>
+const sectionOfPage: any = {
+  header: <Header />,
+  works: <WorkGridSlider />,
+  projects: <ProjectGrid />,
+  blogs: <BlogGrid />,
+  contact: <ContactSection />,
+};
 
-      <Suspense fallback={<Loading />}>
-        <ProjectGrid />
-      </Suspense>
+export default async function Home() {
+  try {
+    const features = await sanityFetch<FeatureResponse[]>({
+      query: featuresQuery,
+      tags: ['features'],
+    });
 
-      <Suspense fallback={<Loading />}>
-        <BlogGrid />
-      </Suspense>
+    // console.log(features);
 
-      <ContactSection />
-    </main>
-  );
+    /**
+     * the feature is an array of object
+     * [{id:1,name:"work",status:"publish"},{id:1,name:"project",status:"publish"}]
+     *
+     */
+    return (
+      <main>
+        {features &&
+          features.map(({ _id, name, status }) => (
+            <Fragment key={_id}>
+              <Suspense fallback={<Loading />}>
+                {status === 'publish' && sectionOfPage[name]}
+              </Suspense>
+            </Fragment>
+          ))}
+
+        {/* <Header />
+        <Suspense fallback={<Loading />}>
+          <WorkGridSlider />
+        </Suspense>
+
+        <Suspense fallback={<Loading />}>
+          <ProjectGrid />
+        </Suspense>
+
+        <Suspense fallback={<Loading />}>
+          <BlogGrid />
+        </Suspense>
+
+        <ContactSection /> */}
+      </main>
+    );
+  } catch (error) {
+    return (
+      <ErrorHandle
+        id={'home'}
+        title={'Home Page'}
+        description={'Failed to load Home Page. Please try again later.'}
+      />
+    );
+  }
 }

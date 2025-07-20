@@ -30,7 +30,15 @@ export default function WorkSlider({ works }: IWorkSlider) {
     autoplaySpeed: 4000,
     pauseOnHover: true,
     arrows: false,
+    centerMode: false,
     responsive: [
+      {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
       {
         breakpoint: 1024,
         settings: {
@@ -44,16 +52,18 @@ export default function WorkSlider({ works }: IWorkSlider) {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
+          centerMode: true,
+          centerPadding: '30px',
         },
       },
     ],
   };
 
   return (
-    <div className="relative px-4">
-      <Slider {...sliderSettings}>
+    <div className="relative px-2 md:px-0 -mx-4 md:-mx-8 lg:-mx-12 xl:-mx-16">
+      <Slider {...sliderSettings} className="overflow-visible">
         {works.map((work) => (
-          <div key={work._id} className="px-3">
+          <div key={work._id} className="px-2 md:px-3 lg:px-4">
             <Card work={work} />
           </div>
         ))}

@@ -52,8 +52,8 @@ export default function Card({ work }: IWorkResponse) {
               {title}
             </h3>
             <div className="flex items-center gap-1 text-text-accent font-medium">
-              <Briefcase className="w-3 h-3" />
-              <span className="text-sm">{company}</span>
+              <Briefcase className="w-3 h-3 flex-shrink-0" />
+              <span className="text-sm truncate">{company}</span>
             </div>
           </div>
 

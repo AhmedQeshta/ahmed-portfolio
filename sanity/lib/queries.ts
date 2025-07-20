@@ -199,3 +199,12 @@ export const baseInfoQuery = groq`
     address
   }
 `;
+
+export const featuresQuery = groq`
+*[_type == "feature"] | order(order asc){
+    _id,
+    name,
+    status,
+    order
+  }
+`;

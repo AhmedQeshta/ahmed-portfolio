@@ -100,6 +100,11 @@ export interface BaseInfo {
   address: string;
 }
 
+export interface Feature {
+  _id: string;
+  name: string;
+  status: string;
+}
 // Query response types (flattened slug)
 export interface WorkExperienceResponse extends Omit<WorkExperience, 'slug'> {
   slug: string;
@@ -121,3 +126,5 @@ export interface CategoryResponse extends Omit<Category, 'slug'> {
 }
 
 export interface BaseInfoResponse extends BaseInfo {}
+
+export interface FeatureResponse extends Feature {}

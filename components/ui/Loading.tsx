@@ -14,15 +14,15 @@ export default function Loading() {
         </div>
 
         {/* Main spinner */}
-        <div className="relative" data-testid="spinner-container">
+        <div className="relative flex justify-center min-h-12" data-testid="spinner-container">
           {/* Outer spinning ring */}
-          <div className="w-20 h-20 border-4 border-transparent border-t-purple-500 border-r-blue-500 rounded-full animate-spin"></div>
+          <div className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] w-20 h-20  border-4 border-transparent border-t-purple-500 border-r-blue-500 rounded-full animate-spin"></div>
 
           {/* Inner spinning ring */}
-          <div className="absolute top-2 left-2 w-16 h-16 border-4 border-transparent border-b-pink-500 border-l-purple-400 rounded-full animate-spin animate-reverse"></div>
+          <div className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] w-16 h-16 border-4 border-transparent border-b-pink-500 border-l-purple-400 rounded-full animate-spin animate-reverse"></div>
 
           {/* Center dot */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+          <div className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
         </div>
 
         {/* Loading text */}
