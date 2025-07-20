@@ -165,6 +165,3 @@ a {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
-/* Import work slider styles */
-@import './work-slider.css';

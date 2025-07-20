@@ -35,21 +35,6 @@ export default async function Home() {
               </Suspense>
             </Fragment>
           ))}
-
-        {/* <Header />
-        <Suspense fallback={<Loading />}>
-          <WorkGridSlider />
-        </Suspense>
-
-        <Suspense fallback={<Loading />}>
-          <ProjectGrid />
-        </Suspense>
-
-        <Suspense fallback={<Loading />}>
-          <BlogGrid />
-        </Suspense>
-
-        <ContactSection /> */}
       </main>
     );
   } catch (error) {

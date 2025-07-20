@@ -1,18 +1,16 @@
 import NavigationHeader from '@/components/ui/NavigationHeader';
 import Technologies from '@/components/ui/Technologies';
 import HeroWork from '@/components/WorkExperiences/Features/HeroWork';
-import ActionButtons from '@/components/ui/ActionButtons';
 import WorkDetails from '@/components/WorkExperiences/Features/WorkDetails';
 import Location from '@/components/WorkExperiences/Features/Location';
 import Timeline from '@/components/WorkExperiences/Features/Timeline';
 import Skills from '@/components/WorkExperiences/Features/Skills';
 import Achievements from '@/components/WorkExperiences/Features/Achievements';
 import CompanyInformation from '@/components/WorkExperiences/Features/CompanyInformation';
-import { ExternalLink } from 'lucide-react';
 import { IWorkResponse } from '@/utils/types/work';
 
 export default function Work({ work }: IWorkResponse) {
-  const { technologies, companyUrl } = work;
+  const { technologies } = work;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
