@@ -1,11 +1,11 @@
 import { BlogPostResponse } from '@/sanity/lib/types';
 
 export interface IBlogsPage {
-  searchParams?: Promise<{ q?: string }>;
+  searchParams: { q?: string };
 }
 
 export interface IBlogPage {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }
 
 export interface IBlogGrid {

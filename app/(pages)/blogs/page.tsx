@@ -3,8 +3,11 @@ import Search from '@/components/ui/Search';
 import { IBlogsPage } from '@/utils/types/blog';
 import React from 'react';
 
-const BlogPage = async ({ searchParams }: IBlogsPage) => {
-  const query = (await searchParams)?.q ?? '';
+// Mark this page as dynamic
+export const dynamic = 'force-dynamic';
+
+const BlogPage = ({ searchParams }: { searchParams: { q?: string } }) => {
+  const query = searchParams?.q ?? '';
   return (
     <>
       <Search action="/blogs" />

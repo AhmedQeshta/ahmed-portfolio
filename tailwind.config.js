@@ -24,6 +24,20 @@ module.exports = {
         'footer-text': '#9ca3af',
         placeholder: '#d1d5db',
       },
+      animation: {
+        float: 'float 6s ease-in-out infinite',
+        slowspin: 'slowspin 12s linear infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        slowspin: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+      },
     },
   },
   plugins: [],

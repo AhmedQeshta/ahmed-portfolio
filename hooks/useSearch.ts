@@ -1,3 +1,5 @@
+'use client';
+
 import { FormEvent, useEffect, useState } from 'react';
 import { useDebounce } from './useDebounce';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -8,7 +10,7 @@ const searchSchema = z.string().trim().min(1, 'Search cannot be empty').max(100,
 export function useSearch(action: string) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const initialQuery = searchParams.get('q') || '';
+  const initialQuery = searchParams?.get('q') || '';
   const [query, setQuery] = useState(initialQuery);
   const [error, setError] = useState<string | null>(null);
   const debouncedQuery = useDebounce(query, 250);

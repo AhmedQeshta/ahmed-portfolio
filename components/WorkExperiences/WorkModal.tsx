@@ -21,16 +21,6 @@ export default function WorkModal({ work }: IWorkResponse) {
   };
 
   const { technologies, companyUrl } = work;
-  const listLinks = [
-    {
-      id: 1,
-      text: 'Live Demo',
-      link: companyUrl,
-      customStyle:
-        'flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl',
-      icon: <ExternalLink size={20} />,
-    },
-  ];
 
   return (
     <Modal isOpen={true} onClose={handleClose} maxWidth="2xl">
@@ -41,11 +31,6 @@ export default function WorkModal({ work }: IWorkResponse) {
         {/* Main Content */}
         <div className="relative z-10 pt-8 pb-16">
           <div className="px-6 md:px-8">
-            {/* Action Buttons */}
-            <div className="flex flex-wrap gap-4 mb-8">
-              <ActionButtons listLinks={listLinks} />
-            </div>
-
             {/* Content Grid */}
             <div className="grid lg:grid-cols-3 gap-8">
               {/* Main Content */}

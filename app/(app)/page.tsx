@@ -25,13 +25,6 @@ export default async function Home() {
       tags: ['features'],
     });
 
-    // console.log(features);
-
-    /**
-     * the feature is an array of object
-     * [{id:1,name:"work",status:"publish"},{id:1,name:"project",status:"publish"}]
-     *
-     */
     return (
       <main>
         {features &&

@@ -1,11 +1,13 @@
-import { Suspense } from 'react';
-import Loading from '@/components/ui/Loading';
 import SkillsIconsHeader from '@/components/Header/SkillsIconsHeader';
 import { PortableText } from '@portabletext/react';
 import { IBaseInfoResponse } from '@/utils/types/header';
 
 export default function BaseInfo({ baseInfo }: IBaseInfoResponse) {
   const { name, bio, technologies } = baseInfo;
+
+  // Get the remaining technologies (after the first 10)
+  const remainingTechnologies = technologies?.slice(10) || [];
+
   return (
     <div className="w-full lg:w-1/2">
       <h1 className="text-4xl lg:text-6xl font-bold gradient-text">{name}</h1>
@@ -13,12 +15,12 @@ export default function BaseInfo({ baseInfo }: IBaseInfoResponse) {
         <PortableText value={bio} />
       </div>
 
-      {/* Skills Icons */}
-      <Suspense fallback={<Loading />}>
+      {/* Skills Icons - showing only the remaining technologies */}
+      {remainingTechnologies.length > 0 && (
         <div>
-          <SkillsIconsHeader technologies={technologies} />
+          <SkillsIconsHeader technologies={remainingTechnologies} />
         </div>
-      </Suspense>
+      )}
     </div>
   );
 }
