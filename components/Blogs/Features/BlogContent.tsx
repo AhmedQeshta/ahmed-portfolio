@@ -3,6 +3,19 @@ import { IBlogPostResponse } from '@/utils/types/blog';
 import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
 
+// Helper function to construct Sanity image URL from reference
+const getSanityImageUrl = (ref: string | undefined): string | undefined => {
+  if (!ref) return undefined;
+
+  return `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/${ref
+    .replace('image-', '')
+    .replace('-jpg', '.jpg')
+    .replace('-png', '.png')
+    .replace('-webp', '.webp')
+    .replace('-jpeg', '.jpeg')
+    .replace('-gif', '.gif')}`;
+};
+
 export default function BlogContent({ blog }: IBlogPostResponse) {
   if (!blog) return null;
   const { content } = blog;
@@ -50,17 +63,32 @@ export default function BlogContent({ blog }: IBlogPostResponse) {
               ),
             },
             types: {
-              image: ({ value }) => (
-                <div className="my-8">
-                  <Image
-                    src={value.asset.url}
-                    alt={value.alt || ''}
-                    width={800}
-                    height={400}
-                    className="rounded-lg w-full h-auto"
-                  />
-                </div>
-              ),
+              image: ({ value }) => {
+                // Get the image URL from Sanity
+                const imageUrl = value?.asset?.url || getSanityImageUrl(value?.asset?._ref);
+
+                // Display fallback if no image URL is found
+                if (!imageUrl) {
+                  return (
+                    <div className="my-8 p-4 bg-gray-800 text-white rounded-lg">
+                      Image could not be loaded
+                    </div>
+                  );
+                }
+
+                // Render the image
+                return (
+                  <div className="my-8">
+                    <Image
+                      src={imageUrl}
+                      alt={value.alt || 'Blog image'}
+                      width={800}
+                      height={400}
+                      className="rounded-lg w-full h-auto"
+                    />
+                  </div>
+                );
+              },
               codeBlock: ({ value }) => (
                 <pre className="bg-gray-800 p-4 rounded-lg overflow-x-auto my-6">
                   <code className={`language-${value.language} text-green-400 text-sm`}>

@@ -16,11 +16,9 @@ export default function BaseInfo({ baseInfo }: IBaseInfoResponse) {
       </div>
 
       {/* Skills Icons - showing only the remaining technologies */}
-      {remainingTechnologies.length > 0 && (
-        <div>
-          <SkillsIconsHeader technologies={remainingTechnologies} />
-        </div>
-      )}
+      <div>
+        <SkillsIconsHeader technologies={remainingTechnologies} />
+      </div>
     </div>
   );
 }
