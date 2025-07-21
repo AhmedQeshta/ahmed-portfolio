@@ -7,37 +7,6 @@ import { IBlogPage } from '@/utils/types/blog';
 import React from 'react';
 
 export { generateBlogMetadata as generateMetadata } from '@/utils/metaData';
-// export async function generateBlogMetadata({ params }: { params: { slug: string } }) {
-//   const blog = await sanityFetch<BlogPostResponse>({
-//     query: blogPostBySlugQuery,
-//     params: { slug: params.slug },
-//     tags: ['blogPost'],
-//   });
-//   if (!blog) return {};
-//   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-//   const url = `${siteUrl}/blogs/${blog.slug}`;
-//   const title = blog.seo?.metaTitle || blog.title;
-//   const description = blog.seo?.metaDescription || blog.description;
-//   const image = blog.thumbnail;
-//   return {
-//     title,
-//     description,
-//     alternates: { canonical: url },
-//     openGraph: {
-//       title,
-//       description,
-//       url,
-//       type: 'article',
-//       images: image ? [image] : undefined,
-//     },
-//     twitter: {
-//       card: 'summary_large_image',
-//       title,
-//       description,
-//       images: image ? [image] : undefined,
-//     },
-//   };
-// }
 
 const BlogPage = async ({ params }: IBlogPage) => {
   const { slug } = await params;

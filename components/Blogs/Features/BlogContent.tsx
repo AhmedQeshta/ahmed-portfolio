@@ -1,25 +1,13 @@
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
+import { getSanityImageUrl } from '@/sanity/lib/image';
 import { IBlogPostResponse } from '@/utils/types/blog';
 import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
 
-// Helper function to construct Sanity image URL from reference
-const getSanityImageUrl = (ref: string | undefined): string | undefined => {
-  if (!ref) return undefined;
-
-  return `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/${ref
-    .replace('image-', '')
-    .replace('-jpg', '.jpg')
-    .replace('-png', '.png')
-    .replace('-webp', '.webp')
-    .replace('-jpeg', '.jpeg')
-    .replace('-gif', '.gif')}`;
-};
-
 export default function BlogContent({ blog }: IBlogPostResponse) {
   if (!blog) return null;
   const { content } = blog;
-  //  make it
+
   return (
     <ScrollAnimation
       direction="down"

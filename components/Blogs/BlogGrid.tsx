@@ -7,7 +7,6 @@ import ReadMore from '@/components/ui/ReadMore';
 import ScrollAnimation from '@/components/ui/ScrollAnimation';
 import { IBlogGrid } from '@/utils/types/blog';
 
-
 export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
   try {
     // if readMore true take first 6 blogs
@@ -29,7 +28,7 @@ export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
     return (
       // add the tags as a badge and the category and do not add html
       <section id="blog" className="py-10">
-        <div className="mx-auto max-w-5xl px-4">
+        <div className="mx-auto max-w-7xl px-4">
           <h2 className="text-3xl font-semibold mb-8 gradient-text">Blogs</h2>
 
           {blogs.length === 0 ? (
