@@ -32,7 +32,7 @@ export default function Card({ work }: IWorkResponse) {
         className="block bg-card-bg backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:border-white/20 hover:bg-card-hover transition-all duration-300 group hover:scale-[1.02] hover:shadow-2xl relative z-10">
         {/* Header with Logo and Company */}
         <div className="flex items-start gap-4 mb-4">
-          <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-white/5 flex-shrink-0 p-2 group-hover:scale-110 transition-transform duration-300">
+          <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-white/5 flex-shrink-0 p-2 group-hover:scale-110 transition-transform duration-300">
             {logo ? (
               <Image
                 src={getImageUrl(logo, 56, 56, 90)}
@@ -48,12 +48,12 @@ export default function Card({ work }: IWorkResponse) {
           </div>
 
           <div className="flex-1 min-w-0">
-            <h3 className="text-[16px] font-bold text-white mb-1 group-hover:text-blue-400 transition-colors line-clamp-2">
+            <h3 className="text-xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors line-clamp-2">
               {title}
             </h3>
             <div className="flex items-center gap-1 text-text-accent font-medium">
               <Briefcase className="w-3 h-3 flex-shrink-0" />
-              <span className="text-[12px] truncate">{company}</span>
+              <span className="text-sm truncate">{company}</span>
             </div>
           </div>
 
