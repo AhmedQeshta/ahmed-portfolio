@@ -17,3 +17,16 @@ export function getImageUrl(source: any, width?: number, height?: number, qualit
 
   return imageBuilder.url();
 }
+
+// Helper function to construct Sanity image URL from reference
+export function getSanityImageUrl(ref: string | undefined): string | undefined {
+  if (!ref) return undefined;
+
+  return `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/${ref
+    .replace('image-', '')
+    .replace('-jpg', '.jpg')
+    .replace('-png', '.png')
+    .replace('-webp', '.webp')
+    .replace('-jpeg', '.jpeg')
+    .replace('-gif', '.gif')}`;
+}
