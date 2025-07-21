@@ -15,7 +15,7 @@ export default async function ContactSection() {
 
     return (
       <section id="contact" className="py-20 bg-section-glass rounded-2xl">
-        <div className="mx-auto max-w-5xl px-4">
+        <div className="mx-auto max-w-7xl px-4">
           <ScrollAnimation direction="down" delay={0.2}>
             <h2 className="text-3xl font-semibold mb-8 gradient-text">Contact Us</h2>
           </ScrollAnimation>
