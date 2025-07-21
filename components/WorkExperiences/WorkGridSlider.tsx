@@ -17,7 +17,7 @@ export default async function WorkGridSlider() {
 
     return (
       <section id="works" className="py-20">
-        <div className="mx-auto max-w-5xl px-4">
+        <div className="mx-auto max-w-7xl px-4">
           <h2 className="text-3xl font-semibold mb-8 gradient-text">Works</h2>
           {sortedWorks.length === 0 ? (
             <div className="text-center text-gray-400">

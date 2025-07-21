@@ -15,7 +15,7 @@ export default async function Header() {
 
     return (
       <section id="home" className="flex flex-col lg:flex-row items-center py-20">
-        <div className="mx-auto max-w-5xl px-4 w-full">
+        <div className="mx-auto max-w-7xl px-4 w-full">
           <div className="flex flex-col lg:flex-row items-center">
             {/* Left Content */}
             <BaseInfo baseInfo={baseInfo} />

@@ -7,14 +7,6 @@ import { IActionButtons } from '@/utils/types/common';
 export default function ActionButtons({ listLinks }: IActionButtons) {
   if (!listLinks) return null;
 
-  // const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>, link?: string) => {
-  //   e.stopPropagation();
-  //   e.preventDefault();
-  //   if (link) {
-  //     window.open(link, '_blank', 'noopener,noreferrer');
-  //   }
-  // };
-
   return (
     <ScrollAnimation direction="down" delay={0.4} className="flex gap-4">
       {listLinks.map(({ id, text, link, customStyle, icon }) => (

@@ -18,7 +18,7 @@ export default async function ProjectGrid({ readMore = true }: IProjectGrid) {
     return (
       // add the tags as a badge and the category and do not add html
       <section id="projects" className="py-20 bg-section-glass rounded-2xl">
-        <ScrollAnimation direction="down" delay={0.1} className="mx-auto max-w-5xl px-4">
+        <ScrollAnimation direction="down" delay={0.1} className="mx-auto max-w-7xl px-4">
           <ScrollAnimation direction="down" delay={0.2}>
             <h2 className="text-3xl font-semibold mb-8 gradient-text">Projects</h2>
           </ScrollAnimation>
