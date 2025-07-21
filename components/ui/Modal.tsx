@@ -1,14 +1,15 @@
 'use client';
 
-import { useEffect } from 'react';
 import { X } from 'lucide-react';
 import { IModal } from '@/utils/types/common';
-import useModal, { maxWidthClasses } from '@/hooks/useModal';
+import useModal from '@/hooks/useModal';
 
 export default function Modal({ isOpen, onClose, children, title, maxWidth = 'lg' }: IModal) {
   // Handle escape key press
 
-  useModal({ isOpen, onClose });
+  const maxWidthClasses = useModal({ isOpen, onClose });
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">

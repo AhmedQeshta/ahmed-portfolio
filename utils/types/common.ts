@@ -24,6 +24,11 @@ export interface IModal {
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 }
 
+export interface IHookModal {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
 export interface IMouseMoveWrapper {
   children: React.ReactNode;
   className?: string;
