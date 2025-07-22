@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# sanity
+.env.sanity
+.env.sanity.local
+
+
+.swc
+
+
