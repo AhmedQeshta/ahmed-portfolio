@@ -3,13 +3,77 @@ import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import { sanityFetch } from '@/sanity/lib/client';
 import { blogPostBySlugQuery, blogPostsQuery } from '@/sanity/lib/queries';
 import { BlogPostResponse } from '@/sanity/lib/types';
-import { IBlogPage } from '@/features/blogs/types/blog';
-import React from 'react';
+import { FixedPageProps } from '@/types/app-router';
+import { Metadata } from 'next/types';
 
-export { generateBlogMetadata as generateMetadata } from '@/features/blogs/utils/generateBlogMetadata';
+// Metadata generation function
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const { slug } = params;
 
-const BlogPage = async ({ params }: IBlogPage) => {
-  const { slug } = await params;
+  try {
+    const blog = await sanityFetch<BlogPostResponse>({
+      query: blogPostBySlugQuery,
+      params: { slug },
+      tags: ['blogPost'],
+    });
+
+    if (!blog) return {};
+
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+    const url = `${siteUrl}/blogs/${blog.slug}`;
+    const title = blog.seo?.metaTitle || blog.title;
+    const description = blog.seo?.metaDescription || blog.description;
+    const image = blog.thumbnail;
+
+    return {
+      title,
+      description,
+      alternates: { canonical: url },
+      openGraph: {
+        title,
+        description,
+        url,
+        type: 'article',
+        images: image ? [image] : undefined,
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        images: image ? [image] : undefined,
+        creator: '@ahmedqeshta',
+      },
+    };
+  } catch (error) {
+    console.error('Error generating metadata:', error);
+    return {};
+  }
+}
+
+// Generate static params for all blog routes at build time
+export async function generateStaticParams() {
+  try {
+    const blogs = await sanityFetch<BlogPostResponse[]>({
+      query: blogPostsQuery,
+      tags: ['blogPosts'],
+    });
+
+    return blogs.map((blog) => ({
+      slug: blog.slug,
+    }));
+  } catch (error) {
+    console.error('Error generating static params for blogs:', error);
+    return [];
+  }
+}
+
+// Use our fixed type to avoid the "not satisfying PageProps" error
+export default async function Page(props: FixedPageProps) {
+  const { slug } = props.params;
 
   try {
     const blog = await sanityFetch<BlogPostResponse>({
@@ -48,6 +112,4 @@ const BlogPage = async ({ params }: IBlogPage) => {
       />
     );
   }
-};
-
-export default BlogPage;
+}

@@ -6,8 +6,8 @@ import Work from '@/features/works/components/Work';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import { IWorkPage } from '@/features/works/types/work';
 
-const WorkPage = async ({ params }: IWorkPage) => {
-  const { slug } = await params;
+const WorkPage = async (props: IWorkPage) => {
+  const { slug } = props.params;
 
   try {
     const workExperience = await sanityFetch<WorkExperienceResponse>({

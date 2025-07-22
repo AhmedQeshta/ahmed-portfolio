@@ -6,11 +6,13 @@ export interface IProjectLayout {
 }
 
 export interface IProjectPage {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 export interface IProjectPageModal {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 export interface IProjectGrid {

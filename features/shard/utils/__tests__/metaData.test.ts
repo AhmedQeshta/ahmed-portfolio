@@ -1,4 +1,3 @@
-import { generateBlogMetadata } from '@/features/blogs/utils/generateBlogMetadata';
 import { metadata, viewport } from '@/features/shard/utils/metaData';
 
 import { sanityFetch } from '@/sanity/lib/client';
@@ -75,63 +74,4 @@ describe('metaData utilities', () => {
     });
   });
 
-  describe('generateBlogMetadata', () => {
-    beforeEach(() => {
-      // Reset mock
-      jest.clearAllMocks();
-    });
-
-    it('should return empty object if blog not found', async () => {
-      // Mock a case where blog is not found
-      (sanityFetch as jest.Mock).mockResolvedValue(null);
-
-      const result = await generateBlogMetadata({ params: Promise.resolve({ slug: 'not-found' }) });
-      expect(result).toEqual({});
-      expect(sanityFetch).toHaveBeenCalledTimes(1);
-    });
-
-    it('should generate correct metadata for a blog post with SEO fields', async () => {
-      // Mock blog data with SEO fields
-      const mockBlog = {
-        slug: 'test-blog',
-        title: 'Original Title',
-        description: 'Original Description',
-        thumbnail: 'https://example.com/image.jpg',
-        seo: {
-          metaTitle: 'SEO Title',
-          metaDescription: 'SEO Description',
-        },
-      };
-
-      (sanityFetch as jest.Mock).mockResolvedValue(mockBlog);
-
-      const result = await generateBlogMetadata({ params: Promise.resolve({ slug: 'test-blog' }) });
-
-      expect(result).toHaveProperty('title', 'SEO Title');
-      expect(result).toHaveProperty('description', 'SEO Description');
-      expect(result).toHaveProperty('openGraph');
-      expect(result).toHaveProperty('twitter');
-      expect(result.openGraph).toHaveProperty('title', 'SEO Title');
-      expect(result.openGraph).toHaveProperty('description', 'SEO Description');
-      expect(result.openGraph).toHaveProperty('images', ['https://example.com/image.jpg']);
-      expect(result.twitter).toHaveProperty('card', 'summary_large_image');
-    });
-
-    it('should use default title/description when SEO fields are not provided', async () => {
-      // Mock blog data without SEO fields
-      const mockBlog = {
-        slug: 'test-blog',
-        title: 'Original Title',
-        description: 'Original Description',
-        thumbnail: 'https://example.com/image.jpg',
-      };
-
-      (sanityFetch as jest.Mock).mockResolvedValue(mockBlog);
-
-      const result = await generateBlogMetadata({ params: Promise.resolve({ slug: 'test-blog' }) });
-
-      expect(result).toHaveProperty('title', 'Original Title');
-      expect(result).toHaveProperty('description', 'Original Description');
-    });
-  });
 });

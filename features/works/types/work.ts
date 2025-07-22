@@ -6,7 +6,8 @@ export interface IWorkLayout {
 }
 
 export interface IWorkPage {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 export interface IWorkSlider {

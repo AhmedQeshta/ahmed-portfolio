@@ -6,8 +6,8 @@ import Project from '@/features/projects/components/Project';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import { IProjectPage } from '@/features/projects/types/project';
 
-const ProjectPage = async ({ params }: IProjectPage) => {
-  const { slug } = await params;
+const ProjectPage = async (props: IProjectPage) => {
+  const { slug } = props.params;
 
   try {
     const project = await sanityFetch<ProjectResponse>({

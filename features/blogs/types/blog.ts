@@ -4,9 +4,11 @@ export interface IBlogsPage {
   searchParams: { q?: string };
 }
 
-export interface IBlogPage {
-  params: { slug: string };
-}
+// Note: We're not using this interface anymore, but keeping it for reference
+// export interface IBlogPage {
+//   params: { slug: string };
+//   searchParams: Record<string, string | string[] | undefined>;
+// }
 
 export interface IBlogGrid {
   readMore?: boolean;

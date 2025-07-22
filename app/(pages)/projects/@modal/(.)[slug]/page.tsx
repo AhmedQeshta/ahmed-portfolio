@@ -6,8 +6,8 @@ import { ProjectResponse } from '@/sanity/lib/types';
 import { IProjectPageModal } from '@/features/projects/types/project';
 import React from 'react';
 
-const Project = async ({ params }: IProjectPageModal) => {
-  const { slug } = await params;
+const Project = async (props: IProjectPageModal) => {
+  const { slug } = props.params;
 
   try {
     const project = await sanityFetch<ProjectResponse>({

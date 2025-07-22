@@ -6,8 +6,8 @@ import { WorkExperienceResponse } from '@/sanity/lib/types';
 import { IWorkPage } from '@/features/works/types/work';
 import React from 'react';
 
-const Work = async ({ params }: IWorkPage) => {
-  const { slug } = await params;
+const Work = async (props: IWorkPage) => {
+  const { slug } = props.params;
 
   try {
     const workExperience = await sanityFetch<WorkExperienceResponse>({
