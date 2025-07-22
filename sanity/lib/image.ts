@@ -22,7 +22,10 @@ export function getImageUrl(source: any, width?: number, height?: number, qualit
 export function getSanityImageUrl(ref: string | undefined): string | undefined {
   if (!ref) return undefined;
 
-  return `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/${ref
+  const projectId = process.env.SANITY_PROJECT_ID || '0ew1aiai'; // Fallback to default
+  const dataset = process.env.SANITY_DATASET || 'ahmed-qeshta-portfolio'; // Fallback to default
+
+  return `https://cdn.sanity.io/images/${projectId}/${dataset}/${ref
     .replace('image-', '')
     .replace('-jpg', '.jpg')
     .replace('-png', '.png')

@@ -13,7 +13,7 @@ import { IBlog } from '@/features/blogs/types/blog';
 
 export default function Blog({ blog, latestBlogs, relatedBlogs }: IBlog) {
   const { technologies, tags, description, slug, title } = blog;
-  const url = `${process.env.NEXT_PUBLIC_SITE_URL}/blogs/${slug}`;
+  const url = `${process.env.SITE_URL}/blogs/${slug}`;
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
       {/* Navigation Header */}

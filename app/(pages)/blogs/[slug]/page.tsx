@@ -23,7 +23,7 @@ export async function generateMetadata({
 
     if (!blog) return {};
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+    const siteUrl = process.env.SITE_URL || 'http://localhost:3000';
     const url = `${siteUrl}/blogs/${blog.slug}`;
     const title = blog.seo?.metaTitle || blog.title;
     const description = blog.seo?.metaDescription || blog.description;

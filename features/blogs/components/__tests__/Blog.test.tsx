@@ -86,7 +86,7 @@ jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
 // Mock environment variable
 const originalEnv = process.env;
 beforeAll(() => {
-  process.env.NEXT_PUBLIC_SITE_URL = 'https://example.com';
+  process.env.SITE_URL = 'https://example.com';
 });
 
 afterAll(() => {
