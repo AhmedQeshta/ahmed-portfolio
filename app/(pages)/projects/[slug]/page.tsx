@@ -2,9 +2,9 @@ import { sanityFetch } from '@/sanity/lib/client';
 import { projectBySlugQuery } from '@/sanity/lib/queries';
 import { ProjectResponse } from '@/sanity/lib/types';
 import React from 'react';
-import Project from '@/components/Projects/Project';
-import ErrorHandle from '@/components/ui/ErrorHandle';
-import { IProjectPage } from '@/utils/types/project';
+import Project from '@/features/projects/components/Project';
+import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
+import { IProjectPage } from '@/features/projects/types/project';
 
 const ProjectPage = async ({ params }: IProjectPage) => {
   const { slug } = await params;

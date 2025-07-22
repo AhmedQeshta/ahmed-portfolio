@@ -1,12 +1,12 @@
-import Blog from '@/components/Blogs/Blog';
-import ErrorHandle from '@/components/ui/ErrorHandle';
+import Blog from '@/features/blogs/components/Blog';
+import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import { sanityFetch } from '@/sanity/lib/client';
 import { blogPostBySlugQuery, blogPostsQuery } from '@/sanity/lib/queries';
 import { BlogPostResponse } from '@/sanity/lib/types';
-import { IBlogPage } from '@/utils/types/blog';
+import { IBlogPage } from '@/features/blogs/types/blog';
 import React from 'react';
 
-export { generateBlogMetadata as generateMetadata } from '@/utils/metaData';
+export { generateBlogMetadata as generateMetadata } from '@/features/blogs/utils/generateBlogMetadata';
 
 const BlogPage = async ({ params }: IBlogPage) => {
   const { slug } = await params;

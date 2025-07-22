@@ -1,4 +1,4 @@
-import WorkGrid from '@/components/WorkExperiences/WorkGrid';
+import WorkGrid from '@/features/works/components/WorkGrid';
 import React from 'react';
 
 const page = () => {

@@ -1,9 +1,9 @@
-import ErrorHandle from '@/components/ui/ErrorHandle';
-import WorkModal from '@/components/WorkExperiences/WorkModal';
+import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
+import WorkModal from '@/features/works/components/WorkModal';
 import { sanityFetch } from '@/sanity/lib/client';
 import { workExperienceBySlugQuery } from '@/sanity/lib/queries';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
-import { IWorkPage } from '@/utils/types/work';
+import { IWorkPage } from '@/features/works/types/work';
 import React from 'react';
 
 const Work = async ({ params }: IWorkPage) => {

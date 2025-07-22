@@ -1,9 +1,9 @@
-import ProjectModal from '@/components/Projects/ProjectModal';
-import ErrorHandle from '@/components/ui/ErrorHandle';
+import ProjectModal from '@/features/projects/components/ProjectModal';
+import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import { sanityFetch } from '@/sanity/lib/client';
 import { projectBySlugQuery } from '@/sanity/lib/queries';
 import { ProjectResponse } from '@/sanity/lib/types';
-import { IProjectPageModal } from '@/utils/types/project';
+import { IProjectPageModal } from '@/features/projects/types/project';
 import React from 'react';
 
 const Project = async ({ params }: IProjectPageModal) => {

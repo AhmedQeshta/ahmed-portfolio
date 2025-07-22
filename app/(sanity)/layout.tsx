@@ -1,7 +1,7 @@
 import '@/app/globals.css';
-import OrbBackground from '@/components/ui/OrbBackground';
+import OrbBackground from '@/features/shard/components/ui/OrbBackground';
 
-export { metadata, viewport } from '@/utils/metaData';
+export { metadata, viewport } from '@/features/shard/utils/metaData';
 
 export default function RootLayout({
   children,

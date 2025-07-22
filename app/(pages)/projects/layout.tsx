@@ -1,4 +1,4 @@
-import { IProjectLayout } from '@/utils/types/project';
+import { IProjectLayout } from '@/features/projects/types/project';
 
 export default function ProjectLayout({ children, modal }: IProjectLayout) {
   return (

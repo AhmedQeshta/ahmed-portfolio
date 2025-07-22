@@ -1,11 +1,11 @@
 import '@/app/globals.css';
 import '@/app/work-slider.css';
-import Footer from '@/components/Layout/Footer';
-import Navbar from '@/components/Layout/Navbar';
-import OrbBackground from '@/components/ui/OrbBackground';
-import { linksApp } from '@/utils/navLinks';
+import Footer from '@/features/shard/components/layout/Footer';
+import Navbar from '@/features/shard/components/layout/Navbar';
+import OrbBackground from '@/features/shard/components/ui/OrbBackground';
+import { linksApp } from '@/features/shard/utils/navLinks';
 
-export { metadata, viewport } from '@/utils/metaData';
+export { metadata, viewport } from '@/features/shard/utils/metaData';
 
 export default function RootLayout({
   children,

@@ -11,7 +11,27 @@ const customJestConfig = {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
-    'nanoid': require.resolve('nanoid'),
+    '^@/features/(.*)$': '<rootDir>/features/$1',
+    '^@/features/shard/(.*)$': '<rootDir>/features/shard/$1',
+    '^@/features/works/(.*)$': '<rootDir>/features/works/$1',
+    '^@/features/blogs/(.*)$': '<rootDir>/features/blogs/$1',
+    '^@/features/project/(.*)$': '<rootDir>/features/project/$1',
+    '^@/features/projects/(.*)$': '<rootDir>/features/projects/$1',
+    '^@/features/contact/(.*)$': '<rootDir>/features/contact/$1',
+    '^@/features/shard/components/ui/ErrorHandle$':
+      '<rootDir>/features/works/components/ui/ErrorHandle',
+    '^@/features/project/components/ui/HeroProject$':
+      '<rootDir>/features/project/components/ui/HeroProject',
+    '^@/features/contact/hooks/useContact$': '<rootDir>/features/shard/hooks/useContact',
+    '^@/features/contact/utils/email$': '<rootDir>/features/shard/utils/email',
+    '^@/features/shard/components/ui/DefaultInput$':
+      '<rootDir>/features/shard/components/ui/DefaultInput',
+    '^@/features/shard/components/ui/ScrollAnimation$':
+      '<rootDir>/features/shard/components/uiScrollAnimation',
+    '^@/features/shard/components/ui/TechnologiesHome$': '<rootDir>/components/ui/TechnologiesHome',
+    '^@/features/shard/components/ui/Technologies$':
+      '<rootDir>/features/blogs/components/ui/Technologies',
+    nanoid: require.resolve('nanoid'),
   },
   collectCoverageFrom: [
     'app/**/*.{js,jsx,ts,tsx}',

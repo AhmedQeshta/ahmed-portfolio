@@ -2,11 +2,9 @@ import React from 'react';
 import { sanityFetch } from '@/sanity/lib/client';
 import { workExperienceBySlugQuery } from '@/sanity/lib/queries';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
-import Work from '@/components/WorkExperiences/Work';
-import ErrorHandle from '@/components/ui/ErrorHandle';
-import { IWorkPage } from '@/utils/types/work';
-
-
+import Work from '@/features/works/components/Work';
+import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
+import { IWorkPage } from '@/features/works/types/work';
 
 const WorkPage = async ({ params }: IWorkPage) => {
   const { slug } = await params;
