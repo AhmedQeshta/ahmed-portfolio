@@ -21,16 +21,20 @@ export default async function ContactSection() {
           </ScrollAnimation>
 
           <div className="flex flex-col md:flex-row gap-8">
-            {/* Left - Contact Info */}
-            <div className="md:w-1/2">
+            {/* Left - Contact Info (larger) */}
+            <div className="md:w-3/5 lg:w-3/5">
               <ScrollAnimation direction="down" delay={0.2}>
                 <ContactInfo baseInfo={baseInfo} />
               </ScrollAnimation>
             </div>
 
             {/* Right - Contact Form */}
-            <div className="md:w-1/2">
-              <ContactForm />
+            <div className="md:w-2/5 lg:w-2/5">
+              <div className="bg-card-bg backdrop-blur-md border border-white/20 rounded-xl shadow-lg p-6 h-full flex items-center justify-center">
+                <div className="w-full">
+                  <ContactForm />
+                </div>
+              </div>
             </div>
           </div>
         </div>

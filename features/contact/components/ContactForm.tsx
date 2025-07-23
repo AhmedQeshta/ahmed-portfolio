@@ -15,7 +15,7 @@ export default function ContactForm() {
   if (state?.success) return <SuccessMessage state={state} />;
 
   return (
-    <form action={formAction} onSubmit={handleSubmit} className="space-y-4">
+    <form action={formAction} onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
       <ScrollAnimation direction="down" delay={0.2}>
         <div>
           <Label htmlFor="name" title="Name" />
@@ -58,12 +58,15 @@ export default function ContactForm() {
       </ScrollAnimation>
 
       {displayErrors.general && (
-        <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-md">
-          <p className="text-red-400 text-sm">{displayErrors.general}</p>
-        </div>
+        <ScrollAnimation direction="down" delay={0.2}>
+          <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-md">
+            <p className="text-red-400 text-sm">{displayErrors.general}</p>
+          </div>
+        </ScrollAnimation>
       )}
-
-      <SubmitButton isPending={isPending} />
+      <ScrollAnimation direction="down" delay={0.2}>
+        <SubmitButton isPending={isPending} />
+      </ScrollAnimation>
     </form>
   );
 }
