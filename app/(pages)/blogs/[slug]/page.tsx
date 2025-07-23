@@ -1,9 +1,10 @@
 import Blog from '@/features/blogs/components/Blog';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import { sanityFetch } from '@/sanity/lib/client';
-import { blogPostBySlugQuery, blogPostsQuery } from '@/sanity/lib/queries';
-import { BlogPostResponse } from '@/sanity/lib/types';
+import { blogPostBySlugQuery, blogPostsQuery, featuresQuery } from '@/sanity/lib/queries';
+import { BlogPostResponse, FeatureResponse } from '@/sanity/lib/types';
 import { FixedPageProps } from '@/types/app-router';
+import { notFound } from 'next/navigation';
 import { Metadata } from 'next/types';
 
 // Metadata generation function
@@ -15,6 +16,16 @@ export async function generateMetadata({
   const { slug } = params;
 
   try {
+    const features = await sanityFetch<FeatureResponse[]>({
+      query: featuresQuery,
+      tags: ['features'],
+    });
+    const blogFeature = features.filter(
+      (_, { name, status }: any) => name === 'blogs' && status === 'publish',
+    );
+
+    if (!blogFeature) notFound();
+
     const blog = await sanityFetch<BlogPostResponse>({
       query: blogPostBySlugQuery,
       params: { slug },

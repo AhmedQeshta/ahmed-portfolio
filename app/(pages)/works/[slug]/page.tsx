@@ -1,15 +1,26 @@
 import React from 'react';
 import { sanityFetch } from '@/sanity/lib/client';
-import { workExperienceBySlugQuery } from '@/sanity/lib/queries';
-import { WorkExperienceResponse } from '@/sanity/lib/types';
+import { featuresQuery, workExperienceBySlugQuery } from '@/sanity/lib/queries';
+import { FeatureResponse, WorkExperienceResponse } from '@/sanity/lib/types';
 import Work from '@/features/works/components/Work';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import { IWorkPage } from '@/features/works/types/work';
+import { notFound } from 'next/navigation';
 
 const WorkPage = async (props: IWorkPage) => {
   const { slug } = props.params;
 
   try {
+    const features = await sanityFetch<FeatureResponse[]>({
+      query: featuresQuery,
+      tags: ['features'],
+    });
+    const workFeature = features.filter(
+      (_, { name, status }: any) => name === 'works' && status === 'publish',
+    );
+
+    if (!workFeature) notFound();
+
     const workExperience = await sanityFetch<WorkExperienceResponse>({
       query: workExperienceBySlugQuery,
       params: { slug },
@@ -18,7 +29,6 @@ const WorkPage = async (props: IWorkPage) => {
 
     return <Work work={workExperience} />;
   } catch (error) {
-    console.error('Error fetching work experience:', error);
     return (
       <ErrorHandle
         id={'work'}
