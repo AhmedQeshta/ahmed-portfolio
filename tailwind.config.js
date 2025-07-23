@@ -27,6 +27,8 @@ module.exports = {
       animation: {
         float: 'float 6s ease-in-out infinite',
         slowspin: 'slowspin 12s linear infinite',
+        blob: 'blob 7s infinite',
+        'spin-slow': 'spin 20s linear infinite',
       },
       keyframes: {
         float: {
@@ -37,6 +39,24 @@ module.exports = {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },
         },
+        blob: {
+          '0%': {
+            transform: 'translate(0px, 0px) scale(1)',
+          },
+          '33%': {
+            transform: 'translate(30px, -50px) scale(1.1)',
+          },
+          '66%': {
+            transform: 'translate(-20px, 20px) scale(0.9)',
+          },
+          '100%': {
+            transform: 'translate(0px, 0px) scale(1)',
+          },
+        },
+      },
+      animationDelay: {
+        2000: '2s',
+        4000: '4s',
       },
     },
   },

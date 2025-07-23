@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import SkillsIconsHeader from '@/features/header/components/SkillsIconsHeader';
+import SkillsIconsHeader from '@/features/header/components/ui/SkillsIconsHeader';
 import { ITechnologiesResponse } from '@/features/shard/types/technology';
 
 jest.mock('@/sanity/lib/image', () => ({
