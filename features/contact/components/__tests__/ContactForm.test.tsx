@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import ContactForm from '@/features/contact/components/ContactForm';
+import ContactForm from '@/features/contact/components/form/ContactForm';
 
 // Mock the useContact hook
 const mockUseContact: any = {

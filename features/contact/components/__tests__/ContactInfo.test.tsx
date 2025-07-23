@@ -146,7 +146,7 @@ describe('ContactInfo', () => {
 
     // Check phone link (phone value goes to phone href)
     const phoneLink = screen.getByRole('link', { name: /phone/i });
-    expect(phoneLink).toHaveAttribute('href', 'tel:+1234567890');
+    expect(phoneLink).toHaveAttribute('href', 'https://api.whatsapp.com/send?phone=+1234567890');
   });
 
   it('applies correct CSS classes to main elements', () => {

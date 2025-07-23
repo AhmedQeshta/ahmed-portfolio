@@ -1,3 +1,8 @@
+import { BaseInfoResponse } from "@/sanity/lib/types";
+
+export interface IBaseInfo {
+  baseInfo: BaseInfoResponse;
+}
 export interface IErrors {
   name?: string;
   email?: string;
@@ -15,6 +20,12 @@ export interface IContactInputs {
   name: string;
   email: string;
   message: string;
+}
+
+export interface ISuccessMessage {
+  state: {
+    message: string;
+  };
 }
 
 export interface IDefaultInput extends React.InputHTMLAttributes<HTMLInputElement> {

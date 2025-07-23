@@ -1,8 +1,5 @@
-interface ISuccessMessage {
-  state: {
-    message: string;
-  };
-}
+import { ISuccessMessage } from '@/features/contact/types/contact';
+
 export default function SuccessMessage({ state }: ISuccessMessage) {
   return (
     <div className="text-center p-6 bg-green-500/10 border border-green-500/30 rounded-lg">

@@ -2,7 +2,7 @@
 
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { useContact } from '@/features/contact/hooks/useContact';
-import SuccessMessage from '@/features/contact/components/ui/SuccessMessage';
+import SuccessMessage from '@/features/contact/components/form/SuccessMessage';
 import DefaultInput from '@/features/contact/components/ui/DefaultInput';
 import Label from '@/features/contact/components/ui/Label';
 import DefaultTextarea from '@/features/contact/components/ui/DefaultTextarea';
