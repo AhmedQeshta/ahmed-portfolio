@@ -32,7 +32,6 @@ const Project = async (props: IProjectPageModal) => {
     return (
       <ErrorHandle
         id={'projects'}
-        title={'WProjects'}
         description={'Failed to load projects. Please try again later.'}
       />
     );

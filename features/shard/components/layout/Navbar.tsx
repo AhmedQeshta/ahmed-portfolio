@@ -10,7 +10,7 @@ export default function Navbar({ links }: { links: ILinksApp[] }) {
     <nav
       aria-label="Main Navigation"
       className="sticky top-0 w-full bg-navbar-glass backdrop-blur-sm z-50">
-      <div className="mx-auto max-w-7xl px-4">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <Link href="/">

@@ -63,12 +63,12 @@ export default function ProfileImage({ baseInfo }: IBaseInfoResponse) {
           {mounted &&
             orbitTechnologies.map((technology, index) => {
               const angle = (index * (360 / orbitTechnologies.length) * Math.PI) / 180;
-              const radius = 170; // Distance from center
+              const radius = 210; // Distance from center
               const delay = index * 0.6; // Animation delay
 
               // Calculate x and y position
-              const top = 200 - Math.sin(angle) * radius;
-              const left = 200 - Math.cos(angle) * radius;
+              const top = 180 - Math.sin(angle) * radius;
+              const left = 180 - Math.cos(angle) * radius;
 
               return (
                 <div
@@ -80,10 +80,10 @@ export default function ProfileImage({ baseInfo }: IBaseInfoResponse) {
                     animationDelay: `${delay}s`,
                   }}>
                   <Image
-                    src={getImageUrl(technology.logo, 28, 28, 90)}
+                    src={getImageUrl(technology.logo, 30  , 30, 90)}
                     alt={technology.name}
-                    width={20}
-                    height={20}
+                    width={30}
+                    height={30}
                     className="object-contain filter group-hover:brightness-125 transition-all duration-300"
                   />
 

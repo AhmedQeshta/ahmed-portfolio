@@ -29,7 +29,7 @@ export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
 
     return (
       <section id="blog" className="py-10">
-        <div className="mx-auto max-w-7xl px-4">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <h2 className="text-3xl font-semibold mb-8 gradient-text">Blogs</h2>
 
           {blogs.length === 0 ? (
@@ -59,11 +59,7 @@ export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
     console.error('Error fetching featured projects:', error);
 
     return (
-      <ErrorHandle
-        id={'blog'}
-        title={'Blogs'}
-        description={'Failed to load Blogs. Please try again later.'}
-      />
+      <ErrorHandle id={'blog'} description={'Failed to load Blogs. Please try again later.'} />
     );
   }
 }

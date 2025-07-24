@@ -24,25 +24,25 @@ export default async function ContactSection() {
         <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           {/* Header Section */}
           <ContactHeader />
 
           {/* Main Content */}
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
             {/* Contact Information */}
-            <div className="order-2 lg:order-1">
+            <div className="order-2 lg:order-1 min-h-[900px]">
               <ScrollAnimation direction="left" delay={0.4}>
-                <div className="bg-section-glass backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 h-full">
+                <div className="bg-section-glass min-h-[900px] backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 h-full">
                   <ContactInfo baseInfo={baseInfo} />
                 </div>
               </ScrollAnimation>
             </div>
 
             {/* Contact Form */}
-            <div className="order-1 lg:order-2">
+            <div className="order-1 lg:order-2 min-h-[900px]">
               <ScrollAnimation direction="right" delay={0.4}>
-                <div className="bg-section-glass backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 h-full">
+                <div className="bg-section-glass min-h-[900px] backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 h-full">
                   {/* Form Header */}
                   <ContactFormHeader />
 
@@ -65,7 +65,6 @@ export default async function ContactSection() {
     return (
       <ErrorHandle
         id={'contact'}
-        title={'Contact Section'}
         description={'Failed to load contact information. Please try again later.'}
       />
     );

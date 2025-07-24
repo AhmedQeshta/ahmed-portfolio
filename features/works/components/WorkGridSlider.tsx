@@ -17,7 +17,7 @@ export default async function WorkGridSlider() {
 
     return (
       <section id="works" className="py-20">
-        <div className="mx-auto max-w-7xl px-4">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <h2 className="text-3xl font-semibold mb-8 gradient-text">Works</h2>
           {sortedWorks.length === 0 ? (
             <div className="text-center text-gray-400">
@@ -33,7 +33,6 @@ export default async function WorkGridSlider() {
     return (
       <ErrorHandle
         id={'work'}
-        title={'Work Experience'}
         description={'Failed to load work experience. Please try again later.'}
       />
     );

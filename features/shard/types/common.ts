@@ -12,7 +12,6 @@ export interface IActionButtons {
 
 export interface IErrorHandle {
   id: string;
-  title: string;
   description: string;
 }
 

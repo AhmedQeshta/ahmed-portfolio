@@ -14,7 +14,7 @@ const Search = ({ action }: ISearch) => {
   };
 
   return (
-    <div className="mx-auto max-w-7xl w-full px-4 py-5">
+    <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 w-full py-5">
       <form onSubmit={handleSearch} className="flex gap-2">
         <div className="relative flex-1">
           <DefaultInput

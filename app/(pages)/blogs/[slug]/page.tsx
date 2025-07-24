@@ -118,7 +118,6 @@ export default async function Page(props: FixedPageProps) {
     return (
       <ErrorHandle
         id={'projects'}
-        title={'WProjects'}
         description={'Failed to load projects. Please try again later.'}
       />
     );

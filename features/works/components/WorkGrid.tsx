@@ -30,7 +30,6 @@ export default async function WorkGrid() {
     return (
       <ErrorHandle
         id={'work'}
-        title={'Work Experience'}
         description={'Failed to load work experience. Please try again later.'}
       />
     );
