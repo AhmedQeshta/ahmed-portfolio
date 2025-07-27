@@ -31,12 +31,15 @@ describe('DefaultInput', () => {
   });
 
   it('should call handleInputChange when input value changes', () => {
-    render(<DefaultInput handleInputChange={mockHandleInputChange} name="test-input" />);
+    // Create a function that expects 2 parameters (field, value)
+    const mockHandleInputChange = jest.fn((field: string, value: string) => {});
+
+    render(<DefaultInput handleInputChange={mockHandleInputChange} name="test-input" value="" />);
 
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: 'test value' } });
 
-    expect(mockHandleInputChange).toHaveBeenCalledWith(['test-input'], 'test value');
+    expect(mockHandleInputChange).toHaveBeenCalledWith('test-input', 'test value');
   });
 
   it('should apply custom styles when provided', () => {

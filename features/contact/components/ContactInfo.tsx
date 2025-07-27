@@ -1,16 +1,37 @@
-import { BaseInfoResponse } from '@/sanity/lib/types';
+import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
+import ProfileImage from '@/features/contact/components/information/ProfileImage';
+import Availability from '@/features/contact/components/information/Availability';
+import HeadLine from '@/features/contact/components/information/Headline';
+import ContactMethods from '@/features/contact/components/information/ContactMethods';
+import TimeInfo from '@/features/contact/components/information/TimeInfo';
+import { IBaseInfo } from '@/features/contact/types/contact';
 
-interface IContactInfo {
-  baseInfo: BaseInfoResponse;
-}
-export default function ContactInfo({ baseInfo }: IContactInfo) {
-  const { email, phone, address } = baseInfo;
+export default function ContactInfo({ baseInfo }: IBaseInfo) {
   return (
-    <>
-      <h3 className="text-lg font-semibold text-white mb-4">Get in Touch</h3>
-      <p className="text-text-secondary mb-2">Phone: {email}</p>
-      <p className="text-text-secondary mb-2">Email: {phone}</p>
-      <p className="text-text-secondary mb-2">Location: {address}</p>
-    </>
+    <div className="h-full flex flex-col">
+      {/* Profile Section */}
+      <ScrollAnimation direction="down" delay={0.1}>
+        <div className="text-center mb-8">
+          {/* Profile Image */}
+          <ProfileImage baseInfo={baseInfo} />
+
+          {/* Availability Status */}
+
+          <Availability baseInfo={baseInfo} />
+        </div>
+      </ScrollAnimation>
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        {/* Headline */}
+        <HeadLine />
+
+        {/* Contact Methods Grid */}
+        <ContactMethods baseInfo={baseInfo} />
+
+        {/* Response Time Info */}
+        <TimeInfo />
+      </div>
+    </div>
   );
 }

@@ -32,7 +32,6 @@ jest.mock('framer-motion', () => ({
 describe('ErrorHandle', () => {
   const defaultProps = {
     id: 'error-section',
-    title: 'Error Title',
     description: 'This is an error description',
   };
 
@@ -43,15 +42,6 @@ describe('ErrorHandle', () => {
     expect(section).toBeInTheDocument();
     expect(section).toHaveAttribute('id', 'error-section');
     expect(section).toHaveClass('py-20');
-  });
-
-  it('should render the title correctly', () => {
-    render(<ErrorHandle {...defaultProps} />);
-
-    const title = screen.getByRole('heading', { level: 2 });
-    expect(title).toBeInTheDocument();
-    expect(title).toHaveTextContent('Error Title');
-    expect(title).toHaveClass('text-3xl', 'font-semibold', 'mb-8', 'gradient-text');
   });
 
   it('should render the description correctly', () => {
@@ -74,13 +64,11 @@ describe('ErrorHandle', () => {
   it('should render with different error messages', () => {
     const customProps = {
       id: 'custom-error',
-      title: 'Custom Error',
       description: 'A different error message',
     };
 
     render(<ErrorHandle {...customProps} />);
 
-    expect(screen.getByText('Custom Error')).toBeInTheDocument();
     expect(screen.getByText('A different error message')).toBeInTheDocument();
     expect(screen.getByTestId('custom-error')).toHaveAttribute('id', 'custom-error');
   });
@@ -89,11 +77,9 @@ describe('ErrorHandle', () => {
     render(<ErrorHandle {...defaultProps} />);
 
     const section = screen.getByTestId('error-section');
-    const title = screen.getByRole('heading', { level: 2 });
     const description = screen.getByText('This is an error description');
 
     expect(section).toBeInTheDocument();
-    expect(title).toBeInTheDocument();
     expect(description).toBeInTheDocument();
   });
 
@@ -101,11 +87,9 @@ describe('ErrorHandle', () => {
     render(<ErrorHandle {...defaultProps} />);
 
     const section = screen.getByTestId('error-section');
-    const title = screen.getByRole('heading', { level: 2 });
     const description = screen.getByText('This is an error description');
 
     expect(section).toHaveClass('py-20');
-    expect(title).toHaveClass('text-3xl', 'font-semibold', 'mb-8', 'gradient-text');
     const descriptionContainer = description.closest('div');
     expect(descriptionContainer).toHaveClass('text-center', 'text-red-400');
   });

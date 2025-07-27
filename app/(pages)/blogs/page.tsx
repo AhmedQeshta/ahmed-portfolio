@@ -36,7 +36,6 @@ const BlogPage = async ({ searchParams }: { searchParams: { q?: string } }) => {
     return (
       <ErrorHandle
         id={'blog-page'}
-        title={'Blog Page'}
         description={'Failed to load Blog Page. Please try again later.'}
       />
     );

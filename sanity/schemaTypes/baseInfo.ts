@@ -12,6 +12,13 @@ export const baseInfo = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'title',
+      title: 'Job Title',
+      type: 'array',
+      of: [{ type: 'text' }],
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'bio',
       title: 'Bio',
       type: 'array',
@@ -91,6 +98,19 @@ export const baseInfo = defineType({
       title: 'Address',
       type: 'string',
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'availability',
+      title: 'Availability',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Availability', value: 'available' },
+          { title: 'Busy', value: 'busy' },
+        ],
+      },
+      validation: (rule) => rule.required(),
+      initialValue: 'available',
     }),
   ],
   preview: {

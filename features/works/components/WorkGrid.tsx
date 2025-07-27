@@ -12,7 +12,7 @@ export default async function WorkGrid() {
     });
 
     return (
-      <section id="work" className="py-20">
+      <section id="works" className="py-20">
         <div className="mx-auto max-w-5xl px-4">
           <h2 className="text-3xl font-semibold mb-8 gradient-text">Work Experience</h2>
 
@@ -30,7 +30,6 @@ export default async function WorkGrid() {
     return (
       <ErrorHandle
         id={'work'}
-        title={'Work Experience'}
         description={'Failed to load work experience. Please try again later.'}
       />
     );

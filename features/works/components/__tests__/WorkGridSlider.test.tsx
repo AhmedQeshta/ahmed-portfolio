@@ -19,6 +19,14 @@ jest.mock('@/features/works/components/WorkSlider', () => ({
     </div>
   ),
 }));
+jest.mock('@/features/shard/components/ui/ScrollAnimation', () => ({
+  __esModule: true,
+  default: ({ children, className, ...props }: any) => (
+    <div className={className} data-testid="scroll-animation" {...props}>
+      {children}
+    </div>
+  ),
+}));
 
 const mockWorks: WorkExperienceResponse[] = [
   {

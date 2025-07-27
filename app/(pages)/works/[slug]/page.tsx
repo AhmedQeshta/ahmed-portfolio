@@ -32,7 +32,6 @@ const WorkPage = async (props: IWorkPage) => {
     return (
       <ErrorHandle
         id={'work'}
-        title={'Work Experience'}
         description={'Failed to load work experience. Please try again later.'}
       />
     );

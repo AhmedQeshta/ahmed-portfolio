@@ -1,4 +1,4 @@
-import { ILinksApp, IMediaList } from '@/features/shard/types/common';
+import { ILinksApp, IMediaList } from '@/features/navbar/types/navbar';
 
 export const linksApp: ILinksApp[] = [
   {
@@ -9,7 +9,7 @@ export const linksApp: ILinksApp[] = [
   {
     id: 2,
     name: 'Work',
-    url: '#work',
+    url: '#works',
   },
   {
     id: 3,
@@ -19,8 +19,8 @@ export const linksApp: ILinksApp[] = [
 
   {
     id: 4,
-    name: 'Blog',
-    url: '#blog',
+    name: 'Blogs',
+    url: '#blogs',
   },
 
   {
@@ -39,7 +39,7 @@ export const linksPages: ILinksApp[] = [
   {
     id: 2,
     name: 'Works',
-    url: '/#work',
+    url: '/#works',
   },
   {
     id: 3,
@@ -50,7 +50,7 @@ export const linksPages: ILinksApp[] = [
   {
     id: 4,
     name: 'Blogs',
-    url: '/#blog',
+    url: '/#blogs',
   },
 
   {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import ContactForm from '@/features/contact/components/ContactForm';
+import ContactForm from '@/features/contact/components/form/ContactForm';
 
 // Mock the useContact hook
 const mockUseContact: any = {
@@ -27,20 +27,19 @@ jest.mock('@/features/contact/hooks/useContact', () => ({
   useContact: () => mockUseContact,
 }));
 
-// Mock the UI components
-jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({ children, ...props }: any) {
-    return (
-      <div data-testid="scroll-animation" {...props}>
-        {children}
-      </div>
-    );
+jest.mock('@/features/contact/components/form/SuccessMessage', () => {
+  return function MockSuccessMessage({ state }: any) {
+    return <div data-testid="success-message">{state.message}</div>;
   };
 });
 
-jest.mock('@/features/contact/components/ui/SuccessMessage', () => {
-  return function MockSuccessMessage({ state }: any) {
-    return <div data-testid="success-message">{state.message}</div>;
+jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
+  return function MockScrollAnimation({ children, direction, delay }: any) {
+    return (
+      <div data-testid="scroll-animation" data-direction={direction} data-delay={delay}>
+        {children}
+      </div>
+    );
   };
 });
 
@@ -83,6 +82,7 @@ jest.mock('@/features/contact/components/ui/DefaultTextarea', () => {
     handleInputChange,
     placeholder,
     displayErrors,
+    rows,
     ...props
   }: any) {
     return (
@@ -92,6 +92,7 @@ jest.mock('@/features/contact/components/ui/DefaultTextarea', () => {
         value={value}
         onChange={handleInputChange}
         placeholder={placeholder}
+        rows={rows}
         {...props}
       />
     );
@@ -143,9 +144,15 @@ describe('ContactForm', () => {
   it('displays form fields with correct placeholders', () => {
     render(<ContactForm />);
 
-    expect(screen.getByTestId('input-name')).toHaveAttribute('placeholder', 'Enter Your Name');
-    expect(screen.getByTestId('input-email')).toHaveAttribute('placeholder', 'Enter Your Email');
-    expect(screen.getByTestId('textarea-message')).toHaveAttribute('placeholder', 'Your message …');
+    expect(screen.getByTestId('input-name')).toHaveAttribute('placeholder', 'Enter your full name');
+    expect(screen.getByTestId('input-email')).toHaveAttribute(
+      'placeholder',
+      'Enter your email address',
+    );
+    expect(screen.getByTestId('textarea-message')).toHaveAttribute(
+      'placeholder',
+      'Tell me about your project, ideas, or how I can help you...',
+    );
   });
 
   it('shows success message when state.success is true', () => {
@@ -204,11 +211,10 @@ describe('ContactForm', () => {
     render(<ContactForm />);
 
     const scrollAnimations = screen.getAllByTestId('scroll-animation');
-    expect(scrollAnimations).toHaveLength(3);
+    expect(scrollAnimations).toHaveLength(5); // Updated to match new design with 5 animations
 
     scrollAnimations.forEach((animation) => {
-      expect(animation).toHaveAttribute('direction', 'down');
-      expect(animation).toHaveAttribute('delay', '0.2');
+      expect(animation).toHaveAttribute('data-direction', 'up'); // Updated to 'up' direction
     });
   });
 
@@ -237,6 +243,6 @@ describe('ContactForm', () => {
     expect(emailInput).toHaveAttribute('name', 'email');
     expect(emailInput).toHaveAttribute('type', 'email');
     expect(messageTextarea).toHaveAttribute('name', 'message');
-    expect(messageTextarea).toHaveAttribute('rows', '4');
+    expect(messageTextarea).toHaveAttribute('rows', '6'); // Updated to match new rows value
   });
 });

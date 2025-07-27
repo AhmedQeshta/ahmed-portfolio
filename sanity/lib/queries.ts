@@ -196,7 +196,9 @@ export const baseInfoQuery = groq`
     "profilePicture": profilePicture.asset->url,
     email,
     phone,
-    address
+    address,
+    availability,
+    title
   }
 `;
 

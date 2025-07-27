@@ -5,11 +5,11 @@ import LatestBlogs from '@/features/blogs/components/ui/LatestBlogs';
 import RelatedBlogs from '@/features/blogs/components/ui/RelatedBlogs';
 import PostDetails from '@/features/blogs/components/ui/PostDetails';
 import HeroBlog from '@/features/blogs/components/ui/HeroBlog';
-import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
 import BlogContent from '@/features/blogs/components/ui/BlogContent';
 import BackgroundEffects from '@/features/shard/components/ui/BackgroundEffects';
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { IBlog } from '@/features/blogs/types/blog';
+import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
 
 export default function Blog({ blog, latestBlogs, relatedBlogs }: IBlog) {
   const { technologies, tags, description, slug, title } = blog;

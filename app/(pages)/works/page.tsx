@@ -23,7 +23,6 @@ const WorksPage = async () => {
     return (
       <ErrorHandle
         id={'work-page'}
-        title={'Work Page'}
         description={'Failed to load Project Page. Please try again later.'}
       />
     );

@@ -71,7 +71,7 @@ describe('ProjectGrid', () => {
   it('renders a message when there are no projects', async () => {
     (sanityFetch as jest.Mock).mockResolvedValue([]);
     const { findByText } = render(await ProjectGrid({ readMore: false }));
-    expect(await findByText('No projects found.')).toBeInTheDocument();
+    expect(await findByText('No projects found')).toBeInTheDocument();
   });
 
   it('handles errors during fetch', async () => {

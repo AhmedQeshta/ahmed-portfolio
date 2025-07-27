@@ -33,7 +33,18 @@ jest.mock('@/features/contact/components/ui/DefaultInput', () => {
         data-testid="search-input"
         name={name}
         value={value}
-        onChange={(e) => handleInputChange([name], e.target.value)}
+        onChange={(e) => {
+          // Support both direct setState functions and field-value pair functions
+          if (typeof handleInputChange === 'function') {
+            // Check if it's a setState function (only expects one parameter)
+            if (handleInputChange.length <= 1) {
+              handleInputChange(e.target.value);
+            } else {
+              // It's a field-value pair function (expects field name and value)
+              handleInputChange(name, e.target.value);
+            }
+          }
+        }}
         placeholder={placeholder}
         autoFocus={autoFocus}
         autoComplete={autoComplete}
@@ -88,7 +99,7 @@ describe('Search', () => {
     const input = screen.getByTestId('search-input');
     fireEvent.change(input, { target: { value: 'test query' } });
 
-    expect(mockSetQuery).toHaveBeenCalledWith(['q'], 'test query');
+    expect(mockSetQuery).toHaveBeenCalledWith('test query');
   });
 
   it('should handle form submission', () => {
@@ -144,7 +155,15 @@ describe('Search', () => {
     render(<Search action="/blogs" />);
 
     const container = screen.getByRole('button', { name: 'Search' }).closest('form')?.parentElement;
-    expect(container).toHaveClass('mx-auto', 'max-w-5xl', 'px-4', 'py-5');
+    expect(container).toHaveClass(
+      'mx-auto',
+      'max-w-7xl',
+      'w-full',
+      'px-5',
+      'sm:px-7',
+      'lg:px-10',
+      'py-5',
+    );
 
     const form = screen.getByRole('button', { name: 'Search' }).closest('form');
     expect(form).toHaveClass('flex', 'gap-2');

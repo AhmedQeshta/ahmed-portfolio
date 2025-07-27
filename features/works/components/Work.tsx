@@ -1,7 +1,5 @@
-import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
 import Technologies from '@/features/shard/components/ui/Technologies';
 import HeroWork from '@/features/works/components/ui/HeroWork';
-
 import Location from '@/features/works/components/ui/Location';
 import Timeline from '@/features/works/components/ui/Timeline';
 import Skills from '@/features/works/components/ui/Skills';
@@ -9,6 +7,7 @@ import Achievements from '@/features/works/components/ui/Achievements';
 import CompanyInformation from '@/features/works/components/ui/CompanyInformation';
 import { IWorkResponse } from '@/features/works/types/work';
 import WorkDetails from '@/features/works/components/ui/WorkDetails';
+import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
 
 export default function Work({ work }: IWorkResponse) {
   const { technologies } = work;

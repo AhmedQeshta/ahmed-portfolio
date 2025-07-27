@@ -194,7 +194,7 @@ describe('BlogGrid', () => {
     render(await BlogGrid({ readMore: true, query: 'NonExistent' }));
 
     expect(screen.getByText('Blogs')).toBeInTheDocument();
-    expect(screen.getByText('No blogs found.')).toBeInTheDocument();
+    expect(screen.getByText('No blogs found')).toBeInTheDocument();
     expect(screen.queryByTestId('blog-card')).not.toBeInTheDocument();
   });
 
@@ -205,7 +205,7 @@ describe('BlogGrid', () => {
     render(await BlogGrid({ readMore: true }));
 
     expect(screen.getByText('Blogs')).toBeInTheDocument();
-    expect(screen.getByText('No blogs found.')).toBeInTheDocument();
+    expect(screen.getByText('No blogs found')).toBeInTheDocument();
     expect(screen.queryByTestId('blog-card')).not.toBeInTheDocument();
   });
 
@@ -237,8 +237,8 @@ describe('BlogGrid', () => {
     render(await BlogGrid({ readMore: true }));
 
     const section = screen.getByText('Blogs').closest('section');
-    expect(section).toHaveClass('py-10');
-    expect(section).toHaveAttribute('id', 'blog');
+    expect(section).toHaveClass('py-20');
+    expect(section).toHaveAttribute('id', 'blogs');
   });
 
   it('should have correct container styling', async () => {
@@ -247,8 +247,10 @@ describe('BlogGrid', () => {
 
     render(await BlogGrid({ readMore: true }));
 
-    const container = screen.getByText('Blogs').closest('div');
-    expect(container).toHaveClass('mx-auto', 'max-w-7xl', 'px-4');
+    // The container is now nested deeper in the new structure
+    const section = screen.getByText('Blogs').closest('section');
+    const container = section?.querySelector('div');
+    expect(container).toHaveClass('mx-auto', 'max-w-7xl', 'px-5', 'sm:px-7', 'lg:px-10');
   });
 
   it('should have correct heading styling', async () => {
@@ -258,7 +260,7 @@ describe('BlogGrid', () => {
     render(await BlogGrid({ readMore: true }));
 
     const heading = screen.getByText('Blogs');
-    expect(heading).toHaveClass('text-3xl', 'font-semibold', 'mb-8', 'gradient-text');
+    expect(heading).toHaveClass('text-4xl', 'font-bold', 'mb-4', 'gradient-text');
   });
 
   it('should render scroll animations for blog cards', async () => {

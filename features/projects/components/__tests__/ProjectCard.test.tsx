@@ -43,8 +43,7 @@ describe('ProjectCard', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('Description for another test project.')).toBeInTheDocument();
 
-    // Check for the external links
-    expect(screen.getByRole('link', { name: 'Live Demo' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'GitHub' })).toBeInTheDocument();
+    // Check for the View Details link
+    expect(screen.getByRole('link', { name: 'View Details' })).toBeInTheDocument();
   });
 });

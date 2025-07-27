@@ -98,6 +98,8 @@ export interface BaseInfo {
   email: string;
   phone: string;
   address: string;
+  availability: string;
+  title: string[];
 }
 
 export interface Feature {

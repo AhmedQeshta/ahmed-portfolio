@@ -42,7 +42,6 @@ export default async function Home() {
     return (
       <ErrorHandle
         id={'home'}
-        title={'Home Page'}
         description={'Failed to load Home Page. Please try again later.'}
       />
     );

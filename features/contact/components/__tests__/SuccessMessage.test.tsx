@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import SuccessMessage from '@/features/contact/components/ui/SuccessMessage';
+import SuccessMessage from '@/features/contact/components/form/SuccessMessage';
 
 describe('SuccessMessage', () => {
   const mockState = {

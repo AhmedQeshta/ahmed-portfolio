@@ -8855,6 +8855,11 @@ react-rx@^4.1.30:
     react-compiler-runtime "19.1.0-rc.2"
     use-effect-event "^2.0.1"
 
+react-simple-typewriter@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/react-simple-typewriter/-/react-simple-typewriter-5.0.1.tgz#cfdb896c868a55ed4d5f1f06d62b3a9d0f5ad9d7"
+  integrity sha512-vA5HkABwJKL/DJ4RshSlY/igdr+FiVY4MLsSQYJX6FZG/f1/VwN4y1i3mPXRyfaswrvI8xii1kOVe1dYtO2Row==
+
 react-slick@^0.30.3:
   version "0.30.3"
   resolved "https://registry.yarnpkg.com/react-slick/-/react-slick-0.30.3.tgz#3af5846fcbc04c681f8ba92f48881a0f78124a27"

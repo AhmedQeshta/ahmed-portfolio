@@ -143,22 +143,29 @@ describe('ActionButtons', () => {
       {
         id: 1,
         text: 'Test Link',
+        // No link property - should not render
       },
       {
         id: 2,
         text: 'Another Test',
         link: 'https://example.com',
       },
+      {
+        id: 3,
+        text: 'Empty Link',
+        link: '', // Empty link - should not render
+      },
     ];
 
     render(<ActionButtons listLinks={incompleteLinks} />);
 
-    expect(screen.getByText('Test Link')).toBeInTheDocument();
+    // Only the item with a valid link should be rendered
+    expect(screen.queryByText('Test Link')).not.toBeInTheDocument();
     expect(screen.getByText('Another Test')).toBeInTheDocument();
+    expect(screen.queryByText('Empty Link')).not.toBeInTheDocument();
 
     const links = screen.getAllByRole('link');
-    expect(links).toHaveLength(2);
-    expect(links[0]).toHaveAttribute('href', '/');
-    expect(links[1]).toHaveAttribute('href', 'https://example.com');
+    expect(links).toHaveLength(1);
+    expect(links[0]).toHaveAttribute('href', 'https://example.com');
   });
 });
