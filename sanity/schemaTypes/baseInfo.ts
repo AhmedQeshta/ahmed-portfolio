@@ -16,6 +16,7 @@ export const baseInfo = defineType({
       title: 'Job Title',
       type: 'array',
       of: [{ type: 'text' }],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'bio',

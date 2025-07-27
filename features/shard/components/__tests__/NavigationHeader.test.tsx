@@ -47,7 +47,7 @@ describe('NavigationHeader', () => {
 
     const container = screen.getByTestId('navigation-header');
     expect(container).toBeInTheDocument();
-    expect(container).toHaveClass('relative', 'z-10', 'p-6');
+    expect(container).toHaveClass('relative', 'z-10', 'p-6', 'pt-20', 'lg:pt-24');
   });
 
   it('should be accessible with proper link attributes', () => {

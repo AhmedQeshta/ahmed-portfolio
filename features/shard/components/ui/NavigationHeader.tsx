@@ -3,9 +3,8 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 export default function NavigationHeader({ link, text }: ILinkNavigation) {
-  //
   return (
-    <div className="relative z-10 p-6" data-testid="navigation-header">
+    <div className="relative z-10 p-6 pt-20 lg:pt-24" data-testid="navigation-header">
       <Link
         href={link}
         className="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors group">
