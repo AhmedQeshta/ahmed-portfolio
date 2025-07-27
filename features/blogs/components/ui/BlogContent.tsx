@@ -1,12 +1,16 @@
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
-import { getSanityImageUrl } from '@/sanity/lib/image';
 import { IBlogPostResponse } from '@/features/blogs/types/blog';
 import { PortableText } from '@portabletext/react';
-import Image from 'next/image';
+import { portableTextComponents } from '@/features/shard/components/ui/PortableTextComponents';
 
 export default function BlogContent({ blog }: IBlogPostResponse) {
   if (!blog) return null;
   const { content } = blog;
+
+  // Handle empty or invalid content
+  if (!content || (Array.isArray(content) && content.length === 0)) {
+    return null;
+  }
 
   return (
     <ScrollAnimation
@@ -17,76 +21,7 @@ export default function BlogContent({ blog }: IBlogPostResponse) {
         direction="down"
         delay={0.5}
         className="prose prose-invert prose-lg max-w-none">
-        <PortableText
-          value={content}
-          components={{
-            block: {
-              h1: ({ children }) => (
-                <h1 className="text-3xl font-bold text-white mb-6 mt-8">{children}</h1>
-              ),
-              h2: ({ children }) => (
-                <h2 className="text-2xl font-bold text-white mb-4 mt-6">{children}</h2>
-              ),
-              h3: ({ children }) => (
-                <h3 className="text-xl font-bold text-white mb-3 mt-5">{children}</h3>
-              ),
-              normal: ({ children }) => (
-                <p className="text-gray-300 mb-4 leading-relaxed">{children}</p>
-              ),
-              blockquote: ({ children }) => (
-                <blockquote className="border-l-4 border-purple-500 pl-6 my-6 italic text-gray-400">
-                  {children}
-                </blockquote>
-              ),
-            },
-            marks: {
-              strong: ({ children }) => (
-                <strong className="text-white font-semibold">{children}</strong>
-              ),
-              em: ({ children }) => <em className="text-purple-300">{children}</em>,
-              code: ({ children }) => (
-                <code className="bg-gray-800 text-green-400 px-2 py-1 rounded text-sm font-mono">
-                  {children}
-                </code>
-              ),
-            },
-            types: {
-              image: ({ value }) => {
-                // Get the image URL from Sanity
-                const imageUrl = value?.asset?.url || getSanityImageUrl(value?.asset?._ref);
-
-                // Display fallback if no image URL is found
-                if (!imageUrl) {
-                  return (
-                    <div className="my-8 p-4 bg-gray-800 text-white rounded-lg">
-                      Image could not be loaded
-                    </div>
-                  );
-                }
-
-                // Render the image
-                return (
-                  <div className="my-8">
-                    <Image
-                      src={imageUrl}
-                      alt={value.alt || 'Blog image'}
-                      width={800}
-                      height={400}
-                      className="rounded-lg w-full h-auto"
-                    />
-                  </div>
-                );
-              },
-              codeBlock: ({ value }) => (
-                <pre className="bg-gray-800 p-4 rounded-lg overflow-x-auto my-6">
-                  <code className={`language-${value.language} text-green-400 text-sm`}>
-                    {value.code}
-                  </code>
-                </pre>
-              ),
-            },
-          }}
-        />
+        <PortableText value={content} components={portableTextComponents} />
       </ScrollAnimation>
     </ScrollAnimation>
   );

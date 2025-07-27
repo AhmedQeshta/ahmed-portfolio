@@ -6,12 +6,13 @@ import ProjectGallery from '@/features/projects/components/ui/ProjectGallery';
 import TimelineProject from '@/features/projects/components/ui/TimelineProject';
 import StatsProject from '@/features/projects/components/ui/StatsProject';
 import FullDescription from '@/features/projects/components/ui/FullDescription';
+import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { ExternalLink, Github } from 'lucide-react';
 import { IProjectResponse } from '@/features/projects/types/project';
 import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
 
 export default function Project({ project }: IProjectResponse) {
-  const { technologies, liveUrl, repoUrl } = project;
+  const { technologies, liveUrl, repoUrl, description, title } = project;
 
   const listLinks = [
     {
@@ -35,7 +36,6 @@ export default function Project({ project }: IProjectResponse) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
       {/* Navigation Header */}
-
       <NavigationHeader link="/projects" text="Back to Projects" />
 
       {/* Hero Section */}
@@ -44,34 +44,46 @@ export default function Project({ project }: IProjectResponse) {
       {/* Main Content */}
       <div className="relative z-10 pt-12 pb-20">
         <div className="max-w-6xl mx-auto px-8 md:px-12">
-          {/* Action Buttons */}
-
-          <div className="flex flex-wrap gap-4 mb-12">
-            <ActionButtons listLinks={listLinks} />
-          </div>
-
-          {/* Content Grid */}
+          {/* Two Column Layout */}
           <div className="grid lg:grid-cols-3 gap-12">
-            {/* Main Content */}
-            <div className="lg:col-span-2 space-y-10">
+            {/* Main Content Column */}
+            <div className="lg:col-span-2">
+              {/* Project Description */}
+              <ScrollAnimation
+                direction="down"
+                delay={0.2}
+                className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 mb-8">
+                <p className="text-xl text-gray-300 leading-relaxed mb-6">{description}</p>
+
+                {/* Action Buttons */}
+                <div className="flex flex-wrap gap-4">
+                  <ActionButtons listLinks={listLinks} />
+                </div>
+              </ScrollAnimation>
+
               {/* Full Description */}
-              <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8">
+              <ScrollAnimation
+                direction="down"
+                delay={0.3}
+                className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 mb-8">
                 <FullDescription project={project} />
-              </div>
+              </ScrollAnimation>
 
-              {/* Gallery */}
-
-              <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8">
+              {/* Project Gallery */}
+              <ScrollAnimation
+                direction="down"
+                delay={0.4}
+                className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 mt-8">
                 <ProjectGallery project={project} />
-              </div>
+              </ScrollAnimation>
             </div>
 
-            {/* Sidebar */}
+            {/* Sidebar Column */}
             <div className="space-y-8">
-              {/* Timeline */}
+              {/* Project Timeline */}
               <TimelineProject project={project} />
 
-              {/* Technologies */}
+              {/* Technologies Used */}
               <Technologies technologies={technologies} />
 
               {/* Project Stats */}

@@ -8,13 +8,14 @@ import ProjectGallery from '@/features/projects/components/ui/ProjectGallery';
 import FullDescription from '@/features/projects/components/ui/FullDescription';
 import Technologies from '@/features/shard/components/ui/Technologies';
 import TimelineProject from '@/features/projects/components/ui/TimelineProject';
+import StatsProject from '@/features/projects/components/ui/StatsProject';
 import ActionButtons from '@/features/shard/components/ui/ActionButtons';
 import HeroModal from './ui/HeroModal';
 import ScrollAnimation from '../../shard/components/ui/ScrollAnimation';
 import { IProjectResponse } from '@/features/projects/types/project';
 
 export default function ProjectModal({ project }: IProjectResponse) {
-  const { technologies, liveUrl, repoUrl, categories } = project;
+  const { technologies, liveUrl, repoUrl, categories, description, title } = project;
   const router = useRouter();
 
   const handleClose = () => {
@@ -27,7 +28,7 @@ export default function ProjectModal({ project }: IProjectResponse) {
       text: 'Live Demo',
       link: liveUrl,
       customStyle:
-        'flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors',
+        'flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors font-medium',
       icon: <ExternalLink size={16} />,
     },
     {
@@ -35,7 +36,7 @@ export default function ProjectModal({ project }: IProjectResponse) {
       text: 'Source Code',
       link: repoUrl,
       customStyle:
-        'flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors',
+        'flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors font-medium',
       icon: <Github size={16} />,
     },
   ];
@@ -43,39 +44,62 @@ export default function ProjectModal({ project }: IProjectResponse) {
   return (
     <Modal isOpen={true} onClose={handleClose} maxWidth="xl">
       {/* Hero Image */}
-
       <HeroModal project={project} />
 
       {/* Content */}
-      <div className="p-6 space-y-6">
-        {/* Header */}
-        <ScrollAnimation direction="down" delay={0.3} className="space-y-4">
-          {/* Categories */}
-          <Categories categories={categories || []} delay={0.2} className="mb-4" />
-
-          <h1 className="text-2xl md:text-3xl font-bold text-white">{project.title}</h1>
-
-          <p className="text-gray-300 text-lg leading-relaxed">{project.description}</p>
-
-          {/* Action Buttons */}
-          <div className="flex flex-wrap gap-3">
-            <ActionButtons listLinks={listLinks} />
-          </div>
+      <div className="p-6">
+        {/* Header with Categories */}
+        <ScrollAnimation direction="down" delay={0.2} className="mb-8">
+          <Categories categories={categories || []} delay={0.1} className="mb-4" />
+          <h1 className="text-2xl md:text-3xl font-bold text-white mb-4">{title}</h1>
         </ScrollAnimation>
 
-        {/* Project Details */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Timeline */}
-          <TimelineProject project={project} />
+        {/* Two Column Layout */}
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Main Content Column */}
+          <div className="lg:col-span-2">
+            {/* Project Description */}
+            <ScrollAnimation
+              direction="down"
+              delay={0.3}
+              className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 mb-6">
+              <p className="text-lg text-gray-300 leading-relaxed mb-6">{description}</p>
 
-          {/* Technologies */}
-          <Technologies technologies={technologies} />
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-3">
+                <ActionButtons listLinks={listLinks} />
+              </div>
+            </ScrollAnimation>
+
+            {/* Full Description */}
+            <ScrollAnimation
+              direction="down"
+              delay={0.4}
+              className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 mb-6">
+              <FullDescription project={project} />
+            </ScrollAnimation>
+
+            {/* Technologies Used */}
+            <Technologies technologies={technologies} />
+
+            {/* Project Gallery */}
+            <ScrollAnimation
+              direction="down"
+              delay={0.5}
+              className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 mt-6">
+              <ProjectGallery project={project} />
+            </ScrollAnimation>
+          </div>
+
+          {/* Sidebar Column */}
+          <div className="space-y-6">
+            {/* Project Timeline */}
+            <TimelineProject project={project} />
+
+            {/* Project Stats */}
+            <StatsProject project={project} />
+          </div>
         </div>
-
-        <FullDescription project={project} />
-
-        {/* Gallery */}
-        <ProjectGallery project={project} />
       </div>
     </Modal>
   );
