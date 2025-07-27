@@ -225,7 +225,7 @@ describe('BlogCard', () => {
       'text-white',
       'group-hover:text-blue-400',
       'transition-colors',
-      'line-clamp-2',
+      'line-clamp-1',
     );
   });
 

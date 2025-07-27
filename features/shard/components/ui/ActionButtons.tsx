@@ -9,17 +9,24 @@ export default function ActionButtons({ listLinks }: IActionButtons) {
 
   return (
     <ScrollAnimation direction="down" delay={0.4} className="flex gap-4">
-      {listLinks.map(({ id, text, link, customStyle, icon }) => (
-        <Link
-          key={id}
-          href={link ?? '/'}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={cn(customStyle, 'flex items-center gap-2 hover:text-blue-400')}>
-          {icon && icon}
-          {text}
-        </Link>
-      ))}
+      {listLinks?.map(({ id, text, link, customStyle, icon }) => {
+        // Only render if link exists and is not empty
+        if (!link || link.trim() === '') {
+          return null;
+        }
+
+        return (
+          <Link
+            key={id}
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(customStyle, 'flex items-center gap-2 hover:text-blue-400')}>
+            {icon && icon}
+            {text}
+          </Link>
+        );
+      })}
     </ScrollAnimation>
   );
 }

@@ -23,7 +23,7 @@ export default function ProjectCard({
 }: IProjectResponse) {
   return (
     <MouseMoveWrapper>
-      <div className="bg-card-bg backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:border-white/20 hover:bg-card-hover transition-all duration-300 group hover:scale-[1.02] hover:shadow-2xl relative z-10">
+      <div className="bg-card-bg backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:border-white/20 hover:bg-card-hover transition-all duration-300 group hover:scale-[1.02] hover:shadow-2xl relative z-10 min-h-[500px] flex flex-col">
         {/* Project Image Header */}
         <div className="relative w-full h-48 rounded-xl overflow-hidden mb-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-white/10">
           {screenshot ? (
@@ -45,10 +45,10 @@ export default function ProjectCard({
         </div>
 
         {/* Project Content */}
-        <div className="space-y-4">
+        <div className="space-y-4 flex-1 flex flex-col">
           {/* Title */}
           <Link href={`/projects/${slug}`} className="block">
-            <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-2">
+            <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-1">
               {title}
             </h3>
           </Link>
@@ -66,13 +66,12 @@ export default function ProjectCard({
 
           {/* Description */}
           {description && (
-            <p className="text-text-secondary text-sm line-clamp-3 leading-relaxed">
+            <p className="text-text-secondary text-sm line-clamp-3 leading-relaxed flex-1">
               {description}
             </p>
           )}
 
-          {/* Action Buttons */}
-          <div className="flex items-center justify-between pt-4 border-t border-white/10">
+          <div className="flex items-center justify-between pt-4 border-t border-white/10 mt-auto">
             {/* View Details Link */}
             <Link
               href={`/projects/${slug}`}
