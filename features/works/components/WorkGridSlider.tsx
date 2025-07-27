@@ -4,6 +4,7 @@ import { WorkExperienceResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import WorkSlider from '@/features/works/components/WorkSlider';
 import useSortByDate from '@/features/works/hooks/useSortByDate';
+import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 
 export default async function WorkGridSlider() {
   try {
@@ -17,16 +18,28 @@ export default async function WorkGridSlider() {
 
     return (
       <section id="works" className="py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-10">
-          <h2 className="text-3xl font-semibold mb-8 gradient-text">Works</h2>
+        <ScrollAnimation
+          direction="down"
+          delay={0.1}
+          className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-10">
+          {/* Header Animation */}
+          <ScrollAnimation direction="down" delay={0.2}>
+            <h2 className="text-3xl font-semibold mb-8 gradient-text">Works</h2>
+          </ScrollAnimation>
+
+          {/* Content Animation */}
           {sortedWorks.length === 0 ? (
-            <div className="text-center text-gray-400">
-              <p>No works found.</p>
-            </div>
+            <ScrollAnimation direction="up" delay={0.3}>
+              <div className="text-center text-gray-400">
+                <p>No works found.</p>
+              </div>
+            </ScrollAnimation>
           ) : (
-            <WorkSlider works={sortedWorks} />
+            <ScrollAnimation direction="up" delay={0.3}>
+              <WorkSlider works={sortedWorks} />
+            </ScrollAnimation>
           )}
-        </div>
+        </ScrollAnimation>
       </section>
     );
   } catch (error) {

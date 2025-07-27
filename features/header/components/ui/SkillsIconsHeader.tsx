@@ -19,8 +19,8 @@ export default function SkillsIconsHeader({ technologies }: ITechnologiesRespons
 
       <div className="flex flex-wrap gap-3 w-full">
         {remainingTechnologies.map(({ _id, logo, name }, index) => (
-          <ScrollAnimation direction="up" delay={0.1 * (index / 2)}>
-            <div key={_id} className="group relative" style={{ animationDelay: `${index * 80}ms` }}>
+          <ScrollAnimation key={_id} direction="up" delay={0.1 * (index / 2)}>
+            <div className="group relative" style={{ animationDelay: `${index * 80}ms` }}>
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 hover:rotate-1 shadow-lg hover:shadow-xl backdrop-blur-sm">
                 <Image
                   src={getImageUrl(logo, 24, 24, 90)}
