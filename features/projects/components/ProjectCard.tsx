@@ -3,8 +3,7 @@ import Image from 'next/image';
 import { getImageUrl } from '@/sanity/lib/image';
 import { formatDateDuration } from '@/features/shard/utils/date';
 import TechnologiesHome from '@/features/shard/components/ui/TechnologiesHome';
-import { Calendar } from 'lucide-react';
-import ActionButtons from '@/features/shard/components/ui/ActionButtons';
+import { Calendar, ExternalLink, Github } from 'lucide-react';
 import MouseMoveWrapper from '@/features/shard/components/ui/MouseMoveWrapper';
 import { IProjectResponse } from '@/features/projects/types/project';
 
@@ -22,64 +21,66 @@ export default function ProjectCard({
     repoUrl,
   },
 }: IProjectResponse) {
-  const listLinks = [
-    {
-      id: 1,
-      text: 'Live Demo',
-      link: liveUrl,
-      customStyle:
-        'text-sm text-white/80 hover:text-white underline bg-gradient-to-br from-purple-500 to-pink-500 rounded-md px-2 py-2',
-    },
-    {
-      id: 2,
-      text: 'GitHub',
-      link: repoUrl,
-      customStyle:
-        'text-sm text-white/80 hover:text-white underline bg-gradient-to-br from-purple-500 to-pink-500 rounded-md px-2 py-2',
-    },
-  ];
   return (
     <MouseMoveWrapper>
-      <Link href={`/projects/${slug}`} className="block">
-        <div className="w-full h-48 bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+      <div className="bg-card-bg backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:border-white/20 hover:bg-card-hover transition-all duration-300 group hover:scale-[1.02] hover:shadow-2xl relative z-10">
+        {/* Project Image Header */}
+        <div className="relative w-full h-48 rounded-xl overflow-hidden mb-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-white/10">
           {screenshot ? (
             <Image
-              src={getImageUrl(screenshot, 200, 140, 100)}
+              src={getImageUrl(screenshot, 400, 280, 100)}
               alt={title}
-              width={200}
-              height={140}
-              className="object-contain"
+              fill
+              className="object-cover group-hover:scale-110 transition-transform duration-500"
               priority
             />
           ) : (
-            <span className="text-white text-4xl font-bold">{title.charAt(0)}</span>
+            <div className="w-full h-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+              <span className="text-white text-4xl font-bold">{title.charAt(0)}</span>
+            </div>
           )}
+
+          {/* Overlay on hover */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
         </div>
 
-        <div className="p-4">
-          <h3 className="text-xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">
-            {title}
-          </h3>
+        {/* Project Content */}
+        <div className="space-y-4">
+          {/* Title */}
+          <Link href={`/projects/${slug}`} className="block">
+            <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-2">
+              {title}
+            </h3>
+          </Link>
 
           {/* Technologies */}
           <TechnologiesHome technologies={technologies} link={`/projects/${slug}`} />
 
           {/* Duration */}
-          <p className="text-text-secondary text-sm mb-4 font-medium flex items-center gap-2">
+          <div className="flex items-center gap-2 text-text-secondary text-sm font-medium">
             <Calendar className="text-text-secondary" size={16} />
-            <span className="text-text-secondary px-1">
+            <span className="text-text-secondary">
               {formatDateDuration(startDate ?? '', endDate ?? '')}
             </span>
-          </p>
+          </div>
 
+          {/* Description */}
           {description && (
-            <p className="text-text-secondary text-sm mb-4 line-clamp-3">{description}</p>
+            <p className="text-text-secondary text-sm line-clamp-3 leading-relaxed">
+              {description}
+            </p>
           )}
-        </div>
-      </Link>
-      <div className="p-4 pt-0">
-        <div className="flex gap-4">
-          <ActionButtons listLinks={listLinks} />
+
+          {/* Action Buttons */}
+          <div className="flex items-center justify-between pt-4 border-t border-white/10">
+            {/* View Details Link */}
+            <Link
+              href={`/projects/${slug}`}
+              className="flex items-center gap-2 text-text-accent text-sm font-medium hover:text-white transition-colors">
+              <span>View Details</span>
+              <ExternalLink className="w-4 h-4 text-text-accent group-hover:text-white transition-colors" />
+            </Link>
+          </div>
         </div>
       </div>
     </MouseMoveWrapper>

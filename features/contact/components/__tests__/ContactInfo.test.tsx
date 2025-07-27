@@ -14,6 +14,8 @@ describe('ContactInfo', () => {
     bio: [],
     technologies: [],
     profilePicture: '',
+    availability: 'Available',
+    title: ['Software Engineer'],
   };
 
   it('renders contact information correctly', () => {
@@ -77,6 +79,8 @@ describe('ContactInfo', () => {
       bio: [],
       technologies: [],
       profilePicture: '',
+      availability: 'Available',
+      title: ['Software Engineer'],
     };
 
     render(<ContactInfo baseInfo={emptyBaseInfo} />);
@@ -97,6 +101,8 @@ describe('ContactInfo', () => {
       bio: [],
       technologies: [],
       profilePicture: '',
+      availability: 'Available',
+      title: ['Software Engineer'],
     };
 
     render(<ContactInfo baseInfo={specialBaseInfo} />);
@@ -127,7 +133,7 @@ describe('ContactInfo', () => {
   it('renders availability status indicator', () => {
     render(<ContactInfo baseInfo={mockBaseInfo} />);
 
-    expect(screen.getByText('Available for work')).toBeInTheDocument();
+    expect(screen.getByText('AVAILABLE')).toBeInTheDocument();
   });
 
   it('renders response time information', () => {

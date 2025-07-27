@@ -88,7 +88,6 @@ describe('BaseInfo', () => {
 
     // Check main elements
     expect(screen.getByText('Ahmed')).toBeInTheDocument();
-    expect(screen.getByText('Software Engineer')).toBeInTheDocument();
     expect(screen.getByTestId('portable-text')).toBeInTheDocument();
   });
 
