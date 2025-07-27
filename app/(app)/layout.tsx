@@ -1,9 +1,9 @@
 import '@/app/globals.css';
 import '@/app/work-slider.css';
 import Footer from '@/features/shard/components/layout/Footer';
-import Navbar from '@/features/shard/components/layout/Navbar';
+import Navbar from '@/features/navbar/components/Navbar';
 import OrbBackground from '@/features/shard/components/ui/OrbBackground';
-import { linksApp } from '@/features/shard/utils/navLinks';
+import { linksApp } from '@/features/navbar/utils/navLinks';
 
 export { metadata, viewport } from '@/features/shard/utils/metaData';
 

@@ -29,7 +29,7 @@ export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
 
     return (
       <section id="blog" className="py-10">
-        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-10">
           <h2 className="text-3xl font-semibold mb-8 gradient-text">Blogs</h2>
 
           {blogs.length === 0 ? (

@@ -30,7 +30,7 @@ export default function BaseInfo({ baseInfo }: IBaseInfoResponse) {
 
         {/* Bio Content */}
         <div className="prose prose-lg max-w-none">
-          <div className="text-gray-300 text-lg leading-relaxed">
+          <div className="text-gray-300 text-lg leading-relaxed text-justify flex flex-col gap-4">
             <PortableText value={bio} />
           </div>
         </div>

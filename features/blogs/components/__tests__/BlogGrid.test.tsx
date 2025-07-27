@@ -248,7 +248,7 @@ describe('BlogGrid', () => {
     render(await BlogGrid({ readMore: true }));
 
     const container = screen.getByText('Blogs').closest('div');
-    expect(container).toHaveClass('mx-auto', 'max-w-7xl', 'px-4');
+    expect(container).toHaveClass('mx-auto', 'max-w-7xl', 'px-5', 'sm:px-7', 'lg:px-10');
   });
 
   it('should have correct heading styling', async () => {

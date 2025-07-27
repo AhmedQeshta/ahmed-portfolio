@@ -1,4 +1,4 @@
-import { linksApp, linksPages, mediaList } from '@/features/shard/utils/navLinks';
+import { linksApp, linksPages, mediaList } from '@/features/navbar/utils/navLinks';
 
 describe('navLinks utilities', () => {
   describe('linksApp', () => {

@@ -55,7 +55,7 @@ export default async function Header() {
         </div>
 
         {/* Main Content */}
-        <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 w-full py-16 lg:py-24 min-h-[90vh]">
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-7 lg:px-10 w-full py-20 lg:py-32 min-h-full">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
             {/* Left Content - Enhanced BaseInfo */}
             <div className="order-2 lg:order-1 space-y-10 flex items-start">
@@ -67,7 +67,7 @@ export default async function Header() {
             </div>
 
             {/* Right Content - Enhanced Profile Image - Aligned to Top */}
-            <div className="order-1 lg:order-2 flex justify-center lg:justify-end pt-8 lg:pt-0">
+            <div className="order-1 mt-15 lg:mt-24 lg:order-2 flex justify-center">
               <ScrollAnimation direction="right" delay={0.2}>
                 <div className="relative">
                   <ProfileImage baseInfo={baseInfo} />

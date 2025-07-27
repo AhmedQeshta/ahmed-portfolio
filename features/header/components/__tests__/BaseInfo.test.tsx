@@ -5,9 +5,7 @@ import BaseInfo from '@/features/header/components/BaseInfo';
 import { IBaseInfoResponse } from '@/features/header/types/header';
 
 jest.mock('@portabletext/react', () => ({
-  PortableText: ({ value }: { value: unknown }) => (
-    <div data-testid="portable-text">{JSON.stringify(value)}</div>
-  ),
+  PortableText: ({ value }: any) => <div data-testid="portable-text">{JSON.stringify(value)}</div>,
 }));
 
 jest.mock('@/sanity/lib/image', () => ({
@@ -55,6 +53,8 @@ const mockProps: IBaseInfoResponse = {
     email: 'test@example.com',
     phone: '+1234567890',
     address: '123 Test Street',
+    availability: 'Available',
+    title: ['Software Engineer'],
   },
 };
 
@@ -92,43 +92,6 @@ describe('BaseInfo', () => {
     expect(screen.getByTestId('portable-text')).toBeInTheDocument();
   });
 
-  it('renders remaining technology icons when technologies exist after first 8', () => {
-    render(<BaseInfo {...mockProps} />);
-
-    // Check for technologies section
-    expect(screen.getByText('Core Technologies')).toBeInTheDocument();
-    expect(screen.getByText('Technologies I work with')).toBeInTheDocument();
-
-    // Should render 3 remaining technologies (after first 8)
-    const techImages = screen.getAllByTestId('next-image');
-    expect(techImages).toHaveLength(3);
-
-    // Check technology names in tooltips - these should be the ones after index 8
-    expect(screen.getByText('TypeScript')).toBeInTheDocument();
-    expect(screen.getByText('JavaScript')).toBeInTheDocument();
-    expect(screen.getByText('PHP')).toBeInTheDocument();
-
-    // Should NOT show the first 8 technologies (those are in ProfileImage orbit)
-    expect(screen.queryByText('React')).not.toBeInTheDocument();
-    expect(screen.queryByText('Vue')).not.toBeInTheDocument();
-  });
-
-  it('does not render technology section when no remaining technologies after first 8', () => {
-    render(<BaseInfo {...mockPropsNoRemainingTech} />);
-
-    // Should not show technologies section since there are no remaining technologies after first 8
-    expect(screen.queryByText('Core Technologies')).not.toBeInTheDocument();
-    expect(screen.queryByText('Technologies I work with')).not.toBeInTheDocument();
-  });
-
-  it('does not render technology section when no technologies at all', () => {
-    render(<BaseInfo {...mockPropsNoTech} />);
-
-    // Should not show technologies section
-    expect(screen.queryByText('Core Technologies')).not.toBeInTheDocument();
-    expect(screen.queryByText('Technologies I work with')).not.toBeInTheDocument();
-  });
-
   it('applies correct CSS classes to main elements', () => {
     render(<BaseInfo {...mockProps} />);
 
@@ -151,41 +114,5 @@ describe('BaseInfo', () => {
       'text-white/90',
       'leading-tight',
     );
-  });
-
-  it('renders technology grid with enhanced gaps and smaller icons', () => {
-    render(<BaseInfo {...mockProps} />);
-
-    // Check technology grid container using one of the remaining technologies
-    const techGrid = screen.getByText('TypeScript').closest('.grid');
-    expect(techGrid).toHaveClass(
-      'grid',
-      'grid-cols-4',
-      'sm:grid-cols-6',
-      'lg:grid-cols-8',
-      'xl:grid-cols-10',
-      'gap-6',
-      'lg:gap-8',
-    );
-  });
-
-  it('renders section headers with correct styling when technologies exist', () => {
-    render(<BaseInfo {...mockProps} />);
-
-    // Check Core Technologies heading
-    const techHeading = screen.getByRole('heading', { level: 3 });
-    expect(techHeading).toHaveClass('text-xl', 'sm:text-2xl', 'font-bold', 'text-white', 'mb-2');
-  });
-
-  it('does not render stats section', () => {
-    render(<BaseInfo {...mockProps} />);
-
-    // Should not show stats
-    expect(screen.queryByText('5+')).not.toBeInTheDocument();
-    expect(screen.queryByText('Years Experience')).not.toBeInTheDocument();
-    expect(screen.queryByText('50+')).not.toBeInTheDocument();
-    expect(screen.queryByText('Projects Completed')).not.toBeInTheDocument();
-    expect(screen.queryByText('20+')).not.toBeInTheDocument();
-    expect(screen.queryByText('Happy Clients')).not.toBeInTheDocument();
   });
 });

@@ -27,7 +27,7 @@ jest.mock('@/features/contact/hooks/useContact', () => ({
   useContact: () => mockUseContact,
 }));
 
-jest.mock('@/features/contact/components/ui/SuccessMessage', () => {
+jest.mock('@/features/contact/components/form/SuccessMessage', () => {
   return function MockSuccessMessage({ state }: any) {
     return <div data-testid="success-message">{state.message}</div>;
   };

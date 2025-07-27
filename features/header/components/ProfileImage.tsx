@@ -63,11 +63,11 @@ export default function ProfileImage({ baseInfo }: IBaseInfoResponse) {
           {mounted &&
             orbitTechnologies.map((technology, index) => {
               const angle = (index * (360 / orbitTechnologies.length) * Math.PI) / 180;
-              const radius = 210; // Distance from center
-              const delay = index * 0.6; // Animation delay
+              const radius = 190; // Distance from center
+              const delay = index * 0.5; // Animation delay
 
               // Calculate x and y position
-              const top = 180 - Math.sin(angle) * radius;
+              const top = 185 - Math.sin(angle) * radius;
               const left = 180 - Math.cos(angle) * radius;
 
               return (
@@ -80,7 +80,7 @@ export default function ProfileImage({ baseInfo }: IBaseInfoResponse) {
                     animationDelay: `${delay}s`,
                   }}>
                   <Image
-                    src={getImageUrl(technology.logo, 30  , 30, 90)}
+                    src={getImageUrl(technology.logo, 30, 30, 90)}
                     alt={technology.name}
                     width={30}
                     height={30}
@@ -99,7 +99,7 @@ export default function ProfileImage({ baseInfo }: IBaseInfoResponse) {
 
           {/* Main Profile Image */}
           {profilePicture ? (
-            <div className="relative h-[320px] w-[320px] z-10">
+            <div className="relative h-[250px] w-[250px] md:h-[300px] md:w-[300px] z-10">
               {/* Multiple Animated Borders */}
               <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-purple-500/30 via-blue-500/30 to-pink-500/30 blur-lg animate-pulse" />
               <div className="absolute -inset-1 rounded-full border border-purple-500/40 animate-spin-slow" />
@@ -116,9 +116,9 @@ export default function ProfileImage({ baseInfo }: IBaseInfoResponse) {
               <div className="absolute inset-1 rounded-full bg-gradient-to-br from-purple-500/15 via-blue-500/15 to-pink-500/15 blur-md" />
 
               <Image
-                src={getImageUrl(profilePicture, 320, 320, 100)}
-                width={320}
-                height={320}
+                src={getImageUrl(profilePicture, 300, 300, 100)}
+                width={300}
+                height={300}
                 className="rounded-full border-2 border-white/25 shadow-[0_0_40px_rgba(0,0,0,0.4),0_0_80px_rgba(139,92,246,0.25)] relative z-10 bg-white/5 backdrop-blur-sm object-cover w-full h-full"
                 alt={`${name} profile picture`}
                 priority

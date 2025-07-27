@@ -155,7 +155,15 @@ describe('Search', () => {
     render(<Search action="/blogs" />);
 
     const container = screen.getByRole('button', { name: 'Search' }).closest('form')?.parentElement;
-    expect(container).toHaveClass('mx-auto', 'max-w-7xl', 'w-full', 'px-4', 'py-5');
+    expect(container).toHaveClass(
+      'mx-auto',
+      'max-w-7xl',
+      'w-full',
+      'px-5',
+      'sm:px-7',
+      'lg:px-10',
+      'py-5',
+    );
 
     const form = screen.getByRole('button', { name: 'Search' }).closest('form');
     expect(form).toHaveClass('flex', 'gap-2');

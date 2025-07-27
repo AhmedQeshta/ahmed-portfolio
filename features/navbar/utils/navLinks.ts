@@ -1,4 +1,4 @@
-import { ILinksApp, IMediaList } from '@/features/shard/types/common';
+import { ILinksApp, IMediaList } from '@/features/navbar/types/navbar';
 
 export const linksApp: ILinksApp[] = [
   {

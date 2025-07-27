@@ -58,18 +58,3 @@ export interface IShareCard {
 export interface ITags {
   tags?: string[];
 }
-
-export interface ILinksApp {
-  id: number;
-  name: string;
-  url: string;
-}
-
-export interface IMediaList {
-  title: string;
-  href: string;
-  icon?: string | unknown;
-  iconSvg?: any;
-  rel: string;
-  target: string;
-}
