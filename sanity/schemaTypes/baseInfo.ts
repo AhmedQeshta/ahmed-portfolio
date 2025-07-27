@@ -105,12 +105,12 @@ export const baseInfo = defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'Availability', value: 'availability' },
+          { title: 'Availability', value: 'available' },
           { title: 'Busy', value: 'busy' },
         ],
       },
       validation: (rule) => rule.required(),
-      initialValue: 'availability',
+      initialValue: 'available',
     }),
   ],
   preview: {

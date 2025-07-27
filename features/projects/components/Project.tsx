@@ -1,5 +1,4 @@
 import Technologies from '@/features/shard/components/ui/Technologies';
-import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
 import BackgroundEffects from '@/features/shard/components/ui/BackgroundEffects';
 import HeroProject from '@/features/projects/components/ui/HeroProject';
 import ActionButtons from '@/features/shard/components/ui/ActionButtons';
@@ -9,6 +8,7 @@ import StatsProject from '@/features/projects/components/ui/StatsProject';
 import FullDescription from '@/features/projects/components/ui/FullDescription';
 import { ExternalLink, Github } from 'lucide-react';
 import { IProjectResponse } from '@/features/projects/types/project';
+import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
 
 export default function Project({ project }: IProjectResponse) {
   const { technologies, liveUrl, repoUrl } = project;

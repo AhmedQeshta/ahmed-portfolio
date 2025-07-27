@@ -238,7 +238,7 @@ describe('BlogGrid', () => {
 
     const section = screen.getByText('Blogs').closest('section');
     expect(section).toHaveClass('py-10');
-    expect(section).toHaveAttribute('id', 'blog');
+    expect(section).toHaveAttribute('id', 'blogs');
   });
 
   it('should have correct container styling', async () => {

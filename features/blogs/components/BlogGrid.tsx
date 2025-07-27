@@ -28,7 +28,7 @@ export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
     }
 
     return (
-      <section id="blog" className="py-10">
+      <section id="blogs" className="py-10">
         <div className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-10">
           <h2 className="text-3xl font-semibold mb-8 gradient-text">Blogs</h2>
 

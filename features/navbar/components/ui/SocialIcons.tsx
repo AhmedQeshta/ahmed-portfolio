@@ -8,10 +8,11 @@ export default function SocialIcons() {
         const { fill, viewBox, className, path } = iconSvg || {};
         return (
           <ScrollAnimation
+            key={title}
             direction="up"
             delay={0.05 * (index / 2)}
             className="w-8 h-8 p-1.5 text-text-secondary hover:text-purple-400 hover:bg-purple-500/10 rounded-lg transition-all duration-200 hover:scale-110">
-            <a key={title} href={href} target={target} rel={rel} aria-label={title}>
+            <a href={href} target={target} rel={rel} aria-label={title}>
               <svg fill={fill} viewBox={viewBox} className={'w-full h-full'}>
                 <path d={path?.d} />
               </svg>

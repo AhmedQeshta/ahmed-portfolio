@@ -15,6 +15,16 @@ const nextConfig = {
     // your project has type errors.
     ignoreBuildErrors: true,
   },
+  // Performance optimizations
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
+  },
+  // Enable static optimization
+  output: 'standalone',
+  // Optimize bundle size
+  swcMinify: true,
+  // Enable compression
+  compress: true,
 };
 
 export default nextConfig;
