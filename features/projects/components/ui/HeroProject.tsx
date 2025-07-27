@@ -6,8 +6,7 @@ import Image from 'next/image';
 
 export default function HeroProject({ project }: IProjectResponse) {
   if (!project) return null;
-  const { screenshot, title, status, categories } = project;
-  //  make it
+  const { screenshot, title, status, description, categories } = project;
   return (
     <div className="relative h-[60vh] overflow-hidden">
       <Image src={screenshot} alt={title} fill className="object-cover" priority />
@@ -38,6 +37,9 @@ export default function HeroProject({ project }: IProjectResponse) {
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
                 {title}
               </h1>
+              <p className="text-lg md:text-xl text-gray-300 max-w-3xl leading-relaxed">
+                {description}
+              </p>
             </ScrollAnimation>
           </ScrollAnimation>
         </div>

@@ -1,4 +1,4 @@
-import { BaseInfoResponse } from "@/sanity/lib/types";
+import { BaseInfoResponse } from '@/sanity/lib/types';
 
 export interface IBaseInfo {
   baseInfo: BaseInfoResponse;
@@ -28,25 +28,29 @@ export interface ISuccessMessage {
   };
 }
 
-export interface IDefaultInput extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface IDefaultInput
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'customStyle'> {
   handleInputChange: any;
   displayErrors?: string;
   customStyle?: string;
 }
 
-export interface IDefaultTextarea extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface IDefaultTextarea
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'customStyle'> {
   handleInputChange: any;
   displayErrors?: string;
   customStyle?: string;
 }
 
-export interface IDefaultLabel extends React.LabelHTMLAttributes<HTMLLabelElement> {
+export interface IDefaultLabel
+  extends Omit<React.LabelHTMLAttributes<HTMLLabelElement>, 'customStyle'> {
   title: string;
   htmlFor: string;
   customStyle?: string;
 }
 
-export interface ISubmitButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ISubmitButton
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'customStyle'> {
   isPending: boolean;
   customStyle?: string;
 }
