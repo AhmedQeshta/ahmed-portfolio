@@ -40,11 +40,6 @@ export default function Blog({ blog, latestBlogs, relatedBlogs }: IBlog) {
 
               {/* Blog Content */}
               <BlogContent blog={blog} />
-              {/* Technologies Used */}
-              <Technologies technologies={technologies} />
-
-              {/* Tags */}
-              <Tags tags={tags} />
             </div>
 
             {/* Sidebar Column */}
@@ -57,6 +52,12 @@ export default function Blog({ blog, latestBlogs, relatedBlogs }: IBlog) {
 
               {/* Related Blogs Card */}
               <RelatedBlogs relatedBlogs={relatedBlogs} />
+
+              {/* Technologies Used */}
+              <Technologies technologies={technologies} />
+
+              {/* Tags */}
+              <Tags tags={tags} />
 
               {/* Blog Stats Card */}
               <PostDetails blog={blog} />

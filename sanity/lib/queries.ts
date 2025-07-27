@@ -79,6 +79,10 @@ export const projectsQuery = groq`
       website,
       "logo": logo.asset->url
     },
+    "categories": category[]->{
+      _id,
+      name,
+    },
     repoUrl,
     liveUrl,
     featured,
@@ -102,6 +106,10 @@ export const projectBySlugQuery = groq`
       name,
       website,
       "logo": logo.asset->url
+    },
+    "categories": category[]->{
+      _id,
+      name,
     },
     repoUrl,
     liveUrl,
@@ -129,7 +137,7 @@ export const blogPostsQuery = groq`
     },
     description,
     tags,
-    categories[]->{
+    "categories": category[]->{
       _id,
       name,
     },
@@ -154,7 +162,7 @@ export const blogPostBySlugQuery = groq`
     description,
     content,
     tags,
-    categories[]->{
+    "categories": category[]->{
       _id,
       name,
     },
@@ -173,7 +181,7 @@ export const featuredBlogPostsQuery = groq`
     "slug": slug.current,
     description,
     tags,
-    categories[]->{
+    "categories": category[]->{
       _id,
       name,
     },

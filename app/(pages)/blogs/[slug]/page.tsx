@@ -40,16 +40,26 @@ export async function generateMetadata({
     const description = blog.seo?.metaDescription || blog.description;
     const image = blog.thumbnail;
 
+    // Add category names to keywords
+    const categoryNames = blog.categories?.map((cat) => cat.name) || [];
+    const keywords = [...(blog.tags || []), ...categoryNames].join(', ');
+
     return {
       title,
       description,
+      keywords,
       alternates: { canonical: url },
+      other: {
+        'article:tag': categoryNames.join(', '),
+        'article:section': categoryNames[0] || 'Technology',
+      },
       openGraph: {
         title,
         description,
         url,
         type: 'article',
         images: image ? [image] : undefined,
+        tags: [...(blog.tags || []), ...categoryNames],
       },
       twitter: {
         card: 'summary_large_image',
@@ -116,10 +126,7 @@ export default async function Page(props: FixedPageProps) {
     return <Blog blog={blog} latestBlogs={latestBlogs} relatedBlogs={relatedBlogs} />;
   } catch (error) {
     return (
-      <ErrorHandle
-        id={'projects'}
-        description={'Failed to load projects. Please try again later.'}
-      />
+      <ErrorHandle id={'blog'} description={'Failed to load blog post. Please try again later.'} />
     );
   }
 }

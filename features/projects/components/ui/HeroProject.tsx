@@ -1,11 +1,12 @@
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
+import Categories from '@/features/shard/components/ui/Categories';
 import { getStatusColor } from '@/features/shard/utils/statusColor';
 import { IProjectResponse } from '@/features/projects/types/project';
 import Image from 'next/image';
 
 export default function HeroProject({ project }: IProjectResponse) {
   if (!project) return null;
-  const { screenshot, title, status, description } = project;
+  const { screenshot, title, status, categories } = project;
   //  make it
   return (
     <div className="relative h-[60vh] overflow-hidden">
@@ -18,6 +19,9 @@ export default function HeroProject({ project }: IProjectResponse) {
       {/* Hero Content */}
       <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
         <div className="max-w-6xl mx-auto">
+          {/* Categories */}
+          <Categories categories={categories || []} delay={0.2} className="mb-4" />
+
           {/* Status Badge */}
           <ScrollAnimation direction="down" delay={0.1}>
             <ScrollAnimation direction="down" delay={0.3} className="mb-4">
@@ -34,11 +38,6 @@ export default function HeroProject({ project }: IProjectResponse) {
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
                 {title}
               </h1>
-            </ScrollAnimation>
-            <ScrollAnimation direction="down" delay={0.5}>
-              <p className="text-xl md:text-2xl text-gray-200 max-w-3xl leading-relaxed">
-                {description}
-              </p>
             </ScrollAnimation>
           </ScrollAnimation>
         </div>

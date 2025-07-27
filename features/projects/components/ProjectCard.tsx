@@ -47,7 +47,7 @@ export default function ProjectCard({
         {/* Project Content */}
         <div className="space-y-4 flex-1 flex flex-col">
           {/* Title */}
-          <Link href={`/projects/${slug}`} className="block">
+          <Link href={`/projects/${slug}`} className="block" prefetch={true}>
             <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-1">
               {title}
             </h3>
@@ -75,6 +75,7 @@ export default function ProjectCard({
             {/* View Details Link */}
             <Link
               href={`/projects/${slug}`}
+              prefetch={true}
               className="flex items-center gap-2 text-text-accent text-sm font-medium hover:text-white transition-colors">
               <span>View Details</span>
               <ExternalLink className="w-4 h-4 text-text-accent group-hover:text-white transition-colors" />

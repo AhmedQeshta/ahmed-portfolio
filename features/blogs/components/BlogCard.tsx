@@ -37,7 +37,7 @@ export default async function BlogCard({ blog }: IBlogPostResponse) {
         {/* Blog Content */}
         <div className="space-y-4 flex-1 flex flex-col">
           {/* Title */}
-          <Link href={`/blogs/${slug}`} className="block">
+          <Link href={`/blogs/${slug}`} className="block" prefetch={true}>
             <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-1">
               {title}
             </h3>
@@ -69,6 +69,7 @@ export default async function BlogCard({ blog }: IBlogPostResponse) {
           <div className="flex items-center justify-between pt-4 border-t border-white/10 mt-auto">
             <Link
               href={`/blogs/${slug}`}
+              prefetch={true}
               className="flex items-center gap-2 text-text-accent text-sm font-medium hover:text-white transition-colors">
               <span>Read More</span>
               <ArrowRight className="w-4 h-4 text-text-accent group-hover:text-white transition-colors" />
