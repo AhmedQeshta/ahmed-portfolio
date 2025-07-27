@@ -3,6 +3,7 @@
 import { ExternalLink, Github, Calendar, Tag } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Modal from '@/features/shard/components/ui/Modal';
+import Categories from '@/features/shard/components/ui/Categories';
 import ProjectGallery from '@/features/projects/components/ui/ProjectGallery';
 import FullDescription from '@/features/projects/components/ui/FullDescription';
 import Technologies from '@/features/shard/components/ui/Technologies';
@@ -13,7 +14,7 @@ import ScrollAnimation from '../../shard/components/ui/ScrollAnimation';
 import { IProjectResponse } from '@/features/projects/types/project';
 
 export default function ProjectModal({ project }: IProjectResponse) {
-  const { technologies, liveUrl, repoUrl } = project;
+  const { technologies, liveUrl, repoUrl, categories } = project;
   const router = useRouter();
 
   const handleClose = () => {
@@ -49,6 +50,9 @@ export default function ProjectModal({ project }: IProjectResponse) {
       <div className="p-6 space-y-6">
         {/* Header */}
         <ScrollAnimation direction="down" delay={0.3} className="space-y-4">
+          {/* Categories */}
+          <Categories categories={categories || []} delay={0.2} className="mb-4" />
+
           <h1 className="text-2xl md:text-3xl font-bold text-white">{project.title}</h1>
 
           <p className="text-gray-300 text-lg leading-relaxed">{project.description}</p>

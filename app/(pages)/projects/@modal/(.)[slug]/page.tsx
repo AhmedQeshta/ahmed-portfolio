@@ -27,12 +27,15 @@ const Project = async (props: IProjectPageModal) => {
       tags: ['project'],
     });
 
+    if (!project) notFound();
+
     return <ProjectModal project={project} />;
   } catch (error) {
+    console.error('Error loading project:', error);
     return (
       <ErrorHandle
-        id={'projects'}
-        description={'Failed to load projects. Please try again later.'}
+        id={'project-modal'}
+        description={'Failed to load project. Please try again later.'}
       />
     );
   }
