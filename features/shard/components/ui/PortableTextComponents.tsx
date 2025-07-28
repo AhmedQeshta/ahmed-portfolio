@@ -1,10 +1,26 @@
 import Image from 'next/image';
 import { getImageUrl } from '@/sanity/lib/image';
+import {
+  IBlockH1,
+  IBlockH2,
+  IBlockH3,
+  IBlockH4,
+  IBlockNormal,
+  IBlockQuote,
+  ICodeBlock,
+  IListBullet,
+  IListNumber,
+  IMarkCode,
+  IMarkEm,
+  IMarkLinkProps,
+  IMarkStrong,
+  IPortableTextComponents,
+} from '@/features/shard/types/common';
 
 // Shared PortableText components for consistent rich text rendering
 export const portableTextComponents = {
   types: {
-    image: ({ value }: any) => {
+    image: ({ value }: IPortableTextComponents) => {
       if (!value?.asset) return null;
 
       return (
@@ -23,7 +39,7 @@ export const portableTextComponents = {
         </div>
       );
     },
-    codeBlock: ({ value }: any) => {
+    codeBlock: ({ value }: ICodeBlock) => {
       if (!value?.code) return null;
 
       return (
@@ -41,46 +57,54 @@ export const portableTextComponents = {
     },
   },
   block: {
-    normal: ({ children }: any) => <p className="text-gray-300 leading-relaxed mb-4">{children}</p>,
-    h1: ({ children }: any) => (
+    normal: ({ children }: IBlockNormal) => (
+      <p className="text-gray-300 leading-relaxed mb-4">{children}</p>
+    ),
+    h1: ({ children }: IBlockH1) => (
       <h1 className="text-3xl font-bold text-white mb-6 mt-8">{children}</h1>
     ),
-    h2: ({ children }: any) => (
+    h2: ({ children }: IBlockH2) => (
       <h2 className="text-2xl font-bold text-white mb-5 mt-7">{children}</h2>
     ),
-    h3: ({ children }: any) => (
+    h3: ({ children }: IBlockH3) => (
       <h3 className="text-xl font-semibold text-white mb-4 mt-6">{children}</h3>
     ),
-    h4: ({ children }: any) => (
+    h4: ({ children }: IBlockH4) => (
       <h4 className="text-lg font-semibold text-white mb-3 mt-5">{children}</h4>
     ),
-    blockquote: ({ children }: any) => (
+    blockquote: ({ children }: IBlockQuote) => (
       <blockquote className="border-l-4 border-purple-500 pl-6 py-4 my-6 bg-gray-800/30 rounded-r-lg">
         <div className="text-gray-200 italic">{children}</div>
       </blockquote>
     ),
   },
   list: {
-    bullet: ({ children }: any) => (
+    bullet: ({ children }: IListBullet) => (
       <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4 ml-4">{children}</ul>
     ),
-    number: ({ children }: any) => (
+    number: ({ children }: IListNumber) => (
       <ol className="list-decimal list-inside text-gray-300 space-y-2 mb-4 ml-4">{children}</ol>
     ),
   },
   listItem: {
-    bullet: ({ children }: any) => <li className="text-gray-300 leading-relaxed">{children}</li>,
-    number: ({ children }: any) => <li className="text-gray-300 leading-relaxed">{children}</li>,
+    bullet: ({ children }: IListBullet) => (
+      <li className="text-gray-300 leading-relaxed">{children}</li>
+    ),
+    number: ({ children }: IListNumber) => (
+      <li className="text-gray-300 leading-relaxed">{children}</li>
+    ),
   },
   marks: {
-    strong: ({ children }: any) => <strong className="font-semibold text-white">{children}</strong>,
-    em: ({ children }: any) => <em className="italic text-gray-200">{children}</em>,
-    code: ({ children }: any) => (
+    strong: ({ children }: IMarkStrong) => (
+      <strong className="font-semibold text-white">{children}</strong>
+    ),
+    em: ({ children }: IMarkEm) => <em className="italic text-gray-200">{children}</em>,
+    code: ({ children }: IMarkCode) => (
       <code className="bg-gray-800 text-purple-300 px-2 py-1 rounded text-sm font-mono">
         {children}
       </code>
     ),
-    link: ({ children, value }: any) => (
+    link: ({ children, value }: IMarkLinkProps) => (
       <a
         href={value?.href}
         target="_blank"
