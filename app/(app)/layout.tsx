@@ -7,7 +7,7 @@ import { linksApp } from '@/features/navbar/utils/navLinks';
 import type { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(process.env.SITE_URL || ''),
   title: 'Ahmed Qeshta - Software Engineer',
   description: 'Ahmed Qeshta - Software Engineer',
   icons: {
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: 'Ahmed Qeshta',
-      url: new URL(process.env.SITE_URL || 'http://localhost:3000'),
+      url: new URL(process.env.SITE_URL || ''),
     },
   ],
   applicationName: 'Ahmed Qeshta - Software Engineer',
