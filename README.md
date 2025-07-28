@@ -210,10 +210,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Ahmed Qeshta**
 
-- Email: [your.email@domain.com](mailto:your.email@domain.com)
-- Portfolio: [https://your-portfolio-url.com](https://your-portfolio-url.com)
-- LinkedIn: [linkedin.com/in/ahmed-qeshta](https://linkedin.com/in/ahmed-qeshta)
-- GitHub: [github.com/ahmed-qeshta](https://github.com/ahmed-qeshta)
+- Email: [ahmed.qeshta.dev@gmail.com](mailto:ahmed.qeshta.dev@gmail.com)
+- Portfolio: [https://ahmedqeshta.vercel.app](https://ahmedqeshta.vercel.app)
+- LinkedIn: [linkedin.com/in/ahmedqeshta](https://linkedin.com/in/ahmedqeshta)
+- GitHub: [github.com/ahmedqeshta](https://github.com/ahmedqeshta)
 
 ---
 
