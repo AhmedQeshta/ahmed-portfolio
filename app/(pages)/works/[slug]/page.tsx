@@ -16,7 +16,7 @@ const WorkPage = async (props: IWorkPage) => {
       tags: ['features'],
     });
     const workFeature = features.filter(
-      (_, { name, status }: any) => name === 'works' && status === 'publish',
+      ({ name, status }) => name === 'works' && status === 'publish',
     );
 
     if (!workFeature) notFound();
