@@ -5,5 +5,5 @@ export interface IBaseInfoResponse {
 }
 
 export interface ITypewriterProps {
-  title: string[];
+  titles: string[];
 }

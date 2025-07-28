@@ -2,11 +2,11 @@
 import { useTypewriter } from 'react-simple-typewriter';
 import { ITypewriterProps } from '@/features/header/types/header';
 
-export default function Typewriter({ title }: ITypewriterProps) {
-  if (!title || title.length === 0) return null;
+export default function Typewriter({ titles }: ITypewriterProps) {
+  if (!titles || titles.length === 0) return null;
 
   const [text] = useTypewriter({
-    words: Object.values(title),
+    words: titles,
     loop: true,
     delaySpeed: 1500,
   });
