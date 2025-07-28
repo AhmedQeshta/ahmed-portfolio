@@ -5,8 +5,10 @@ import { linksPages } from '@/features/navbar/utils/navLinks';
 
 import type { Metadata, Viewport } from 'next';
 
+const siteUrl = process.env.SITE_URL || 'https://ahmedqeshta.vercel.app';
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.SITE_URL || ''),
+  metadataBase: new URL(siteUrl),
   title: 'Ahmed Qeshta - Software Engineer',
   description: 'Ahmed Qeshta - Software Engineer',
   icons: {
@@ -33,7 +35,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: process.env.SITE_URL || '',
+    canonical: siteUrl,
   },
   manifest: '/manifest.json',
   creator: 'Ahmed Qeshta',
@@ -41,7 +43,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: 'Ahmed Qeshta',
-      url: new URL(process.env.SITE_URL || ''),
+      url: new URL(siteUrl),
     },
   ],
   applicationName: 'Ahmed Qeshta - Software Engineer',

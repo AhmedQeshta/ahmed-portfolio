@@ -18,13 +18,9 @@ const nextConfig = {
   // Performance optimizations for faster navigation
   experimental: {
     optimizePackageImports: ['lucide-react'],
-    // Enable faster client-side navigation
-    optimizeCss: true,
   },
   // Enable static optimization
   output: process.env.NEXT_OUTPUT_MODE || 'standalone',
-  // Optimize bundle size
-  swcMinify: true,
   // Enable compression
   compress: true,
   // Optimize runtime for faster navigation
