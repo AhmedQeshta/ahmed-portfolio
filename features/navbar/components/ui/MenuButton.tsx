@@ -1,4 +1,4 @@
-import { IMenuButton } from '@/features/shard/types/common';
+import { IMenuButton } from '@/features/navbar/types/navbar';
 
 export default function MenuButton({ toggleMobileMenu, isMobileMenuOpen }: IMenuButton) {
   return (
