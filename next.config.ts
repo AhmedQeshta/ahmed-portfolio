@@ -22,7 +22,7 @@ const nextConfig = {
     optimizeCss: true,
   },
   // Enable static optimization
-  output: 'standalone',
+  output: process.env.NEXT_OUTPUT_MODE || 'standalone',
   // Optimize bundle size
   swcMinify: true,
   // Enable compression
