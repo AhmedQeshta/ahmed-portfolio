@@ -3,6 +3,8 @@ import { useTypewriter } from 'react-simple-typewriter';
 import { ITypewriterProps } from '@/features/header/types/header';
 
 export default function Typewriter({ title }: ITypewriterProps) {
+  if (!title || title.length === 0) return null;
+
   const [text] = useTypewriter({
     words: Object.values(title),
     loop: true,
