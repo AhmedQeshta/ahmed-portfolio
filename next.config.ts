@@ -1,8 +1,6 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').Config} */
+const nextConfig = {
   /* config options here */
-<<<<<<< HEAD
   images: {
     remotePatterns: [
       {
@@ -33,8 +31,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Enable faster page transitions
   reactStrictMode: true,
-=======
->>>>>>> 20fb6be268ea0a9505f81d0b71fcc5b64031fbe9
 };
 
 export default nextConfig;
