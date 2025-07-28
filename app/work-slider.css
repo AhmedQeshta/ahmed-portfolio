@@ -1,0 +1,152 @@
+/* Custom Work Slider Styles */
+
+/* Dots customization */
+.slick-dots {
+  position: relative !important;
+  bottom: -35px !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.slick-dots li {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  transition: transform 0.2s ease !important;
+  background-color: rgba(24, 55, 109, 0.377) !important; /* Darker inactive dots */
+  border: 1px solid rgba(255, 255, 255, 0.4) !important; /* Subtle border */
+  border-radius: 50% !important;
+}
+
+.slick-dots li:hover {
+  transform: scale(1.1) !important;
+}
+
+.slick-dots li button {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  background-color: rgba(255, 255, 255, 0.15) !important; /* Darker inactive dots */
+  border: 1px solid rgba(255, 255, 255, 0.2) !important; /* Subtle border */
+  padding: 0 !important;
+  margin: 0 !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3) !important; /* Subtle shadow */
+}
+
+.slick-dots li button:before {
+  display: none !important;
+}
+
+.slick-dots li.slick-active button {
+  background: linear-gradient(
+    45deg,
+    #581c87,
+    #3b82f6
+  ) !important; /* Gradient matching your theme */
+  transform: scale(1.2) !important;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5) !important; /* Glow effect */
+  border: 1px solid rgba(255, 255, 255, 0.4) !important; /* Brighter border when active */
+}
+
+/* Custom arrow styles */
+.custom-slider-arrow {
+  transition: all 0.3s ease;
+  opacity: 0.7;
+  z-index: 20 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.custom-slider-arrow:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* For small screens */
+@media (max-width: 640px) {
+  .custom-slider-arrow {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .custom-slider-arrow svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+
+.slick-dots li button {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.slick-dots li button:before {
+  display: none !important;
+}
+
+.slick-dots li.slick-active div {
+  background: rgba(255, 255, 255, 0.8) !important;
+  transform: scale(1.2) !important;
+}
+
+/* Track styling */
+.slick-track {
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+.slick-slide {
+  height: inherit !important;
+}
+
+.slick-slide > div {
+  height: 100% !important;
+}
+
+/* Custom arrow positioning for mobile */
+@media (max-width: 768px) {
+  .slick-dots {
+    bottom: -30px !important;
+  }
+}
+
+/* Ensure equal height cards */
+.slick-slide .bg-card-bg {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 400px !important;
+}
+
+/* Smooth transitions */
+.slick-slide {
+  transition: opacity 0.3s ease !important;
+}
+
+/* Loading animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.work-slide-enter {
+  animation: slideIn 0.5s ease-out;
+}
