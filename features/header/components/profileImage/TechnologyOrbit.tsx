@@ -1,33 +1,33 @@
 import { getImageUrl } from '@/sanity/lib/image';
 import Image from 'next/image';
 import { ITechnologyOrbitProps } from '@/features/header/types/header';
+import useWindow from '@/features/shard/hooks/useWindow';
+import { OrbitItem } from '@/features/header/utils/orbitTechnologies';
 
 export default function TechnologyOrbit({ orbitTechnologies, mounted }: ITechnologyOrbitProps) {
+  const windowWidth = useWindow();
+
   if (!mounted) return null;
 
   return orbitTechnologies.map((technology, index) => {
-    const angle = (index * (360 / orbitTechnologies.length) * Math.PI) / 180;
-    const radius = 190; // Distance from center
-    const delay = index * 0.5; // Animation delay
-
-    // Calculate x and y position
-    const top = 185 - Math.sin(angle) * radius;
-    const left = 180 - Math.cos(angle) * radius;
+    const { top, left, delay, isMobile } = OrbitItem({ index, orbitTechnologies, windowWidth });
 
     return (
       <div
         key={technology._id}
-        className="absolute w-12 h-12 bg-white/8 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/15 shadow-lg transform transition-all duration-500 hover:scale-110 hover:bg-white/15 z-20 animate-float group"
+        className={`absolute bg-white/8 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/15 shadow-lg transform transition-all duration-500 hover:scale-110 hover:bg-white/15 z-20 animate-float group ${
+          isMobile ? 'w-10 h-10' : 'w-12 h-12'
+        }`}
         style={{
           top: `${top}px`,
           left: `${left}px`,
           animationDelay: `${delay}s`,
         }}>
         <Image
-          src={getImageUrl(technology.logo, 30, 30, 90)}
+          src={getImageUrl(technology.logo, isMobile ? 24 : 30, isMobile ? 24 : 30, 90)}
           alt={technology.name}
-          width={30}
-          height={30}
+          width={isMobile ? 24 : 30}
+          height={isMobile ? 24 : 30}
           className="object-contain filter group-hover:brightness-125 transition-all duration-300"
         />
 

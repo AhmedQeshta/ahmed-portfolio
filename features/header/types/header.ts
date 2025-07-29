@@ -21,3 +21,9 @@ export interface IProfilePictureProps {
   profilePicture: string;
   name: string;
 }
+
+export interface IOrbitItemProps {
+  index: number;
+  orbitTechnologies: Technology[];
+  windowWidth: number;
+}

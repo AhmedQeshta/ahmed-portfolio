@@ -31,6 +31,26 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+@media (max-width: 530px) {
+  body {
+    overflow-y: hidden;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  body {
+    overflow-y: auto;
+  }
 }
 
 /* Custom gradient text class */
