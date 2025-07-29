@@ -15,22 +15,16 @@ const nextConfig = {
     // your project has type errors.
     ignoreBuildErrors: true,
   },
-  // Performance optimizations for faster navigation
+  // Performance optimizations
   experimental: {
     optimizePackageImports: ['lucide-react'],
-    // Enable faster client-side navigation
-    optimizeCss: true,
   },
   // Enable static optimization
-  output: process.env.NEXT_OUTPUT_MODE || 'standalone',
+  output: 'standalone',
   // Optimize bundle size
   swcMinify: true,
   // Enable compression
   compress: true,
-  // Optimize runtime for faster navigation
-  poweredByHeader: false,
-  // Enable faster page transitions
-  reactStrictMode: true,
 };
 
 export default nextConfig;
