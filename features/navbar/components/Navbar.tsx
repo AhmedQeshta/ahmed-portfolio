@@ -21,9 +21,8 @@ export default function Navbar({ links }: INavLinks) {
       <div className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-10">
         <div className="flex items-center justify-between py-3 sm:py-4">
           {/* Logo */}
-          <ScrollAnimation direction="up" delay={0.1}>
-            <Logo />
-          </ScrollAnimation>
+
+          <Logo />
 
           {/* Desktop Navigation Links */}
           <NavLinks links={links} />

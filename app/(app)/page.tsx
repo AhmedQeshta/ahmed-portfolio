@@ -10,6 +10,7 @@ import { sanityFetch } from '@/sanity/lib/client';
 import { FeatureResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import ContactSection from '@/features/contact/components/ContactSection';
+import PrioritizedLoading from '@/features/shard/components/ui/PrioritizedLoading';
 
 const sectionOfPage: any = {
   header: <Header />,
@@ -27,23 +28,31 @@ export default async function Home() {
     });
 
     return (
-      <main>
+      <>
         {features &&
-          features.map(({ _id, name, status }) => (
+          features.map(({ _id, name, status }, index) => (
             <Fragment key={_id}>
-              <Suspense fallback={<Loading />}>
-                {status === 'publish' && sectionOfPage[name]}
-              </Suspense>
+              {status === 'publish' && (
+                <Suspense
+                  fallback={
+                    // Use optimized loading for critical content (header)
+                    name === 'header' ? <PrioritizedLoading /> : <Loading />
+                  }>
+                  <section
+                    id={name}
+                    aria-label={`${name.charAt(0).toUpperCase() + name.slice(1)} section`}
+                    className={name === 'header' ? 'relative z-10' : undefined}>
+                    {sectionOfPage[name]}
+                  </section>
+                </Suspense>
+              )}
             </Fragment>
           ))}
-      </main>
+      </>
     );
   } catch (error) {
     return (
-      <ErrorHandle
-        id={'home'}
-        description={'Failed to load Home Page. Please try again later.'}
-      />
+      <ErrorHandle id={'home'} description={'Failed to load Home Page. Please try again later.'} />
     );
   }
 }

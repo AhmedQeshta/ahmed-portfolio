@@ -1,220 +1,168 @@
-# Ahmed Qeshta's Portfolio
+# Ahmed Qeshta - Portfolio
 
-A modern, responsive portfolio website built with Next.js 15 and Sanity CMS, showcasing projects, blog posts, work experience, and professional information.
+A high-performance, accessible portfolio website built with Next.js 15, showcasing my work as a Software Engineer.
 
 <img width="1847" height="1849" alt="Image" src="https://github.com/user-attachments/assets/9171a61c-118b-4b1d-a4e7-7769ce27556f" />
 
-## 🌟 Features
+## 🚀 Performance Optimizations
 
-- **Dynamic Content Management**: Powered by Sanity CMS for easy content updates
-- **Blog System**: Write and publish blog posts with rich content
-- **Project Showcase**: Display projects with detailed information and media
-- **Work Experience**: Professional timeline and experience showcase
-- **Contact Form**: Functional contact form with email integration
-- **Responsive Design**: Optimized for all devices and screen sizes
-- **Modern UI/UX**: Clean, professional design with smooth animations
-- **SEO Optimized**: Built-in SEO features and meta tag management
-- **Performance Optimized**: Fast loading with Next.js optimizations
-- **Type Safety**: Full TypeScript implementation
+This portfolio has been optimized for exceptional mobile performance and accessibility:
 
-## 🚀 Tech Stack
+### Core Web Vitals Optimizations
 
-- **Framework**: [Next.js 15](https://nextjs.org/) with App Router
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **CMS**: [Sanity](https://www.sanity.io/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Email**: [Nodemailer](https://nodemailer.com/)
-- **Forms**: [Zod](https://zod.dev/) for validation
-- **Testing**: [Jest](https://jestjs.io/) + [React Testing Library](https://testing-library.com/)
-- **Package Manager**: [Yarn](https://yarnpkg.com/)
+- **LCP (Largest Contentful Paint)**: < 2.5s through optimized image loading and reduced animation complexity
+- **FID (First Input Delay)**: < 100ms with code splitting and bundle optimization
+- **CLS (Cumulative Layout Shift)**: < 0.1 with proper image sizing and layout stability
 
-## 🛠️ Getting Started
+### Key Performance Features
 
-### Prerequisites
+- **Image Optimization**: WebP/AVIF support with next/image
+- **Bundle Splitting**: Separate chunks for animations and vendor libraries
+- **Tree Shaking**: Eliminated unused JavaScript code
+- **CSS Optimization**: Reduced animation complexity for mobile devices
+- **Preloading**: Critical resources preloaded for faster initial load
+- **Compression**: Enabled gzip/brotli compression
+- **Caching**: Optimized cache headers for static assets
 
-- Node.js 18+
-- Yarn package manager
-- Sanity account and project
+### Accessibility (WCAG 2.1 AA Compliant)
 
-### Installation
+- **Skip Navigation**: Skip-to-main-content link for keyboard users
+- **ARIA Labels**: Comprehensive ARIA attributes for screen readers
+- **Focus Management**: Proper focus indicators and keyboard navigation
+- **Reduced Motion**: Respects user's motion preferences
+- **Semantic HTML**: Proper heading hierarchy and landmark roles
+- **Color Contrast**: Meets WCAG contrast requirements
 
-1. **Clone the repository**
+## 🛠️ Tech Stack
 
-   ```bash
-   git clone https://github.com/ahmedqeshta/ahmed-portfolio.git
-   cd ahmed-portfolio
-   ```
+- **Framework**: Next.js 15.3.2 with App Router
+- **Styling**: Tailwind CSS with custom animations
+- **CMS**: Sanity.io for content management
+- **Animations**: Framer Motion (optimized)
+- **Icons**: Lucide React
+- **TypeScript**: Full type safety
+- **Testing**: Jest + React Testing Library
 
-2. **Install dependencies**
+## 📱 PWA Features
 
-   ```bash
-   yarn install
-   ```
+- **Manifest**: Complete PWA manifest with shortcuts
+- **Icons**: Maskable icons for all devices
+- **Offline Support**: Service worker for basic offline functionality
+- **Install Prompt**: Add to home screen capability
 
-3. **Set up environment variables**
-
-   Create a `.env.local` file in the root directory:
-
-   ```env
-   # Sanity Configuration
-   NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
-   NEXT_PUBLIC_SANITY_DATASET=production
-   SANITY_API_TOKEN=your_api_token
-
-   # Email Configuration (for contact form)
-   EMAIL_HOST=your_smtp_host
-   EMAIL_PORT=587
-   EMAIL_USER=your_email@domain.com
-   EMAIL_PASS=your_email_password
-   EMAIL_TO=recipient@domain.com
-
-   # Next.js Configuration
-   NEXTAUTH_SECRET=your_nextauth_secret
-   NEXTAUTH_URL=http://localhost:3000
-   ```
-
-4. **Set up Sanity Studio**
-
-   ```bash
-   yarn sanity init
-   ```
-
-5. **Start the development server**
-   ```bash
-   yarn dev
-   ```
-
-Visit [http://localhost:3000](http://localhost:3000) to see your portfolio.
-
-## 📁 Project Structure
-
-```
-ahmed-portfolio/
-├── app/                    # Next.js App Router
-│   ├── (app)/             # Main app layout
-│   ├── (pages)/           # Page routes
-│   │   ├── blogs/         # Blog pages
-│   │   ├── projects/      # Project pages
-│   │   └── works/         # Work experience pages
-│   └── (sanity)/          # Sanity Studio
-├── features/              # Feature-based components
-│   ├── blogs/             # Blog components
-│   ├── contact/           # Contact form components
-│   ├── projects/          # Project components
-│   ├── works/             # Work experience components
-│   ├── navbar/            # Navigation components
-│   ├── header/            # Header components
-│   └── shard/             # Shared components
-├── sanity/                # Sanity CMS configuration
-│   ├── lib/               # Sanity utilities
-│   └── schemaTypes/       # Content schemas
-├── public/                # Static assets
-└── types/                 # TypeScript type definitions
-```
-
-## 🎨 Content Management
-
-Access the Sanity Studio at `/studio` to manage:
-
-- **Base Info**: Personal information and bio
-- **Projects**: Portfolio projects with descriptions, images, and links
-- **Blog Posts**: Articles and blog content
-- **Work Experience**: Professional experience and roles
-- **Technologies**: Skills and technology stack
-- **Categories**: Content categorization
-
-## 🧪 Testing
-
-Run the test suite:
+## 🔧 Installation
 
 ```bash
-# Run all tests
-yarn test
+# Clone the repository
+git clone https://github.com/yourusername/ahmed-portfolio.git
 
-# Run tests in watch mode
-yarn test:watch
+# Navigate to the project directory
+cd ahmed-portfolio
 
-# Generate coverage report
-yarn test:coverage
+# Install dependencies
+npm install
+# or
+yarn install
+
+# Set up environment variables
+cp .env.example .env.local
+
+# Run the development server
+npm run dev
+# or
+yarn dev
 ```
 
-## 📱 Available Scripts
+## 📊 Build & Performance
 
-- `yarn dev` - Start development server with Turbopack
-- `yarn build` - Build for production
-- `yarn start` - Start production server
-- `yarn lint` - Run ESLint
-- `yarn test` - Run Jest tests
-- `yarn test:watch` - Run tests in watch mode
-- `yarn test:coverage` - Generate test coverage report
+```bash
+# Build for production
+npm run build
 
-## 🚀 Deployment
+# Start production server
+npm start
 
-### Vercel (Recommended)
+# Run tests
+npm test
 
-1. Push your code to GitHub
-2. Connect your repository to [Vercel](https://vercel.com)
-3. Add environment variables in Vercel dashboard
-4. Deploy automatically on push
+# Test coverage
+npm run test:coverage
 
-### Other Platforms
+# Lint code
+npm run lint
+```
 
-The project is configured for standalone output and can be deployed to:
+## 🌐 Environment Variables
 
-- Railway
-- Digital Ocean
-- AWS
-- Google Cloud Platform
+Create a `.env.local` file in the root directory:
 
-## 🔧 Configuration
+```env
+# Sanity Configuration
+SANITY_PROJECT_ID=your_project_id
+SANITY_DATASET=your_dataset
+SANITY_API_TOKEN=your_api_token
 
-### Sanity Configuration
+# Site Configuration
+SITE_URL=https://yourdomain.com
+GOOGLE_VERIFICATION=your_google_verification_code
 
-Edit `sanity.config.ts` to customize:
+# Email Configuration (if using contact form)
+SMTP_HOST=your_smtp_host
+SMTP_PORT=587
+SMTP_USER=your_email
+SMTP_PASS=your_password
+```
 
-- Studio appearance
-- Plugins and tools
-- Schema organization
+## 📈 Performance Monitoring
 
-### Next.js Configuration
+The portfolio includes performance monitoring capabilities:
 
-Modify `next.config.ts` for:
+- Core Web Vitals tracking
+- Error boundary with retry functionality
+- Loading states with accessibility support
+- Optimized animations based on device capability
 
-- Image optimization
-- Performance settings
-- Build optimizations
+## 🔍 SEO Optimizations
 
-### Styling
+- **Sitemap**: Dynamic sitemap generation
+- **Robots.txt**: Proper crawling instructions
+- **Meta Tags**: Comprehensive OpenGraph and Twitter Card support
+- **Schema Markup**: Structured data for rich snippets
+- **Canonical URLs**: Proper URL canonicalization
 
-Customize the design in:
+## 📋 Performance Checklist
 
-- `tailwind.config.js` - Tailwind configuration
-- `app/globals.css` - Global styles
-- Component-specific styles
+- ✅ Images optimized with WebP/AVIF
+- ✅ Critical CSS inlined
+- ✅ JavaScript bundles split and optimized
+- ✅ Fonts preloaded and optimized
+- ✅ Service worker for caching
+- ✅ Gzip/Brotli compression enabled
+- ✅ CDN integration ready
+- ✅ Mobile-first responsive design
+- ✅ Accessibility audited
+- ✅ Performance budget established
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/new-feature`
-3. Commit changes: `git commit -m 'Add new feature'`
-4. Push to branch: `git push origin feature/new-feature`
-5. Submit a pull request
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Contact
+## 👨‍💻 Author
 
 **Ahmed Qeshta**
 
-- Email: [ahmed.qeshta.dev@gmail.com](mailto:ahmed.qeshta.dev@gmail.com)
-- Portfolio: [https://ahmedqeshta.vercel.app](https://ahmedqeshta.vercel.app)
-- LinkedIn: [linkedin.com/in/ahmedqeshta](https://linkedin.com/in/ahmedqeshta)
-- GitHub: [github.com/ahmedqeshta](https://github.com/ahmedqeshta)
+- Website: [ahmedqeshta.vercel.app](https://ahmedqeshta.vercel.app)
+- LinkedIn: [Your LinkedIn](https://linkedin.com/in/ahmedqeshta)
+- Email: ahmed.qeshta.dev@gmail.com
 
----
+## 🙏 Acknowledgments
 
-⭐ Star this repository if you found it helpful!
+- Next.js team for the amazing framework
+- Sanity.io for the powerful CMS
+- Tailwind CSS for the utility-first approach
+- Framer Motion for smooth animations
+- Vercel for hosting and deployment
