@@ -16,15 +16,13 @@ Object.defineProperty(window, 'open', {
   writable: true,
 });
 
-// Mock the Lucide React icons
-jest.mock('lucide-react', () => ({
-  Share2: ({ ...props }) => <div {...props} data-testid="share2-icon" />,
-  Facebook: ({ ...props }) => <div {...props} data-testid="facebook-icon" />,
-  Twitter: ({ ...props }) => <div {...props} data-testid="twitter-icon" />,
-  Linkedin: ({ ...props }) => <div {...props} data-testid="linkedin-icon" />,
-  Copy: ({ ...props }) => <div {...props} data-testid="copy-icon" />,
-  Link: ({ ...props }) => <div {...props} data-testid="link-icon" />,
-}));
+// Mock navigator.clipboard
+Object.defineProperty(navigator, 'clipboard', {
+  value: {
+    writeText: jest.fn(),
+  },
+  writable: true,
+});
 
 describe('ShareCard', () => {
   beforeEach(() => {

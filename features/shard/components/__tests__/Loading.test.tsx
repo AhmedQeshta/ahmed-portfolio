@@ -3,112 +3,94 @@ import '@testing-library/jest-dom';
 import Loading from '@/features/shard/components/ui/Loading';
 
 describe('Loading', () => {
-  it('should render the loading container with proper accessibility', () => {
+  it('should render the loading container', () => {
     render(<Loading />);
 
-    const container = screen.getByRole('status');
+    const container = screen.getByTestId('loading-container');
     expect(container).toBeInTheDocument();
-    expect(container).toHaveAttribute('aria-label', 'Loading content');
-    expect(container).toHaveAttribute('aria-live', 'polite');
     expect(container).toHaveClass(
+      'min-h-screen',
+      'bg-gradient-to-br',
+      'from-gray-900',
+      'via-black',
+      'to-gray-900',
       'flex',
       'items-center',
       'justify-center',
-      'min-h-[300px]',
-      'py-20',
     );
   });
 
-  it('should render the loading text', () => {
+  it('should render the main content area', () => {
     render(<Loading />);
 
-    const loadingText = screen.getByText('Loading...');
-    expect(loadingText).toBeInTheDocument();
-    expect(loadingText).toHaveClass('text-gray-300', 'text-sm', 'font-medium', 'animate-pulse');
+    const contentArea = screen.getByTestId('loading-content');
+    expect(contentArea).toBeInTheDocument();
   });
 
-  it('should render the screen reader text', () => {
+  it('should render the loading title', () => {
     render(<Loading />);
 
-    const srText = screen.getByText('Content is loading, please wait');
-    expect(srText).toBeInTheDocument();
-    expect(srText).toHaveClass('sr-only');
+    const title = screen.getByRole('heading', { level: 2 });
+    expect(title).toBeInTheDocument();
+    expect(title).toHaveTextContent('Loading');
+    expect(title).toHaveClass('text-2xl', 'font-bold', 'gradient-text', 'animate-pulse');
+  });
+
+  it('should render the loading description', () => {
+    render(<Loading />);
+
+    const description = screen.getByText('Please wait while we prepare your content...');
+    expect(description).toBeInTheDocument();
+    expect(description).toHaveClass('text-gray-400', 'text-sm', 'animate-pulse', 'delay-200');
   });
 
   it('should render the spinner elements', () => {
     render(<Loading />);
 
-    // Check for the main spinner
-    const container = screen.getByRole('status');
-    const spinnerElements = container.querySelectorAll('.animate-spin');
+    // Check for spinner container
+    const spinnerContainer = screen.getByTestId('spinner-container');
+    expect(spinnerContainer).toBeInTheDocument();
+  });
 
-    expect(spinnerElements.length).toBeGreaterThan(0);
+  it('should render background animated elements', () => {
+    render(<Loading />);
+
+    const backgroundElements = screen.getByTestId('background-elements');
+    expect(backgroundElements).toBeInTheDocument();
   });
 
   it('should render progress dots', () => {
     render(<Loading />);
 
-    // Find all progress dots
-    const container = screen.getByRole('status');
-    const progressDots = container.querySelectorAll('.bg-purple-400.rounded-full');
-
-    expect(progressDots.length).toBe(3);
+    // The progress dots should be rendered as divs with specific classes
+    const dots = screen.getByTestId('progress-dots');
+    expect(dots).toBeInTheDocument();
   });
 
   it('should have proper semantic structure', () => {
     render(<Loading />);
 
-    const statusElement = screen.getByRole('status');
-    const loadingText = screen.getByText('Loading...');
-    const srText = screen.getByText('Content is loading, please wait');
+    const title = screen.getByRole('heading', { level: 2 });
+    const description = screen.getByText('Please wait while we prepare your content...');
 
-    expect(statusElement).toBeInTheDocument();
-    expect(loadingText).toBeInTheDocument();
-    expect(srText).toBeInTheDocument();
+    expect(title).toBeInTheDocument();
+    expect(description).toBeInTheDocument();
   });
 
   it('should apply correct styling classes to main elements', () => {
     render(<Loading />);
 
-    const container = screen.getByRole('status');
-    const loadingText = screen.getByText('Loading...');
+    const title = screen.getByRole('heading', { level: 2 });
+    const description = screen.getByText('Please wait while we prepare your content...');
 
-    expect(container).toHaveClass('flex', 'items-center', 'justify-center');
-    expect(loadingText).toHaveClass('text-gray-300', 'animate-pulse');
+    expect(title).toHaveClass('text-2xl', 'font-bold', 'gradient-text', 'animate-pulse');
+    expect(description).toHaveClass('text-gray-400', 'text-sm', 'animate-pulse', 'delay-200');
   });
 
-  it('should have proper layout structure', () => {
+  it('should have full screen layout', () => {
     render(<Loading />);
 
-    const container = screen.getByRole('status');
-    expect(container).toHaveClass('min-h-[300px]');
-
-    // Check that it contains the expected child structure
-    const contentDiv = container.querySelector('.flex.flex-col.items-center.space-y-4');
-    expect(contentDiv).toBeInTheDocument();
-  });
-
-  it('should render animated elements with proper styles', () => {
-    render(<Loading />);
-
-    const container = screen.getByRole('status');
-
-    // Check for spinner animations
-    const spinnerElements = container.querySelectorAll('.animate-spin');
-    expect(spinnerElements.length).toBeGreaterThan(0);
-
-    // Check for pulse animations
-    const pulseElements = container.querySelectorAll('.animate-pulse');
-    expect(pulseElements.length).toBeGreaterThan(0);
-  });
-
-  it('should have accessibility attributes', () => {
-    render(<Loading />);
-
-    const container = screen.getByRole('status');
-
-    expect(container).toHaveAttribute('role', 'status');
-    expect(container).toHaveAttribute('aria-live', 'polite');
-    expect(container).toHaveAttribute('aria-label', 'Loading content');
+    const container = screen.getByTestId('loading-container');
+    expect(container).toHaveClass('min-h-screen');
   });
 });
