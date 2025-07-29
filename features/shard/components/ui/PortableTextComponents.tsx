@@ -1,5 +1,6 @@
+'use client';
+
 import Image from 'next/image';
-import { getImageUrl } from '@/sanity/lib/image';
 import {
   IBlockH1,
   IBlockH2,
@@ -7,7 +8,6 @@ import {
   IBlockH4,
   IBlockNormal,
   IBlockQuote,
-  ICodeBlock,
   IListBullet,
   IListNumber,
   IMarkCode,
@@ -16,6 +16,8 @@ import {
   IMarkStrong,
   IPortableTextComponents,
 } from '@/features/shard/types/common';
+import { getDimensions } from '@/features/shard/utils/portableText';
+import CodeBlock from '@/features/shard/components/portableText/CodeBlock';
 
 // Shared PortableText components for consistent rich text rendering
 export const portableTextComponents = {
@@ -23,76 +25,75 @@ export const portableTextComponents = {
     image: ({ value }: IPortableTextComponents) => {
       if (!value?.asset) return null;
 
+      const { width, height, aspectRatio, imageUrl, blurDataURL } = getDimensions(value);
+
       return (
-        <div className="my-8 rounded-xl overflow-hidden border border-gray-700">
+        <div
+          className="my-8 rounded-xl overflow-hidden border border-gray-700 bg-gray-800/20"
+          style={{ aspectRatio: aspectRatio.toString() }}>
           <Image
-            src={getImageUrl(value, 800, 600, 90)}
+            src={imageUrl}
             alt={value.alt || 'Content image'}
-            width={800}
-            height={600}
-            className="w-full h-auto object-cover"
-            priority={false}
+            width={width}
+            height={height}
+            className="w-full h-full object-cover transition-opacity duration-300"
+            style={{ aspectRatio: aspectRatio.toString() }}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
+            quality={90}
+            placeholder={blurDataURL ? 'blur' : 'empty'}
+            blurDataURL={blurDataURL}
+            loading="lazy"
           />
           {value.alt && (
-            <p className="text-center text-sm text-gray-400 p-3 bg-gray-800/50">{value.alt}</p>
+            <div className="text-center text-sm text-gray-400 p-3 bg-gray-800/50">
+              <span className="sr-only">Image description: </span>
+              {value.alt}
+            </div>
           )}
         </div>
       );
     },
-    codeBlock: ({ value }: ICodeBlock) => {
-      if (!value?.code) return null;
-
-      return (
-        <div className="my-6 rounded-xl overflow-hidden border border-gray-700">
-          <div className="bg-gray-800/80 px-4 py-2 text-sm text-gray-300 border-b border-gray-700">
-            <span className="font-medium">{value.language || 'Code'}</span>
-          </div>
-          <pre className="bg-gray-900/80 p-4 overflow-x-auto">
-            <code className="text-sm text-gray-100 font-mono leading-relaxed whitespace-pre">
-              {value.code}
-            </code>
-          </pre>
-        </div>
-      );
-    },
+    codeBlock: CodeBlock,
   },
   block: {
-    normal: ({ children }: IBlockNormal) => (
-      <p className="text-gray-300 leading-relaxed mb-4">{children}</p>
-    ),
     h1: ({ children }: IBlockH1) => (
-      <h1 className="text-3xl font-bold text-white mb-6 mt-8">{children}</h1>
+      <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 mt-8 leading-tight">
+        {children}
+      </h1>
     ),
     h2: ({ children }: IBlockH2) => (
-      <h2 className="text-2xl font-bold text-white mb-5 mt-7">{children}</h2>
+      <h2 className="text-3xl md:text-4xl font-semibold text-white mb-5 mt-7 leading-snug">
+        {children}
+      </h2>
     ),
     h3: ({ children }: IBlockH3) => (
-      <h3 className="text-xl font-semibold text-white mb-4 mt-6">{children}</h3>
+      <h3 className="text-2xl md:text-3xl font-semibold text-gray-100 mb-4 mt-6 leading-snug">
+        {children}
+      </h3>
     ),
     h4: ({ children }: IBlockH4) => (
-      <h4 className="text-lg font-semibold text-white mb-3 mt-5">{children}</h4>
+      <h4 className="text-xl md:text-2xl font-medium text-gray-100 mb-3 mt-5">{children}</h4>
+    ),
+    normal: ({ children }: IBlockNormal) => (
+      <p className="text-gray-300 mb-4 leading-relaxed text-base md:text-lg">{children}</p>
     ),
     blockquote: ({ children }: IBlockQuote) => (
-      <blockquote className="border-l-4 border-purple-500 pl-6 py-4 my-6 bg-gray-800/30 rounded-r-lg">
-        <div className="text-gray-200 italic">{children}</div>
+      <blockquote className="border-l-4 border-purple-500 pl-6 my-6 italic text-gray-200 bg-gray-800/30 py-4 rounded-r-lg">
+        {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }: IListBullet) => (
-      <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4 ml-4">{children}</ul>
+      <ul className="list-disc list-inside text-gray-300 mb-4 space-y-2 ml-4">{children}</ul>
     ),
     number: ({ children }: IListNumber) => (
-      <ol className="list-decimal list-inside text-gray-300 space-y-2 mb-4 ml-4">{children}</ol>
+      <ol className="list-decimal list-inside text-gray-300 mb-4 space-y-2 ml-4">{children}</ol>
     ),
   },
   listItem: {
-    bullet: ({ children }: IListBullet) => (
-      <li className="text-gray-300 leading-relaxed">{children}</li>
-    ),
-    number: ({ children }: IListNumber) => (
-      <li className="text-gray-300 leading-relaxed">{children}</li>
-    ),
+    bullet: ({ children }: any) => <li className="text-gray-300 leading-relaxed">{children}</li>,
+    number: ({ children }: any) => <li className="text-gray-300 leading-relaxed">{children}</li>,
   },
   marks: {
     strong: ({ children }: IMarkStrong) => (
@@ -104,14 +105,23 @@ export const portableTextComponents = {
         {children}
       </code>
     ),
-    link: ({ children, value }: IMarkLinkProps) => (
-      <a
-        href={value?.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-400 hover:text-blue-300 underline transition-colors">
-        {children}
-      </a>
-    ),
+    link: ({ children, value }: IMarkLinkProps) => {
+      const isExternal = value?.href?.startsWith('http');
+      return (
+        <a
+          href={value?.href}
+          target={isExternal ? '_blank' : undefined}
+          rel={isExternal ? 'noopener noreferrer' : undefined}
+          className="text-blue-400 hover:text-blue-300 underline transition-colors"
+          aria-label={isExternal ? `${children} (opens in new tab)` : undefined}>
+          {children}
+          {isExternal && (
+            <span className="inline-block ml-1" aria-hidden="true">
+              ↗
+            </span>
+          )}
+        </a>
+      );
+    },
   },
 };

@@ -1,12 +1,17 @@
-import type { Metadata, Viewport } from 'next';
+import { Metadata, Viewport } from 'next';
+
+const siteUrl = process.env.SITE_URL || 'https://ahmedqeshta.vercel.app';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(siteUrl),
   title: 'Ahmed Qeshta - Software Engineer',
   description: 'Ahmed Qeshta - Software Engineer',
   icons: {
     icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
+  manifest: '/manifest.json',
   openGraph: {
     title: 'Ahmed Qeshta - Software Engineer',
     description: 'Ahmed Qeshta - Software Engineer',
@@ -28,15 +33,14 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: process.env.SITE_URL || '',
+    canonical: siteUrl,
   },
-  manifest: '/manifest.json',
   creator: 'Ahmed Qeshta',
   publisher: 'Ahmed Qeshta',
   authors: [
     {
       name: 'Ahmed Qeshta',
-      url: new URL(process.env.SITE_URL || 'http://localhost:3000'),
+      url: new URL(siteUrl),
     },
   ],
   applicationName: 'Ahmed Qeshta - Software Engineer',
