@@ -1,6 +1,6 @@
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { IProjectResponse } from '@/features/projects/types/project';
-import { PortableText, PortableTextReactComponents } from '@portabletext/react';
+import { PortableText } from '@portabletext/react';
 import { portableTextComponents } from '@/features/shard/components/ui/PortableTextComponents';
 
 export default function FullDescription({ project }: IProjectResponse) {
@@ -22,10 +22,7 @@ export default function FullDescription({ project }: IProjectResponse) {
       </ScrollAnimation>
       <ScrollAnimation direction="down" delay={0.3}>
         <div className="prose prose-invert prose-lg max-w-none">
-          <PortableText
-            value={fullDescription}
-            components={portableTextComponents as unknown as PortableTextReactComponents}
-          />
+          <PortableText value={fullDescription} components={portableTextComponents} />
         </div>
       </ScrollAnimation>
     </ScrollAnimation>

@@ -1,40 +1,45 @@
 export default function Loading() {
   return (
     <div
-      className="flex items-center justify-center min-h-[300px] py-20"
-      role="status"
-      aria-live="polite"
-      aria-label="Loading content">
-      <div className="flex flex-col items-center space-y-4">
-        {/* Optimized loading spinner */}
-        <div className="relative">
-          <div className="w-12 h-12 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin"></div>
-          <div
-            className="absolute inset-0 w-12 h-12 border-4 border-transparent border-r-blue-500 rounded-full animate-spin"
-            style={{ animationDirection: 'reverse', animationDuration: '1.5s' }}></div>
+      className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center"
+      data-testid="loading-container">
+      <div className="text-center space-y-8" data-testid="loading-content">
+        {/* Animated background elements */}
+        <div
+          className="absolute inset-0 overflow-hidden pointer-events-none"
+          data-testid="background-elements">
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+          <div className="absolute top-3/4 right-1/4 w-32 h-32 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-500"></div>
+        </div>
+
+        {/* Main spinner */}
+        <div className="relative flex justify-center min-h-12" data-testid="spinner-container">
+          {/* Outer spinning ring */}
+          <div className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] w-20 h-20  border-4 border-transparent border-t-purple-500 border-r-blue-500 rounded-full animate-spin"></div>
+
+          {/* Inner spinning ring */}
+          <div className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] w-16 h-16 border-4 border-transparent border-b-pink-500 border-l-purple-400 rounded-full animate-spin animate-reverse"></div>
+
+          {/* Center dot */}
+          <div className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
         </div>
 
         {/* Loading text */}
-        <div className="text-center">
-          <p className="text-gray-300 text-sm font-medium animate-pulse">Loading...</p>
+        <div className="space-y-2" data-testid="loading-text">
+          <h2 className="text-2xl font-bold gradient-text animate-pulse">Loading</h2>
+          <p className="text-gray-400 text-sm animate-pulse delay-200">
+            Please wait while we prepare your content...
+          </p>
+        </div>
 
-          {/* Progress dots */}
-          <div className="flex justify-center space-x-1 mt-2">
-            <div
-              className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"
-              style={{ animationDelay: '0s' }}></div>
-            <div
-              className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"
-              style={{ animationDelay: '0.2s' }}></div>
-            <div
-              className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"
-              style={{ animationDelay: '0.4s' }}></div>
-          </div>
+        {/* Progress dots */}
+        <div className="flex justify-center space-x-2" data-testid="progress-dots">
+          <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce"></div>
+          <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce delay-100"></div>
+          <div className="w-2 h-2 bg-pink-500 rounded-full animate-bounce delay-200"></div>
         </div>
       </div>
-
-      {/* Screen reader text */}
-      <span className="sr-only">Content is loading, please wait</span>
     </div>
   );
 }
