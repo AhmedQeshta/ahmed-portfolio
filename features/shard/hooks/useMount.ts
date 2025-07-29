@@ -1,11 +1,17 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 
-export default function useMount() {
-  const [mounted, setMounted] = useState(false);
+/**
+ * Hook to track if component has mounted on client-side
+ * Useful for preventing hydration mismatches
+ */
+export default function useMount(): boolean {
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    setIsMounted(true);
   }, []);
 
-  return mounted;
+  return isMounted;
 }

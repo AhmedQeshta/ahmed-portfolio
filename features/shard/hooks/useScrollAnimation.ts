@@ -1,15 +1,25 @@
-import { motion, useInView, Variants } from 'framer-motion';
-import { useRef, useMemo } from 'react';
+'use client';
 
-export interface IUseScrollAnimation {
-  direction: string;
+import { useRef, useMemo } from 'react';
+import { useInView, Variants } from 'framer-motion';
+
+interface UseScrollAnimationProps {
+  direction: 'up' | 'down' | 'left' | 'right';
   duration: number;
   delay: number;
 }
 
-export default function useScrollAnimation({ direction, duration, delay }: IUseScrollAnimation) {
+export default function useScrollAnimation({
+  direction,
+  duration,
+  delay,
+}: UseScrollAnimationProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const isInView = useInView(ref, {
+    once: true,
+    margin: '-50px',
+    amount: 0.3, // Only trigger when 30% is visible for better performance
+  });
 
   // Memoize variants to prevent recreation on every render
   const variants: Variants = useMemo(
@@ -19,7 +29,7 @@ export default function useScrollAnimation({ direction, duration, delay }: IUseS
         y: direction === 'up' ? 30 : direction === 'down' ? -30 : 0,
         x: direction === 'left' ? 30 : direction === 'right' ? -30 : 0,
         // Remove expensive blur effect for better mobile performance
-        scale: 0.95,
+        scale: 0.98,
       },
       visible: {
         opacity: 1,
@@ -39,8 +49,22 @@ export default function useScrollAnimation({ direction, duration, delay }: IUseS
   );
 
   // Reduce animation complexity on lower-end devices
-  const reduceMotion =
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Handle test environment gracefully
+  const reduceMotion = useMemo(() => {
+    if (typeof window === 'undefined') return false;
 
-  return { ref, isInView, variants, reduceMotion };
+    try {
+      return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    } catch (error) {
+      // Fallback for test environments or unsupported browsers
+      return false;
+    }
+  }, []);
+
+  return {
+    ref,
+    isInView,
+    variants,
+    reduceMotion,
+  };
 }

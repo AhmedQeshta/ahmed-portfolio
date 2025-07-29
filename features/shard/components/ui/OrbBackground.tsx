@@ -14,26 +14,30 @@ export default function OrbBackground() {
 
   return (
     <div
-      className="fixed inset-0 overflow-hidden pointer-events-none z-0"
+      className="fixed inset-0 overflow-hidden pointer-events-none"
       aria-hidden="true"
-      style={{ willChange: 'auto' }}>
+      data-testid="orb-background"
+      style={{ willChange: 'auto', zIndex: -1 }}>
       {/* Simplified background orbs with CSS animations */}
       <div
-        className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-600/10 rounded-full mix-blend-multiply filter blur-xl"
+        className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-orb-purple rounded-full blur-3xl animate-pulse"
+        data-testid="orb-purple"
         style={{
           animation: 'float 20s ease-in-out infinite',
           animationDelay: '0s',
         }}
       />
       <div
-        className="absolute top-1/3 right-1/4 w-72 h-72 bg-blue-600/10 rounded-full mix-blend-multiply filter blur-xl"
+        className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-orb-blue rounded-full blur-3xl animate-pulse"
+        data-testid="orb-blue"
         style={{
           animation: 'float 25s ease-in-out infinite',
           animationDelay: '7s',
         }}
       />
       <div
-        className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-pink-600/10 rounded-full mix-blend-multiply filter blur-xl"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orb-pink rounded-full blur-3xl animate-pulse"
+        data-testid="orb-pink"
         style={{
           animation: 'float 30s ease-in-out infinite',
           animationDelay: '14s',

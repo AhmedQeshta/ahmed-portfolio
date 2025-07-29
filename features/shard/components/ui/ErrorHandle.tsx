@@ -11,7 +11,7 @@ export default function ErrorHandle({ id, description }: IErrorHandle) {
       role="alert"
       aria-live="polite">
       <div className="mx-auto max-w-5xl px-4" data-testid="error-container">
-        <div className="text-center">
+        <div className="text-center text-red-400">
           {/* Error Icon */}
           <div className="flex justify-center mb-4">
             <div className="p-3 bg-red-500/10 rounded-full">

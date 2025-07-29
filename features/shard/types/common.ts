@@ -141,3 +141,11 @@ export interface IMarkLinkProps {
   children: React.ReactNode;
   value: IMarkLinkValue;
 }
+
+export interface IGetDimensions {
+  width: number;
+  height: number;
+  aspectRatio: number;
+  imageUrl: string;
+  blurDataURL: string;
+}
