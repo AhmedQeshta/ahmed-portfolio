@@ -139,9 +139,6 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
 
-        {/* Preload critical CSS */}
-        <link rel="preload" href="/_next/static/css/app.css" as="style" />
-
         {/* Critical inline CSS to prevent FOUC */}
         <style
           dangerouslySetInnerHTML={{

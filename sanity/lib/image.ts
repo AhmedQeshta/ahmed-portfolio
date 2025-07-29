@@ -79,8 +79,13 @@ export function getBlurDataURL(source: any): string {
 export function getSanityImageUrl(ref: string | undefined): string | undefined {
   if (!ref) return undefined;
 
-  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '0ew1aiai';
-  const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'ahmed-qeshta-portfolio';
+  const projectId = process.env.SANITY_PROJECT_ID;
+  const dataset = process.env.SANITY_DATASET;
+  if (!projectId || !dataset) {
+    throw new Error(
+      'Missing required environment variables: SANITY_PROJECT_ID or NEXT_PUBLIC_SANITY_DATASET',
+    );
+  }
 
   // Clean and normalize the reference
   const cleanRef = ref.replace('image-', '').replace(/-(jpg|png|webp|jpeg|gif|avif)$/, '.$1');

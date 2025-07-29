@@ -176,9 +176,21 @@ async function syncContactForm() {
   const tx = db.transaction(['forms'], 'readonly');
   const forms = await tx.objectStore('forms').getAll();
 
+  // Validate API endpoint availability
+  let isEndpointAvailable = false;
+  try {
+    const response = await fetch('/api/contact', { method: 'HEAD' });
+    isEndpointAvailable = response.ok;
+  } catch (error) {
+    console.error('API endpoint validation failed:', error);
+  }
+  if (!isEndpointAvailable) {
+    console.warn('API endpoint is unavailable. Skipping form sync.');
+    return;
+  }
   for (const form of forms) {
     try {
-      await fetch('/api/contact', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

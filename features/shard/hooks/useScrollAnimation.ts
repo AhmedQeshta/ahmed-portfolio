@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import { useInView, Variants } from 'framer-motion';
 
 interface UseScrollAnimationProps {
@@ -48,16 +48,48 @@ export default function useScrollAnimation({
     [direction, duration, delay],
   );
 
-  // Reduce animation complexity on lower-end devices
-  // Handle test environment gracefully
-  const reduceMotion = useMemo(() => {
-    if (typeof window === 'undefined') return false;
+  // Properly listen for changes in motion preferences
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    // Handle SSR and test environments gracefully
+    if (typeof window === 'undefined') return;
+
+    let mediaQuery: MediaQueryList | null = null;
 
     try {
-      return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      // Set initial value
+      setReduceMotion(mediaQuery.matches);
+
+      // Create event listener function
+      const handleChange = (event: MediaQueryListEvent) => {
+        setReduceMotion(event.matches);
+      };
+
+      // Add event listener
+      if (mediaQuery.addEventListener) {
+        mediaQuery.addEventListener('change', handleChange);
+      } else {
+        // Fallback for older browsers
+        mediaQuery.addListener(handleChange);
+      }
+
+      // Cleanup function
+      return () => {
+        if (mediaQuery) {
+          if (mediaQuery.removeEventListener) {
+            mediaQuery.removeEventListener('change', handleChange);
+          } else {
+            // Fallback for older browsers
+            mediaQuery.removeListener(handleChange);
+          }
+        }
+      };
     } catch (error) {
       // Fallback for test environments or unsupported browsers
-      return false;
+      setReduceMotion(false);
     }
   }, []);
 

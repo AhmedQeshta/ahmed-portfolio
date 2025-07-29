@@ -98,8 +98,8 @@ Create a `.env.local` file in the root directory:
 
 ```env
 # Sanity Configuration
-NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
-NEXT_PUBLIC_SANITY_DATASET=your_dataset
+SANITY_PROJECT_ID=your_project_id
+SANITY_DATASET=your_dataset
 SANITY_API_TOKEN=your_api_token
 
 # Site Configuration

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useState } from 'react';
 import {
   IBlockH1,
   IBlockH2,
@@ -16,6 +17,136 @@ import {
   IPortableTextComponents,
 } from '@/features/shard/types/common';
 import { getDimensions } from '@/features/shard/utils/portableText';
+
+// Enhanced clipboard functionality with error handling and fallbacks
+const useClipboard = () => {
+  const [copyStatus, setCopyStatus] = useState<{
+    status: 'idle' | 'success' | 'error';
+    message: string;
+  }>({ status: 'idle', message: 'Copy' });
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      // Modern Clipboard API (preferred method)
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        setCopyStatus({ status: 'success', message: 'Copied!' });
+      } else {
+        // Fallback for older browsers or non-secure contexts
+        await fallbackCopyToClipboard(text);
+        setCopyStatus({ status: 'success', message: 'Copied!' });
+      }
+    } catch (error) {
+      console.error('Failed to copy to clipboard:', error);
+      setCopyStatus({
+        status: 'error',
+        message: 'Copy failed',
+      });
+    }
+
+    // Reset status after 2 seconds
+    setTimeout(() => {
+      setCopyStatus({ status: 'idle', message: 'Copy' });
+    }, 2000);
+  };
+
+  // Fallback method for browsers without Clipboard API support
+  const fallbackCopyToClipboard = (text: string): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-999999px';
+      textArea.style.top = '-999999px';
+      textArea.setAttribute('aria-hidden', 'true');
+
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        if (successful) {
+          resolve();
+        } else {
+          reject(new Error('execCommand copy failed'));
+        }
+      } catch (error) {
+        document.body.removeChild(textArea);
+        reject(error);
+      }
+    });
+  };
+
+  return { copyToClipboard, copyStatus };
+};
+
+// Enhanced CodeBlock component with improved clipboard functionality
+const CodeBlock = ({ value }: ICodeBlock) => {
+  const { copyToClipboard, copyStatus } = useClipboard();
+
+  if (!value?.code) return null;
+
+  const handleCopy = () => {
+    copyToClipboard(value.code);
+
+    // Announce to screen readers
+    const announcement = document.createElement('div');
+    announcement.setAttribute('aria-live', 'polite');
+    announcement.setAttribute('aria-atomic', 'true');
+    announcement.className = 'sr-only';
+    announcement.textContent =
+      copyStatus.status === 'success'
+        ? 'Code copied to clipboard successfully'
+        : 'Failed to copy code to clipboard';
+
+    document.body.appendChild(announcement);
+    setTimeout(() => document.body.removeChild(announcement), 1000);
+  };
+
+  const getButtonStyles = () => {
+    const baseStyles =
+      'transition-all duration-200 text-xs px-3 py-1 rounded font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900';
+
+    switch (copyStatus.status) {
+      case 'success':
+        return `${baseStyles} bg-green-600 text-white hover:bg-green-700`;
+      case 'error':
+        return `${baseStyles} bg-red-600 text-white hover:bg-red-700`;
+      default:
+        return `${baseStyles} text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50`;
+    }
+  };
+
+  return (
+    <div className="my-6 rounded-xl overflow-hidden border border-gray-700 bg-gray-900/80">
+      <div className="bg-gray-800/80 px-4 py-2 text-sm text-gray-300 border-b border-gray-700 flex items-center justify-between">
+        <span className="font-medium">{value.language || 'Code'}</span>
+        <button
+          className={getButtonStyles()}
+          onClick={handleCopy}
+          disabled={copyStatus.status !== 'idle'}
+          aria-label={`Copy ${value.language || 'code'} to clipboard. ${copyStatus.message}`}
+          aria-describedby="copy-status">
+          {copyStatus.message}
+        </button>
+      </div>
+      <pre className="bg-gray-900/80 p-4 overflow-x-auto">
+        <code className="text-sm text-gray-100 font-mono leading-relaxed whitespace-pre">
+          {value.code}
+        </code>
+      </pre>
+      {/* Hidden status for screen readers */}
+      <div id="copy-status" className="sr-only" aria-live="polite">
+        {copyStatus.status === 'success' && 'Code has been copied to clipboard'}
+        {copyStatus.status === 'error' &&
+          'Failed to copy code to clipboard. You may need to copy manually.'}
+      </div>
+    </div>
+  );
+};
 
 // Shared PortableText components for consistent rich text rendering
 export const portableTextComponents = {
@@ -51,28 +182,7 @@ export const portableTextComponents = {
         </div>
       );
     },
-    codeBlock: ({ value }: ICodeBlock) => {
-      if (!value?.code) return null;
-
-      return (
-        <div className="my-6 rounded-xl overflow-hidden border border-gray-700 bg-gray-900/80">
-          <div className="bg-gray-800/80 px-4 py-2 text-sm text-gray-300 border-b border-gray-700 flex items-center justify-between">
-            <span className="font-medium">{value.language || 'Code'}</span>
-            <button
-              className="text-gray-400 hover:text-white transition-colors text-xs px-2 py-1 rounded bg-gray-700/50 hover:bg-gray-600/50"
-              onClick={() => navigator.clipboard?.writeText(value.code)}
-              aria-label="Copy code to clipboard">
-              Copy
-            </button>
-          </div>
-          <pre className="bg-gray-900/80 p-4 overflow-x-auto">
-            <code className="text-sm text-gray-100 font-mono leading-relaxed whitespace-pre">
-              {value.code}
-            </code>
-          </pre>
-        </div>
-      );
-    },
+    codeBlock: CodeBlock,
   },
   block: {
     h1: ({ children }: IBlockH1) => (

@@ -35,8 +35,33 @@ const nextConfig = {
     ],
     // Enable modern output for better performance
     esmExternals: true,
-    // Optimize CSS loading
-    optimizeCss: false, // Disabled due to critters issue
+
+    /**
+     * CSS Optimization (Currently Disabled)
+     *
+     * optimizeCss enables Critters, which inlines critical CSS in HTML during build.
+     * This can improve First Contentful Paint (FCP) and reduce render-blocking CSS.
+     *
+     * DISABLED REASONS:
+     * 1. Tailwind CSS conflicts: Critters incorrectly strips utility classes used in dynamic content
+     * 2. CSS variable issues: Custom properties in Tailwind and component styles break during inlining
+     * 3. Animation conflicts: Framer Motion styles get incorrectly processed, breaking animations
+     * 4. Build instability: Intermittent build failures due to CSS parsing errors
+     *
+     * SAFE RE-ENABLING CONDITIONS:
+     * - Test thoroughly with full Tailwind CSS usage (especially dynamic classes)
+     * - Verify all animations (Framer Motion, CSS transitions) work correctly
+     * - Ensure CSS variables are preserved in both light/dark themes
+     * - Run multiple production builds to check for consistency
+     * - Monitor Core Web Vitals after enabling (FCP, LCP, CLS)
+     *
+     * ALTERNATIVE: Consider manual critical CSS inlining for above-the-fold content
+     * or use Next.js built-in CSS optimization which is more reliable.
+     *
+     * Last tested: [Add date when this was last tested]
+     * Next.js version when disabled: [Add version]
+     */
+    optimizeCss: false,
   },
   // Turbopack configuration (moved from experimental)
   turbopack: {
