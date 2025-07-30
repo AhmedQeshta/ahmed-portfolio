@@ -8,7 +8,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { useSlider } from '@/features/works/hooks/useSlider';
 
 export default function WorkSlider({ works }: IWorkSlider) {
-  useSlider();
+  const { sliderRef, updateSlideFocus } = useSlider(works);
 
   const sliderSettings = {
     dots: true,
@@ -23,6 +23,7 @@ export default function WorkSlider({ works }: IWorkSlider) {
     prevArrow: <Arrow />,
     nextArrow: <Arrow isNext={true} />,
     centerMode: false,
+    afterChange: updateSlideFocus, // Update focus after each slide change
     responsive: [
       {
         breakpoint: 1440,
@@ -31,6 +32,7 @@ export default function WorkSlider({ works }: IWorkSlider) {
           slidesToScroll: 1,
           arrows: true,
           dots: true,
+          afterChange: updateSlideFocus,
         },
       },
       {
@@ -40,6 +42,7 @@ export default function WorkSlider({ works }: IWorkSlider) {
           slidesToScroll: 1,
           arrows: true,
           dots: true,
+          afterChange: updateSlideFocus,
         },
       },
       {
@@ -51,6 +54,7 @@ export default function WorkSlider({ works }: IWorkSlider) {
           dots: true,
           centerMode: true,
           centerPadding: '30px',
+          afterChange: updateSlideFocus,
         },
       },
     ],
@@ -59,7 +63,7 @@ export default function WorkSlider({ works }: IWorkSlider) {
   return (
     <div className="relative px-10 md:px-12 lg:px-16 -mx-4 md:-mx-8 lg:-mx-12 xl:-mx-16 pb-14">
       <div className="mx-2 md:mx-6">
-        <Slider {...sliderSettings} className="overflow-visible">
+        <Slider ref={sliderRef} {...sliderSettings} className="overflow-visible">
           {works.map((work) => (
             <div key={work._id} className="px-2 md:px-3 lg:px-4">
               <Card work={work} />

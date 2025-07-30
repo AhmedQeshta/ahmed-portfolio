@@ -158,10 +158,10 @@ describe('Search', () => {
     expect(container).toHaveClass(
       'mx-auto',
       'max-w-7xl',
-      'w-full',
       'px-5',
       'sm:px-7',
-      'lg:px-10',
+      'lg:px-5',
+      'w-full',
       'py-5',
     );
 
