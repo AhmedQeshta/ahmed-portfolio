@@ -10,7 +10,7 @@ jest.mock('@/features/header/components/Header', () => {
         id="home"
         className="relative min-h-screen overflow-hidden flex items-center bg-gradient-to-br from-slate-900 via-purple-900/10 to-slate-900"
         data-testid="header-section">
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-7 lg:px-10 w-full py-16 lg:py-24">
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-7 lg:px-5 w-full py-16 lg:py-24">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center min-h-[80vh]">
             <div className="order-2 lg:order-1 space-y-10" data-testid="base-info-wrapper">
               <div data-testid="base-info">BaseInfo</div>

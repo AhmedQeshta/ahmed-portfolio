@@ -24,7 +24,7 @@ export default async function ContactSection() {
         <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-7 lg:px-10">
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-7 lg:px-5">
           {/* Header Section */}
           <ContactHeader />
 
