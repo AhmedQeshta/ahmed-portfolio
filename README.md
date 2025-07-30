@@ -202,19 +202,13 @@ Customize the design in:
 4. Push to branch: `git push origin feature/new-feature`
 5. Submit a pull request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 📞 Contact
 
 **Ahmed Qeshta**
 
-- Email: [your.email@domain.com](mailto:your.email@domain.com)
-- Portfolio: [https://your-portfolio-url.com](https://your-portfolio-url.com)
-- LinkedIn: [linkedin.com/in/ahmed-qeshta](https://linkedin.com/in/ahmed-qeshta)
-- GitHub: [github.com/ahmed-qeshta](https://github.com/ahmed-qeshta)
-
----
+- Email: [ahmed.qeshta.dev@gmail.com](mailto:ahmed.qeshta.dev@gmail.com)
+- Portfolio: [https://ahmedqeshta.vercel.app](https://ahmedqeshta.vercel.app)
+- LinkedIn: [linkedin.com/in/ahmedqeshta](https://linkedin.com/in/ahmedqeshta)
+- GitHub: [github.com/ahmedqeshta](https://github.com/ahmedqeshta)
 
 ⭐ Star this repository if you found it helpful!
