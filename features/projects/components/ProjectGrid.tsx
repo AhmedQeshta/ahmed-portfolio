@@ -19,7 +19,7 @@ export default async function ProjectGrid({ readMore = true }: IProjectGrid) {
         <ScrollAnimation
           direction="down"
           delay={0.1}
-          className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-10">
+          className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-5">
           {/* Header Section */}
           <ScrollAnimation direction="down" delay={0.2}>
             <div className="text-center mb-12">
