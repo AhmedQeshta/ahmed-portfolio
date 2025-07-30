@@ -4,7 +4,7 @@ import { IProfilePictureProps } from '@/features/header/types/header';
 
 export default function ProfilePicture({ profilePicture, name }: IProfilePictureProps) {
   return profilePicture ? (
-    <div className="relative h-[250px] w-[250px] md:h-[300px] md:w-[300px] z-10">
+    <div className="relative h-[180px] w-[180px] sm:h-[250px] sm:w-[250px] md:h-[300px] md:w-[300px] z-10">
       {/* Multiple Animated Borders */}
       <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-purple-500/30 via-blue-500/30 to-pink-500/30 blur-lg animate-pulse" />
       <div className="absolute -inset-1 rounded-full border border-purple-500/40 animate-spin-slow" />
@@ -33,9 +33,9 @@ export default function ProfilePicture({ profilePicture, name }: IProfilePicture
       <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/15 via-transparent to-transparent z-20 pointer-events-none" />
     </div>
   ) : (
-    <div className="relative h-[320px] w-[320px] z-10">
+    <div className="relative h-[180px] w-[180px] sm:h-[250px] sm:w-[250px] md:h-[320px] md:w-[320px] z-10">
       <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-purple-500/30 via-blue-500/30 to-pink-500/30 blur-lg animate-pulse" />
-      <div className="w-full h-full rounded-full border-2 border-white/25 shadow-xl bg-gradient-to-br from-purple-500 via-blue-500 to-pink-500 flex items-center justify-center text-white text-6xl font-bold relative z-10">
+      <div className="w-full h-full rounded-full border-2 border-white/25 shadow-xl bg-gradient-to-br from-purple-500 via-blue-500 to-pink-500 flex items-center justify-center text-white text-4xl sm:text-5xl md:text-6xl font-bold relative z-10">
         {name.charAt(0)}
       </div>
     </div>

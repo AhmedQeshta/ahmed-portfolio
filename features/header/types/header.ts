@@ -26,6 +26,7 @@ export interface ITechnologiesOrbitItemProps {
   top: number;
   left: number;
   delay: number;
+  isMobile?: boolean;
 }
 
 export interface ICalculatePositionProps {
