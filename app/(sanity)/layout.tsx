@@ -1,7 +1,6 @@
 import '@/app/globals.css';
 import OrbBackground from '@/features/shard/components/ui/OrbBackground';
-
-import type { Metadata, Viewport } from 'next';
+import { Metadata, Viewport } from 'next';
 
 const siteUrl = process.env.SITE_URL || 'https://ahmedqeshta.vercel.app';
 
@@ -11,17 +10,19 @@ export const metadata: Metadata = {
   description: 'Ahmed Qeshta - Software Engineer',
   icons: {
     icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/images/apple-touch-icon.png',
   },
   openGraph: {
     title: 'Ahmed Qeshta - Software Engineer',
     description: 'Ahmed Qeshta - Software Engineer',
-    images: ['images/ahmed-qeshta-og.png'],
+    images: ['/images/ahmed-qeshta-og.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Ahmed Qeshta - Software Engineer',
     description: 'Ahmed Qeshta - Software Engineer',
-    images: ['images/ahmed-qeshta-og.png'],
+    images: ['/images/ahmed-qeshta-og.png'],
     creator: '@ahmedqeshta',
   },
   robots: {

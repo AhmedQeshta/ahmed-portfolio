@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website built with Next.js 15 and Sanity CMS, showcasing projects, blog posts, work experience, and professional information.
 
-<img width="1847" height="1849" alt="Image" src="https://github.com/user-attachments/assets/9171a61c-118b-4b1d-a4e7-7769ce27556f" />
+![Portfolio Preview](public/images/preview.png)
 
 ## 🌟 Features
 
@@ -202,10 +202,6 @@ Customize the design in:
 4. Push to branch: `git push origin feature/new-feature`
 5. Submit a pull request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 📞 Contact
 
 **Ahmed Qeshta**
@@ -214,7 +210,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Portfolio: [https://ahmedqeshta.vercel.app](https://ahmedqeshta.vercel.app)
 - LinkedIn: [linkedin.com/in/ahmedqeshta](https://linkedin.com/in/ahmedqeshta)
 - GitHub: [github.com/ahmedqeshta](https://github.com/ahmedqeshta)
-
----
 
 ⭐ Star this repository if you found it helpful!
