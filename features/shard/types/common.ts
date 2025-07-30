@@ -103,6 +103,17 @@ export interface IBlockH4 {
   children: React.ReactNode;
 }
 
+// h5
+export interface IBlockH5 {
+  children: React.ReactNode;
+}
+
+// h6
+
+export interface IBlockH6 {
+  children: React.ReactNode;
+}
+
 // blockquote
 export interface IBlockQuote {
   children: React.ReactNode;
