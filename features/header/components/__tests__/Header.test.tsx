@@ -81,8 +81,9 @@ describe('Header', () => {
     );
   });
 
-  it('uses enhanced container sizing and spacing', () => {
-    render(<Header />);
+  it('uses enhanced container sizing and spacing', async () => {
+    render(await Header());
+
     const section = screen.getByTestId('header-section');
     const container = section.querySelector('.mx-auto');
 
@@ -92,7 +93,7 @@ describe('Header', () => {
       'max-w-7xl',
       'px-5',
       'sm:px-7',
-      'lg:px-10',
+      'lg:px-5',
       'w-full',
       'py-16',
       'lg:py-24',

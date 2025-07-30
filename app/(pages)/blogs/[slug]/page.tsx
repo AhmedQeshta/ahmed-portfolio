@@ -11,9 +11,9 @@ import { Metadata } from 'next/types';
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
 
   try {
     const features = await sanityFetch<FeatureResponse[]>({

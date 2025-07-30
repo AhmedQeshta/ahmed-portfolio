@@ -1,9 +1,12 @@
+'use client';
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { IBlogPostResponse } from '@/features/blogs/types/blog';
-import { PortableText } from '@portabletext/react';
+import { PortableText, PortableTextComponents } from '@portabletext/react';
 import { portableTextComponents } from '@/features/shard/components/ui/PortableTextComponents';
+import useMobile from '@/features/shard/hooks/useMobile';
 
 export default function BlogContent({ blog }: IBlogPostResponse) {
+  const isMobile = useMobile();
   if (!blog) return null;
   const { content } = blog;
 
@@ -21,7 +24,10 @@ export default function BlogContent({ blog }: IBlogPostResponse) {
         direction="down"
         delay={0.5}
         className="prose prose-invert prose-lg max-w-none">
-        <PortableText value={content} components={portableTextComponents} />
+        <PortableText
+          value={content}
+          components={portableTextComponents as unknown as PortableTextComponents}
+        />
       </ScrollAnimation>
     </ScrollAnimation>
   );
