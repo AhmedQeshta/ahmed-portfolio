@@ -20,15 +20,12 @@ export default function BlogContent({ blog }: IBlogPostResponse) {
       direction="down"
       delay={0.4}
       className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 mb-8">
-      <ScrollAnimation
-        direction="down"
-        delay={0.5}
-        className="prose prose-invert prose-lg max-w-none">
+      <div className="prose prose-invert prose-lg max-w-none text-justify">
         <PortableText
           value={content}
           components={portableTextComponents as unknown as PortableTextComponents}
         />
-      </ScrollAnimation>
+      </div>
     </ScrollAnimation>
   );
 }

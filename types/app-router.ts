@@ -1,11 +1,11 @@
 // This file creates a compatible type for use with app router pages
-// It redefines the PageProps type to not use Promise<any> for params
+// Updated for Next.js 15 where params is a Promise that must be awaited
 
 /**
- * Fix for Next.js 15.3.2 type error
- * "Type 'BlogPage' does not satisfy the constraint 'PageProps'."
+ * Type for Next.js 15.3.2 with async params support
+ * In Next.js 15, params is a Promise that must be awaited before accessing properties
  */
 export type FixedPageProps = {
-  params: Record<string, string>;
+  params: Promise<Record<string, string>>;
   searchParams?: Record<string, string | string[] | undefined>;
 };

@@ -5,6 +5,8 @@ import {
   IBlockH2,
   IBlockH3,
   IBlockH4,
+  IBlockH5,
+  IBlockH6,
   IBlockNormal,
   IBlockQuote,
   ICodeBlock,
@@ -16,109 +18,52 @@ import {
   IMarkStrong,
   IPortableTextComponents,
 } from '@/features/shard/types/common';
+import PortableImage from '@/features/shard/components/portableText/PortableImage';
+import CodeBlock from '@/features/shard/components/portableText/CodeBlock';
+import Normal from '@/features/shard/components/portableText/block/Normal';
+import Header1 from '@/features/shard/components/portableText/block/Header1';
+import Header2 from '@/features/shard/components/portableText/block/Header2';
+import Header3 from '@/features/shard/components/portableText/block/Header3';
+import Header4 from '@/features/shard/components/portableText/block/Header4';
+import Header5 from '@/features/shard/components/portableText/block/Header5';
+import Header6 from '@/features/shard/components/portableText/block/Header6';
+import Blockquote from '@/features/shard/components/portableText/block/Blockquote';
+import BulletList from '@/features/shard/components/portableText/block/BulletList';
+import NumberList from '@/features/shard/components/portableText/block/NumberList';
+import ListItem from '@/features/shard/components/portableText/block/ListItem';
+import Strong from '@/features/shard/components/portableText/block/Strong';
+import Link from '@/features/shard/components/portableText/block/Link';
+import Code from '@/features/shard/components/portableText/block/Code';
+import Em from '@/features/shard/components/portableText/block/Em';
 
 // Shared PortableText components for consistent rich text rendering
 export const portableTextComponents = {
   types: {
-    image: ({ value }: IPortableTextComponents) => {
-      if (!value?.asset) return null;
-
-      return (
-        <div className="my-6 sm:my-8 w-full">
-          <div className="relative rounded-xl overflow-hidden border border-gray-700 mx-auto max-w-4xl">
-            <Image
-              src={getImageUrl(value, 1200, 800, 90)}
-              alt={value.alt || 'Content image'}
-              width={1200}
-              height={800}
-              className="w-full h-auto object-cover"
-              sizes="(max-width: 640px) 100vw, (max-width: 768px) 95vw, (max-width: 1024px) 85vw, (max-width: 1280px) 75vw, 1200px"
-              priority={false}
-            />
-            {value.alt && (
-              <div className="bg-gray-800/50 border-t border-gray-700">
-                <p className="text-center text-xs sm:text-sm text-gray-400 p-2 sm:p-3">
-                  {value.alt}
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      );
-    },
-    codeBlock: ({ value }: ICodeBlock) => {
-      if (!value?.code) return null;
-
-      return (
-        <div className="my-6 rounded-xl overflow-hidden border border-gray-700">
-          <div className="bg-gray-800/80 px-4 py-2 text-sm text-gray-300 border-b border-gray-700">
-            <span className="font-medium">{value.language || 'Code'}</span>
-          </div>
-          <pre className="bg-gray-900/80 p-4 overflow-x-auto">
-            <code className="text-sm text-gray-100 font-mono leading-relaxed whitespace-pre">
-              {value.code}
-            </code>
-          </pre>
-        </div>
-      );
-    },
+    image: ({ value }: IPortableTextComponents) => <PortableImage value={value} />,
+    codeBlock: ({ value }: ICodeBlock) => <CodeBlock value={value} />,
   },
   block: {
-    normal: ({ children }: IBlockNormal) => (
-      <p className="text-gray-300 leading-relaxed mb-4">{children}</p>
-    ),
-    h1: ({ children }: IBlockH1) => (
-      <h1 className="text-3xl font-bold text-white mb-6 mt-8">{children}</h1>
-    ),
-    h2: ({ children }: IBlockH2) => (
-      <h2 className="text-2xl font-bold text-white mb-5 mt-7">{children}</h2>
-    ),
-    h3: ({ children }: IBlockH3) => (
-      <h3 className="text-xl font-semibold text-white mb-4 mt-6">{children}</h3>
-    ),
-    h4: ({ children }: IBlockH4) => (
-      <h4 className="text-lg font-semibold text-white mb-3 mt-5">{children}</h4>
-    ),
-    blockquote: ({ children }: IBlockQuote) => (
-      <blockquote className="border-l-4 border-purple-500 pl-6 py-4 my-6 bg-gray-800/30 rounded-r-lg">
-        <div className="text-gray-200 italic">{children}</div>
-      </blockquote>
-    ),
+    normal: ({ children }: IBlockNormal) => <Normal>{children}</Normal>,
+    h1: ({ children }: IBlockH1) => <Header1>{children}</Header1>,
+    h2: ({ children }: IBlockH2) => <Header2>{children}</Header2>,
+    h3: ({ children }: IBlockH3) => <Header3>{children}</Header3>,
+    h4: ({ children }: IBlockH4) => <Header4>{children}</Header4>,
+    h5: ({ children }: IBlockH5) => <Header5>{children}</Header5>,
+    h6: ({ children }: IBlockH6) => <Header6>{children}</Header6>,
+    blockquote: ({ children }: IBlockQuote) => <Blockquote>{children}</Blockquote>,
   },
   list: {
-    bullet: ({ children }: IListBullet) => (
-      <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4 ml-4">{children}</ul>
-    ),
-    number: ({ children }: IListNumber) => (
-      <ol className="list-decimal list-inside text-gray-300 space-y-2 mb-4 ml-4">{children}</ol>
-    ),
+    bullet: ({ children }: IListBullet) => <BulletList>{children}</BulletList>,
+    number: ({ children }: IListNumber) => <NumberList>{children}</NumberList>,
   },
   listItem: {
-    bullet: ({ children }: IListBullet) => (
-      <li className="text-gray-300 leading-relaxed">{children}</li>
-    ),
-    number: ({ children }: IListNumber) => (
-      <li className="text-gray-300 leading-relaxed">{children}</li>
-    ),
+    bullet: ({ children }: IListBullet) => <ListItem>{children}</ListItem>,
+    number: ({ children }: IListNumber) => <ListItem>{children}</ListItem>,
   },
   marks: {
-    strong: ({ children }: IMarkStrong) => (
-      <strong className="font-semibold text-white">{children}</strong>
-    ),
-    em: ({ children }: IMarkEm) => <em className="italic text-gray-200">{children}</em>,
-    code: ({ children }: IMarkCode) => (
-      <code className="bg-gray-800 text-purple-300 px-2 py-1 rounded text-sm font-mono">
-        {children}
-      </code>
-    ),
-    link: ({ children, value }: IMarkLinkProps) => (
-      <a
-        href={value?.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-400 hover:text-blue-300 underline transition-colors">
-        {children}
-      </a>
-    ),
+    strong: ({ children }: IMarkStrong) => <Strong>{children}</Strong>,
+    em: ({ children }: IMarkEm) => <Em>{children}</Em>,
+    code: ({ children }: IMarkCode) => <Code>{children}</Code>,
+    link: ({ children, value }: IMarkLinkProps) => <Link value={value}>{children}</Link>,
   },
 };

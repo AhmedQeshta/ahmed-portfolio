@@ -34,7 +34,7 @@ export default function Blog({ blog, latestBlogs, relatedBlogs }: IBlog) {
               <ScrollAnimation
                 direction="down"
                 delay={0.2}
-                className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 mb-8">
+                className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 mb-8 text-justify">
                 <p className="text-xl text-gray-300 leading-relaxed">{description}</p>
               </ScrollAnimation>
 
