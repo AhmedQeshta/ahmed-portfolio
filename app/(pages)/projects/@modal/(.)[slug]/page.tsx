@@ -8,7 +8,7 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 
 const Project = async (props: IProjectPageModal) => {
-  const { slug } = props.params;
+  const { slug } = await props.params;
 
   try {
     const features = await sanityFetch<FeatureResponse[]>({

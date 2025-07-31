@@ -6,12 +6,12 @@ export interface IProjectLayout {
 }
 
 export interface IProjectPage {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
   searchParams: Record<string, string | string[] | undefined>;
 }
 
 export interface IProjectPageModal {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
   searchParams: Record<string, string | string[] | undefined>;
 }
 
@@ -22,4 +22,41 @@ export interface IProjectGrid {
 // refactor that
 export interface IProjectResponse {
   project: ProjectResponse;
+}
+
+export interface IThumbnailNav {
+  gallery: string[];
+  selectedImageIndex: number;
+  setSelectedImageIndex: (index: number) => void;
+}
+
+export interface IImageTitleProps {
+  title: string;
+  selectedImageIndex: number;
+  galleryLength: number;
+}
+
+export interface IMainImageProps {
+  gallery: string[];
+  selectedImageIndex: number;
+  title: string;
+}
+
+export interface IButtonsNavProps {
+  goToPrevious: () => void;
+  goToNext: () => void;
+  galleryLength: number;
+}
+
+export interface IGalleryItemProps {
+  image: string;
+  title: string;
+  index: number;
+  openModal: (index: number) => void;
+}
+
+export interface IGalleriesProps {
+  gallery: string[];
+  title: string;
+  openModal: (index: number) => void;
 }
