@@ -1,12 +1,9 @@
 import { useState } from 'react';
+import { ICodeBlock } from '@/features/shard/types/common';
 
-interface IUseCopy {
-  value: {
-    code: string;
-  };
-}
+export default function useCopy({ value }: ICodeBlock) {
+  if (!value?.code) return { copied: false, handleCopyCode: () => {} };
 
-export default function useCopy({ value }: IUseCopy) {
   const [copied, setCopied] = useState(false);
 
   const handleCopyCode = async () => {
