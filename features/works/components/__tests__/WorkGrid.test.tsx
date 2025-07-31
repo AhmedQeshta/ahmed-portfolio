@@ -37,7 +37,7 @@ describe('WorkGrid', () => {
     (sanityFetch as jest.Mock).mockResolvedValue(mockWorks);
     render(await WorkGrid());
 
-    expect(screen.getByText('Work Experience')).toBeInTheDocument();
+    expect(screen.getByText('Works Experience')).toBeInTheDocument();
     expect(screen.getByText('Software Engineer')).toBeInTheDocument();
   });
 
@@ -45,7 +45,7 @@ describe('WorkGrid', () => {
     (sanityFetch as jest.Mock).mockResolvedValue([]);
     render(await WorkGrid());
 
-    expect(screen.getByText('Work Experience')).toBeInTheDocument();
+    expect(screen.getByText('Works Experience')).toBeInTheDocument();
     expect(screen.getByText('No work experience found.')).toBeInTheDocument();
   });
 

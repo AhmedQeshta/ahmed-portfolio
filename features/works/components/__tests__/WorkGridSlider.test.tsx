@@ -53,7 +53,7 @@ describe('WorkGridSlider', () => {
     (sanityFetch as jest.Mock).mockResolvedValue(mockWorks);
     render(await WorkGridSlider());
 
-    expect(screen.getByText('Works')).toBeInTheDocument();
+    expect(screen.getByText('Works Experience')).toBeInTheDocument();
     expect(screen.getByTestId('work-slider')).toBeInTheDocument();
     expect(screen.getByText('Awesome Work')).toBeInTheDocument();
   });
@@ -62,7 +62,7 @@ describe('WorkGridSlider', () => {
     (sanityFetch as jest.Mock).mockResolvedValue([]);
     render(await WorkGridSlider());
 
-    expect(screen.getByText('Works')).toBeInTheDocument();
+    expect(screen.getByText('Works Experience')).toBeInTheDocument();
     expect(screen.getByText('No works found.')).toBeInTheDocument();
   });
 
