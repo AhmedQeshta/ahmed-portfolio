@@ -40,10 +40,7 @@ export default async function Home() {
     );
   } catch (error) {
     return (
-      <ErrorHandle
-        id={'home'}
-        description={'Failed to load Home Page. Please try again later.'}
-      />
+      <ErrorHandle id={'home'} description={'Failed to load Home Page. Please try again later.'} />
     );
   }
 }
