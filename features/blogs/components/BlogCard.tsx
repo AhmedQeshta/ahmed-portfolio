@@ -1,11 +1,10 @@
-import { getImageUrl } from '@/sanity/lib/image';
 import Link from 'next/link';
-import Image from 'next/image';
 import TechnologiesDisplay from '@/features/shard/components/ui/TechnologiesDisplay';
 import { formatDate, formatReadingTime } from '@/features/shard/utils/date';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import MouseMoveWrapper from '@/features/shard/components/ui/MouseMoveWrapper';
 import { IBlogPostResponse } from '@/features/blogs/types/blog';
+import ImageHeader from '@/features/shard/components/ui/ImageHeader';
 
 export default async function BlogCard({ blog }: IBlogPostResponse) {
   const { _id, slug, thumbnail, title, technologies, publishedAt, readingTime, description } = blog;
@@ -20,22 +19,7 @@ export default async function BlogCard({ blog }: IBlogPostResponse) {
         <article className="bg-card-bg backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:border-white/20 hover:bg-card-hover transition-all duration-300 group-hover:scale-[1.02] hover:shadow-2xl relative z-10 min-h-[500px] flex flex-col h-full">
           {/* Blog Image Header - Enhanced Design */}
           <div className="relative w-full h-56 rounded-xl overflow-hidden mb-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-white/10">
-            {thumbnail ? (
-              <Image
-                src={getImageUrl(thumbnail, 600, 400, 90)}
-                alt={`Cover image for ${title}`}
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                priority={false}
-              />
-            ) : (
-              <div className="w-full h-full bg-gradient-to-br from-purple-500 via-violet-500 to-pink-500 flex items-center justify-center">
-                <div className="text-white text-5xl font-bold drop-shadow-lg">
-                  {title.charAt(0).toUpperCase()}
-                </div>
-              </div>
-            )}
+            <ImageHeader image={thumbnail} title={title} />
 
             {/* Enhanced Hover Overlay with Gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

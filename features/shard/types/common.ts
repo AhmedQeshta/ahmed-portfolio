@@ -152,3 +152,8 @@ export interface IMarkLinkProps {
   children: React.ReactNode;
   value: IMarkLinkValue;
 }
+
+export interface IImageHeaderProps {
+  image?: string;
+  title: string;
+}

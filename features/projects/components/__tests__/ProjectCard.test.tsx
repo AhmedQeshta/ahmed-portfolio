@@ -130,7 +130,7 @@ describe('ProjectCard', () => {
 
     const image = screen.getByTestId('project-image');
     expect(image).toHaveAttribute('src', 'https://example.com/image-600x400-q90.jpg');
-    expect(image).toHaveAttribute('alt', 'Screenshot of Test Project Title project');
+    expect(image).toHaveAttribute('alt', 'Cover image for Test Project Title');
   });
 
   it('should render project status badges when URLs are provided', () => {

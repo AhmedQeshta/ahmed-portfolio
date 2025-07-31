@@ -60,3 +60,13 @@ export interface IGalleriesProps {
   title: string;
   openModal: (index: number) => void;
 }
+
+export interface IDurationProps {
+  startDate?: string;
+  endDate?: string;
+}
+
+export interface IStatusBadgesProps {
+  liveUrl?: string;
+  repoUrl?: string;
+}
