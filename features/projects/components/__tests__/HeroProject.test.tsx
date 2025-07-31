@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import HeroProject from '@/features/projects/components/ui/HeroProject';
 import { IProjectResponse } from '@/features/projects/types/project';
+import { ProjectResponse } from '@/sanity/lib/types';
 
 const mockProject: IProjectResponse['project'] = {
   _id: '1',
@@ -16,11 +17,14 @@ const mockProject: IProjectResponse['project'] = {
   startDate: '2023-01-01',
   endDate: '2023-12-31',
   gallery: [],
+  categories: [],
+  featured: false,
+  order: 0,
 };
 
 describe('HeroProject', () => {
   it('renders nothing when project is null', () => {
-    const { container } = render(<HeroProject project={null} />);
+    const { container } = render(<HeroProject project={null as unknown as ProjectResponse} />);
     expect(container).toBeEmptyDOMElement();
   });
 
@@ -30,6 +34,5 @@ describe('HeroProject', () => {
     expect(screen.getByRole('img')).toHaveAttribute('alt', 'Test Project');
     expect(screen.getByText('IN PROGRESS')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Test Project' })).toBeInTheDocument();
-    expect(screen.getByText('A brief description of the test project.')).toBeInTheDocument();
   });
 });

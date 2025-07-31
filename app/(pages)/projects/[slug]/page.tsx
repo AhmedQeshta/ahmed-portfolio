@@ -8,7 +8,7 @@ import { IProjectPage } from '@/features/projects/types/project';
 import { notFound } from 'next/navigation';
 
 const ProjectPage = async (props: IProjectPage) => {
-  const { slug } = props.params;
+  const { slug } = await props.params;
 
   try {
     const features = await sanityFetch<FeatureResponse[]>({

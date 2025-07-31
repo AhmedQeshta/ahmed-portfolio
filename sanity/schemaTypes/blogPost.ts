@@ -86,6 +86,7 @@ export const blogPost = defineType({
                   { title: 'JavaScript', value: 'javascript' },
                   { title: 'TypeScript', value: 'typescript' },
                   { title: 'React', value: 'jsx' },
+                  { title: 'env', value: 'env' },
                   { title: 'HTML', value: 'html' },
                   { title: 'CSS', value: 'css' },
                   { title: 'Python', value: 'python' },

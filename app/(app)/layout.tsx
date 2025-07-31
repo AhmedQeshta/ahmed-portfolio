@@ -3,6 +3,7 @@ import '@/app/work-slider.css';
 import Footer from '@/features/shard/components/layout/Footer';
 import Navbar from '@/features/navbar/components/Navbar';
 import OrbBackground from '@/features/shard/components/ui/OrbBackground';
+import FloatingActions from '@/features/shard/components/ui/FloatingActions';
 import { linksApp } from '@/features/navbar/utils/navLinks';
 import { Metadata, Viewport } from 'next';
 
@@ -79,6 +80,7 @@ export default function RootLayout({
         <Navbar links={linksApp} />
 
         {children}
+        <FloatingActions />
         <Footer />
       </body>
     </html>

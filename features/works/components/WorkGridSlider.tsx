@@ -24,7 +24,12 @@ export default async function WorkGridSlider() {
           className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-5">
           {/* Header Animation */}
           <ScrollAnimation direction="down" delay={0.2}>
-            <h2 className="text-3xl font-semibold mb-8 gradient-text">Works</h2>
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4 gradient-text">Works Experience</h2>
+              <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+                Explore my latest works and creative solutions
+              </p>
+            </div>
           </ScrollAnimation>
 
           {/* Content Animation */}

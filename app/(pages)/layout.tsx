@@ -3,6 +3,7 @@ import Navbar from '@/features/navbar/components/Navbar';
 import OrbBackground from '@/features/shard/components/ui/OrbBackground';
 import { linksPages } from '@/features/navbar/utils/navLinks';
 import { Metadata, Viewport } from 'next';
+import FloatingActions from '@/features/shard/components/ui/FloatingActions';
 
 const siteUrl = process.env.SITE_URL || 'https://ahmedqeshta.vercel.app';
 
@@ -72,6 +73,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <Navbar links={linksPages} />
         {children}
+
+        <FloatingActions />
       </body>
     </html>
   );
