@@ -94,7 +94,7 @@ export async function generateStaticParams() {
 
 // Use our fixed type to avoid the "not satisfying PageProps" error
 export default async function Page(props: FixedPageProps) {
-  const { slug } = props.params;
+  const { slug } = await props.params;
 
   try {
     const blog = await sanityFetch<BlogPostResponse>({
