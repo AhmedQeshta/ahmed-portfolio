@@ -21,7 +21,12 @@ export default async function BlogCard({ blogs, readMore }: IBlogCardProps) {
         ))}
       </ScrollAnimation>
       {/* Read More Section */}
-      <ReadMore link="/blogs" text="View All Blogs" readMore={readMore} dataLength={blogs.length} />
+      <ReadMore
+        link="/blogs"
+        text="View All Blogs"
+        readMore={readMore}
+        dataLength={blogs?.length || 0}
+      />
     </>
   );
 }
