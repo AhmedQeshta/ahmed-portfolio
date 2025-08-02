@@ -13,14 +13,17 @@ import ActionButtons from '@/features/shard/components/ui/ActionButtons';
 import HeroModal from './ui/HeroModal';
 import ScrollAnimation from '../../shard/components/ui/ScrollAnimation';
 import { IProjectResponse } from '@/features/projects/types/project';
+import ImagePreview from './ui/ImagePreview';
+import useGalleryModal from '../hooks/useGalleryModal';
 
 export default function ProjectModal({ project }: IProjectResponse) {
-  const { technologies, liveUrl, repoUrl, categories, description, title } = project;
+  const { technologies, liveUrl, repoUrl, categories, description, title, gallery } = project;
   const router = useRouter();
 
   const handleClose = () => {
     router.back();
   };
+  const { openModal, ...restProps } = useGalleryModal(gallery || []);
 
   const listLinks = [
     {
@@ -87,7 +90,7 @@ export default function ProjectModal({ project }: IProjectResponse) {
               direction="down"
               delay={0.5}
               className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 mt-6">
-              <ProjectGallery project={project} />
+              <ProjectGallery project={project} openModal={openModal} />
             </ScrollAnimation>
           </div>
 
@@ -101,6 +104,9 @@ export default function ProjectModal({ project }: IProjectResponse) {
           </div>
         </div>
       </div>
+
+      {/* Image Preview Modal */}
+      <ImagePreview gallery={gallery || []} title={title} {...restProps} />
     </Modal>
   );
 }

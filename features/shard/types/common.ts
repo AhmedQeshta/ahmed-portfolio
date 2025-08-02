@@ -36,6 +36,8 @@ export interface IMouseMoveWrapper {
 export interface ILinkNavigation {
   link: string;
   text: string;
+  readMore?: boolean;
+  dataLength?: number;
 }
 
 export interface IScrollAnimation {
@@ -156,4 +158,16 @@ export interface IMarkLinkProps {
 export interface IImageHeaderProps {
   image?: string;
   title: string;
+}
+
+export interface HeaderTitleProps {
+  title: string;
+  subtitle: string;
+  className?: string;
+}
+
+export interface EmptyItemProps {
+  title: string;
+  subTitle: string;
+  icon?: string | null;
 }

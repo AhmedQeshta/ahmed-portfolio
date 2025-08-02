@@ -1,5 +1,4 @@
 import BlogGrid from '@/features/blogs/components/BlogGrid';
-import Search from '@/features/blogs/components/ui/Search';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import { sanityFetch } from '@/sanity/lib/client';
 import { featuresQuery } from '@/sanity/lib/queries';
@@ -50,12 +49,7 @@ const BlogPage = async ({ searchParams }: { searchParams: { q?: string } }) => {
     // Correctly use the search params in an async context
     const query = searchParams?.q || '';
 
-    return (
-      <>
-        <Search action="/blogs" />
-        <BlogGrid readMore={false} query={query} />
-      </>
-    );
+    return <BlogGrid readMore={false} query={query} />;
   } catch (error) {
     return (
       <ErrorHandle

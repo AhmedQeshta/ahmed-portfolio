@@ -19,9 +19,21 @@ export interface IProjectGrid {
   readMore?: boolean;
 }
 
-// refactor that
 export interface IProjectResponse {
   project: ProjectResponse;
+}
+export interface ICardProps {
+  project: ProjectResponse;
+}
+
+export interface IProjectCardProps {
+  projects: ProjectResponse[];
+  readMore: boolean;
+}
+
+export interface IProjectGalleryProps {
+  project: ProjectResponse;
+  openModal: (index: number) => void;
 }
 
 export interface IThumbnailNav {
@@ -69,4 +81,15 @@ export interface IDurationProps {
 export interface IStatusBadgesProps {
   liveUrl?: string;
   repoUrl?: string;
+}
+
+export interface IImagePreviewProps {
+  selectedImageIndex: number | null;
+  setSelectedImageIndex: (index: number) => void;
+  closeModal: () => void;
+  goToPrevious: () => void;
+  goToNext: () => void;
+  handleKeyPress: (e: React.KeyboardEvent) => void;
+  gallery: string[];
+  title: string;
 }

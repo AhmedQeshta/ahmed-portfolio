@@ -1,3 +1,5 @@
+'use client';
+
 import Technologies from '@/features/shard/components/ui/Technologies';
 import BackgroundEffects from '@/features/shard/components/ui/BackgroundEffects';
 import HeroProject from '@/features/projects/components/ui/HeroProject';
@@ -10,9 +12,13 @@ import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { ExternalLink, Github } from 'lucide-react';
 import { IProjectResponse } from '@/features/projects/types/project';
 import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
+import useGalleryModal from '../hooks/useGalleryModal';
+import ImagePreview from './ui/ImagePreview';
 
 export default function Project({ project }: IProjectResponse) {
-  const { technologies, liveUrl, repoUrl, description, title } = project;
+  const { technologies, liveUrl, repoUrl, description, title, gallery } = project;
+
+  const { openModal, ...restProps } = useGalleryModal(gallery || []);
 
   const listLinks = [
     {
@@ -76,7 +82,7 @@ export default function Project({ project }: IProjectResponse) {
                 direction="down"
                 delay={0.4}
                 className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 mt-8">
-                <ProjectGallery project={project} />
+                <ProjectGallery project={project} openModal={openModal} />
               </ScrollAnimation>
             </div>
 
@@ -95,6 +101,8 @@ export default function Project({ project }: IProjectResponse) {
         </div>
       </div>
 
+      {/* Image Preview Modal */}
+      <ImagePreview gallery={gallery || []} title={title} {...restProps} />
       {/* Background Effects */}
       <BackgroundEffects />
     </div>
