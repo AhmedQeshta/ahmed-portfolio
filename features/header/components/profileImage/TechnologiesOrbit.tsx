@@ -9,6 +9,7 @@ export default function TechnologiesOrbit({ orbitTechnologies }: ITechnologiesOr
   const isMobile = useMobile();
 
   return orbitTechnologies.map((technology, index) => {
+    if (!technology) return null;
     const { top, left, delay } = calculatePosition({ index, orbitTechnologies, isMobile });
 
     return (

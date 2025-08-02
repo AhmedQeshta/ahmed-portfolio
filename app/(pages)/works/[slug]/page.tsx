@@ -6,6 +6,12 @@ import Work from '@/features/works/components/Work';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import { IWorkPage } from '@/features/works/types/work';
 import { notFound } from 'next/navigation';
+import { generateWorkMetadata, generateWorkStaticParams } from '@/features/works/utils/metaData';
+
+export {
+  generateWorkMetadata as generateMetadata,
+  generateWorkStaticParams as generateStaticParams,
+};
 
 const WorkPage = async (props: IWorkPage) => {
   const { slug } = props.params;

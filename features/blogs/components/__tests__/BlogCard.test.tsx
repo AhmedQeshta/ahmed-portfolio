@@ -41,6 +41,32 @@ jest.mock('@/features/shard/components/ui/MouseMoveWrapper', () => {
   };
 });
 
+jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
+  return function MockScrollAnimation({
+    children,
+    className,
+  }: {
+    readonly children: React.ReactNode;
+    className?: string;
+  }) {
+    return (
+      <div data-testid="scroll-animation" className={className}>
+        {children}
+      </div>
+    );
+  };
+});
+
+jest.mock('@/features/shard/components/ui/ReadMore', () => {
+  return function MockReadMore({ link, text, readMore, dataLength }: any) {
+    return (
+      <div data-testid="read-more">
+        ReadMore: {text} (items: {dataLength})
+      </div>
+    );
+  };
+});
+
 // Mock the getImageUrl function
 jest.mock('@/sanity/lib/image', () => ({
   getImageUrl: jest.fn(
@@ -81,7 +107,7 @@ const mockBlog: BlogPostResponse = {
 
 describe('BlogCard', () => {
   it('should render the blog card as a single clickable link', async () => {
-    const { container } = render(await BlogCard({ blog: mockBlog }));
+    const { container } = render(await BlogCard({ blogs: [mockBlog], readMore: false }));
 
     expect(container.querySelector('[data-testid="mouse-move-wrapper"]')).toBeInTheDocument();
     const blogLink = container.querySelector('[data-testid="blog-link"]');
@@ -91,7 +117,7 @@ describe('BlogCard', () => {
   });
 
   it('should render blog article with semantic structure', async () => {
-    render(await BlogCard({ blog: mockBlog }));
+    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
 
     const article = screen.getByRole('article');
     expect(article).toBeInTheDocument();
@@ -99,7 +125,7 @@ describe('BlogCard', () => {
   });
 
   it('should render blog title as heading', async () => {
-    render(await BlogCard({ blog: mockBlog }));
+    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
 
     const heading = screen.getByRole('heading', { level: 3 });
     expect(heading).toBeInTheDocument();
@@ -107,7 +133,7 @@ describe('BlogCard', () => {
   });
 
   it('should render blog description', async () => {
-    render(await BlogCard({ blog: mockBlog }));
+    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
 
     expect(
       screen.getByText(
@@ -117,7 +143,7 @@ describe('BlogCard', () => {
   });
 
   it('should render formatted date with semantic time element', async () => {
-    render(await BlogCard({ blog: mockBlog }));
+    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
 
     const timeElement = screen.getByRole('time');
     expect(timeElement).toBeInTheDocument();
@@ -126,19 +152,19 @@ describe('BlogCard', () => {
   });
 
   it('should render formatted reading time', async () => {
-    render(await BlogCard({ blog: mockBlog }));
+    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
 
     expect(screen.getByText('5 min read')).toBeInTheDocument();
   });
 
   it('should render technologies with correct count', async () => {
-    render(await BlogCard({ blog: mockBlog }));
+    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
 
     expect(screen.getByText('Technologies: 2')).toBeInTheDocument();
   });
 
   it('should render image with optimized properties', async () => {
-    render(await BlogCard({ blog: mockBlog }));
+    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
 
     const image = screen.getByTestId('blog-image');
     expect(image).toHaveAttribute('src', 'https://example.com/image-600x400-q90.jpg');
@@ -146,8 +172,8 @@ describe('BlogCard', () => {
   });
 
   it('should render fallback div when no thumbnail', async () => {
-    const blogWithoutThumbnail = { ...mockBlog, thumbnail: null } as any;
-    render(await BlogCard({ blog: blogWithoutThumbnail }));
+    const blogWithoutThumbnail = { ...mockBlog, thumbnail: '' };
+    render(await BlogCard({ blogs: [blogWithoutThumbnail], readMore: false }));
 
     const fallbackText = screen.getByText('T');
     expect(fallbackText).toBeInTheDocument();
@@ -163,7 +189,7 @@ describe('BlogCard', () => {
   });
 
   it('should render call to action without separate link', async () => {
-    render(await BlogCard({ blog: mockBlog }));
+    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
 
     expect(screen.getByText('Read Article')).toBeInTheDocument();
     // Should not be a separate link since the whole card is clickable
@@ -174,8 +200,8 @@ describe('BlogCard', () => {
   });
 
   it('should handle blog without description', async () => {
-    const blogWithoutDescription = { ...mockBlog, description: null } as any;
-    render(await BlogCard({ blog: blogWithoutDescription }));
+    const blogWithoutDescription = { ...mockBlog, description: '' };
+    render(await BlogCard({ blogs: [blogWithoutDescription], readMore: false }));
 
     expect(screen.getByText('Test Blog Post Title')).toBeInTheDocument();
     expect(screen.getByText('Jan 1, 2023')).toBeInTheDocument();
@@ -184,13 +210,13 @@ describe('BlogCard', () => {
 
   it('should handle blog with empty technologies array', async () => {
     const blogWithoutTechnologies = { ...mockBlog, technologies: [] };
-    render(await BlogCard({ blog: blogWithoutTechnologies }));
+    render(await BlogCard({ blogs: [blogWithoutTechnologies], readMore: false }));
 
     expect(screen.getByText('Technologies: 0')).toBeInTheDocument();
   });
 
   it('should have proper hover effects and accessibility', async () => {
-    render(await BlogCard({ blog: mockBlog }));
+    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
 
     const link = screen.getByTestId('blog-link');
     expect(link).toHaveClass('block', 'h-full', 'group');
@@ -200,7 +226,7 @@ describe('BlogCard', () => {
   });
 
   it('should render floating read indicator', async () => {
-    render(await BlogCard({ blog: mockBlog }));
+    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
 
     expect(screen.getByText('Read')).toBeInTheDocument();
   });

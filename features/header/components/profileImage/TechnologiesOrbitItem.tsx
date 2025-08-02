@@ -3,7 +3,7 @@ import { ITechnologiesOrbitItemProps } from '@/features/header/types/header';
 import Image from 'next/image';
 
 export function TechnologiesOrbitItem({
-  technology,
+  technology: { logo, name },
   top,
   left,
   delay,
@@ -21,8 +21,8 @@ export function TechnologiesOrbitItem({
         animationDelay: `${delay}s`,
       }}>
       <Image
-        src={getImageUrl(technology.logo, imageSize, imageSize, 90)}
-        alt={technology.name}
+        src={getImageUrl(logo, imageSize, imageSize, 90)}
+        alt={name}
         width={imageSize}
         height={imageSize}
         className="object-contain filter group-hover:brightness-125 transition-all duration-300"
@@ -31,7 +31,7 @@ export function TechnologiesOrbitItem({
       {/* Technology Tooltip */}
       <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-30">
         <div className="bg-black/90 backdrop-blur-sm text-white text-xs font-medium px-2 py-1 rounded-md whitespace-nowrap shadow-xl border border-white/10">
-          {technology.name}
+          {name}
         </div>
       </div>
     </div>
