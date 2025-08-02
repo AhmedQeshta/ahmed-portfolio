@@ -63,7 +63,7 @@ describe('WorkGridSlider', () => {
     render(await WorkGridSlider());
 
     expect(screen.getByText('Works Experience')).toBeInTheDocument();
-    expect(screen.getByText('No works found.')).toBeInTheDocument();
+    expect(screen.getByText('No work experience found')).toBeInTheDocument();
   });
 
   it('renders an error message when fetch fails', async () => {
