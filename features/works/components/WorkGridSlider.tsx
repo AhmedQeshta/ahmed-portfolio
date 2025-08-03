@@ -5,6 +5,8 @@ import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import WorkSlider from '@/features/works/components/WorkSlider';
 import useSortByDate from '@/features/works/hooks/useSortByDate';
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
+import HeaderTitle from '@/features/shard/components/ui/HeaderTitle';
+import EmptyItem from '@/features/shard/components/ui/EmptyItem';
 
 export default async function WorkGridSlider() {
   try {
@@ -22,23 +24,19 @@ export default async function WorkGridSlider() {
           direction="down"
           delay={0.1}
           className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-5">
-          {/* Header Animation */}
-          <ScrollAnimation direction="down" delay={0.2}>
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4 gradient-text">Works Experience</h2>
-              <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-                Explore my latest works and creative solutions
-              </p>
-            </div>
-          </ScrollAnimation>
+          {/* Header Animation*/}
+          <HeaderTitle
+            title="Works Experience"
+            subtitle="Explore my latest works and creative solutions"
+          />
 
           {/* Content Animation */}
           {sortedWorks.length === 0 ? (
-            <ScrollAnimation direction="up" delay={0.3}>
-              <div className="text-center text-gray-400">
-                <p>No works found.</p>
-              </div>
-            </ScrollAnimation>
+            <EmptyItem
+              title="No work experience found"
+              subTitle="Check back soon for new work experience!"
+              icon="👨‍💼"
+            />
           ) : (
             <ScrollAnimation direction="up" delay={0.3}>
               <WorkSlider works={sortedWorks} />

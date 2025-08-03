@@ -1,5 +1,3 @@
-'use client';
-
 import { ILinkNavigation } from '@/features/shard/types/common';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';

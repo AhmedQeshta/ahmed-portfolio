@@ -13,6 +13,7 @@ export interface IBlogsPage {
 export interface IBlogGrid {
   readMore?: boolean;
   query?: string;
+  className?: string;
 }
 
 export interface IRelatedBlogs {
@@ -26,6 +27,19 @@ export interface IBlogPostResponse {
   blog: BlogPostResponse;
 }
 
+export interface IBlogCardProps {
+  blogs: BlogPostResponse[];
+  readMore: boolean;
+}
+
+export interface IMetaInfoProps {
+  publishedAt: string;
+  readingTime?: number;
+}
+
+export interface ICardProps {
+  blog: BlogPostResponse;
+}
 export interface IBlog extends IRelatedBlogs, ILatestBlogs, IBlogPostResponse {}
 
 export interface ISeeBlogButton {

@@ -1,11 +1,22 @@
 import { sanityFetch } from '@/sanity/lib/client';
-import { featuresQuery, projectBySlugQuery } from '@/sanity/lib/queries';
+import { featuresQuery, projectBySlugQuery, projectsQuery } from '@/sanity/lib/queries';
 import { FeatureResponse, ProjectResponse } from '@/sanity/lib/types';
 import React from 'react';
 import Project from '@/features/projects/components/Project';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import { IProjectPage } from '@/features/projects/types/project';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
+
+import {
+  generateProjectMetadata,
+  generateProjectStaticParams,
+} from '@/features/projects/utils/metaData';
+
+export {
+  generateProjectMetadata as generateMetadata,
+  generateProjectStaticParams as generateStaticParams,
+};
 
 const ProjectPage = async (props: IProjectPage) => {
   const { slug } = await props.params;

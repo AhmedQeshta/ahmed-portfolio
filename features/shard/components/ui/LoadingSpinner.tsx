@@ -1,20 +1,45 @@
-import React from 'react';
-
-interface LoadingSpinnerProps {
-  size?: 'sm' | 'md' | 'lg';
-  className?: string;
-}
-
-export default function LoadingSpinner({ size = 'md', className = '' }: LoadingSpinnerProps) {
-  const sizeClasses = {
-    sm: 'w-4 h-4',
-    md: 'w-6 h-6',
-    lg: 'w-8 h-8',
-  };
-
+export default function LoadingSpinner() {
   return (
     <div
-      className={`animate-spin rounded-full border-2 border-gray-300 border-t-white ${sizeClasses[size]} ${className}`}
-    />
+      className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center"
+      data-testid="loading-container">
+      <div className="text-center space-y-8" data-testid="loading-content">
+        {/* Animated background elements */}
+        <div
+          className="absolute inset-0 overflow-hidden pointer-events-none"
+          data-testid="background-elements">
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+          <div className="absolute top-3/4 right-1/4 w-32 h-32 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-500"></div>
+        </div>
+
+        {/* Main spinner */}
+        <div className="relative flex justify-center min-h-12" data-testid="spinner-container">
+          {/* Outer spinning ring */}
+          <div className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] w-20 h-20  border-4 border-transparent border-t-purple-500 border-r-blue-500 rounded-full animate-spin"></div>
+
+          {/* Inner spinning ring */}
+          <div className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] w-16 h-16 border-4 border-transparent border-b-pink-500 border-l-purple-400 rounded-full animate-spin animate-reverse"></div>
+
+          {/* Center dot */}
+          <div className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
+        </div>
+
+        {/* Loading text */}
+        <div className="space-y-2" data-testid="loading-text">
+          <h2 className="text-2xl font-bold gradient-text animate-pulse">Loading</h2>
+          <p className="text-gray-400 text-sm animate-pulse delay-200">
+            Please wait while we prepare your content...
+          </p>
+        </div>
+
+        {/* Progress dots */}
+        <div className="flex justify-center space-x-2" data-testid="progress-dots">
+          <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce"></div>
+          <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce delay-100"></div>
+          <div className="w-2 h-2 bg-pink-500 rounded-full animate-bounce delay-200"></div>
+        </div>
+      </div>
+    </div>
   );
 }

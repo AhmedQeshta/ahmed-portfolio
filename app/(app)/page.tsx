@@ -4,7 +4,7 @@ import ProjectGrid from '@/features/projects/components/ProjectGrid';
 import BlogGrid from '@/features/blogs/components/BlogGrid';
 
 import { Fragment, Suspense } from 'react';
-import Loading from '@/features/shard/components/ui/Loading';
+import LoadingSpinner from '@/features/shard/components/ui/LoadingSpinner';
 import { featuresQuery } from '@/sanity/lib/queries';
 import { sanityFetch } from '@/sanity/lib/client';
 import { FeatureResponse } from '@/sanity/lib/types';
@@ -31,7 +31,7 @@ export default async function Home() {
         {features &&
           features.map(({ _id, name, status }) => (
             <Fragment key={_id}>
-              <Suspense fallback={<Loading />}>
+              <Suspense fallback={<LoadingSpinner />}>
                 {status === 'publish' && sectionOfPage[name]}
               </Suspense>
             </Fragment>

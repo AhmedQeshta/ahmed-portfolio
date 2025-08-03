@@ -22,3 +22,7 @@ export interface IWorkResponse {
 export interface IWorksResponse {
   works: WorkExperienceResponse[];
 }
+
+export interface IWorkGridProps {
+  readMore?: boolean;
+}
