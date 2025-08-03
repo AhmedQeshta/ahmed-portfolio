@@ -7,6 +7,8 @@ import ProfileImage from '@/features/header/components/ProfileImage';
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import SkillsIconsHeader from '@/features/header/components/ui/SkillsIconsHeader';
 import Effects from '@/features/header/components/ui/Effects';
+import { Suspense } from 'react';
+import { HeaderSkeleton } from '@/features/shard/components/ui/SkeletonLoader';
 
 export default async function Header() {
   try {
@@ -26,26 +28,46 @@ export default async function Header() {
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
             {/* Left Content - Enhanced BaseInfo */}
             <div className="order-2 lg:order-1 space-y-10 flex items-start">
-              <ScrollAnimation direction="left" delay={0.1}>
-                <div className="space-y-8">
-                  <BaseInfo baseInfo={baseInfo} />
-                </div>
-              </ScrollAnimation>
+              <Suspense
+                fallback={
+                  <div className="space-y-6">
+                    <div className="h-8 bg-gray-700 rounded animate-pulse w-3/4"></div>
+                    <div className="h-6 bg-gray-700 rounded animate-pulse w-1/2"></div>
+                  </div>
+                }>
+                <ScrollAnimation direction="left" delay={0.1}>
+                  <div className="space-y-8">
+                    <BaseInfo baseInfo={baseInfo} />
+                  </div>
+                </ScrollAnimation>
+              </Suspense>
             </div>
 
             {/* Right Content - Enhanced Profile Image - Aligned to Top */}
             <div className="order-1 mt-15 lg:mt-24 lg:order-2 flex justify-center">
-              <ScrollAnimation direction="right" delay={0.2}>
-                <div className="relative">
-                  <ProfileImage baseInfo={baseInfo} />
-                </div>
-              </ScrollAnimation>
+              <Suspense
+                fallback={<div className="h-64 w-64 bg-gray-700 rounded-full animate-pulse"></div>}>
+                <ScrollAnimation direction="right" delay={0.2}>
+                  <div className="relative">
+                    <ProfileImage baseInfo={baseInfo} />
+                  </div>
+                </ScrollAnimation>
+              </Suspense>
             </div>
           </div>
 
-          <ScrollAnimation direction="up" delay={0.3}>
-            <SkillsIconsHeader technologies={baseInfo.technologies} />
-          </ScrollAnimation>
+          <Suspense
+            fallback={
+              <div className="flex justify-center space-x-4 mt-8">
+                <div className="h-8 w-8 bg-gray-700 rounded animate-pulse"></div>
+                <div className="h-8 w-8 bg-gray-700 rounded animate-pulse"></div>
+                <div className="h-8 w-8 bg-gray-700 rounded animate-pulse"></div>
+              </div>
+            }>
+            <ScrollAnimation direction="up" delay={0.3}>
+              <SkillsIconsHeader technologies={baseInfo.technologies} />
+            </ScrollAnimation>
+          </Suspense>
         </div>
       </section>
     );
