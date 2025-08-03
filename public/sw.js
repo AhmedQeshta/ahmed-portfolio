@@ -98,9 +98,10 @@ self.addEventListener('fetch', (event) => {
         return fetch(request).then((response) => {
           if (response.status === 200) {
             const responseClone = response.clone();
-            caches.open(DYNAMIC_CACHE).then((cache) => {
-              cache.put(request, responseClone);
-            });
+            (async () => {
+              const cache = await caches.open(DYNAMIC_CACHE);
+              await cache.put(request, responseClone);
+            })();
           }
           return response;
         });
@@ -112,12 +113,11 @@ self.addEventListener('fetch', (event) => {
   if (request.destination === 'document') {
     event.respondWith(
       fetch(request)
-        .then((response) => {
+        .then(async (response) => {
           if (response.status === 200) {
             const responseClone = response.clone();
-            caches.open(DYNAMIC_CACHE).then((cache) => {
-              cache.put(request, responseClone);
-            });
+            const cache = await caches.open(DYNAMIC_CACHE);
+            await cache.put(request, responseClone);
           }
           return response;
         })
@@ -139,9 +139,10 @@ self.addEventListener('fetch', (event) => {
       .then((response) => {
         if (response.status === 200) {
           const responseClone = response.clone();
-          caches.open(DYNAMIC_CACHE).then((cache) => {
-            cache.put(request, responseClone);
-          });
+          (async () => {
+            const cache = await caches.open(DYNAMIC_CACHE);
+            await cache.put(request, responseClone);
+          })();
         }
         return response;
       })
@@ -150,17 +151,6 @@ self.addEventListener('fetch', (event) => {
       }),
   );
 });
-
-self.addEventListener('sync', (event) => {
-  if (event.tag === 'background-sync') {
-    console.log('Background sync triggered');
-    event.waitUntil(doBackgroundSync());
-  }
-});
-
-async function doBackgroundSync() {
-  console.log('Performing background sync...');
-}
 
 self.addEventListener('push', (event) => {
   if (event.data) {

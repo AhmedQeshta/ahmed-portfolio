@@ -18,9 +18,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <Script src="/sw-register.js" strategy="afterInteractive" />
-      </head>
       <body>
         <OrbBackground />
         <Navbar links={linksApp} />
@@ -29,6 +26,7 @@ export default function RootLayout({
         <FloatingActions />
         <PWAInstallPrompt />
         <Footer />
+        <Script src="/sw-register.js" strategy="afterInteractive" />
       </body>
     </html>
   );
