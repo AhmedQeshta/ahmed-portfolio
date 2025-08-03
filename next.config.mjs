@@ -21,8 +21,6 @@ const nextConfig = {
   },
   // Enable static optimization
   output: 'standalone',
-  // Optimize bundle size
-  swcMinify: true,
   // Enable compression
   compress: true,
 };
