@@ -18,7 +18,7 @@ export default function WorkModal({ work }: IWorkResponse) {
     router.back();
   };
 
-  const { technologies, companyUrl } = work;
+  const { technologies } = work;
 
   return (
     <Modal isOpen={true} onClose={handleClose} maxWidth="2xl">
