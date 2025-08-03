@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Loading from '@/features/shard/components/ui/Loading';
+import LoadingSpinner from '@/features/shard/components/ui/LoadingSpinner';
 
-describe('Loading', () => {
-  it('should render the loading container', () => {
-    render(<Loading />);
+describe('LoadingSpinner', () => {
+  it('should render the LoadingSpinner container', () => {
+    render(<LoadingSpinner />);
 
     const container = screen.getByTestId('loading-container');
     expect(container).toBeInTheDocument();
@@ -21,14 +21,14 @@ describe('Loading', () => {
   });
 
   it('should render the main content area', () => {
-    render(<Loading />);
+    render(<LoadingSpinner />);
 
     const contentArea = screen.getByTestId('loading-content');
     expect(contentArea).toBeInTheDocument();
   });
 
   it('should render the loading title', () => {
-    render(<Loading />);
+    render(<LoadingSpinner />);
 
     const title = screen.getByRole('heading', { level: 2 });
     expect(title).toBeInTheDocument();
@@ -37,7 +37,7 @@ describe('Loading', () => {
   });
 
   it('should render the loading description', () => {
-    render(<Loading />);
+    render(<LoadingSpinner />);
 
     const description = screen.getByText('Please wait while we prepare your content...');
     expect(description).toBeInTheDocument();
@@ -45,7 +45,7 @@ describe('Loading', () => {
   });
 
   it('should render the spinner elements', () => {
-    render(<Loading />);
+    render(<LoadingSpinner />);
 
     // Check for spinner container
     const spinnerContainer = screen.getByTestId('spinner-container');
@@ -53,14 +53,14 @@ describe('Loading', () => {
   });
 
   it('should render background animated elements', () => {
-    render(<Loading />);
+    render(<LoadingSpinner />);
 
     const backgroundElements = screen.getByTestId('background-elements');
     expect(backgroundElements).toBeInTheDocument();
   });
 
   it('should render progress dots', () => {
-    render(<Loading />);
+    render(<LoadingSpinner />);
 
     // The progress dots should be rendered as divs with specific classes
     const dots = screen.getByTestId('progress-dots');
@@ -68,7 +68,7 @@ describe('Loading', () => {
   });
 
   it('should have proper semantic structure', () => {
-    render(<Loading />);
+    render(<LoadingSpinner />);
 
     const title = screen.getByRole('heading', { level: 2 });
     const description = screen.getByText('Please wait while we prepare your content...');
@@ -78,7 +78,7 @@ describe('Loading', () => {
   });
 
   it('should apply correct styling classes to main elements', () => {
-    render(<Loading />);
+    render(<LoadingSpinner />);
 
     const title = screen.getByRole('heading', { level: 2 });
     const description = screen.getByText('Please wait while we prepare your content...');
@@ -88,7 +88,7 @@ describe('Loading', () => {
   });
 
   it('should have full screen layout', () => {
-    render(<Loading />);
+    render(<LoadingSpinner />);
 
     const container = screen.getByTestId('loading-container');
     expect(container).toHaveClass('min-h-screen');

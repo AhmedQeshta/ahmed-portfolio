@@ -9,8 +9,8 @@ import React from 'react';
 import MouseMoveWrapper from '@/features/shard/components/ui/MouseMoveWrapper';
 import { IWorkResponse } from '@/features/works/types/work';
 
-export default function Card({ work }: IWorkResponse) {
-  const {
+export default function Card({
+  work: {
     slug,
     logo,
     company,
@@ -23,8 +23,8 @@ export default function Card({ work }: IWorkResponse) {
     location,
     description,
     technologies,
-  } = work;
-
+  },
+}: IWorkResponse) {
   return (
     <MouseMoveWrapper>
       <Link

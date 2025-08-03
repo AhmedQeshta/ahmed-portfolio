@@ -35,7 +35,7 @@ describe('WorkGrid', () => {
 
   it('renders work experiences when fetch is successful', async () => {
     (sanityFetch as jest.Mock).mockResolvedValue(mockWorks);
-    render(await WorkGrid());
+    render(await WorkGrid({}));
 
     expect(screen.getByText('Works Experience')).toBeInTheDocument();
     expect(screen.getByText('Software Engineer')).toBeInTheDocument();
@@ -43,20 +43,18 @@ describe('WorkGrid', () => {
 
   it('renders a message when no work experiences are found', async () => {
     (sanityFetch as jest.Mock).mockResolvedValue([]);
-    render(await WorkGrid());
+    render(await WorkGrid({}));
 
     expect(screen.getByText('Works Experience')).toBeInTheDocument();
-    expect(screen.getByText('No work experience found.')).toBeInTheDocument();
+    expect(screen.getByText('No work experience found')).toBeInTheDocument();
   });
 
   it('renders an error message when fetch fails', async () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
     (sanityFetch as jest.Mock).mockRejectedValue(new Error('Fetch failed'));
-    render(await WorkGrid());
+    render(await WorkGrid({}));
 
     expect(
       screen.getByText('Failed to load work experience. Please try again later.'),
     ).toBeInTheDocument();
-    consoleErrorSpy.mockRestore();
   });
 });

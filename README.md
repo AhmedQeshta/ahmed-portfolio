@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website built with Next.js 15 and Sanity CMS, showcasing projects, blog posts, work experience, and professional information.
 
-![Portfolio Preview](public/images/preview.png)
+<img width="1847" height="1849" alt="Image" src="https://github.com/user-attachments/assets/eda2ca64-f856-447e-967d-d916f4e756d0" />
 
 ## 🌟 Features
 
@@ -16,6 +16,27 @@ A modern, responsive portfolio website built with Next.js 15 and Sanity CMS, sho
 - **SEO Optimized**: Built-in SEO features and meta tag management
 - **Performance Optimized**: Fast loading with Next.js optimizations
 - **Type Safety**: Full TypeScript implementation
+
+## 🌟 Open Graph & SEO Setup
+
+### Social Media Sharing
+
+- **Default OG Image**: `/public/images/ahmed-qeshta-og.png` for general website sharing
+- **Dynamic Blog Images**: Individual blog posts use their thumbnails with fallback to default
+- **Smart Fallbacks**: All pages have proper fallback images if specific images aren't available
+
+### SEO Features
+
+- **Dynamic Metadata**: Each blog post and work experience has unique SEO titles and descriptions
+- **Structured Data**: Proper article metadata for better search engine understanding
+- **Social Media Optimization**: Twitter Cards and Open Graph properly configured
+- **Canonical URLs**: Prevents duplicate content issues
+
+### Image Requirements
+
+- **Default OG Image**: 1200x630px (already in place)
+- **Blog Thumbnails**: Any size (automatically handled with proper aspect ratios)
+- **Work Logos**: Any size (falls back to default OG image if not available)
 
 ## 🚀 Tech Stack
 
@@ -146,69 +167,4 @@ yarn test:coverage
 - `yarn build` - Build for production
 - `yarn start` - Start production server
 - `yarn lint` - Run ESLint
-- `yarn test` - Run Jest tests
-- `yarn test:watch` - Run tests in watch mode
-- `yarn test:coverage` - Generate test coverage report
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Connect your repository to [Vercel](https://vercel.com)
-3. Add environment variables in Vercel dashboard
-4. Deploy automatically on push
-
-### Other Platforms
-
-The project is configured for standalone output and can be deployed to:
-
-- Railway
-- Digital Ocean
-- AWS
-- Google Cloud Platform
-
-## 🔧 Configuration
-
-### Sanity Configuration
-
-Edit `sanity.config.ts` to customize:
-
-- Studio appearance
-- Plugins and tools
-- Schema organization
-
-### Next.js Configuration
-
-Modify `next.config.ts` for:
-
-- Image optimization
-- Performance settings
-- Build optimizations
-
-### Styling
-
-Customize the design in:
-
-- `tailwind.config.js` - Tailwind configuration
-- `app/globals.css` - Global styles
-- Component-specific styles
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/new-feature`
-3. Commit changes: `git commit -m 'Add new feature'`
-4. Push to branch: `git push origin feature/new-feature`
-5. Submit a pull request
-
-## 📞 Contact
-
-**Ahmed Qeshta**
-
-- Email: [ahmed.qeshta.dev@gmail.com](mailto:ahmed.qeshta.dev@gmail.com)
-- Portfolio: [https://ahmedqeshta.vercel.app](https://ahmedqeshta.vercel.app)
-- LinkedIn: [linkedin.com/in/ahmedqeshta](https://linkedin.com/in/ahmedqeshta)
-- GitHub: [github.com/ahmedqeshta](https://github.com/ahmedqeshta)
-
-⭐ Star this repository if you found it helpful!
+- `yarn test`

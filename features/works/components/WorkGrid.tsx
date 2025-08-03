@@ -3,9 +3,11 @@ import { sanityFetch } from '@/sanity/lib/client';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import WorkCard from '@/features/works/components/WorkCard';
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
+import HeaderTitle from '@/features/shard/components/ui/HeaderTitle';
+import EmptyItem from '@/features/shard/components/ui/EmptyItem';
+import { IWorkGridProps } from '@/features/works/types/work';
 
-export default async function WorkGrid() {
+export default async function WorkGrid({ readMore = false }: IWorkGridProps) {
   try {
     const works = await sanityFetch<WorkExperienceResponse[]>({
       query: workExperienceQuery,
@@ -13,21 +15,19 @@ export default async function WorkGrid() {
     });
 
     return (
-      <section id="works" className="py-20">
+      <section id="works" className={`py-20 ${!readMore && 'mt-12 lg:mt-12'}`}>
         <div className="mx-auto max-w-5xl px-4">
-          <ScrollAnimation direction="down" delay={0.2}>
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4 gradient-text">Works Experience</h2>
-              <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-                Explore my latest works and creative solutions
-              </p>
-            </div>
-          </ScrollAnimation>
+          <HeaderTitle
+            title="Works Experience"
+            subtitle="Explore my latest works and creative solutions"
+          />
 
           {works.length === 0 ? (
-            <div className="text-center text-gray-400">
-              <p>No work experience found.</p>
-            </div>
+            <EmptyItem
+              title="No work experience found"
+              subTitle="Check back soon for new work experience!"
+              icon="👨‍💼"
+            />
           ) : (
             <WorkCard works={works} />
           )}
