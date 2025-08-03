@@ -18,7 +18,7 @@ export async function generateProjectMetadata({
       tags: ['features'],
     });
     const projectFeature = features.filter(
-      (_, { name, status }: any) => name === 'projects' && status === 'publish',
+      ({ name, status }) => name === 'projects' && status === 'publish',
     );
 
     if (!projectFeature) notFound();
@@ -84,7 +84,7 @@ export async function generateProjectStaticParams() {
       slug,
     }));
   } catch (error) {
-    console.error('Error generating static params for project:', error);
+    console.error('Error generating static params for projects:', error);
     return [];
   }
 }

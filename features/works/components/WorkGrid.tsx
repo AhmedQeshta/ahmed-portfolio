@@ -15,7 +15,7 @@ export default async function WorkGrid({ readMore = false }: IWorkGridProps) {
     });
 
     return (
-      <section id="works" className={`py-20 ${!!!readMore && 'mt-12 lg:mt-12'}`}>
+      <section id="works" className={`py-20 ${!readMore && 'mt-12 lg:mt-12'}`}>
         <div className="mx-auto max-w-5xl px-4">
           <HeaderTitle
             title="Works Experience"

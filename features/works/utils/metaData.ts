@@ -106,7 +106,7 @@ export async function generateWorkStaticParams() {
       slug,
     }));
   } catch (error) {
-    console.error('Error generating static params for blogs:', error);
+    console.error('Error generating static params for works:', error);
     return [];
   }
 }

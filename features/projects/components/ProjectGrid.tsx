@@ -3,7 +3,6 @@ import { projectsQuery } from '@/sanity/lib/queries';
 import { ProjectResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import ProjectCard from '@/features/projects/components/ProjectCard';
-import ReadMore from '@/features/shard/components/ui/ReadMore';
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { IProjectGrid } from '@/features/projects/types/project';
 import HeaderTitle from '@/features/shard/components/ui/HeaderTitle';
@@ -17,7 +16,7 @@ export default async function ProjectGrid({ readMore = true }: IProjectGrid) {
     });
 
     return (
-      <section id="projects" className={`py-20 ${!!!readMore && 'mt-12 lg:mt-12'}`}>
+      <section id="projects" className={`py-20 ${!readMore && 'mt-12 lg:mt-12'}`}>
         <ScrollAnimation
           direction="down"
           delay={0.1}

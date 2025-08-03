@@ -18,7 +18,7 @@ export async function generateBlogMetadata({
       tags: ['features'],
     });
     const blogFeature = features.filter(
-      (_, { name, status }: any) => name === 'blogs' && status === 'publish',
+      ({ name, status }) => name === 'blogs' && status === 'publish',
     );
 
     if (!blogFeature) notFound();
