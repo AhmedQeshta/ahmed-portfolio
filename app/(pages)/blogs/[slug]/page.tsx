@@ -1,11 +1,9 @@
 import Blog from '@/features/blogs/components/Blog';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import { sanityFetch } from '@/sanity/lib/client';
-import { blogPostBySlugQuery, blogPostsQuery, featuresQuery } from '@/sanity/lib/queries';
-import { BlogPostResponse, FeatureResponse } from '@/sanity/lib/types';
+import { blogPostBySlugQuery, blogPostsQuery } from '@/sanity/lib/queries';
+import { BlogPostResponse } from '@/sanity/lib/types';
 import { FixedPageProps } from '@/types/app-router';
-import { notFound } from 'next/navigation';
-import { Metadata } from 'next/types';
 
 import { generateBlogMetadata, generateBlogStaticParams } from '@/features/blogs/utils/metaData';
 

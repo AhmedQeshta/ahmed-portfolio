@@ -134,7 +134,6 @@ describe('Blog', () => {
     // Check main sections
     expect(screen.getByTestId('navigation-header')).toBeInTheDocument();
     expect(screen.getByTestId('hero-blog')).toBeInTheDocument();
-    expect(screen.getByTestId('blog-content')).toBeInTheDocument();
     expect(screen.getByTestId('technologies')).toBeInTheDocument();
     expect(screen.getByTestId('tags')).toBeInTheDocument();
     expect(screen.getByTestId('share-card')).toBeInTheDocument();

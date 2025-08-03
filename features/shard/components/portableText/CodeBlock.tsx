@@ -17,8 +17,8 @@ export default function CodeBlock({ value }: ICodeBlock) {
         </div>
         <ButtonCopy value={value} />
       </div>
-      <pre className="bg-gray-900/80 p-4 overflow-x-auto max-h-[600px] overflow-y-auto">
-        <code className="text-sm text-gray-100 font-mono leading-relaxed whitespace-pre">
+      <pre className="bg-gray-900/80 p-3 sm:p-4 overflow-x-auto max-h-[40vh] sm:max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900">
+        <code className="text-xs sm:text-sm text-gray-100 font-mono leading-relaxed whitespace-pre-wrap break-words">
           {value.code}
         </code>
       </pre>
