@@ -1,55 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { X, Download } from 'lucide-react';
+import usePWA from '@/features/shard/hooks/usePWA';
+import { useState, useEffect } from 'react';
 
-interface BeforeInstallPromptEvent extends Event {
-  readonly platforms: string[];
-  readonly userChoice: Promise<{
-    outcome: 'accepted' | 'dismissed';
-    platform: string;
-  }>;
-  prompt(): Promise<void>;
-}
+import { BeforeInstallPromptEvent } from '@/features/shard/types/common';
 
 export default function PWAInstallPrompt() {
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-  const [showPrompt, setShowPrompt] = useState(false);
-
-  useEffect(() => {
-    const handler = (e: Event) => {
-      e.preventDefault();
-      setDeferredPrompt(e as BeforeInstallPromptEvent);
-      setShowPrompt(true);
-    };
-
-    window.addEventListener('beforeinstallprompt', handler);
-
-    return () => {
-      window.removeEventListener('beforeinstallprompt', handler);
-    };
-  }, []);
-
-  const handleInstall = async () => {
-    if (!deferredPrompt) return;
-
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-
-    if (outcome === 'accepted') {
-      console.log('User accepted the install prompt');
-    } else {
-      console.log('User dismissed the install prompt');
-    }
-
-    setDeferredPrompt(null);
-    setShowPrompt(false);
-  };
-
-  const handleDismiss = () => {
-    setShowPrompt(false);
-    setDeferredPrompt(null);
-  };
+  const { showPrompt, handleInstall, handleDismiss } = usePWA();
 
   if (!showPrompt) return null;
 
@@ -66,7 +24,7 @@ export default function PWAInstallPrompt() {
           <div className="flex space-x-2">
             <button
               onClick={handleInstall}
-              className="flex items-center px-3 py-1.5 bg-blue-600 text-white text-xs font-medium rounded-md hover:bg-blue-700 transition-colors">
+              className="flex items-center px-3 py-1.5 bg-purple-600 text-white text-xs font-medium rounded-md hover:bg-blue-700 transition-colors">
               <Download className="w-3 h-3 mr-1" />
               Install
             </button>
