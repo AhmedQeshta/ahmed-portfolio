@@ -2,9 +2,6 @@
 
 import { X, Download } from 'lucide-react';
 import usePWA from '@/features/shard/hooks/usePWA';
-import { useState, useEffect } from 'react';
-
-import { BeforeInstallPromptEvent } from '@/features/shard/types/common';
 
 export default function PWAInstallPrompt() {
   const { showPrompt, handleInstall, handleDismiss } = usePWA();
@@ -12,7 +9,7 @@ export default function PWAInstallPrompt() {
   if (!showPrompt) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-4 z-50">
+    <div className="fixed bottom-4 left-4 right-10 w-72 md:right-auto md:left-10  md:w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-4 z-50">
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
