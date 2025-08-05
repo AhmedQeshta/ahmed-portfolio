@@ -43,7 +43,7 @@ jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
   };
 });
 
-jest.mock('@/features/contact/components/ui/DefaultInput', () => {
+jest.mock('@/features/shard/components/form/DefaultInput', () => {
   return function MockDefaultInput({
     name,
     value,
@@ -65,7 +65,7 @@ jest.mock('@/features/contact/components/ui/DefaultInput', () => {
   };
 });
 
-jest.mock('@/features/contact/components/ui/Label', () => {
+jest.mock('@/features/shard/components/form/Label', () => {
   return function MockLabel({ htmlFor, title }: any) {
     return (
       <label htmlFor={htmlFor} data-testid={`label-${htmlFor}`}>
@@ -75,7 +75,7 @@ jest.mock('@/features/contact/components/ui/Label', () => {
   };
 });
 
-jest.mock('@/features/contact/components/ui/DefaultTextarea', () => {
+jest.mock('@/features/shard/components/form/DefaultTextarea', () => {
   return function MockDefaultTextarea({
     name,
     value,

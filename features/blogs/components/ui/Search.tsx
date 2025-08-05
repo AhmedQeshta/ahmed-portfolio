@@ -2,16 +2,11 @@
 
 import { useSearch } from '@/features/shard/hooks/useSearch';
 import { XIcon } from 'lucide-react';
-import DefaultInput from '@/features/contact/components/ui/DefaultInput';
+import DefaultInput from '@/features/shard/components/form/DefaultInput';
 import { ISearch } from '@/features/shard/types/common';
 
 const Search = ({ action }: ISearch) => {
-  const { query, setQuery, handleSearch } = useSearch(action);
-
-  // Handle the search input change
-  const handleInputChange = (value: string) => {
-    setQuery(value);
-  };
+  const { query, handleInputChange, handleSearch } = useSearch(action);
 
   return (
     <div className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-5 w-full py-5">
@@ -31,7 +26,7 @@ const Search = ({ action }: ISearch) => {
           {query && (
             <button
               type="button"
-              onClick={() => setQuery('')}
+              onClick={() => handleInputChange('')}
               className="absolute text-2xl right-3 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-400 focus:outline-none"
               aria-label="Clear search">
               <XIcon className="w-5 h-5" />

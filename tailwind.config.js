@@ -1,10 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ['./pages/**/*.{js,ts,jsx,tsx,mdx}', './components/**/*.{js,ts,jsx,tsx,mdx}'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -29,6 +25,11 @@ module.exports = {
         slowspin: 'slowspin 12s linear infinite',
         blob: 'blob 7s infinite',
         'spin-slow': 'spin 20s linear infinite',
+        fadeInUp: 'fadeInUp 0.6s ease-out forwards',
+        slideInLeft: 'slideInLeft 0.5s ease-out forwards',
+        slideInRight: 'slideInRight 0.5s ease-out forwards',
+        bounceIn: 'bounceIn 0.6s ease-out forwards',
+        pulseGlow: 'pulseGlow 2s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -51,6 +52,61 @@ module.exports = {
           },
           '100%': {
             transform: 'translate(0px, 0px) scale(1)',
+          },
+        },
+        fadeInUp: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(20px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+        },
+        slideInLeft: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateX(-30px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateX(0)',
+          },
+        },
+        slideInRight: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateX(30px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateX(0)',
+          },
+        },
+        bounceIn: {
+          '0%': {
+            opacity: '0',
+            transform: 'scale(0.3)',
+          },
+          '50%': {
+            opacity: '1',
+            transform: 'scale(1.05)',
+          },
+          '70%': {
+            transform: 'scale(0.9)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'scale(1)',
+          },
+        },
+        pulseGlow: {
+          '0%, 100%': {
+            boxShadow: '0 0 5px rgba(168,85,247,0.3)',
+          },
+          '50%': {
+            boxShadow: '0 0 20px rgba(168,85,247,0.6)',
           },
         },
       },

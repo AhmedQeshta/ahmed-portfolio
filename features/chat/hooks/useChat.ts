@@ -1,26 +1,24 @@
-import { sendMessage } from '@/features/contact/utils/actions/contact';
-import { useState, useActionState, FormEvent } from 'react';
-import { z } from 'zod';
-import { IContactInputs, IErrors } from '@/features/contact/types/contact';
-import { contactSchema } from '@/features/contact/utils/schema';
+import { FormEvent, useActionState, useState } from 'react';
+import { IChatInputs, IErrors } from '@/features/chat/types/chat-system';
+import { chatSchema } from '@/features/chat/schema';
+import z from 'zod';
+import { sendChatMessage } from '@/features/chat/actions/chat';
 
-export function useContact() {
+export default function useChat() {
   const initialStatus = {
     errors: {},
     success: false,
     message: '',
   } as const;
 
-  const [state, formAction, isPending] = useActionState(sendMessage, initialStatus);
-  const [formData, setFormData] = useState<IContactInputs>({
-    name: '',
-    email: '',
+  const [state, formAction, isPending] = useActionState(sendChatMessage, initialStatus);
+  const [formData, setFormData] = useState<IChatInputs>({
     message: '',
   });
   const [clientErrors, setClientErrors] = useState<IErrors>({});
 
   // Handle input changes and real-time validation
-  const handleInputChange = (field: keyof IContactInputs, value: string) => {
+  const handleInputChange = (field: keyof IChatInputs, value: string) => {
     const updatedData = { ...formData, [field]: value };
     setFormData(updatedData);
 
@@ -31,7 +29,7 @@ export function useContact() {
 
     // Validate single field
     try {
-      const fieldSchema = z.object({ [field]: contactSchema.shape[field] });
+      const fieldSchema = z.object({ [field]: chatSchema.shape[field] });
       fieldSchema.parse({ [field]: value });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -43,17 +41,14 @@ export function useContact() {
     }
   };
 
-  // Handle form submission with client-side validation
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     const formDataObj = new FormData(event.currentTarget);
     const data = {
-      name: formDataObj.get('name') as string,
-      email: formDataObj.get('email') as string,
       message: formDataObj.get('message') as string,
     };
 
     // Client-side validation
-    const validation = contactSchema.safeParse(data);
+    const validation = chatSchema.safeParse(data);
 
     if (!validation.success) {
       event.preventDefault();
@@ -74,13 +69,10 @@ export function useContact() {
     setClientErrors({});
   };
 
-  // Combine server and client errors (client errors take precedence)
   const displayErrors = {
-    name: clientErrors.name || (state?.errors as IErrors)?.name,
-    email: clientErrors.email || (state?.errors as IErrors)?.email,
     message: clientErrors.message || (state?.errors as IErrors)?.message,
     general: (state?.errors as IErrors)?.general,
   };
 
-  return { formData, state, formAction, isPending, handleInputChange, handleSubmit, displayErrors };
+  return { formAction, handleSubmit, isPending, formData, handleInputChange, displayErrors };
 }

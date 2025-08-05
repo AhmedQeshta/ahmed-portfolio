@@ -17,7 +17,7 @@ jest.mock('@/features/shard/hooks/useSearch', () => ({
 }));
 
 // Mock the DefaultInput component
-jest.mock('@/features/contact/components/ui/DefaultInput', () => {
+jest.mock('@/features/shard/components/form/DefaultInput', () => {
   return function MockDefaultInput({
     name,
     value,

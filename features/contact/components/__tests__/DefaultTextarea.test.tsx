@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import DefaultTextarea from '@/features/contact/components/ui/DefaultTextarea';
+import DefaultTextarea from '@/features/shard/components/form/DefaultTextarea';
 
 // Mock the cn utility function
 jest.mock('@/features/shard/utils/statusColor', () => ({
