@@ -2,10 +2,12 @@
 import DefaultInput from '@/features/shard/components/form/DefaultInput';
 import { Send } from 'lucide-react';
 import useChat from '@/features/chat/hooks/useChat';
+import { IChatInputProps } from '@/features/chat/types/chat-system';
 
-export default function ChatInput() {
+export default function ChatInput({ sendMessage }: IChatInputProps) {
   const { formAction, handleSubmit, isPending, formData, handleInputChange, displayErrors } =
-    useChat();
+    useChat({ sendMessage });
+
   return (
     <form action={formAction} onSubmit={handleSubmit}>
       <div className="flex items-start w-full gap-3">
@@ -20,6 +22,7 @@ export default function ChatInput() {
             placeholder="Type your message..."
             autoComplete="off"
             autoCorrect="off"
+            autoFocus={true}
             style={{ WebkitAppearance: 'none' }}
             customStyle="text-text-primary placeholder-text-secondary bg-card-bg/50 backdrop-blur-sm border border-white/20 rounded-xl focus:border-white/40 focus:ring-2 focus:ring-white/20 transition-all duration-300
             hover:border-white/30 hover:bg-card-bg/70"

@@ -5,6 +5,7 @@ export interface IChatContainer {
 export interface IMessage {
   id: number;
   text: string;
+  user: string;
 }
 
 export interface IChatBoxProps {
@@ -24,4 +25,18 @@ export interface IFormState {
   errors: IErrors;
   success?: boolean;
   message?: string;
+}
+
+export interface IMessageProps {
+  text: string;
+  user: string;
+  index: number;
+}
+
+export interface IMessageIconProps {
+  user: string;
+}
+
+export interface IChatInputProps {
+  sendMessage: any;
 }

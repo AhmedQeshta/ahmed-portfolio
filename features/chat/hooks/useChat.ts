@@ -1,10 +1,10 @@
 import { FormEvent, useActionState, useState } from 'react';
-import { IChatInputs, IErrors } from '@/features/chat/types/chat-system';
+import { IChatInputProps, IChatInputs, IErrors } from '@/features/chat/types/chat-system';
 import { chatSchema } from '@/features/chat/schema';
 import z from 'zod';
 import { sendChatMessage } from '@/features/chat/actions/chat';
 
-export default function useChat() {
+export default function useChat({ sendMessage }: any) {
   const initialStatus = {
     errors: {},
     success: false,
@@ -64,6 +64,13 @@ export default function useChat() {
       setClientErrors(errors);
       return;
     }
+
+    sendMessage({
+      id: Math.floor(Math.random() * 999999),
+      text: formData.message,
+      user: 'visitor',
+    });
+    setFormData({ ...formData, message: '' });
 
     // Clear client errors if validation passes
     setClientErrors({});
