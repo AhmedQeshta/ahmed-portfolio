@@ -1,4 +1,4 @@
-import { FormEvent, useActionState, useState } from 'react';
+import { FormEvent, useActionState, useState, useEffect, useRef } from 'react';
 import { IChatInputProps, IChatInputs, IErrors } from '@/features/chat/types/chat-system';
 import { chatSchema } from '@/features/chat/schema';
 import z from 'zod';
@@ -8,7 +8,8 @@ export default function useChat({ sendMessage }: any) {
   const initialStatus = {
     errors: {},
     success: false,
-    message: '',
+    userMessage: '',
+    aiResponse: '',
   } as const;
 
   const [state, formAction, isPending] = useActionState(sendChatMessage, initialStatus);
@@ -16,6 +17,22 @@ export default function useChat({ sendMessage }: any) {
     message: '',
   });
   const [clientErrors, setClientErrors] = useState<IErrors>({});
+  const lastProcessedResponse = useRef<string>('');
+
+  // Handle AI response when server action completes
+  useEffect(() => {
+    if (state?.success && state?.aiResponse && state.aiResponse !== lastProcessedResponse.current) {
+      // Add AI response to chat
+      sendMessage({
+        id: Math.floor(Math.random() * 999999),
+        text: state.aiResponse,
+        user: 'system',
+      });
+
+      // Mark this response as processed
+      lastProcessedResponse.current = state.aiResponse;
+    }
+  }, [state?.success, state?.aiResponse]); // Removed sendMessage from dependencies
 
   // Handle input changes and real-time validation
   const handleInputChange = (field: keyof IChatInputs, value: string) => {
@@ -65,11 +82,14 @@ export default function useChat({ sendMessage }: any) {
       return;
     }
 
+    // Add user message immediately for instant feedback
     sendMessage({
       id: Math.floor(Math.random() * 999999),
       text: formData.message,
       user: 'visitor',
     });
+
+    // Clear the input
     setFormData({ ...formData, message: '' });
 
     // Clear client errors if validation passes

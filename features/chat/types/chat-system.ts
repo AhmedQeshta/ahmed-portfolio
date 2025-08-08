@@ -24,7 +24,8 @@ export interface IChatInputs {
 export interface IFormState {
   errors: IErrors;
   success?: boolean;
-  message?: string;
+  userMessage?: string;
+  aiResponse?: string;
 }
 
 export interface IMessageProps {
