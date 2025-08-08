@@ -39,5 +39,9 @@ export interface IMessageIconProps {
 }
 
 export interface IChatInputProps {
-  sendMessage: any;
+  sendMessage: (value: IMessage) => void;
+}
+
+export interface IChatBoxRef {
+  scrollToBottom: () => void;
 }

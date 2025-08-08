@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { useState } from 'react';
-import { IMessage } from '../types/chat-system';
-import { ChatBoxRef } from '../components/ChatBox';
+import { IMessage, IChatBoxRef } from '@/features/chat/types/chat-system';
 
 export default function useChatContainer() {
   const [messages, setMessages] = useState<IMessage[]>([
@@ -12,7 +11,7 @@ export default function useChatContainer() {
     },
   ]);
 
-  const chatBoxRef = useRef<ChatBoxRef>(null);
+  const chatBoxRef = useRef<IChatBoxRef>(null);
 
   const sendMessage = (value: IMessage) => {
     setMessages([...messages, value]);
