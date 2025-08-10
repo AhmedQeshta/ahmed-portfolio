@@ -23,7 +23,7 @@ export default async function WorkGridSlider() {
         <ScrollAnimation
           direction="down"
           delay={0.1}
-          className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-5">
+          className="mx-auto max-w-[1450px] px-5 sm:px-7 lg:px-5">
           {/* Header Animation*/}
           <HeaderTitle
             title="Works Experience"

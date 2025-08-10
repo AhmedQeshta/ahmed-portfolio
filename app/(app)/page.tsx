@@ -10,6 +10,7 @@ import { sanityFetch } from '@/sanity/lib/client';
 import { FeatureResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import ContactSection from '@/features/contact/components/ContactSection';
+import Link from 'next/link';
 
 const sectionOfPage: any = {
   header: <Header />,
@@ -36,6 +37,9 @@ export default async function Home() {
               </Suspense>
             </Fragment>
           ))}
+        <Link href="/about" className="text-white">
+          about
+        </Link>
       </main>
     );
   } catch (error) {

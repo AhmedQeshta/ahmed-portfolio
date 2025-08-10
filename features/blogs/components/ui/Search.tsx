@@ -9,7 +9,7 @@ const Search = ({ action }: ISearch) => {
   const { query, handleInputChange, handleSearch } = useSearch(action);
 
   return (
-    <div className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-5 w-full py-5">
+    <div className="mx-auto max-w-[1450px] px-5 sm:px-7 lg:px-5 w-full py-5">
       <form onSubmit={handleSearch} className="flex gap-2">
         <div className="relative flex-1">
           <DefaultInput

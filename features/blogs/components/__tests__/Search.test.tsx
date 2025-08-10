@@ -4,13 +4,13 @@ import Search from '@/features/blogs/components/ui/Search';
 import { IDefaultInput } from '@/features/contact/types/contact';
 
 // Mock the useSearch hook
-const mockSetQuery = jest.fn();
+const mockHandleInputChange = jest.fn();
 const mockHandleSearch = jest.fn();
 
 jest.mock('@/features/shard/hooks/useSearch', () => ({
   useSearch: jest.fn(() => ({
     query: '',
-    setQuery: mockSetQuery,
+    handleInputChange: mockHandleInputChange,
     handleSearch: mockHandleSearch,
     error: null,
   })),
@@ -99,7 +99,7 @@ describe('Search', () => {
     const input = screen.getByTestId('search-input');
     fireEvent.change(input, { target: { value: 'test query' } });
 
-    expect(mockSetQuery).toHaveBeenCalledWith('test query');
+    expect(mockHandleInputChange).toHaveBeenCalledWith('test query');
   });
 
   it('should handle form submission', () => {
@@ -122,7 +122,7 @@ describe('Search', () => {
     const { useSearch } = require('@/features/shard/hooks/useSearch');
     useSearch.mockReturnValue({
       query: 'test query',
-      setQuery: mockSetQuery,
+      handleInputChange: mockHandleInputChange,
       handleSearch: mockHandleSearch,
       error: null,
     });
@@ -138,7 +138,7 @@ describe('Search', () => {
     const { useSearch } = require('@/features/shard/hooks/useSearch');
     useSearch.mockReturnValue({
       query: 'test query',
-      setQuery: mockSetQuery,
+      handleInputChange: mockHandleInputChange,
       handleSearch: mockHandleSearch,
       error: null,
     });
@@ -148,7 +148,7 @@ describe('Search', () => {
     const clearButton = screen.getByRole('button', { name: 'Clear search' });
     fireEvent.click(clearButton);
 
-    expect(mockSetQuery).toHaveBeenCalledWith('');
+    expect(mockHandleInputChange).toHaveBeenCalledWith('');
   });
 
   it('should have correct styling classes', () => {
@@ -157,7 +157,7 @@ describe('Search', () => {
     const container = screen.getByRole('button', { name: 'Search' }).closest('form')?.parentElement;
     expect(container).toHaveClass(
       'mx-auto',
-      'max-w-7xl',
+      'max-w-[1450px]',
       'px-5',
       'sm:px-7',
       'lg:px-5',
@@ -188,7 +188,7 @@ describe('Search', () => {
     const { useSearch } = require('@/features/shard/hooks/useSearch');
     useSearch.mockReturnValue({
       query: 'test query',
-      setQuery: mockSetQuery,
+      handleInputChange: mockHandleInputChange,
       handleSearch: mockHandleSearch,
       error: null,
     });
@@ -213,7 +213,7 @@ describe('Search', () => {
     const { useSearch } = require('@/features/shard/hooks/useSearch');
     useSearch.mockReturnValue({
       query: 'test query',
-      setQuery: mockSetQuery,
+      handleInputChange: mockHandleInputChange,
       handleSearch: mockHandleSearch,
       error: null,
     });

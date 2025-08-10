@@ -1,11 +1,15 @@
 'use server';
 
-import { chatSchema } from '../schema';
-import { IErrors, IFormState } from '../types/chat-system';
+import { chatSchema } from '@/features/chat/schema';
+import { IErrors, IFormState } from '@/features/chat/types/chat-system';
+import { generateAIResponse, validateAIConfig } from '@/features/chat/lib/services/ai';
+import {
+  getCachedSiteContent,
+  formatContentForAI,
+} from '@/features/chat/lib/services/sanity-content';
 
-// Simulated AI assistant responses for portfolio website
-// Replace this with actual AI service integration (OpenAI, Anthropic, etc.)
-async function generateAIResponse(userMessage: string): Promise<string> {
+// Fallback responses when AI is not available
+async function getFallbackResponse(userMessage: string): Promise<string> {
   const message = userMessage.toLowerCase();
 
   // Portfolio-specific responses
@@ -14,7 +18,7 @@ async function generateAIResponse(userMessage: string): Promise<string> {
     message.includes('who are you') ||
     message.includes('who is ahmed')
   ) {
-    return "I'm an AI assistant for Ahmed's portfolio website. I can help you learn about his background, skills, projects, and services. You can visit the About page for more details about Ahmed's experience and expertise.";
+    return "I'm an AI assistant for Ahmed's portfolio website. I can help you learn about his background, skills, projects, and services. You can learn more about Ahmed Qeshta, including his background, skills, and availability, by checking out his bio section on the homepage.";
   }
 
   if (message.includes('project') || message.includes('work') || message.includes('portfolio')) {
@@ -81,8 +85,36 @@ export async function sendChatMessage(prevState: IFormState, formData: FormData)
   const { message } = validation.data;
 
   try {
-    // Generate AI response
-    const aiResponse = await generateAIResponse(message);
+    let aiResponse: string;
+
+    // Check if AI is properly configured
+    if (validateAIConfig()) {
+      try {
+        // Fetch site content from Sanity CMS
+        const siteContent = await getCachedSiteContent();
+        const contextString = formatContentForAI(siteContent);
+
+        // Generate AI response with site context
+        const response = await generateAIResponse(message, contextString, {
+          maxTokens: 300,
+          temperature: 0.7,
+        });
+
+        aiResponse = response.content;
+
+        // Log usage for monitoring (optional)
+        if (response.usage) {
+          console.log('AI Usage:', response.usage);
+        }
+      } catch (aiError) {
+        console.error('AI generation failed, using fallback:', aiError);
+        aiResponse = await getFallbackResponse(message);
+      }
+    } else {
+      // AI not configured, use fallback
+      console.warn('OpenAI not configured, using fallback responses');
+      aiResponse = await getFallbackResponse(message);
+    }
 
     return {
       errors: {},

@@ -18,7 +18,7 @@ export default function Navbar({ links }: INavLinks) {
       className={`fixed top-0 w-full bg-slate-900/95 backdrop-blur-md border-b border-purple-500/20 z-50 transition-transform duration-300 ease-in-out ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}>
-      <div className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-5">
+      <div className="mx-auto max-w-[1450px] px-5 sm:px-7 lg:px-5">
         <div className="flex items-center justify-between py-3 sm:py-4">
           {/* Logo */}
 

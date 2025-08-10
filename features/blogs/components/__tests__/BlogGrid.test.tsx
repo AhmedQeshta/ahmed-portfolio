@@ -250,7 +250,7 @@ describe('BlogGrid', () => {
 
     const section = screen.getByText('Blogs').closest('section');
     const container = section?.querySelector('div');
-    expect(container).toHaveClass('mx-auto', 'max-w-7xl', 'px-5', 'sm:px-7', 'lg:px-5');
+    expect(container).toHaveClass('mx-auto', 'max-w-[1450px]', 'px-5', 'sm:px-7', 'lg:px-5');
   });
 
   it('should have correct heading styling', async () => {

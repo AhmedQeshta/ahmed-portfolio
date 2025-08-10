@@ -1,11 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useImperativeHandle } from 'react';
+import { IChatBoxRef } from '@/features/chat/types/chat-system';
+import { IMessage } from '@/features/chat/types/chat-system';
 
-import { useImperativeHandle } from 'react';
-
-import { useRef } from 'react';
-import { IMessage, IChatBoxRef } from '../types/chat-system';
-
-export default function useChatBox(messages: IMessage[], ref: any) {
+export default function useChatBox(messages: IMessage[], ref: React.Ref<IChatBoxRef>) {
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -31,5 +28,8 @@ export default function useChatBox(messages: IMessage[], ref: any) {
     return () => clearTimeout(timer);
   }, [messages]);
 
-  return { chatContainerRef };
+  return {
+    chatContainerRef,
+    scrollToBottom,
+  };
 }
