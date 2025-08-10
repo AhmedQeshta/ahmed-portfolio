@@ -2,13 +2,7 @@ import { sendMessage } from '@/features/contact/utils/actions/contact';
 import { useState, useActionState, FormEvent } from 'react';
 import { z } from 'zod';
 import { IContactInputs, IErrors } from '@/features/contact/types/contact';
-
-// Client-side validation schema (matches server-side)
-const contactSchema = z.object({
-  name: z.string().min(1, 'Name is required').trim(),
-  email: z.string().min(1, 'Email is required').email('Please enter a valid email address').trim(),
-  message: z.string().min(1, 'Message is required').trim(),
-});
+import { contactSchema } from '@/features/contact/utils/schema';
 
 export function useContact() {
   const initialStatus = {

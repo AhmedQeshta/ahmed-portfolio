@@ -14,9 +14,9 @@ export default function Card({
     <MouseMoveWrapper>
       <Link
         href={`/blogs/${slug}`}
-        prefetch={true}
         aria-label={`Read article: ${title}`}
-        className="block h-full group">
+        className="group block w-full h-full"
+        data-testid="blog-link">
         <article className="bg-card-bg backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:border-white/20 hover:bg-card-hover transition-all duration-300 group-hover:scale-[1.02] hover:shadow-2xl relative z-10 min-h-[500px] flex flex-col h-full">
           {/* Blog Image Header - Enhanced Design */}
           <div className="relative w-full h-56 rounded-xl overflow-hidden mb-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-white/10">

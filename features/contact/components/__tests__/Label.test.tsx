@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Label from '@/features/contact/components/ui/Label';
+import Label from '@/features/shard/components/form/Label';
 
 // Mock the cn utility function
 jest.mock('@/features/shard/utils/statusColor', () => ({

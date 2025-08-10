@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import DefaultInput from '@/features/contact/components/ui/DefaultInput';
+import DefaultInput from '@/features/shard/components/form/DefaultInput';
 
 // Mock the cn utility function
 jest.mock('@/features/shard/utils/statusColor', () => ({

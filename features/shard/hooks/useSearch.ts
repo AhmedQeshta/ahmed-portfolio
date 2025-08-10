@@ -52,5 +52,10 @@ export function useSearch(action: string) {
       setError(result.error.errors[0].message);
     }
   };
-  return { query, setQuery, handleSearch, error };
+
+  // Handle the search input change
+  const handleInputChange = (value: string) => {
+    setQuery(value);
+  };
+  return { query, handleInputChange, handleSearch, error };
 }

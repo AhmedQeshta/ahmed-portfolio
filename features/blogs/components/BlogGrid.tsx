@@ -34,7 +34,7 @@ export default async function BlogGrid({ readMore = true, query, className }: IB
         <ScrollAnimation
           direction="down"
           delay={0.1}
-          className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-5">
+          className="mx-auto max-w-[1450px] px-5 sm:px-7 lg:px-5">
           <HeaderTitle
             title="Blogs"
             subtitle="Explore my latest thoughts, tutorials, and insights"
