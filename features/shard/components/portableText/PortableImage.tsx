@@ -1,42 +1,16 @@
 'use client';
 import { getImageUrl } from '@/sanity/lib/image';
-import { IPortableTextComponents } from '@/features/shard/types/common';
+import { IPortableTextComponentsProps } from '@/features/shard/types/common';
 import Image from 'next/image';
 import { useState, useMemo } from 'react';
+import usePortableImage from '../../hooks/usePortableImage';
 
-export default function PortableImage({ value }: IPortableTextComponents) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
+export default function PortableImage({ value }: IPortableTextComponentsProps) {
+  const { isLoading, hasError, imageSrc, handleLoad, handleError, isGif } = usePortableImage({
+    value,
+  });
 
-  // Early return if no value or asset
-  if (!value?.asset) {
-    return null;
-  }
-
-  // Check if the image is a GIF by examining the asset reference
-  const isGif = useMemo(() => {
-    const assetRef = (value.asset as any)?._ref || '';
-    return assetRef.includes('-gif');
-  }, [value.asset]);
-
-  // For GIFs, we need to use the original URL without transformations
-  const imageSrc = useMemo(() => {
-    if (isGif) {
-      // For GIFs, use the original URL without quality/format transformations
-      return getImageUrl(value, 1200, 800);
-    }
-    // For other formats, use optimized settings
-    return getImageUrl(value, 1200, 800, 90);
-  }, [value, isGif]);
-
-  const handleLoad = () => {
-    setIsLoading(false);
-  };
-
-  const handleError = () => {
-    setIsLoading(false);
-    setHasError(true);
-  };
+  if (!value?.asset) return null;
 
   if (hasError) {
     return (

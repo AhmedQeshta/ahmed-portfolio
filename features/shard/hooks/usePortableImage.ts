@@ -1,0 +1,42 @@
+import { getImageUrl } from '@/sanity/lib/image';
+import { useState, useMemo } from 'react';
+import { IPortableTextComponentsProps } from '../types/common';
+
+export default function usePortableImage({ value }: IPortableTextComponentsProps) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
+  // Check if the image is a GIF by examining the asset reference
+  const isGif = useMemo(() => {
+    const assetRef = (value.asset as any)?._ref || '';
+    return assetRef.includes('-gif');
+  }, [value.asset]);
+
+  // For GIFs, we need to use the original URL without transformations
+  const imageSrc = useMemo(() => {
+    if (isGif) {
+      // For GIFs, use the original URL without quality/format transformations
+      return getImageUrl(value, 1200, 800);
+    }
+    // For other formats, use optimized settings
+    return getImageUrl(value, 1200, 800, 90);
+  }, [value, isGif]);
+
+  const handleLoad = () => {
+    setIsLoading(false);
+  };
+
+  const handleError = () => {
+    setIsLoading(false);
+    setHasError(true);
+  };
+
+  return {
+    isLoading,
+    hasError,
+    imageSrc,
+    handleLoad,
+    handleError,
+    isGif,
+  };
+}

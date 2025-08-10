@@ -66,7 +66,7 @@ export interface ImageValue {
   alt?: string;
 }
 
-export interface IPortableTextComponents {
+export interface IPortableTextComponentsProps {
   value: ImageValue;
 }
 
