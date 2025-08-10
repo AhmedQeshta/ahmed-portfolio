@@ -1,11 +1,11 @@
+import { ExternalLink, Eye } from 'lucide-react';
 import ImageHeader from '@/features/shard/components/ui/ImageHeader';
 import MouseMoveWrapper from '@/features/shard/components/ui/MouseMoveWrapper';
-import { ExternalLink, Eye } from 'lucide-react';
-import StatusBadges from './StatusBadges';
+import StatusBadges from '@/features/projects/components/ui/StatusBadges';
 import TechnologiesDisplay from '@/features/shard/components/ui/TechnologiesDisplay';
-import Duration from './Duration';
-import Link from 'next/link';
-import { ICardProps } from '../../types/project';
+import Duration from '@/features/projects/components/ui/Duration';
+import OptimizedLink from '@/features/shard/components/ui/OptimizedLink';
+import { ICardProps } from '@/features/projects/types/project';
 
 export default function Card({
   project: {
@@ -22,7 +22,7 @@ export default function Card({
 }: ICardProps) {
   return (
     <MouseMoveWrapper>
-      <Link
+      <OptimizedLink
         href={`/projects/${slug}`}
         aria-label={`View project details: ${title}`}
         className="group block w-full h-full"
@@ -78,7 +78,7 @@ export default function Card({
             </div>
           </div>
         </article>
-      </Link>
+      </OptimizedLink>
     </MouseMoveWrapper>
   );
 }

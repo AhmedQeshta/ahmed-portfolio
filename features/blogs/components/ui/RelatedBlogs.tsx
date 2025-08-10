@@ -3,7 +3,7 @@ import { getImageUrl } from '@/sanity/lib/image';
 import { formatReadingTime } from '@/features/shard/utils/date';
 import { IRelatedBlogs } from '@/features/blogs/types/blog';
 import Image from 'next/image';
-import Link from 'next/link';
+import OptimizedLink from '@/features/shard/components/ui/OptimizedLink';
 
 export default function RelatedBlogs({ relatedBlogs }: IRelatedBlogs) {
   if (!relatedBlogs || relatedBlogs.length === 0) return null;
@@ -18,7 +18,7 @@ export default function RelatedBlogs({ relatedBlogs }: IRelatedBlogs) {
       </ScrollAnimation>
       <ScrollAnimation direction="down" delay={0.4} className="space-y-4">
         {relatedBlogs.slice(0, 3).map(({ _id, slug, thumbnail, title, readingTime }) => (
-          <Link key={_id} href={`/blogs/${slug}`} className="block group">
+          <OptimizedLink key={_id} href={`/blogs/${slug}`} className="block group">
             <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-800/50 transition-colors">
               <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
                 <Image
@@ -36,7 +36,7 @@ export default function RelatedBlogs({ relatedBlogs }: IRelatedBlogs) {
                 <p className="text-xs text-gray-400 mt-1">{formatReadingTime(readingTime)}</p>
               </div>
             </div>
-          </Link>
+          </OptimizedLink>
         ))}
       </ScrollAnimation>
     </ScrollAnimation>

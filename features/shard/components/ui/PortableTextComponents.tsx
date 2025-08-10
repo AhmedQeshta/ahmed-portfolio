@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import { getImageUrl } from '@/sanity/lib/image';
 import {
   IBlockH1,
   IBlockH2,
@@ -16,7 +14,7 @@ import {
   IMarkEm,
   IMarkLinkProps,
   IMarkStrong,
-  IPortableTextComponents,
+  IPortableTextComponentsProps,
 } from '@/features/shard/types/common';
 import PortableImage from '@/features/shard/components/portableText/PortableImage';
 import CodeBlock from '@/features/shard/components/portableText/CodeBlock';
@@ -39,7 +37,7 @@ import Em from '@/features/shard/components/portableText/block/Em';
 // Shared PortableText components for consistent rich text rendering
 export const portableTextComponents = {
   types: {
-    image: ({ value }: IPortableTextComponents) => <PortableImage value={value} />,
+    image: ({ value }: IPortableTextComponentsProps) => <PortableImage value={value} />,
     codeBlock: ({ value }: ICodeBlock) => <CodeBlock value={value} />,
   },
   block: {

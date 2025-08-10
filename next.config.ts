@@ -20,6 +20,15 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react'],
     // Enable faster client-side navigation
     optimizeCss: true,
+    // Enable faster page transitions
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
   },
   // Enable static optimization
   output: process.env.NEXT_OUTPUT_MODE || 'standalone',
@@ -31,6 +40,20 @@ const nextConfig = {
   poweredByHeader: false,
   // Enable faster page transitions
   reactStrictMode: true,
+  // Optimize for better navigation performance
+  compiler: {
+    // Remove console logs in production
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  // Enable better caching for navigation
+  generateEtags: false,
+  // Optimize for faster page loads
+  onDemandEntries: {
+    // Period (in ms) where the server will keep pages in the buffer
+    maxInactiveAge: 25 * 1000,
+    // Number of pages that should be kept simultaneously without being disposed
+    pagesBufferLength: 2,
+  },
 };
 
 export default nextConfig;

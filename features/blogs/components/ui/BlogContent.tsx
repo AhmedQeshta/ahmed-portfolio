@@ -1,19 +1,14 @@
-'use client';
+import { PortableText, PortableTextComponents } from '@portabletext/react';
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { IBlogPostResponse } from '@/features/blogs/types/blog';
-import { PortableText, PortableTextComponents } from '@portabletext/react';
 import { portableTextComponents } from '@/features/shard/components/ui/PortableTextComponents';
-import useMobile from '@/features/shard/hooks/useMobile';
 
 export default function BlogContent({ blog }: IBlogPostResponse) {
-  const isMobile = useMobile();
   if (!blog) return null;
+
   const { content } = blog;
 
-  // Handle empty or invalid content
-  if (!content || (Array.isArray(content) && content.length === 0)) {
-    return null;
-  }
+  if (!content || (Array.isArray(content) && content.length === 0)) return null;
 
   return (
     <ScrollAnimation
