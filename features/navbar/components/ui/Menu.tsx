@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import OptimizedLink from '@/features/shard/components/ui/OptimizedLink';
 import { mediaList } from '@/features/navbar/utils/navLinks';
 import { IMenu } from '@/features/navbar/types/navbar';
 
@@ -12,13 +12,13 @@ export default function Menu({ links, closeMobileMenu, isMobileMenuOpen }: IMenu
         {/* Mobile Navigation Links */}
         <div className="space-y-2 mb-6">
           {links?.map(({ id, name, url }) => (
-            <Link
+            <OptimizedLink
               key={id}
               href={url}
               onClick={closeMobileMenu}
               className="block px-4 py-3 text-text-secondary hover:text-white hover:bg-purple-500/10 rounded-lg transition-all duration-200 text-base font-medium">
               {name}
-            </Link>
+            </OptimizedLink>
           ))}
         </div>
 

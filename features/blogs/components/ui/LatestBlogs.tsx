@@ -3,7 +3,7 @@ import { getImageUrl } from '@/sanity/lib/image';
 import { formatDate } from '@/features/shard/utils/date';
 import { ILatestBlogs } from '@/features/blogs/types/blog';
 import Image from 'next/image';
-import Link from 'next/link';
+import OptimizedLink from '@/features/shard/components/ui/OptimizedLink';
 
 export default function LatestBlogs({ latestBlogs }: ILatestBlogs) {
   if (!latestBlogs || latestBlogs.length === 0) return null;
@@ -18,7 +18,7 @@ export default function LatestBlogs({ latestBlogs }: ILatestBlogs) {
       </ScrollAnimation>
       <ScrollAnimation direction="down" delay={0.4} className="space-y-4">
         {latestBlogs.slice(0, 3).map(({ _id, slug, thumbnail, title, publishedAt }) => (
-          <Link href={`/blogs/${slug}`} key={_id} className="block group">
+          <OptimizedLink href={`/blogs/${slug}`} key={_id} className="block group">
             <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-800/50 transition-colors">
               <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
                 <Image
@@ -36,14 +36,14 @@ export default function LatestBlogs({ latestBlogs }: ILatestBlogs) {
                 <p className="text-xs text-gray-400 mt-1">{formatDate(publishedAt)}</p>
               </ScrollAnimation>
             </div>
-          </Link>
+          </OptimizedLink>
         ))}
       </ScrollAnimation>
       <ScrollAnimation
         direction="down"
         delay={0.5}
         className="inline-block mt-4 text-sm text-purple-400 hover:text-purple-300 transition-colors">
-        <Link href="/blogs">View all posts →</Link>
+        <OptimizedLink href="/blogs">View all posts →</OptimizedLink>
       </ScrollAnimation>
     </ScrollAnimation>
   );

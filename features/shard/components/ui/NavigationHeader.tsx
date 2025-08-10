@@ -1,16 +1,16 @@
 import { ILinkNavigation } from '@/features/shard/types/common';
 import { ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
+import OptimizedLink from './OptimizedLink';
 
 export default function NavigationHeader({ link, text }: ILinkNavigation) {
   return (
     <div className="relative z-10 p-6 pt-20 lg:pt-24" data-testid="navigation-header">
-      <Link
+      <OptimizedLink
         href={link}
         className="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors group">
         <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
         {text}
-      </Link>
+      </OptimizedLink>
     </div>
   );
 }

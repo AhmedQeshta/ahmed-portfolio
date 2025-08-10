@@ -1,12 +1,14 @@
+import { PortableText, PortableTextComponents } from '@portabletext/react';
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { IBlogPostResponse } from '@/features/blogs/types/blog';
-import { PortableText, PortableTextComponents } from '@portabletext/react';
 import { portableTextComponents } from '@/features/shard/components/ui/PortableTextComponents';
 
 export default function BlogContent({ blog }: IBlogPostResponse) {
+  if (!blog) return null;
+
   const { content } = blog;
 
-  if (!blog || !content || (Array.isArray(content) && content.length === 0)) return null;
+  if (!content || (Array.isArray(content) && content.length === 0)) return null;
 
   return (
     <ScrollAnimation

@@ -6,6 +6,18 @@ export default function usePortableImage({ value }: IPortableTextComponentsProps
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
+  // Early return if no value or asset
+  if (!value?.asset) {
+    return {
+      isLoading: false,
+      hasError: true,
+      imageSrc: '',
+      handleLoad: () => {},
+      handleError: () => {},
+      isGif: false,
+    };
+  }
+
   // Check if the image is a GIF by examining the asset reference
   const isGif = useMemo(() => {
     const assetRef = (value.asset as any)?._ref || '';

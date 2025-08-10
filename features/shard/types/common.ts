@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface ILinksList {
   id?: number;
   text?: string;
@@ -170,4 +172,17 @@ export interface EmptyItemProps {
   title: string;
   subTitle: string;
   icon?: string | null;
+}
+
+export interface OptimizedLinkProps {
+  href: string;
+  children: ReactNode;
+  className?: string;
+  prefetch?: boolean;
+  scroll?: boolean;
+  replace?: boolean;
+  shallow?: boolean;
+  passHref?: boolean;
+  legacyBehavior?: boolean;
+  onClick?: () => void;
 }

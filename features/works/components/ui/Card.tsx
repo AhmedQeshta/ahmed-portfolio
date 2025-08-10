@@ -1,5 +1,5 @@
 import { getImageUrl } from '@/sanity/lib/image';
-import Link from 'next/link';
+import OptimizedLink from '@/features/shard/components/ui/OptimizedLink';
 import Image from 'next/image';
 import { durationOfWork } from '@/features/shard/utils/date';
 import { getEmploymentTypeColor, getLocationTypeColor } from '@/features/shard/utils/statusColor';
@@ -27,7 +27,7 @@ export default function Card({
 }: IWorkResponse) {
   return (
     <MouseMoveWrapper>
-      <Link
+      <OptimizedLink
         href={`/works/${slug}`}
         className="block bg-card-bg backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:border-white/20 hover:bg-card-hover transition-all duration-300 group hover:scale-[1.02] hover:shadow-2xl relative z-10">
         {/* Header with Logo and Company */}
@@ -98,20 +98,26 @@ export default function Card({
 
         {/* Description */}
         {description && (
-          <p className="text-text-secondary text-sm mb-4 line-clamp-3 leading-relaxed">
+          <p className="text-text-secondary text-sm line-clamp-3 leading-relaxed mb-4">
             {description}
           </p>
         )}
 
         {/* Technologies */}
-        <TechnologiesHome technologies={technologies} link={`/works/${slug}`} />
+        {technologies && technologies.length > 0 && (
+          <div className="mb-4">
+            <TechnologiesHome technologies={technologies} link={`/works/${slug}`} />
+          </div>
+        )}
 
-        {/* View More Indicator */}
-        <div className="flex items-center justify-between pt-3 border-t border-white/10">
-          <span className="text-text-accent text-sm font-medium">View Details</span>
-          <ExternalLink className="w-4 h-4 text-text-accent group-hover:text-white transition-colors" />
+        {/* Call to Action */}
+        <div className="flex items-center justify-end pt-4 border-t border-white/10">
+          <div className="flex items-center gap-2 text-text-accent text-sm font-medium group-hover:text-white transition-colors">
+            <span>View Details</span>
+            <ExternalLink className="w-4 h-4 text-text-accent group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
+          </div>
         </div>
-      </Link>
+      </OptimizedLink>
     </MouseMoveWrapper>
   );
 }

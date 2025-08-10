@@ -1,16 +1,10 @@
-'use client';
 import { cn } from '@/features/shard/utils/statusColor';
-import ScrollAnimation from './ScrollAnimation';
-import Link from 'next/link';
+import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
+import OptimizedLink from '@/features/shard/components/ui/OptimizedLink';
 import { IActionButtons } from '@/features/shard/types/common';
 
 export default function ActionButtons({ listLinks }: IActionButtons) {
   if (!listLinks) return null;
-
-  // Helper function to determine if a link is external
-  const isExternalLink = (url: string): boolean => {
-    return url.startsWith('http://') || url.startsWith('https://') || url.startsWith('mailto:');
-  };
 
   return (
     <ScrollAnimation direction="down" delay={0.4} className="flex gap-4">
@@ -20,19 +14,14 @@ export default function ActionButtons({ listLinks }: IActionButtons) {
           return null;
         }
 
-        const isExternal = isExternalLink(link);
-
         return (
-          <Link
+          <OptimizedLink
             key={id}
             href={link}
-            prefetch={!isExternal}
-            target={isExternal ? '_blank' : undefined}
-            rel={isExternal ? 'noopener noreferrer' : undefined}
             className={cn(customStyle, 'flex items-center gap-2 hover:text-blue-400')}>
             {icon && icon}
             {text}
-          </Link>
+          </OptimizedLink>
         );
       })}
     </ScrollAnimation>

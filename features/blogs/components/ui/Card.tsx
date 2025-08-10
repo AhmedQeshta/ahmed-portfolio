@@ -1,18 +1,17 @@
 import ImageHeader from '@/features/shard/components/ui/ImageHeader';
 import MouseMoveWrapper from '@/features/shard/components/ui/MouseMoveWrapper';
 import TechnologiesDisplay from '@/features/shard/components/ui/TechnologiesDisplay';
-import { formatDate, formatReadingTime } from '@/features/shard/utils/date';
-import { ArrowRight, Calendar, Clock } from 'lucide-react';
-import Link from 'next/link';
-import MetaInfo from './MetaInfo';
-import { ICardProps } from '../../types/blog';
+import { ArrowRight } from 'lucide-react';
+import OptimizedLink from '@/features/shard/components/ui/OptimizedLink';
+import MetaInfo from '@/features/blogs/components/ui/MetaInfo';
+import { ICardProps } from '@/features/blogs/types/blog';
 
 export default function Card({
   blog: { slug, thumbnail, title, technologies, publishedAt, readingTime, description },
 }: ICardProps) {
   return (
     <MouseMoveWrapper>
-      <Link
+      <OptimizedLink
         href={`/blogs/${slug}`}
         aria-label={`Read article: ${title}`}
         className="group block w-full h-full"
@@ -65,7 +64,7 @@ export default function Card({
             </div>
           </div>
         </article>
-      </Link>
+      </OptimizedLink>
     </MouseMoveWrapper>
   );
 }
