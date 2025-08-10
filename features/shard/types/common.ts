@@ -1,5 +1,32 @@
 import { ReactNode } from 'react';
 
+// Sanity Asset types
+export interface SanityAsset {
+  _ref: string;
+  _type: 'reference';
+}
+
+export interface SanityImageAsset extends SanityAsset {
+  _type: 'reference';
+}
+
+export interface SanityImageValue {
+  asset: SanityImageAsset;
+  alt?: string;
+  hotspot?: {
+    x: number;
+    y: number;
+    height: number;
+    width: number;
+  };
+  crop?: {
+    top: number;
+    bottom: number;
+    left: number;
+    right: number;
+  };
+}
+
 export interface ILinksList {
   id?: number;
   text?: string;
@@ -63,9 +90,22 @@ export interface ITags {
   tags?: string[];
 }
 
+// Updated ImageValue to use proper Sanity types
 export interface ImageValue {
-  asset?: object;
+  asset?: SanityImageAsset;
   alt?: string;
+  hotspot?: {
+    x: number;
+    y: number;
+    height: number;
+    width: number;
+  };
+  crop?: {
+    top: number;
+    bottom: number;
+    left: number;
+    right: number;
+  };
 }
 
 export interface IPortableTextComponentsProps {

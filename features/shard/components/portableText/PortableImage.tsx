@@ -1,9 +1,7 @@
 'use client';
-import { getImageUrl } from '@/sanity/lib/image';
+import usePortableImage from '@/features/shard/hooks/usePortableImage';
 import { IPortableTextComponentsProps } from '@/features/shard/types/common';
 import Image from 'next/image';
-import { useState, useMemo } from 'react';
-import usePortableImage from '../../hooks/usePortableImage';
 
 export default function PortableImage({ value }: IPortableTextComponentsProps) {
   const { isLoading, hasError, imageSrc, handleLoad, handleError, isGif } = usePortableImage({

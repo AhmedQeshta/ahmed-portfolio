@@ -1,6 +1,7 @@
 import { render, screen, waitFor, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import PortableImage from '../portableText/PortableImage';
+import { ImageValue } from '../../types/common';
 
 // Mock the getImageUrl function
 jest.mock('@/sanity/lib/image', () => ({
@@ -29,7 +30,7 @@ describe('PortableImage', () => {
   };
 
   it('should render image with correct props', async () => {
-    render(<PortableImage value={mockValue} />);
+    render(<PortableImage value={mockValue as unknown as ImageValue} />);
 
     const image = screen.getByAltText('Test image');
     expect(image).toBeInTheDocument();
@@ -43,7 +44,7 @@ describe('PortableImage', () => {
   });
 
   it('should handle GIF images correctly', async () => {
-    render(<PortableImage value={mockGifValue} />);
+    render(<PortableImage value={mockGifValue as unknown as ImageValue} />);
 
     const image = screen.getByAltText('Test GIF');
     expect(image).toBeInTheDocument();
@@ -59,7 +60,7 @@ describe('PortableImage', () => {
   });
 
   it('should show loading state initially', () => {
-    render(<PortableImage value={mockValue} />);
+    render(<PortableImage value={mockValue as unknown as ImageValue} />);
 
     // Check for loading spinner
     const loadingSpinner = screen.getByTestId('loading-spinner');
@@ -67,7 +68,7 @@ describe('PortableImage', () => {
   });
 
   it('should show error state when image fails to load', async () => {
-    render(<PortableImage value={mockValue} />);
+    render(<PortableImage value={mockValue as unknown as ImageValue} />);
 
     const image = screen.getByAltText('Test image');
 
@@ -81,23 +82,25 @@ describe('PortableImage', () => {
   });
 
   it('should render caption when alt text is provided', () => {
-    render(<PortableImage value={mockValue} />);
+    render(<PortableImage value={mockValue as unknown as ImageValue} />);
 
     expect(screen.getByText('Test image')).toBeInTheDocument();
   });
 
   it('should not render when no value is provided', () => {
-    const { container } = render(<PortableImage value={null as any} />);
+    const { container } = render(<PortableImage value={null as unknown as ImageValue} />);
     expect(container.firstChild).toBeNull();
   });
 
   it('should not render when no asset is provided', () => {
-    const { container } = render(<PortableImage value={{ alt: 'Test' } as any} />);
+    const { container } = render(
+      <PortableImage value={{ alt: 'Test' } as unknown as ImageValue} />,
+    );
     expect(container.firstChild).toBeNull();
   });
 
   it('should have correct responsive sizing', () => {
-    render(<PortableImage value={mockValue} />);
+    render(<PortableImage value={mockValue as unknown as ImageValue} />);
 
     const image = screen.getByAltText('Test image');
     expect(image).toHaveAttribute(
