@@ -1,16 +1,9 @@
 'use server';
 
 import nodemailer from 'nodemailer';
-import { z } from 'zod';
 import { getHtml, getText } from '@/features/contact/utils/email';
 import { IErrors, IFormState } from '@/features/contact/types/contact';
-
-// Zod schema for contact form validation
-const contactSchema = z.object({
-  name: z.string().min(1, 'Name is required').trim(),
-  email: z.string().min(1, 'Email is required').email('Please enter a valid email address').trim(),
-  message: z.string().min(1, 'Message is required').trim(),
-});
+import { contactSchema } from '@/features/contact/utils/schema';
 
 export async function sendMessage(prevState: IFormState, formData: FormData) {
   const formInput = {
