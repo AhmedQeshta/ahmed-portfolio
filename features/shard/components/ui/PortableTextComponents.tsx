@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import { getImageUrl } from '@/sanity/lib/image';
 import {
   IBlockH1,
   IBlockH2,
