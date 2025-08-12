@@ -80,6 +80,16 @@ export const baseInfo = defineType({
       },
       validation: (rule) => rule.required(),
     }),
+    // Added CV file field
+    defineField({
+      name: 'cv',
+      title: 'Curriculum Vitae (PDF)',
+      type: 'file',
+      options: {
+        storeOriginalFilename: true,
+      },
+      description: 'Upload your latest CV in PDF format',
+    }),
     // contact info
     defineField({
       name: 'email',

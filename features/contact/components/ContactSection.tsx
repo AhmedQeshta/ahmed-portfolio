@@ -31,18 +31,18 @@ export default async function ContactSection() {
           {/* Main Content */}
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
             {/* Contact Information */}
-            <div className="order-2 lg:order-1 min-h-[900px]">
+            <div className="order-2 lg:order-1 lg:min-h-[1050px]">
               <ScrollAnimation direction="left" delay={0.4}>
-                <div className="bg-section-glass min-h-[900px] backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 h-full">
+                <div className="bg-section-glass lg:min-h-[1050px] backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 h-full">
                   <ContactInfo baseInfo={baseInfo} />
                 </div>
               </ScrollAnimation>
             </div>
 
             {/* Contact Form */}
-            <div className="order-1 lg:order-2 min-h-[900px]">
+            <div className="order-1 lg:order-2 lg:min-h-[1050px]">
               <ScrollAnimation direction="right" delay={0.4}>
-                <div className="bg-section-glass min-h-[900px] backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 h-full">
+                <div className="bg-section-glass lg:min-h-[1050px] backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 h-full">
                   {/* Form Header */}
                   <ContactFormHeader />
 

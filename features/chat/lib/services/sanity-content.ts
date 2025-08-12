@@ -7,6 +7,7 @@ export interface SiteContent {
     bio: string;
     skills: string[];
     availability: string;
+    cvUrl?: string;
   };
   projects: Array<{
     title: string;
@@ -45,7 +46,8 @@ export async function fetchSiteContent(): Promise<SiteContent> {
       title,
       bio,
       "skills": technologies[]->name,
-      availability
+      availability,
+      "cvUrl": cv.asset->url
     }`;
 
     // Fetch projects
@@ -93,6 +95,7 @@ export async function fetchSiteContent(): Promise<SiteContent> {
         bio: '',
         skills: [],
         availability: 'Available',
+        cvUrl: undefined,
       },
       projects: projects || [],
       blogPosts: blogPosts || [],
@@ -130,6 +133,7 @@ Title: ${baseInfo.title}
 Bio: ${baseInfo.bio}
 Availability: ${baseInfo.availability}
 Skills: ${baseInfo.skills.join(', ')}
+${baseInfo.cvUrl ? `\nCV: ${baseInfo.cvUrl}` : ''}
 
 `;
 

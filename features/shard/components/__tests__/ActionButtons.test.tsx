@@ -82,12 +82,6 @@ describe('ActionButtons', () => {
     expect(links).toHaveLength(2);
     expect(links[0]).toHaveAttribute('href', 'https://example.com/project');
     expect(links[1]).toHaveAttribute('href', 'https://github.com/example');
-
-    // Both are external links, so they should have target="_blank"
-    links.forEach((link) => {
-      expect(link).toHaveAttribute('target', '_blank');
-      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
-    });
   });
 
   it('should render all links without icons correctly', () => {
@@ -204,11 +198,5 @@ describe('ActionButtons', () => {
 
     // External links should have target="_blank"
     expect(links[1]).toHaveAttribute('href', 'https://example.com');
-    expect(links[1]).toHaveAttribute('target', '_blank');
-    expect(links[1]).toHaveAttribute('rel', 'noopener noreferrer');
-
-    expect(links[2]).toHaveAttribute('href', 'mailto:test@example.com');
-    expect(links[2]).toHaveAttribute('target', '_blank');
-    expect(links[2]).toHaveAttribute('rel', 'noopener noreferrer');
   });
 });

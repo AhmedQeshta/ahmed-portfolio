@@ -45,3 +45,17 @@ export interface IChatInputProps {
 export interface IChatBoxRef {
   scrollToBottom: () => void;
 }
+
+export interface ChatMessage {
+  role: 'system' | 'user' | 'assistant';
+  content: string;
+}
+
+export interface AIResponse {
+  content: string;
+  usage?: {
+    prompt_tokens: number;
+    completion_tokens: number;
+    total_tokens: number;
+  };
+}

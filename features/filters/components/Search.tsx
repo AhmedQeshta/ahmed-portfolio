@@ -1,11 +1,12 @@
 'use client';
 
-import { useSearch } from '@/features/shard/hooks/useSearch';
 import { XIcon } from 'lucide-react';
-import DefaultInput from '@/features/shard/components/form/DefaultInput';
-import { ISearch } from '@/features/shard/types/common';
 
-const Search = ({ action }: ISearch) => {
+import { useSearch } from '@/features/filters/hooks/useSearch';
+import DefaultInput from '@/features/shard/components/form/DefaultInput';
+import { ISearch } from '@/features/filters//types/search';
+
+const Search = ({ action, placeholder }: ISearch) => {
   const { query, handleInputChange, handleSearch } = useSearch(action);
 
   return (
@@ -17,11 +18,11 @@ const Search = ({ action }: ISearch) => {
             type="text"
             value={query}
             handleInputChange={handleInputChange}
-            placeholder="Search blogs..."
             autoFocus={true}
             autoComplete="off"
             autoCorrect="off"
             style={{ WebkitAppearance: 'none' }}
+            placeholder={placeholder}
           />
           {query && (
             <button

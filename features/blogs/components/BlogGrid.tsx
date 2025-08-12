@@ -3,7 +3,7 @@ import { blogPostsQuery } from '@/sanity/lib/queries';
 import { BlogPostResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import BlogCard from '@/features/blogs/components/BlogCard';
-import Search from '@/features/blogs/components/ui/Search';
+import Search from '@/features/filters/components/Search';
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { IBlogGrid } from '@/features/blogs/types/blog';
 import HeaderTitle from '@/features/shard/components/ui/HeaderTitle';
@@ -41,7 +41,7 @@ export default async function BlogGrid({ readMore = true, query, className }: IB
             className={className}
           />
 
-          {!readMore && <Search action="/blogs" />}
+          {!readMore && <Search action="/blogs" placeholder="Search blogs..." />}
           {/* Blogs Grid */}
           {blogs.length === 0 ? (
             <EmptyItem

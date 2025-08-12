@@ -17,6 +17,7 @@ export interface IProjectPageModal {
 
 export interface IProjectGrid {
   readMore?: boolean;
+  query?: string;
 }
 
 export interface IProjectResponse {

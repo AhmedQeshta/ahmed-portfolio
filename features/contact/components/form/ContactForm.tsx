@@ -52,7 +52,7 @@ export default function ContactForm() {
             <Label htmlFor="message" title="Message" customStyle="text-white font-medium" />
             <DefaultTextarea
               name="message"
-              rows={6}
+              rows={10}
               value={formData.message}
               handleInputChange={handleInputChange}
               placeholder="Tell me about your project, ideas, or how I can help you..."

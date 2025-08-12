@@ -1,11 +1,9 @@
 'use client';
 
 import { FormEvent, useEffect, useState } from 'react';
-import { useDebounce } from '@/features/shard/hooks/useDebounce';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { z } from 'zod';
-
-const searchSchema = z.string().trim().min(1, 'Search cannot be empty').max(100, 'Search too long');
+import { useDebounce } from '@/features/shard/hooks/useDebounce';
+import { searchSchema } from '@/features/filters/schema';
 
 export function useSearch(action: string) {
   const router = useRouter();

@@ -2,7 +2,7 @@ import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { IBaseInfo } from '@/features/contact/types/contact';
 
 export default function ContactMethods({ baseInfo }: IBaseInfo) {
-  const { email, phone, address } = baseInfo;
+  const { email, phone, address, cvUrl } = baseInfo;
   return (
     <ScrollAnimation direction="down" delay={0.3}>
       <div className="space-y-4 mb-8">
@@ -75,6 +75,45 @@ export default function ContactMethods({ baseInfo }: IBaseInfo) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </a>
+
+        {/* Download CV */}
+        {cvUrl && (
+          <a
+            href={cvUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-4 p-4 bg-gradient-to-r from-purple-500/5 to-purple-600/5 hover:from-purple-500/10 hover:to-purple-600/10 border border-purple-500/20 hover:border-purple-500/40 rounded-xl transition-all duration-300 hover:transform hover:scale-[1.02]">
+            <div className="flex-shrink-0 w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center group-hover:bg-purple-500/30 transition-colors">
+              <svg
+                className="w-6 h-6 text-purple-400 group-hover:text-purple-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4v12m0 0l-3-3m3 3l3-3M4 20h16"
+                />
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <h5 className="text-white font-medium group-hover:text-purple-300 transition-colors">
+                Download CV
+              </h5>
+              <p className="text-text-secondary text-sm truncate group-hover:text-purple-200">
+                PDF format
+              </p>
+            </div>
+            <svg
+              className="w-5 h-5 text-purple-400 group-hover:text-purple-300 group-hover:translate-x-1 transition-all duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        )}
 
         {/* Location Info */}
         <div className="flex items-center gap-4 p-4 bg-gradient-to-r from-amber-500/5 to-amber-600/5 border border-amber-500/20 rounded-xl">
