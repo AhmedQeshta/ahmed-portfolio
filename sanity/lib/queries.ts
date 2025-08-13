@@ -206,7 +206,8 @@ export const baseInfoQuery = groq`
     phone,
     address,
     availability,
-    title
+    title,
+    "cvUrl": cv.asset->url
   }
 `;
 

@@ -1,13 +1,13 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Search from '@/features/blogs/components/ui/Search';
+import Search from '@/features/filters/components/Search';
 import { IDefaultInput } from '@/features/contact/types/contact';
 
 // Mock the useSearch hook
 const mockHandleInputChange = jest.fn();
 const mockHandleSearch = jest.fn();
 
-jest.mock('@/features/shard/hooks/useSearch', () => ({
+jest.mock('@/features/filters/hooks/useSearch', () => ({
   useSearch: jest.fn(() => ({
     query: '',
     handleInputChange: mockHandleInputChange,
@@ -70,7 +70,7 @@ describe('Search', () => {
   });
 
   it('should render the search form', () => {
-    render(<Search action="/blogs" />);
+    render(<Search action="/blogs" placeholder="Search blogs..." />);
 
     expect(screen.getByTestId('search-input')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Search' })).toBeInTheDocument();
@@ -78,14 +78,14 @@ describe('Search', () => {
   });
 
   it('should render with correct placeholder text', () => {
-    render(<Search action="/blogs" />);
+    render(<Search action="/blogs" placeholder="Search blogs..." />);
 
     const input = screen.getByTestId('search-input');
     expect(input).toHaveAttribute('placeholder', 'Search blogs...');
   });
 
   it('should have correct form attributes', () => {
-    render(<Search action="/blogs" />);
+    render(<Search action="/blogs" placeholder="Search blogs..." />);
 
     const input = screen.getByTestId('search-input');
     expect(input).toHaveAttribute('autoComplete', 'off');
@@ -94,7 +94,7 @@ describe('Search', () => {
   });
 
   it('should handle input changes', () => {
-    render(<Search action="/blogs" />);
+    render(<Search action="/blogs" placeholder="Search blogs..." />);
 
     const input = screen.getByTestId('search-input');
     fireEvent.change(input, { target: { value: 'test query' } });
@@ -103,7 +103,7 @@ describe('Search', () => {
   });
 
   it('should handle form submission', () => {
-    render(<Search action="/blogs" />);
+    render(<Search action="/blogs" placeholder="Search blogs..." />);
 
     const form = screen.getByRole('button', { name: 'Search' }).closest('form');
     fireEvent.submit(form!);
@@ -112,14 +112,14 @@ describe('Search', () => {
   });
 
   it('should not show clear button when query is empty', () => {
-    render(<Search action="/blogs" />);
+    render(<Search action="/blogs" placeholder="Search blogs..." />);
 
     expect(screen.queryByRole('button', { name: 'Clear search' })).not.toBeInTheDocument();
   });
 
   it('should show clear button when query has value', () => {
     // Mock useSearch to return a non-empty query
-    const { useSearch } = require('@/features/shard/hooks/useSearch');
+    const { useSearch } = require('@/features/filters/hooks/useSearch');
     useSearch.mockReturnValue({
       query: 'test query',
       handleInputChange: mockHandleInputChange,
@@ -127,7 +127,7 @@ describe('Search', () => {
       error: null,
     });
 
-    render(<Search action="/blogs" />);
+    render(<Search action="/blogs" placeholder="Search blogs..." />);
 
     const clearButton = screen.getByRole('button', { name: 'Clear search' });
     expect(clearButton).toBeInTheDocument();
@@ -135,7 +135,7 @@ describe('Search', () => {
 
   it('should clear query when clear button is clicked', () => {
     // Mock useSearch to return a non-empty query
-    const { useSearch } = require('@/features/shard/hooks/useSearch');
+    const { useSearch } = require('@/features/filters/hooks/useSearch');
     useSearch.mockReturnValue({
       query: 'test query',
       handleInputChange: mockHandleInputChange,
@@ -143,7 +143,7 @@ describe('Search', () => {
       error: null,
     });
 
-    render(<Search action="/blogs" />);
+    render(<Search action="/blogs" placeholder="Search blogs..." />);
 
     const clearButton = screen.getByRole('button', { name: 'Clear search' });
     fireEvent.click(clearButton);
@@ -152,7 +152,7 @@ describe('Search', () => {
   });
 
   it('should have correct styling classes', () => {
-    render(<Search action="/blogs" />);
+    render(<Search action="/blogs" placeholder="Search blogs..." />);
 
     const container = screen.getByRole('button', { name: 'Search' }).closest('form')?.parentElement;
     expect(container).toHaveClass(
@@ -185,7 +185,7 @@ describe('Search', () => {
 
   it('should have correct clear button styling', () => {
     // Mock useSearch to return a non-empty query
-    const { useSearch } = require('@/features/shard/hooks/useSearch');
+    const { useSearch } = require('@/features/filters/hooks/useSearch');
     useSearch.mockReturnValue({
       query: 'test query',
       handleInputChange: mockHandleInputChange,
@@ -193,7 +193,7 @@ describe('Search', () => {
       error: null,
     });
 
-    render(<Search action="/blogs" />);
+    render(<Search action="/blogs" placeholder="Search blogs..." />);
 
     const clearButton = screen.getByRole('button', { name: 'Clear search' });
     expect(clearButton).toHaveClass(
@@ -210,7 +210,7 @@ describe('Search', () => {
 
   it('should render X icon in clear button', () => {
     // Mock useSearch to return a non-empty query
-    const { useSearch } = require('@/features/shard/hooks/useSearch');
+    const { useSearch } = require('@/features/filters/hooks/useSearch');
     useSearch.mockReturnValue({
       query: 'test query',
       handleInputChange: mockHandleInputChange,
@@ -218,7 +218,7 @@ describe('Search', () => {
       error: null,
     });
 
-    render(<Search action="/blogs" />);
+    render(<Search action="/blogs" placeholder="Search blogs..." />);
 
     const clearButton = screen.getByRole('button', { name: 'Clear search' });
     const xIcon = clearButton.querySelector('svg');
@@ -227,7 +227,7 @@ describe('Search', () => {
   });
 
   it('should handle search with different action prop', () => {
-    render(<Search action="/projects" />);
+    render(<Search action="/projects" placeholder="Search blogs..." />);
 
     const form = screen.getByRole('button', { name: 'Search' }).closest('form');
     fireEvent.submit(form!);
@@ -236,7 +236,7 @@ describe('Search', () => {
   });
 
   it('should be accessible with proper ARIA labels', () => {
-    render(<Search action="/blogs" />);
+    render(<Search action="/blogs" placeholder="Search blogs..." />);
 
     const clearButton = screen.queryByRole('button', { name: 'Clear search' });
     if (clearButton) {
@@ -245,7 +245,7 @@ describe('Search', () => {
   });
 
   it('should have input focused by default', () => {
-    render(<Search action="/blogs" />);
+    render(<Search action="/blogs" placeholder="Search blogs..." />);
 
     const input = screen.getByTestId('search-input');
     expect(input).toHaveFocus();

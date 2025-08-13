@@ -7,13 +7,25 @@ import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { IProjectGrid } from '@/features/projects/types/project';
 import HeaderTitle from '@/features/shard/components/ui/HeaderTitle';
 import EmptyItem from '@/features/shard/components/ui/EmptyItem';
+import Search from '@/features/filters/components/Search';
 
-export default async function ProjectGrid({ readMore = true }: IProjectGrid) {
+export default async function ProjectGrid({ readMore = true, query }: IProjectGrid) {
   try {
-    const projects = await sanityFetch<ProjectResponse[]>({
+    let projects = await sanityFetch<ProjectResponse[]>({
       query: projectsQuery,
       tags: ['projects'],
     });
+
+    // Filter projects based on search query if provided
+    if (query && query.trim() !== '') {
+      const lowerQuery = query.toLowerCase();
+      projects = projects.filter(
+        (blog) =>
+          blog.title.toLowerCase().includes(lowerQuery) ||
+          blog.description.toLowerCase().includes(lowerQuery) ||
+          blog.categories?.some((cat) => cat.name.toLowerCase().includes(lowerQuery)),
+      );
+    }
 
     return (
       <section id="projects" className={`py-20 ${!readMore && 'mt-12 lg:mt-12'}`}>
@@ -25,6 +37,8 @@ export default async function ProjectGrid({ readMore = true }: IProjectGrid) {
             title="Projects"
             subtitle="Explore my latest projects and creative solutions"
           />
+
+          {!readMore && <Search action="/projects" placeholder="Search projects..." />}
 
           {/* Projects Grid */}
           {projects.length === 0 ? (

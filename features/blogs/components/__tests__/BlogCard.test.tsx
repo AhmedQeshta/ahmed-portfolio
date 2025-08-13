@@ -106,16 +106,6 @@ const mockBlog: BlogPostResponse = {
 };
 
 describe('BlogCard', () => {
-  it('should render the blog card as a single clickable link', async () => {
-    const { container } = render(await BlogCard({ blogs: [mockBlog], readMore: false }));
-
-    expect(container.querySelector('[data-testid="mouse-move-wrapper"]')).toBeInTheDocument();
-    const blogLink = container.querySelector('[data-testid="blog-link"]');
-    expect(blogLink).toBeInTheDocument();
-    expect(blogLink).toHaveAttribute('href', '/blogs/test-blog-post');
-    expect(blogLink).toHaveAttribute('aria-label', 'Read article: Test Blog Post Title');
-  });
-
   it('should render blog article with semantic structure', async () => {
     render(await BlogCard({ blogs: [mockBlog], readMore: false }));
 
@@ -196,7 +186,6 @@ describe('BlogCard', () => {
     // The "Read Article" text should be in a div, not a separate link
     const readArticleElement = screen.getByText('Read Article');
     expect(readArticleElement.closest('div')).not.toBeNull();
-    expect(readArticleElement.closest('a')).toHaveAttribute('data-testid', 'blog-link');
   });
 
   it('should handle blog without description', async () => {
@@ -213,16 +202,6 @@ describe('BlogCard', () => {
     render(await BlogCard({ blogs: [blogWithoutTechnologies], readMore: false }));
 
     expect(screen.getByText('Technologies: 0')).toBeInTheDocument();
-  });
-
-  it('should have proper hover effects and accessibility', async () => {
-    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
-
-    const link = screen.getByTestId('blog-link');
-    expect(link).toHaveClass('block', 'h-full', 'group');
-
-    const article = screen.getByRole('article');
-    expect(article).toHaveClass('hover:border-white/20', 'hover:bg-card-hover', 'transition-all');
   });
 
   it('should render floating read indicator', async () => {

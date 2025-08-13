@@ -1,5 +1,25 @@
+'use client';
+
 import Link from 'next/link';
-import { OptimizedLinkProps } from '@/features/shard/types/common';
+import { ReactNode } from 'react';
+
+type AnchorTarget = '_self' | '_blank' | '_parent' | '_top' | string;
+
+interface OptimizedLinkProps {
+  href: string;
+  children: ReactNode;
+  className?: string;
+  prefetch?: boolean;
+  scroll?: boolean;
+  replace?: boolean;
+  shallow?: boolean;
+  onClick?: () => void;
+  target?: AnchorTarget;
+  rel?: string;
+  download?: boolean | string;
+  ariaLabel?: string;
+  dataTestId?: string;
+}
 
 export default function OptimizedLink({
   href,
@@ -9,12 +29,13 @@ export default function OptimizedLink({
   scroll = true,
   replace = false,
   shallow = false,
-  passHref = false,
-  legacyBehavior = false,
   onClick,
-  ...props
+  target,
+  rel,
+  download,
+  ariaLabel,
+  dataTestId,
 }: OptimizedLinkProps) {
-  // Check if it's an external link
   const isExternal =
     href.startsWith('http://') || href.startsWith('https://') || href.startsWith('mailto:');
 
@@ -22,11 +43,13 @@ export default function OptimizedLink({
     return (
       <a
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
         className={className}
+        target={target}
+        rel={rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined)}
+        download={download}
         onClick={onClick}
-        {...props}>
+        aria-label={ariaLabel}
+        data-testid={dataTestId}>
         {children}
       </a>
     );
@@ -35,15 +58,15 @@ export default function OptimizedLink({
   return (
     <Link
       href={href}
-      className={className}
       prefetch={prefetch}
       scroll={scroll}
       replace={replace}
-      shallow={shallow}
-      passHref={passHref}
-      legacyBehavior={legacyBehavior}
+      className={className}
       onClick={onClick}
-      {...props}>
+      target={target}
+      rel={rel}
+      aria-label={ariaLabel}
+      data-testid={dataTestId}>
       {children}
     </Link>
   );
