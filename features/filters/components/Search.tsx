@@ -4,7 +4,7 @@ import { XIcon } from 'lucide-react';
 
 import { useSearch } from '@/features/filters/hooks/useSearch';
 import DefaultInput from '@/features/shard/components/form/DefaultInput';
-import { ISearch } from '@/features/filters//types/search';
+import { ISearch } from '@/features/filters/types/search';
 
 const Search = ({ action, placeholder }: ISearch) => {
   const { query, handleInputChange, handleSearch } = useSearch(action);

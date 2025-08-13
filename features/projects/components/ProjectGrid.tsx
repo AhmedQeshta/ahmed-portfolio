@@ -16,7 +16,7 @@ export default async function ProjectGrid({ readMore = true, query }: IProjectGr
       tags: ['projects'],
     });
 
-    // Filter blogs based on search query if provided
+    // Filter projects based on search query if provided
     if (query && query.trim() !== '') {
       const lowerQuery = query.toLowerCase();
       projects = projects.filter(

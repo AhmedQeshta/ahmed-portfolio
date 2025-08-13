@@ -45,13 +45,6 @@ INSTRUCTIONS:
 - If the user asks about Ahmed's services, mention that his services section contains detailed information about his services
 - If the user asks about Ahmed's blog posts, mention that his blog section contains detailed information about his blog posts
 - If the user asks about Ahmed's contact information, mention that his contact section contains detailed information about his contact information
-- Focus on Ahmed's skills, projects, blog posts, and services
-- Provide actionable guidance in a conversational tone
-- If the user asks about Ahmed's background, mention that his bio section on the homepage contains detailed information about his skills, experience, and availability
-- If the user asks about Ahmed's projects, mention that his projects section contains detailed information about his projects
-- If the user asks about Ahmed's services, mention that his services section contains detailed information about his services
-- If the user asks about Ahmed's blog posts, mention that his blog section contains detailed information about his blog posts
-- If the user asks about Ahmed's contact information, mention that his contact section contains detailed information about his contact information
 - If the user asks about Ahmed's skills, mention that his bio section on the homepage contains detailed information about his skills
 - If the user asks about Ahmed's experience, mention that his bio section on the homepage contains detailed information about his experience
 - If the user asks about Ahmed's availability, mention that his bio section on the homepage contains detailed information about his availability
@@ -92,7 +85,7 @@ Examples of good responses:
   ];
 
   try {
-    const completion = await openai?.chat?.completions?.create({
+    const completion = await openai.chat.completions.create({
       model,
       messages,
       max_tokens: options?.maxTokens || 300,
