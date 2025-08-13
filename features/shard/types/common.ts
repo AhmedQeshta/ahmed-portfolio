@@ -77,10 +77,6 @@ export interface IScrollAnimation {
   duration?: number;
 }
 
-export interface ISearch {
-  action: string;
-}
-
 export interface IShareCard {
   url?: string;
   title?: string;

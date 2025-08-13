@@ -1,5 +1,6 @@
 import MessageIcon from '@/features/chat/components/MessageIcon';
 import { IMessageProps } from '@/features/chat/types/chat-system';
+import renderTextWithLinks from '@/features/chat/components/renderTextWithLinks';
 
 export default function Message({ text, user, index }: IMessageProps) {
   return (
@@ -10,7 +11,7 @@ export default function Message({ text, user, index }: IMessageProps) {
         <div
           className={`bg-orb-blue/20 backdrop-blur-sm border border-white/20 rounded-2xl p-4 shadow-sm group-hover:bg-orb-blue/30 group-hover:border-white/30 group-hover:shadow-lg transform group-hover:scale-[1.02] transition-all duration-300 ease-out ${user === 'visitor' ? 'animate-slideInRight text-right' : 'animate-slideInLeft'}`}
           style={{ animationDelay: `${index * 0.1 + 0.2}s` }}>
-          <p className="text-text-primary text-sm leading-relaxed">{text}</p>
+          <p className="text-text-primary text-sm leading-relaxed">{renderTextWithLinks(text)}</p>
         </div>
       </div>
 

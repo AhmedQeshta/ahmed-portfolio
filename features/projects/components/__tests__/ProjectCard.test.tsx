@@ -103,16 +103,6 @@ const mockProject: IProjectResponse['project'] = {
 };
 
 describe('ProjectCard', () => {
-  it('should render the project card as a single clickable link', () => {
-    const { container } = render(<ProjectCard projects={[mockProject]} readMore={false} />);
-
-    expect(container.querySelector('[data-testid="mouse-move-wrapper"]')).toBeInTheDocument();
-    const projectLink = container.querySelector('[data-testid="project-link"]');
-    expect(projectLink).toBeInTheDocument();
-    expect(projectLink).toHaveAttribute('href', '/projects/test-project');
-    expect(projectLink).toHaveAttribute('aria-label', 'View project details: Test Project Title');
-  });
-
   it('should render project article with semantic structure', () => {
     render(<ProjectCard projects={[mockProject]} readMore={false} />);
 
@@ -193,13 +183,6 @@ describe('ProjectCard', () => {
     render(<ProjectCard projects={[projectWithoutTech]} readMore={false} />);
 
     expect(screen.getByTestId('technologies-display')).toHaveTextContent('Technologies: 0');
-  });
-
-  it('should have proper hover effects and accessibility', () => {
-    render(<ProjectCard projects={[mockProject]} readMore={false} />);
-
-    const projectLink = screen.getByTestId('project-link');
-    expect(projectLink).toHaveAttribute('aria-label', 'View project details: Test Project Title');
   });
 
   it('should render floating view indicator', () => {

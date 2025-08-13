@@ -100,6 +100,7 @@ export interface BaseInfo {
   address: string;
   availability: string;
   title: string[];
+  cvUrl?: string;
 }
 
 export interface Feature {

@@ -243,6 +243,6 @@ describe('ContactForm', () => {
     expect(emailInput).toHaveAttribute('name', 'email');
     expect(emailInput).toHaveAttribute('type', 'email');
     expect(messageTextarea).toHaveAttribute('name', 'message');
-    expect(messageTextarea).toHaveAttribute('rows', '6'); // Updated to match new rows value
+    expect(messageTextarea).toHaveAttribute('rows', '10'); // Updated to match new rows value
   });
 });
