@@ -119,7 +119,20 @@ export const projectBySlugQuery = groq`
     endDate,
     status,
     "screenshot": screenshot.asset->url,
-    "gallery": gallery[].asset->url
+    "gallery": gallery[]{
+      _type == 'image' => {
+        "type": 'image',
+        "url": asset->url
+      },
+      _type == 'file' => {
+        "type": 'video',
+        "url": asset->url
+      },
+      _type == 'video' => {
+        "type": 'video',
+        "url": asset->url
+      }
+    }
   }
 `;
 

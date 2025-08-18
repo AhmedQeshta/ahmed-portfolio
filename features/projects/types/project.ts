@@ -1,4 +1,4 @@
-import { ProjectResponse } from '@/sanity/lib/types';
+import { ProjectGalleryItem, ProjectResponse } from '@/sanity/lib/types';
 
 export interface IProjectLayout {
   readonly children: React.ReactNode;
@@ -37,8 +37,10 @@ export interface IProjectGalleryProps {
   openModal: (index: number) => void;
 }
 
-export interface IThumbnailNav {
-  gallery: string[];
+export interface IGallery {
+  gallery: Array<string | { type: 'image' | 'video'; url: string }>;
+}
+export interface IThumbnailNav extends IGallery {
   selectedImageIndex: number;
   setSelectedImageIndex: (index: number) => void;
 }
@@ -49,8 +51,7 @@ export interface IImageTitleProps {
   galleryLength: number;
 }
 
-export interface IMainImageProps {
-  gallery: string[];
+export interface IMainImageProps extends IGallery {
   selectedImageIndex: number;
   title: string;
 }
@@ -61,15 +62,17 @@ export interface IButtonsNavProps {
   galleryLength: number;
 }
 
-export interface IGalleryItemProps {
-  image: string;
+export interface IFile {
+  file: string | { type: 'image' | 'video'; url: string };
+}
+
+export interface IGalleryItemProps extends IFile {
   title: string;
   index: number;
   openModal: (index: number) => void;
 }
 
-export interface IGalleriesProps {
-  gallery: string[];
+export interface IGalleriesProps extends IGallery {
   title: string;
   openModal: (index: number) => void;
 }
@@ -84,13 +87,38 @@ export interface IStatusBadgesProps {
   repoUrl?: string;
 }
 
-export interface IImagePreviewProps {
+export interface IImagePreviewProps extends IGallery {
   selectedImageIndex: number | null;
   setSelectedImageIndex: (index: number) => void;
   closeModal: () => void;
   goToPrevious: () => void;
   goToNext: () => void;
   handleKeyPress: (e: React.KeyboardEvent) => void;
-  gallery: string[];
   title: string;
+}
+
+export interface IVideoProps {
+  videoRef: any;
+  src: string;
+  setIsPlaying: (isPlaying: boolean) => void;
+}
+
+export interface ILoaderProps {
+  isLoading: boolean;
+}
+
+export interface ICustomControlsProps {
+  showControls: boolean;
+  isLoading: boolean;
+  isPlaying: boolean;
+  currentTime: number;
+  duration: number;
+  volume: number;
+  isMuted: boolean;
+  togglePlay: () => void;
+  handleProgressChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleVolumeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  toggleMute: () => void;
+  toggleFullscreen: () => void;
+  restart: () => void;
 }

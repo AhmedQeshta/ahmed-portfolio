@@ -52,7 +52,7 @@ export default function ContactForm() {
             <Label htmlFor="message" title="Message" customStyle="text-white font-medium" />
             <DefaultTextarea
               name="message"
-              rows={10}
+              rows={7}
               value={formData.message}
               handleInputChange={handleInputChange}
               placeholder="Tell me about your project, ideas, or how I can help you..."
@@ -62,8 +62,52 @@ export default function ContactForm() {
           </div>
         </ScrollAnimation>
 
+        <ScrollAnimation direction="up" delay={0.4}>
+          <div className="relative">
+            <div className="flex items-start gap-4 p-4 bg-white/5 border border-white/10 rounded-lg hover:border-purple-400/30 transition-all duration-300 group">
+              <div className="relative flex-shrink-0">
+                <input
+                  id="newsletter"
+                  type="checkbox"
+                  name="newsletter"
+                  checked={formData.newsletter}
+                  onChange={(e) => {
+                    handleInputChange('newsletter', e.target.checked ? 'true' : 'false');
+                  }}
+                  className="w-5 h-5 border-2 border-white/30 rounded-md bg-transparent focus:ring-2 focus:ring-purple-400/50 focus:ring-offset-2 focus:ring-offset-transparent checked:bg-purple-500 checked:border-purple-500 checked:hover:bg-purple-600 transition-all duration-200 cursor-pointer appearance-none relative"
+                />
+                {formData.newsletter && (
+                  <svg
+                    className="absolute inset-0 w-5 h-5 text-white pointer-events-none flex items-center justify-center"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                )}
+              </div>
+              <div className="flex-1">
+                <Label
+                  htmlFor="newsletter"
+                  title="Subscribe to my newsletter"
+                  customStyle="text-white font-semibold text-base cursor-pointer group-hover:text-purple-300 transition-colors duration-200"
+                />
+                <p className="text-sm text-white/70 mt-1 leading-relaxed">
+                  Get updates about new projects, tech insights, and exclusive content delivered to
+                  your inbox.
+                </p>
+              </div>
+            </div>
+          </div>
+        </ScrollAnimation>
+
         {displayErrors.general && (
-          <ScrollAnimation direction="up" delay={0.4}>
+          <ScrollAnimation direction="up" delay={0.5}>
             <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
               <div className="flex items-center gap-3">
                 <svg
@@ -84,7 +128,7 @@ export default function ContactForm() {
           </ScrollAnimation>
         )}
 
-        <ScrollAnimation direction="up" delay={0.5}>
+        <ScrollAnimation direction="up" delay={0.6}>
           <div className="pt-4">
             <SubmitButton
               isPending={isPending}
@@ -94,7 +138,7 @@ export default function ContactForm() {
         </ScrollAnimation>
 
         {/* Additional Help Text */}
-        <ScrollAnimation direction="up" delay={0.6}>
+        <ScrollAnimation direction="up" delay={0.7}>
           <div className="pt-4 border-t border-white/10">
             <p className="text-center text-sm text-text-secondary">
               By sending this message, you agree to be contacted regarding your inquiry.

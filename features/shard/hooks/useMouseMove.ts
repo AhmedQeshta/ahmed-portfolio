@@ -20,9 +20,7 @@ export function useMouseMove() {
     setIsHovering(false);
   };
 
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-  };
+  const handleMouseEnter = () => setIsHovering(true);
 
   // Use a color similar to your card's background, e.g., bg-card-bg (white/5 or white/10)
   // You can adjust the rgba value below to match your theme

@@ -54,6 +54,13 @@ export async function sendMessage(prevState: IFormState, formData: FormData) {
 
     const info = await transporter.sendMail(mailOptions);
 
+    // newsletter
+    const newsletter = !!formData.get('newsletter') as boolean;
+    if (newsletter) {
+      // make logic to save the email
+      console.log(info.messageId, email);
+    }
+
     console.log('Email sent successfully:', info.messageId);
 
     return {

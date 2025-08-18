@@ -3,10 +3,10 @@ import { sanityFetch } from '@/sanity/lib/client';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import WorkSlider from '@/features/works/components/WorkSlider';
-import useSortByDate from '@/features/works/hooks/useSortByDate';
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import HeaderTitle from '@/features/shard/components/ui/HeaderTitle';
 import EmptyItem from '@/features/shard/components/ui/EmptyItem';
+import sortByDate from '@/features/works/utils/date';
 
 export default async function WorkGridSlider() {
   try {
@@ -16,10 +16,10 @@ export default async function WorkGridSlider() {
       tags: ['works'],
     });
 
-    const { sortedWorks } = useSortByDate({ works });
+    const sortedWorks = sortByDate({ works });
 
     return (
-      <section id="works" className="py-20">
+      <section id="works" className="py-10">
         <ScrollAnimation
           direction="down"
           delay={0.1}

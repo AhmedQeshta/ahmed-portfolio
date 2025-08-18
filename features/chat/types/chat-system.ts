@@ -59,3 +59,43 @@ export interface AIResponse {
     total_tokens: number;
   };
 }
+
+export interface SiteContent {
+  baseInfo: {
+    name: string;
+    title: string;
+    bio: string;
+    skills: string[];
+    availability: string;
+    cvUrl?: string;
+  };
+  projects: Array<{
+    title: string;
+    description: string;
+    slug: string;
+    technologies: string[];
+    status: string;
+    liveUrl?: string;
+    repoUrl?: string;
+  }>;
+  blogPosts: Array<{
+    title: string;
+    description: string;
+    slug: string;
+    publishedAt: string;
+    tags: string[];
+  }>;
+  workExperience: Array<{
+    title: string;
+    company: string;
+    description: string;
+    technologies: string[];
+    startDate: string;
+    endDate?: string;
+  }>;
+}
+
+export interface IContentCache {
+  data: SiteContent | null;
+  timestamp: number;
+}

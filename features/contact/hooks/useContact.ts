@@ -16,6 +16,7 @@ export function useContact() {
     name: '',
     email: '',
     message: '',
+    newsletter: true,
   });
   const [clientErrors, setClientErrors] = useState<IErrors>({});
 
@@ -50,8 +51,8 @@ export function useContact() {
       name: formDataObj.get('name') as string,
       email: formDataObj.get('email') as string,
       message: formDataObj.get('message') as string,
+      newsletter: !!formDataObj.get('newsletter') as boolean,
     };
-
     // Client-side validation
     const validation = contactSchema.safeParse(data);
 

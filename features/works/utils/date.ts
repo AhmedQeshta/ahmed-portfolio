@@ -1,12 +1,8 @@
-import { WorkExperienceResponse } from '@/sanity/lib/types';
+import { ISortByDate } from '@/features/works/types/work';
 
-export interface ISortByDate {
-  works: WorkExperienceResponse[];
-}
-
-export default function useSortByDate({ works }: ISortByDate) {
+export default function sortByDate({ works }: ISortByDate) {
   // Sort works by startDate (newest first) and then by endDate (ongoing first)
-  const sortedWorks = [...works].sort((a, b) => {
+  return [...works].sort((a, b) => {
     // First compare by startDate (descending - newest first)
     // Handle potentially missing startDates (although they should always exist)
     const dateA = a.startDate ? new Date(a.startDate).getTime() : 0;
@@ -28,6 +24,4 @@ export default function useSortByDate({ works }: ISortByDate) {
     const endDateB = b.endDate ? new Date(b.endDate).getTime() : 0;
     return endDateB - endDateA;
   });
-
-  return { sortedWorks };
 }

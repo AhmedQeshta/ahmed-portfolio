@@ -7,6 +7,7 @@ export interface IErrors {
   name?: string;
   email?: string;
   message?: string;
+  newsletter?: boolean | string;
   general?: string;
 }
 
@@ -20,6 +21,7 @@ export interface IContactInputs {
   name: string;
   email: string;
   message: string;
+  newsletter?: boolean;
 }
 
 export interface ISuccessMessage {
@@ -30,7 +32,7 @@ export interface ISuccessMessage {
 
 export interface IDefaultInput
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'customStyle'> {
-  handleInputChange: any;
+  handleInputChange?: any;
   displayErrors?: string;
   customStyle?: string;
 }
