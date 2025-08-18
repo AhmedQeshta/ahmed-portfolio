@@ -54,14 +54,54 @@ export async function sendMessage(prevState: IFormState, formData: FormData) {
 
     const info = await transporter.sendMail(mailOptions);
 
-    // newsletter
+    // Handle newsletter subscription
     const newsletter = !!formData.get('newsletter') as boolean;
     if (newsletter) {
-      // make logic to save the email
-      console.log(info.messageId, email);
-    }
+      try {
+        // Subscribe to Mailchimp newsletter
+        const apiKey = process.env.MAILCHIMP_API_KEY;
+        const audienceId = process.env.MAILCHIMP_AUDIENCE_ID;
+        const serverPrefix = process.env.MAILCHIMP_SERVER_PREFIX;
 
-    console.log('Email sent successfully:', info.messageId);
+        if (!apiKey || !audienceId || !serverPrefix) {
+          return {
+            errors: {
+              general: 'Mailchimp API key, audience ID, or server prefix is missing',
+            },
+          };
+        }
+
+        const mailchimpEndpoint = `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${audienceId}/members`;
+
+        const mailchimpData = {
+          email_address: email,
+          status: 'subscribed',
+          merge_fields: {
+            FNAME: name.split(' ')[0] || '',
+            LNAME: name.split(' ').slice(1).join(' ') || '',
+          },
+        };
+
+        const mailchimpResponse = await fetch(mailchimpEndpoint, {
+          method: 'POST',
+          headers: {
+            Authorization: `apikey ${apiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(mailchimpData),
+        });
+
+        if (!mailchimpResponse.ok) {
+          const mailchimpError = await mailchimpResponse.json();
+          console.log('Mailchimp subscription failed:', mailchimpError);
+        } else {
+          console.log('Successfully subscribed to newsletter:', email);
+        }
+      } catch (newsletterError) {
+        console.error('Newsletter subscription error:', newsletterError);
+        // Don't fail the entire contact form if newsletter subscription fails
+      }
+    }
 
     return {
       errors: {},
