@@ -55,7 +55,7 @@ export async function sendMessage(prevState: IFormState, formData: FormData) {
     const info = await transporter.sendMail(mailOptions);
 
     // Handle newsletter subscription
-    const newsletter = !!formData.get('newsletter') as boolean;
+    const newsletter = formData.get('newsletter') === 'true';
     if (newsletter) {
       try {
         // Subscribe to Mailchimp newsletter

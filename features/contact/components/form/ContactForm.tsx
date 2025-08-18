@@ -72,7 +72,7 @@ export default function ContactForm() {
                   name="newsletter"
                   checked={formData.newsletter}
                   onChange={(e) => {
-                    handleInputChange('newsletter', e.target.checked ? 'true' : 'false');
+                    handleInputChange('newsletter', String(e.target.checked));
                   }}
                   className="w-5 h-5 border-2 border-white/30 rounded-md bg-transparent focus:ring-2 focus:ring-purple-400/50 focus:ring-offset-2 focus:ring-offset-transparent checked:bg-purple-500 checked:border-purple-500 checked:hover:bg-purple-600 transition-all duration-200 cursor-pointer appearance-none relative"
                 />
