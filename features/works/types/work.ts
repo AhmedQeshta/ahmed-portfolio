@@ -26,3 +26,7 @@ export interface IWorksResponse {
 export interface IWorkGridProps {
   readMore?: boolean;
 }
+
+export interface ISortByDate {
+  works: WorkExperienceResponse[];
+}

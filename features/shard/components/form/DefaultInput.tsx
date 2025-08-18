@@ -17,10 +17,18 @@ export default function DefaultInput({
           if (typeof handleInputChange === 'function') {
             // Check if it's a setState function (only expects one parameter)
             if (handleInputChange.length <= 1) {
-              handleInputChange(e.target.value);
+              if (restProps.type === 'checkbox') {
+                handleInputChange(e.target.checked);
+              } else {
+                handleInputChange(e.target.value);
+              }
             } else {
               // It's a field-value pair function (expects field name and value)
-              handleInputChange(restProps?.name, e.target.value);
+              if (restProps.type === 'checkbox') {
+                handleInputChange(restProps?.name, e.target.checked);
+              } else {
+                handleInputChange(restProps?.name, e.target.value);
+              }
             }
           }
         }}

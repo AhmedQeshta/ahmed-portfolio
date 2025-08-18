@@ -1,21 +1,40 @@
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import Image from 'next/image';
 import { IGalleryItemProps } from '@/features/projects/types/project';
+import { fileProcess } from '@/features/projects/utils/gallery';
 
-export default function GalleryItem({ image, title, index, openModal }: IGalleryItemProps) {
+export default function GalleryItem({ file, title, index, openModal }: IGalleryItemProps) {
+  const { isVideo, src } = fileProcess(file);
   return (
     <ScrollAnimation direction="down" delay={0.4 + index * 0.1}>
       <div
         className="group relative aspect-video rounded-lg overflow-hidden bg-gray-800 cursor-pointer"
         onClick={() => openModal(index)}>
-        <Image
-          src={image}
-          alt={`${title} gallery image ${index + 1}`}
-          aria-label={`${title} gallery image ${index + 1}`}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
-        />
+        {isVideo ? (
+          <video
+            src={src}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            preload="metadata"
+            playsInline
+            muted
+          />
+        ) : (
+          <Image
+            src={src}
+            alt={`${title} gallery image ${index + 1}`}
+            aria-label={`${title} gallery image ${index + 1}`}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        )}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+        {isVideo && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="bg-black/50 text-white px-3 py-1 rounded-md text-xs font-medium">
+              Video
+            </div>
+          </div>
+        )}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
             <svg

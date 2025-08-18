@@ -30,7 +30,7 @@ export default async function BlogGrid({ readMore = true, query, className }: IB
     }
 
     return (
-      <section id="blogs" className={`py-20 ${!readMore && 'mt-12 lg:mt-12'}`}>
+      <section id="blogs" className={`py-10 ${!readMore && 'mt-12 lg:mt-12'}`}>
         <ScrollAnimation
           direction="down"
           delay={0.1}

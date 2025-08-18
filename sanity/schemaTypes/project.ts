@@ -169,6 +169,14 @@ export const project = defineType({
             hotspot: true,
           },
         },
+        {
+          name: 'video',
+          title: 'Video',
+          type: 'file',
+          options: {
+            accept: 'video/*',
+          },
+        },
       ],
       validation: (rule) => rule.required(),
     }),

@@ -35,13 +35,9 @@ export function useNavbar() {
     };
   }, [lastScrollY]);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return { isVisible, toggleMobileMenu, isMobileMenuOpen, closeMobileMenu };
 }

@@ -1,8 +1,8 @@
 import { FormEvent, useActionState, useState, useEffect, useRef } from 'react';
-import { IChatInputProps, IChatInputs, IErrors } from '@/features/chat/types/chat-system';
+import { IChatInputs, IErrors } from '@/features/chat/types/chat-system';
 import { chatSchema } from '@/features/chat/schema';
 import z from 'zod';
-import { sendChatMessage } from '@/features/chat/actions/chat';
+import { sendChatMessage } from '@/features/chat/utils/actions/chat';
 
 export default function useChat({ sendMessage }: any) {
   const initialStatus = {

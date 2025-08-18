@@ -37,6 +37,13 @@ export interface WorkExperience {
   order: number;
 }
 
+export type ProjectGalleryItem = {
+  type: 'image' | 'video';
+  url: string;
+  // Optional poster/thumbnail for videos if needed in future
+  posterUrl?: string;
+};
+
 export interface Project {
   _id: string;
   title: string;
@@ -48,7 +55,7 @@ export interface Project {
   technologies: TechnologyResponse[];
   categories: CategoryResponse[];
   screenshot: string;
-  gallery?: string[];
+  gallery?: string[] | ProjectGalleryItem[];
   repoUrl?: string;
   liveUrl?: string;
   featured: boolean;
