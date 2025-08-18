@@ -239,7 +239,7 @@ describe('BlogGrid', () => {
     render(await BlogGrid({ readMore: true }));
 
     const section = screen.getByText('Blogs').closest('section');
-    expect(section).toHaveClass('py-20');
+    expect(section).toHaveClass('py-10');
     expect(section).toHaveAttribute('id', 'blogs');
   });
 

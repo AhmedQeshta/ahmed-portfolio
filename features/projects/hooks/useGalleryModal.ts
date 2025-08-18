@@ -1,15 +1,13 @@
 import { useState } from 'react';
 
-export default function useGalleryModal(gallery: string[]) {
+export default function useGalleryModal(
+  gallery: Array<string | { type: 'image' | 'video'; url: string }>,
+) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
-  const openModal = (index: number) => {
-    setSelectedImageIndex(index);
-  };
+  const openModal = (index: number) => setSelectedImageIndex(index);
 
-  const closeModal = () => {
-    setSelectedImageIndex(null);
-  };
+  const closeModal = () => setSelectedImageIndex(null);
 
   const goToPrevious = () => {
     if (selectedImageIndex !== null) {

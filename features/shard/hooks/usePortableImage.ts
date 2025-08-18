@@ -38,9 +38,7 @@ export default function usePortableImage({ value }: IPortableTextComponentsProps
     return getImageUrl(value as SanityImageValue, 1200, 800, 90);
   }, [value, isGif]);
 
-  const handleLoad = () => {
-    setIsLoading(false);
-  };
+  const handleLoad = () => setIsLoading(false);
 
   const handleError = () => {
     setIsLoading(false);

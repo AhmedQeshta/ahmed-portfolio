@@ -211,7 +211,7 @@ describe('ContactForm', () => {
     render(<ContactForm />);
 
     const scrollAnimations = screen.getAllByTestId('scroll-animation');
-    expect(scrollAnimations).toHaveLength(5); // Updated to match new design with 5 animations
+    expect(scrollAnimations).toHaveLength(6); // Updated to match new design with 6 animations (including newsletter checkbox)
 
     scrollAnimations.forEach((animation) => {
       expect(animation).toHaveAttribute('data-direction', 'up'); // Updated to 'up' direction
@@ -243,6 +243,6 @@ describe('ContactForm', () => {
     expect(emailInput).toHaveAttribute('name', 'email');
     expect(emailInput).toHaveAttribute('type', 'email');
     expect(messageTextarea).toHaveAttribute('name', 'message');
-    expect(messageTextarea).toHaveAttribute('rows', '10'); // Updated to match new rows value
+    expect(messageTextarea).toHaveAttribute('rows', '7'); // Updated to match new rows value
   });
 });

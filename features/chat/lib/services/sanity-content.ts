@@ -1,85 +1,25 @@
 import { client } from '@/sanity/lib/client';
+import { IContentCache, SiteContent } from '@/features/chat/types/chat-system';
+import { fallbackContentBaseInfo, siteNavigation } from '@/features/chat/lib/constant';
+import {
+  baseInfoQuery,
+  blogPostsQuery,
+  projectsQuery,
+  workExperienceQuery,
+} from '@/sanity/lib/queries';
 
-export interface SiteContent {
-  baseInfo: {
-    name: string;
-    title: string;
-    bio: string;
-    skills: string[];
-    availability: string;
-    cvUrl?: string;
-  };
-  projects: Array<{
-    title: string;
-    description: string;
-    slug: string;
-    technologies: string[];
-    status: string;
-    liveUrl?: string;
-    repoUrl?: string;
-  }>;
-  blogPosts: Array<{
-    title: string;
-    description: string;
-    slug: string;
-    publishedAt: string;
-    tags: string[];
-  }>;
-  workExperience: Array<{
-    title: string;
-    company: string;
-    description: string;
-    technologies: string[];
-    startDate: string;
-    endDate?: string;
-  }>;
-}
+let contentCache: IContentCache = {
+  data: null,
+  timestamp: 0,
+};
+
+const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
 
 /**
  * Fetch all site content from Sanity CMS for AI context
  */
 export async function fetchSiteContent(): Promise<SiteContent> {
   try {
-    // Fetch base info
-    const baseInfoQuery = `*[_type == "baseInfo"][0] {
-      name,
-      title,
-      bio,
-      "skills": technologies[]->name,
-      availability,
-      "cvUrl": cv.asset->url
-    }`;
-
-    // Fetch projects
-    const projectsQuery = `*[_type == "project"] | order(order asc) [0...10] {
-      title,
-      description,
-      "slug": slug.current,
-      "technologies": technologies[]->name,
-      status,
-      liveUrl,
-      repoUrl
-    }`;
-
-    // Fetch blog posts
-    const blogPostsQuery = `*[_type == "blog"] | order(publishedAt desc) [0...10] {
-      title,
-      description,
-      "slug": slug.current,
-      publishedAt,
-      "tags": tags[]->name
-    }`;
-
-    // Fetch work experience
-    const workExperienceQuery = `*[_type == "work"] | order(startDate desc) [0...5] {
-      title,
-      company,
-      description,
-      "technologies": technologies[]->name,
-      startDate,
-      endDate
-    }`;
-
     // Execute all queries in parallel
     const [baseInfo, projects, blogPosts, workExperience] = await Promise.all([
       client.fetch(baseInfoQuery),
@@ -89,14 +29,7 @@ export async function fetchSiteContent(): Promise<SiteContent> {
     ]);
 
     return {
-      baseInfo: baseInfo || {
-        name: 'Ahmed',
-        title: 'Full Stack Developer',
-        bio: '',
-        skills: [],
-        availability: 'Available',
-        cvUrl: undefined,
-      },
+      baseInfo: baseInfo || fallbackContentBaseInfo,
       projects: projects || [],
       blogPosts: blogPosts || [],
       workExperience: workExperience || [],
@@ -106,13 +39,7 @@ export async function fetchSiteContent(): Promise<SiteContent> {
 
     // Return fallback content
     return {
-      baseInfo: {
-        name: 'Ahmed',
-        title: 'Full Stack Developer',
-        bio: 'Experienced developer specializing in modern web technologies.',
-        skills: ['React', 'Next.js', 'TypeScript', 'Node.js'],
-        availability: 'Available',
-      },
+      baseInfo: fallbackContentBaseInfo,
       projects: [],
       blogPosts: [],
       workExperience: [],
@@ -127,27 +54,25 @@ export function formatContentForAI(content: SiteContent): string {
   const { baseInfo, projects, blogPosts, workExperience } = content;
 
   let context = `
-ABOUT AHMED:
-Name: ${baseInfo.name}
-Title: ${baseInfo.title}
-Bio: ${baseInfo.bio}
-Availability: ${baseInfo.availability}
-Skills: ${baseInfo.skills.join(', ')}
-${baseInfo.cvUrl ? `\nCV: ${baseInfo.cvUrl}` : ''}
-
+ABOUT AHMED:\n
+Name: ${baseInfo.name}\n
+Title: ${baseInfo.title}\n
+Bio: ${baseInfo.bio}\n
+Availability: ${baseInfo.availability}\n
+Skills: ${baseInfo.skills.join(', ')}\n
+${baseInfo.cvUrl && `\nCV: ${baseInfo.cvUrl}`}\n
 `;
 
   // Add projects
   if (projects.length > 0) {
     context += `PROJECTS:\n`;
     projects.forEach((project) => {
-      context += `- ${project.title} (/projects/${project.slug})
-  Description: ${project.description}
-  Technologies: ${project.technologies.join(', ')}
-  Status: ${project.status}
-  ${project.liveUrl ? `Live URL: ${project.liveUrl}` : ''}
-  ${project.repoUrl ? `Repository: ${project.repoUrl}` : ''}
-
+      context += `- ${project.title} (/projects/${project.slug})\n
+  Description: ${project.description}\n
+  Technologies: ${project.technologies.join(', ')}\n
+  Status: ${project.status}\n
+  ${project.liveUrl && `Live URL: ${project.liveUrl}`}\n
+  ${project.repoUrl && `Repository: ${project.repoUrl}`}\n
 `;
     });
   }
@@ -156,11 +81,10 @@ ${baseInfo.cvUrl ? `\nCV: ${baseInfo.cvUrl}` : ''}
   if (blogPosts.length > 0) {
     context += `BLOG POSTS:\n`;
     blogPosts.forEach((post) => {
-      context += `- ${post.title} (/blog/${post.slug})
-  Description: ${post.description}
-  Published: ${new Date(post.publishedAt).toLocaleDateString()}
-  Tags: ${post.tags.join(', ')}
-
+      context += `- ${post.title} (/blog/${post.slug})\n
+  Description: ${post.description}\n
+  Published: ${new Date(post.publishedAt).toLocaleDateString()}\n
+  Tags: ${post.tags.join(', ')}\n
 `;
     });
   }
@@ -170,42 +94,21 @@ ${baseInfo.cvUrl ? `\nCV: ${baseInfo.cvUrl}` : ''}
     context += `WORK EXPERIENCE:\n`;
     workExperience.forEach((work) => {
       const endDate = work.endDate ? new Date(work.endDate).getFullYear() : 'Present';
-      context += `- ${work.title} at ${work.company} (${new Date(work.startDate).getFullYear()} - ${endDate})
-  Description: ${work.description}
-  Technologies: ${work.technologies.join(', ')}
-
+      context += `- ${work.title} at ${work.company} (${new Date(work.startDate).getFullYear()} - ${endDate})\n
+  Description: ${work.description}\n
+  Technologies: ${work.technologies.join(', ')}\n
 `;
     });
   }
 
-  context += `
-SITE NAVIGATION:
-- Home: / (includes bio section with Ahmed's background and skills)
-- Projects: /projects (portfolio showcase)
-- Blog: /blogs (articles and tutorials)
-- Work Experience: /works (professional history)
-- Contact: /contact (get in touch)
-
-Always include relevant URLs in your responses to help users navigate to specific content.`;
+  context += siteNavigation;
 
   return context.trim();
 }
 
 /**
- * Cache for site content (simple in-memory cache)
- */
-let contentCache: {
-  data: SiteContent | null;
-  timestamp: number;
-} = {
-  data: null,
-  timestamp: 0,
-};
-
-const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
-
-/**
  * Get site content with caching
+ * Cache for site content (simple in-memory cache)
  */
 export async function getCachedSiteContent(): Promise<SiteContent> {
   const now = Date.now();

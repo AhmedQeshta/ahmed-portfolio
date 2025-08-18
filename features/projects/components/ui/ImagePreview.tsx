@@ -1,10 +1,11 @@
 import Modal from '@/features/shard/components/ui/Modal';
-import ButtonsNav from '@/features/projects/components/ProjectGallery/ButtonsNav';
-import MainImage from '@/features/projects/components/ProjectGallery/MainImage';
-import ImageTitle from '@/features/projects/components/ProjectGallery/ImageTitle';
-import ThumbnailNav from '@/features/projects/components/ProjectGallery/ThumbnailNav';
-import KeyboardHint from '@/features/projects/components/ProjectGallery/KeyboardHint';
+import ButtonsNav from '@/features/projects/components/projectGallery/ButtonsNav';
+import MainImage from '@/features/projects/components/projectGallery/MainImage';
+import ImageTitle from '@/features/projects/components/projectGallery/ImageTitle';
+import ThumbnailNav from '@/features/projects/components/projectGallery/ThumbnailNav';
+import KeyboardHint from '@/features/projects/components/projectGallery/KeyboardHint';
 import { IImagePreviewProps } from '@/features/projects/types/project';
+import { fileProcess } from '@/features/projects/utils/gallery';
 
 export default function ImagePreview({
   selectedImageIndex,
@@ -17,6 +18,10 @@ export default function ImagePreview({
   title,
 }: IImagePreviewProps) {
   if (!gallery || gallery.length === 0 || selectedImageIndex === null) return null;
+
+  const currentItem = gallery[selectedImageIndex];
+  const { isVideo } = fileProcess(currentItem);
+
   return (
     <Modal isOpen={selectedImageIndex !== null} onClose={closeModal} maxWidth="2xl">
       <div
@@ -40,19 +45,23 @@ export default function ImagePreview({
         {/* Main Image Container */}
         <MainImage gallery={gallery} selectedImageIndex={selectedImageIndex} title={title} />
 
-        {/* Image Title */}
-        <ImageTitle
-          title={title}
-          selectedImageIndex={selectedImageIndex}
-          galleryLength={gallery.length}
-        />
+        {/* Image Title - Hidden for videos */}
+        {!isVideo && (
+          <ImageTitle
+            title={title}
+            selectedImageIndex={selectedImageIndex}
+            galleryLength={gallery.length}
+          />
+        )}
 
-        {/* Thumbnail Navigation */}
-        <ThumbnailNav
-          gallery={gallery}
-          selectedImageIndex={selectedImageIndex}
-          setSelectedImageIndex={setSelectedImageIndex}
-        />
+        {/* Thumbnail Navigation - Hidden for videos */}
+        {!isVideo && (
+          <ThumbnailNav
+            gallery={gallery}
+            selectedImageIndex={selectedImageIndex}
+            setSelectedImageIndex={setSelectedImageIndex}
+          />
+        )}
 
         {/* Keyboard Hint */}
         <KeyboardHint length={gallery.length} />

@@ -1,6 +1,6 @@
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { IProjectGalleryProps, IProjectResponse } from '@/features/projects/types/project';
-import Galleries from '../ProjectGallery/Galleries';
+import Galleries from '@/features/projects/components/projectGallery/Galleries';
 
 export default function ProjectGallery({ project, openModal }: IProjectGalleryProps) {
   const { title, gallery } = project;
