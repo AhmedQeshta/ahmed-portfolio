@@ -7,5 +7,5 @@
  */
 export type FixedPageProps = {
   params: Promise<Record<string, string>>;
-  searchParams?: Record<string, string | string[] | undefined>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };

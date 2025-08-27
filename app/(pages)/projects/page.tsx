@@ -5,7 +5,7 @@ import { featuresQuery } from '@/sanity/lib/queries';
 import { FeatureResponse } from '@/sanity/lib/types';
 import { notFound } from 'next/navigation';
 
-const ProjectsPage = async ({ searchParams }: { searchParams: { q?: string } }) => {
+const ProjectsPage = async ({ searchParams }: { searchParams: Promise<{ q?: string }> }) => {
   try {
     const features = await sanityFetch<FeatureResponse[]>({
       query: featuresQuery,
@@ -19,7 +19,8 @@ const ProjectsPage = async ({ searchParams }: { searchParams: { q?: string } }) 
     if (!projectFeature) notFound();
 
     // Correctly use the search params in an async context
-    const query = searchParams?.q || '';
+    const resolvedSearchParams = await searchParams;
+    const query = resolvedSearchParams?.q || '';
 
     return <ProjectGrid readMore={false} query={query} />;
   } catch (error) {
