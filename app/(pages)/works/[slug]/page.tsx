@@ -14,7 +14,7 @@ export {
 };
 
 const WorkPage = async (props: IWorkPage) => {
-  const { slug } = props.params;
+  const { slug } = await props.params;
 
   try {
     const features = await sanityFetch<FeatureResponse[]>({

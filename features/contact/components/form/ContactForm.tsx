@@ -9,17 +9,25 @@ import DefaultTextarea from '@/features/shard/components/form/DefaultTextarea';
 import DefaultInput from '@/features/shard/components/form/DefaultInput';
 
 export default function ContactForm() {
-  const { formData, state, formAction, isPending, handleInputChange, handleSubmit, displayErrors } =
-    useContact();
+  const {
+    formData,
+    resetForm,
+    state,
+    formAction,
+    isPending,
+    handleInputChange,
+    handleSubmit,
+    displayErrors,
+  } = useContact();
 
   // Show success message
-  if (state?.success) return <SuccessMessage state={state} />;
+  if (state?.success) return <SuccessMessage state={state} resetForm={resetForm} />;
 
   return (
     <div className="w-full">
-      <form action={formAction} onSubmit={handleSubmit} className="space-y-6">
-        <ScrollAnimation direction="up" delay={0.1}>
-          <div className="space-y-2">
+      <form action={formAction} onSubmit={handleSubmit} className="space-y-5">
+        <ScrollAnimation direction="up" delay={0.1} className="mb-4">
+          <div className="space-y-1">
             <Label htmlFor="name" title="Full Name" customStyle="text-white font-medium" />
             <DefaultInput
               name="name"
@@ -32,8 +40,8 @@ export default function ContactForm() {
           </div>
         </ScrollAnimation>
 
-        <ScrollAnimation direction="up" delay={0.2}>
-          <div className="space-y-2">
+        <ScrollAnimation direction="up" delay={0.2} className="mb-4">
+          <div className="space-y-1">
             <Label htmlFor="email" title="Email Address" customStyle="text-white font-medium" />
             <DefaultInput
               name="email"
@@ -47,12 +55,12 @@ export default function ContactForm() {
           </div>
         </ScrollAnimation>
 
-        <ScrollAnimation direction="up" delay={0.3}>
-          <div className="space-y-2">
+        <ScrollAnimation direction="up" delay={0.3} className="mb-4">
+          <div className="space-y-1">
             <Label htmlFor="message" title="Message" customStyle="text-white font-medium" />
             <DefaultTextarea
               name="message"
-              rows={7}
+              rows={6}
               value={formData.message}
               handleInputChange={handleInputChange}
               placeholder="Tell me about your project, ideas, or how I can help you..."
@@ -62,7 +70,7 @@ export default function ContactForm() {
           </div>
         </ScrollAnimation>
 
-        <ScrollAnimation direction="up" delay={0.4}>
+        <ScrollAnimation direction="up" delay={0.4} className="mb-4">
           <div className="relative">
             <div className="flex items-start gap-4 p-4 bg-white/5 border border-white/10 rounded-lg hover:border-purple-400/30 transition-all duration-300 group">
               <div className="relative flex-shrink-0">
@@ -72,7 +80,7 @@ export default function ContactForm() {
                   name="newsletter"
                   checked={formData.newsletter}
                   onChange={(e) => {
-                    handleInputChange('newsletter', String(e.target.checked));
+                    handleInputChange('newsletter', e.target.checked);
                   }}
                   className="w-5 h-5 border-2 border-white/30 rounded-md bg-transparent focus:ring-2 focus:ring-purple-400/50 focus:ring-offset-2 focus:ring-offset-transparent checked:bg-purple-500 checked:border-purple-500 checked:hover:bg-purple-600 transition-all duration-200 cursor-pointer appearance-none relative"
                 />
@@ -134,17 +142,6 @@ export default function ContactForm() {
               isPending={isPending}
               customStyle="w-full h-12 text-base font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-purple-500/25 focus:ring-2 focus:ring-purple-400/50 focus:ring-offset-2 focus:ring-offset-transparent disabled:hover:scale-100 disabled:hover:shadow-none"
             />
-          </div>
-        </ScrollAnimation>
-
-        {/* Additional Help Text */}
-        <ScrollAnimation direction="up" delay={0.7}>
-          <div className="pt-4 border-t border-white/10">
-            <p className="text-center text-sm text-text-secondary">
-              By sending this message, you agree to be contacted regarding your inquiry.
-              <br className="hidden sm:inline" />I respect your privacy and will never share your
-              information.
-            </p>
           </div>
         </ScrollAnimation>
       </form>

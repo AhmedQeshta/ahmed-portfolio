@@ -28,7 +28,7 @@ export default async function ProjectGrid({ readMore = true, query }: IProjectGr
     }
 
     return (
-      <section id="projects" className={`py-10 ${!readMore && 'mt-12 lg:mt-12'}`}>
+      <section id="projects" className={`py-10 ${!readMore && 'mt-20 lg:mt-20'}`}>
         <ScrollAnimation
           direction="down"
           delay={0.1}

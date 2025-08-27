@@ -21,7 +21,7 @@ export function useContact() {
   const [clientErrors, setClientErrors] = useState<IErrors>({});
 
   // Handle input changes and real-time validation
-  const handleInputChange = (field: keyof IContactInputs, value: string) => {
+  const handleInputChange = (field: keyof IContactInputs, value: string | boolean) => {
     const updatedData = { ...formData, [field]: value };
     setFormData(updatedData);
 
@@ -75,6 +75,25 @@ export function useContact() {
     setClientErrors({});
   };
 
+  const resetForm = () => {
+    // Reset form data to initial state
+    setFormData({
+      name: '',
+      email: '',
+      message: '',
+      newsletter: true,
+    });
+
+    // Clear all client-side errors
+    setClientErrors({});
+
+    // Reset server state by calling formAction with a special reset flag
+    // This will trigger the action and reset the state back to initialStatus
+    const resetFormData = new FormData();
+    resetFormData.append('_reset', 'true');
+    formAction(resetFormData);
+  };
+
   // Combine server and client errors (client errors take precedence)
   const displayErrors = {
     name: clientErrors.name || (state?.errors as IErrors)?.name,
@@ -83,5 +102,14 @@ export function useContact() {
     general: (state?.errors as IErrors)?.general,
   };
 
-  return { formData, state, formAction, isPending, handleInputChange, handleSubmit, displayErrors };
+  return {
+    formData,
+    state,
+    formAction,
+    isPending,
+    handleInputChange,
+    handleSubmit,
+    displayErrors,
+    resetForm,
+  };
 }

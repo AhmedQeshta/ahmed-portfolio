@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
 };
 
-const BlogPage = async ({ searchParams }: { searchParams: { q?: string } }) => {
+const BlogPage = async ({ searchParams }: { searchParams: Promise<{ q?: string }> }) => {
   try {
     const features = await sanityFetch<FeatureResponse[]>({
       query: featuresQuery,
@@ -47,7 +47,8 @@ const BlogPage = async ({ searchParams }: { searchParams: { q?: string } }) => {
     if (!blogFeature) notFound();
 
     // Correctly use the search params in an async context
-    const query = searchParams?.q || '';
+    const resolvedSearchParams = await searchParams;
+    const query = resolvedSearchParams?.q || '';
 
     return <BlogGrid readMore={false} query={query} />;
   } catch (error) {
