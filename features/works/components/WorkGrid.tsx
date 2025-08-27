@@ -20,6 +20,7 @@ export default async function WorkGrid({ readMore = false }: IWorkGridProps) {
           <HeaderTitle
             title="Works Experience"
             subtitle="Explore my latest works and creative solutions"
+            className={`${!readMore ? 'mb-0 lg:mb-0' : 'mb-10 lg:mb-10'}`}
           />
 
           {works.length === 0 ? (

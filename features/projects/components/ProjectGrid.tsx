@@ -36,6 +36,7 @@ export default async function ProjectGrid({ readMore = true, query }: IProjectGr
           <HeaderTitle
             title="Projects"
             subtitle="Explore my latest projects and creative solutions"
+            className={`${!readMore ? 'mb-0 lg:mb-0' : 'mb-10 lg:mb-10'}`}
           />
 
           {!readMore && <Search action="/projects" placeholder="Search projects..." />}

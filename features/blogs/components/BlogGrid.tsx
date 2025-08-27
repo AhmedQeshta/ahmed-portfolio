@@ -9,7 +9,7 @@ import { IBlogGrid } from '@/features/blogs/types/blog';
 import HeaderTitle from '@/features/shard/components/ui/HeaderTitle';
 import EmptyItem from '@/features/shard/components/ui/EmptyItem';
 
-export default async function BlogGrid({ readMore = true, query, className }: IBlogGrid) {
+export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
   try {
     // Fetch all blogs
     let blogs = await sanityFetch<BlogPostResponse[]>({
@@ -38,7 +38,7 @@ export default async function BlogGrid({ readMore = true, query, className }: IB
           <HeaderTitle
             title="Blogs"
             subtitle="Explore my latest thoughts, tutorials, and insights"
-            className={className}
+            className={`${!readMore ? 'mb-0 lg:mb-0' : 'mb-10 lg:mb-10'}`}
           />
 
           {!readMore && <Search action="/blogs" placeholder="Search blogs..." />}

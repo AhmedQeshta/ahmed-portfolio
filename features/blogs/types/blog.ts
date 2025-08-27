@@ -13,7 +13,6 @@ export interface IBlogsPage {
 export interface IBlogGrid {
   readMore?: boolean;
   query?: string;
-  className?: string;
 }
 
 export interface IRelatedBlogs {
