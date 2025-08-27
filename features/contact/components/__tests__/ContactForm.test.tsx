@@ -30,8 +30,13 @@ jest.mock('@/features/contact/hooks/useContact', () => ({
 }));
 
 jest.mock('@/features/contact/components/form/SuccessMessage', () => {
-  return function MockSuccessMessage({ state }: any) {
-    return <div data-testid="success-message">{state.message}</div>;
+  return function MockSuccessMessage({ state, resetForm }: any) {
+    return (
+      <div data-testid="success-message">
+        {state.message}
+        <button onClick={resetForm}>Send Another Message</button>
+      </div>
+    );
   };
 });
 
