@@ -42,7 +42,7 @@ export default function DefaultInput({
         )}
         {...restProps}
       />
-      {displayErrors && <span className="text-red-400 text-sm mt-1 block">{displayErrors}</span>}
+      {displayErrors && <span className="text-red-400 text-sm mt-0 block">{displayErrors}</span>}
     </>
   );
 }

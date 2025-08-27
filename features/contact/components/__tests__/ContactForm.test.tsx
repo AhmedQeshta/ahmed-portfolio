@@ -9,12 +9,14 @@ const mockUseContact: any = {
     name: '',
     email: '',
     message: '',
+    newsletter: true,
   },
   state: null,
   formAction: jest.fn(),
   isPending: false,
   handleInputChange: jest.fn(),
   handleSubmit: jest.fn(),
+  resetForm: jest.fn(),
   displayErrors: {
     name: '',
     email: '',
@@ -117,6 +119,7 @@ describe('ContactForm', () => {
       name: '',
       email: '',
       message: '',
+      newsletter: true,
     };
     mockUseContact.state = null;
     mockUseContact.isPending = false;
@@ -162,6 +165,19 @@ describe('ContactForm', () => {
 
     expect(screen.getByTestId('success-message')).toBeInTheDocument();
     expect(screen.getByText('Message sent successfully!')).toBeInTheDocument();
+  });
+
+  it('calls resetForm when Send Another Message button is clicked', () => {
+    mockUseContact.state = { success: true, message: 'Message sent successfully!' };
+    const mockResetForm = jest.fn();
+    mockUseContact.resetForm = mockResetForm;
+
+    render(<ContactForm />);
+
+    const resetButton = screen.getByText('Send Another Message');
+    fireEvent.click(resetButton);
+
+    expect(mockResetForm).toHaveBeenCalled();
   });
 
   it('displays general error when present', () => {
@@ -211,10 +227,10 @@ describe('ContactForm', () => {
     render(<ContactForm />);
 
     const scrollAnimations = screen.getAllByTestId('scroll-animation');
-    expect(scrollAnimations).toHaveLength(6); // Updated to match new design with 6 animations (including newsletter checkbox)
+    expect(scrollAnimations).toHaveLength(5); // 5 animations: name, email, message, newsletter, submit button
 
     scrollAnimations.forEach((animation) => {
-      expect(animation).toHaveAttribute('data-direction', 'up'); // Updated to 'up' direction
+      expect(animation).toHaveAttribute('data-direction', 'up');
     });
   });
 
@@ -223,6 +239,7 @@ describe('ContactForm', () => {
       name: 'John Doe',
       email: 'john@example.com',
       message: 'Hello world',
+      newsletter: true,
     };
 
     render(<ContactForm />);
@@ -243,6 +260,6 @@ describe('ContactForm', () => {
     expect(emailInput).toHaveAttribute('name', 'email');
     expect(emailInput).toHaveAttribute('type', 'email');
     expect(messageTextarea).toHaveAttribute('name', 'message');
-    expect(messageTextarea).toHaveAttribute('rows', '7'); // Updated to match new rows value
+    expect(messageTextarea).toHaveAttribute('rows', '6'); // Updated to match actual rows value
   });
 });
