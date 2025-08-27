@@ -81,7 +81,7 @@ describe('DefaultInput', () => {
     expect(screen.getByText('This field is required')).toHaveClass(
       'text-red-400',
       'text-sm',
-      'mt-1',
+      'mt-0',
       'block',
     );
   });

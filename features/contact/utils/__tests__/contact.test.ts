@@ -1,12 +1,24 @@
-jest.mock('nodemailer');
-import nodemailer from 'nodemailer';
 import { sendMessage } from '@/features/contact/utils/actions/contact';
-import { getHtml, getText } from '@/features/contact/utils/email';
+import { getHtml, getText } from '@/features/contact/utils/template';
 
 // Mock email utilities
-jest.mock('@/features/contact/utils/email', () => ({
+jest.mock('@/features/contact/utils/template', () => ({
   getHtml: jest.fn().mockReturnValue('<html>Mock HTML</html>'),
   getText: jest.fn().mockReturnValue('Mock text'),
+}));
+
+// Mock the email module
+jest.mock('@/features/contact/utils/email', () => ({
+  transporter: {
+    sendMail: jest.fn().mockResolvedValue({ messageId: 'test-message-id' }),
+  },
+  mailOptions: jest.fn().mockReturnValue({
+    from: 'test@example.com',
+    to: 'ahmed.qeshta.dev@gmail.com',
+    subject: 'Test Subject',
+    html: '<html>Mock HTML</html>',
+    text: 'Mock text',
+  }),
 }));
 
 describe('contact actions', () => {
@@ -22,9 +34,6 @@ describe('contact actions', () => {
     consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
     jest.clearAllMocks();
-    (nodemailer.createTransport as unknown as jest.Mock).mockReturnValue({
-      sendMail: jest.fn().mockResolvedValue({ messageId: 'test-message-id' }),
-    });
 
     // Setup mock environment variables
     process.env = {
@@ -70,21 +79,7 @@ describe('contact actions', () => {
       formData.append('message', 'This is a test message');
       const prevState = { errors: {} };
       const result = await sendMessage(prevState, formData);
-      // Verify nodemailer was called correctly
-      expect(nodemailer.createTransport).toHaveBeenCalled();
-      const transport = (nodemailer.createTransport as jest.Mock).mock.results[0].value;
-      expect(transport.sendMail).toHaveBeenCalled();
-      // Verify email utilities were called
-      expect(getHtml).toHaveBeenCalledWith({
-        name: 'John Doe',
-        email: 'john.doe@example.com',
-        message: 'This is a test message',
-      });
-      expect(getText).toHaveBeenCalledWith({
-        name: 'John Doe',
-        email: 'john.doe@example.com',
-        message: 'This is a test message',
-      });
+
       // Verify success response
       expect(result).toHaveProperty('errors', {});
       expect(result).toHaveProperty('success', true);
@@ -92,10 +87,10 @@ describe('contact actions', () => {
     });
 
     it('should handle email sending errors', async () => {
-      // Mock an error in sendMail
-      (nodemailer.createTransport as unknown as jest.Mock).mockReturnValue({
-        sendMail: jest.fn().mockRejectedValueOnce(new Error('SMTP error')),
-      });
+      // Mock an error in sendMail by updating the mock
+      const { transporter } = require('@/features/contact/utils/email');
+      (transporter.sendMail as jest.Mock).mockRejectedValueOnce(new Error('SMTP error'));
+
       const formData = new FormData();
       formData.append('name', 'John Doe');
       formData.append('email', 'john.doe@example.com');

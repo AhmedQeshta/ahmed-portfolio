@@ -28,6 +28,7 @@ export interface ISuccessMessage {
   state: {
     message: string;
   };
+  resetForm: () => void;
 }
 
 export interface IDefaultInput
@@ -55,4 +56,10 @@ export interface ISubmitButton
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'customStyle'> {
   isPending: boolean;
   customStyle?: string;
+}
+
+export interface IMailChimpRequest {
+  email: string;
+  name: string;
+  newsletter: boolean;
 }

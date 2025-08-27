@@ -1,4 +1,4 @@
-import { getHtml, getText } from '@/features/contact/utils/email';
+import { getHtml, getText } from '@/features/contact/utils/template';
 
 describe('email utilities', () => {
   const mockContactData = {
