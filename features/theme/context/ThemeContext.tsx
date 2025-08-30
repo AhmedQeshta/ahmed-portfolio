@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Theme, ThemeContextType, ThemeProviderProps } from '../types/theme';
-import { getStoredTheme, saveTheme, getSystemTheme } from '../utils/storage';
+import { getStoredTheme, saveTheme, getSystemTheme, getEffectiveTheme } from '../utils/storage';
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
@@ -11,26 +11,28 @@ export function ThemeProvider({
   defaultTheme = 'system',
   storageKey = 'theme',
 }: ThemeProviderProps) {
+  // Initialize theme immediately with stored value or default
   const [theme, setTheme] = useState<Theme>(() => {
-    // Try to get stored theme, fallback to system
-    return getStoredTheme(storageKey) || 'system';
+    if (typeof window === 'undefined') return defaultTheme;
+    return getStoredTheme(storageKey) || defaultTheme;
   });
 
+  // Initialize resolved theme immediately using the utility function
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>(() => {
-    return getSystemTheme();
+    if (typeof window === 'undefined') return 'dark';
+    return getEffectiveTheme(storageKey, defaultTheme);
   });
 
-  // Initialize theme from localStorage on client-side hydration
+  // Only run this effect once on mount to ensure consistency
   useEffect(() => {
     const storedTheme = getStoredTheme(storageKey);
-    if (storedTheme) {
+    if (storedTheme && storedTheme !== theme) {
       setTheme(storedTheme);
-    } else {
-      // If no stored theme, save 'system' as default
-      saveTheme(storageKey, 'system');
-      setTheme('system');
+    } else if (!storedTheme) {
+      // If no stored theme, save the default
+      saveTheme(storageKey, defaultTheme);
     }
-  }, [storageKey]);
+  }, [storageKey, defaultTheme, theme]);
 
   // Handle theme changes and apply to document
   useEffect(() => {

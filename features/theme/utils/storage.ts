@@ -43,3 +43,25 @@ export function getSystemTheme(): 'light' | 'dark' {
 
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
+
+/**
+ * Get effective theme (resolved theme that should be applied to DOM)
+ * @param storageKey - The localStorage key to check
+ * @param defaultTheme - Default theme if none stored
+ * @returns The effective theme ('light' or 'dark')
+ */
+export function getEffectiveTheme(
+  storageKey: string,
+  defaultTheme: Theme = 'system',
+): 'light' | 'dark' {
+  if (typeof window === 'undefined') return 'dark';
+
+  const storedTheme = getStoredTheme(storageKey);
+  const theme = storedTheme || defaultTheme;
+
+  if (theme === 'system') {
+    return getSystemTheme();
+  } else {
+    return theme;
+  }
+}
