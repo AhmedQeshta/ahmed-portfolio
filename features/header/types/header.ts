@@ -33,3 +33,18 @@ export interface ICalculatePositionProps {
   index: number;
   orbitTechnologies: Technology[];
 }
+
+export interface IBioContent {
+  bio: any[];
+  cvUrl?: string;
+}
+
+export interface ITooltip {
+  name: string;
+}
+//
+export interface IRemainingTechnologyProps {
+  logo: string;
+  name: string;
+  index: number;
+}

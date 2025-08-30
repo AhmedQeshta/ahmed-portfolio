@@ -5,6 +5,7 @@ import Navbar from '@/features/navbar/components/Navbar';
 import OrbBackground from '@/features/shard/components/ui/OrbBackground';
 import FloatingActions from '@/features/shard/components/ui/FloatingActions';
 import PWAInstallPrompt from '@/features/shard/components/ui/PWAInstallPrompt';
+import { ThemeProvider } from '@/features/theme/context/ThemeContext';
 import { linksApp } from '@/features/navbar/utils/navLinks';
 import { metadata, viewport } from '@/features/shard/utils/metadata';
 import Script from 'next/script';
@@ -19,14 +20,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <OrbBackground />
-        <Navbar links={linksApp} />
+        <ThemeProvider defaultTheme="system" storageKey="portfolio-theme">
+          <OrbBackground />
+          <Navbar links={linksApp} />
 
-        {children}
-        <FloatingActions />
-        <PWAInstallPrompt />
-        <Footer />
-        <Script src="/sw-register.js" strategy="afterInteractive" />
+          {children}
+          <FloatingActions />
+          <PWAInstallPrompt />
+          <Footer />
+          <Script src="/sw-register.js" strategy="afterInteractive" />
+        </ThemeProvider>
       </body>
     </html>
   );

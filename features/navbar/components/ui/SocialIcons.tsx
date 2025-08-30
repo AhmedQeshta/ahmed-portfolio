@@ -1,5 +1,5 @@
 import { mediaList } from '@/features/navbar/utils/navLinks';
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
+import Link from 'next/link';
 
 export default function SocialIcons() {
   return (
@@ -7,17 +7,15 @@ export default function SocialIcons() {
       {mediaList?.map(({ title, href, iconSvg, rel, target }, index) => {
         const { fill, viewBox, className, path } = iconSvg || {};
         return (
-          <ScrollAnimation
-            key={title}
-            direction="up"
-            delay={0.05 * (index / 2)}
+          <div
+            key={index}
             className="w-8 h-8 p-1.5 text-text-secondary hover:text-purple-400 hover:bg-purple-500/10 rounded-lg transition-all duration-200 hover:scale-110">
-            <a href={href} target={target} rel={rel} aria-label={title}>
+            <Link href={href} target={target} rel={rel} aria-label={title}>
               <svg fill={fill} viewBox={viewBox} className={'w-full h-full'}>
                 <path d={path?.d} />
               </svg>
-            </a>
-          </ScrollAnimation>
+            </Link>
+          </div>
         );
       })}
     </div>
