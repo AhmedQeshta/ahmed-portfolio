@@ -1,6 +1,5 @@
 import { Theme } from '@/features/theme/types/theme';
-
-const VALID_THEMES: Theme[] = ['light', 'dark', 'system'];
+import { VALID_THEMES } from '@/features/theme/utils/constant';
 
 /**
  * Get theme from localStorage with validation

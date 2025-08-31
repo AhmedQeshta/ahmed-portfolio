@@ -1,39 +1,14 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { Monitor, Moon, Sun, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useThemeToggle } from '@/features/theme/hooks/useThemeToggle';
-import { Theme } from '@/features/theme/types/theme';
 import { ANIMATION_DURATIONS, EASING } from '@/features/shard/utils/animations';
-
-const themeOptions = [
-  { value: 'light' as Theme, label: 'Light', icon: Sun },
-  { value: 'dark' as Theme, label: 'Dark', icon: Moon },
-  { value: 'system' as Theme, label: 'System', icon: Monitor },
-];
+import { themeOptions } from '@/features/theme/utils/constant';
 
 export default function ThemeToggle() {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const { isDark, theme, setTheme, getThemeLabel } = useThemeToggle();
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  const currentTheme = themeOptions.find((option) => option.value === theme);
-  const CurrentIcon = currentTheme?.icon || Monitor;
+  const { isDark, theme, setTheme, getThemeLabel, dropdownRef, setIsOpen, isOpen, CurrentIcon } =
+    useThemeToggle();
 
   return (
     <div className="relative" ref={dropdownRef}>

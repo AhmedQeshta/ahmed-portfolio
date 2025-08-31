@@ -1,25 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ReactNode } from 'react';
-
-type AnchorTarget = '_self' | '_blank' | '_parent' | '_top' | string;
-
-interface OptimizedLinkProps {
-  href: string;
-  children: ReactNode;
-  className?: string;
-  prefetch?: boolean;
-  scroll?: boolean;
-  replace?: boolean;
-  shallow?: boolean;
-  onClick?: () => void;
-  target?: AnchorTarget;
-  rel?: string;
-  download?: boolean | string;
-  ariaLabel?: string;
-  dataTestId?: string;
-}
+import { OptimizedLinkProps } from '@/features/shard/types/common';
 
 export default function OptimizedLink({
   href,

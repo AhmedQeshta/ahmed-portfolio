@@ -210,6 +210,8 @@ export interface EmptyItemProps {
   icon?: string | null;
 }
 
+export type AnchorTarget = '_self' | '_blank' | '_parent' | '_top' | string;
+
 export interface OptimizedLinkProps {
   href: string;
   children: ReactNode;
@@ -218,9 +220,12 @@ export interface OptimizedLinkProps {
   scroll?: boolean;
   replace?: boolean;
   shallow?: boolean;
-  passHref?: boolean;
-  legacyBehavior?: boolean;
   onClick?: () => void;
+  target?: AnchorTarget;
+  rel?: string;
+  download?: boolean | string;
+  ariaLabel?: string;
+  dataTestId?: string;
 }
 export interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[];

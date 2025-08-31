@@ -2,8 +2,14 @@
 
 import { useTheme } from '@/features/theme/hooks/useTheme';
 import { Theme } from '@/features/theme/types/theme';
+import { useEffect, useRef, useState } from 'react';
+import { themeOptions } from '../utils/constant';
+import { Monitor } from 'lucide-react';
 
 export function useThemeToggle() {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   const { isDark, theme, setTheme, resolvedTheme } = useTheme();
 
   const toggleTheme = () => {
@@ -43,6 +49,22 @@ export function useThemeToggle() {
     }
   };
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const currentTheme = themeOptions.find((option) => option.value === theme);
+  const CurrentIcon = currentTheme?.icon || Monitor;
   return {
     isDark,
     theme,
@@ -54,5 +76,9 @@ export function useThemeToggle() {
     setSystemTheme,
     getThemeIcon,
     getThemeLabel,
+    dropdownRef,
+    setIsOpen,
+    isOpen,
+    CurrentIcon,
   };
 }

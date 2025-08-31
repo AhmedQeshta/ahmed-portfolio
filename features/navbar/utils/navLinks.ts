@@ -9,18 +9,18 @@ export const linksApp: ILinksApp[] = [
   {
     id: 2,
     name: 'Work',
-    url: '#works',
+    url: 'works',
   },
   {
     id: 3,
     name: 'Projects',
-    url: '#projects',
+    url: 'projects',
   },
 
   {
     id: 4,
     name: 'Blogs',
-    url: '#blogs',
+    url: 'blogs',
   },
 
   {

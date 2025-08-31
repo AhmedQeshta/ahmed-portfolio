@@ -8,7 +8,7 @@ export default function NavLinks({ links }: INavLinks) {
         <div
           key={id}
           className="py-2 text-text-secondary hover:text-white hover:bg-purple-500/10 rounded-lg transition-all duration-200 text-sm font-medium">
-          <OptimizedLink className="px-4 py-2" key={id} href={url} scroll={url.startsWith('#')}>
+          <OptimizedLink className="px-4 py-2" href={url} scroll={url.startsWith('#')}>
             {name}
           </OptimizedLink>
         </div>
