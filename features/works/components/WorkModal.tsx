@@ -10,9 +10,11 @@ import Location from '@/features/works/components/ui/Location';
 import Technologies from '@/features/shard/components/ui/Technologies';
 import WorkDetails from '@/features/works/components/ui/WorkDetails';
 import { IWorkResponse } from '@/features/works/types/work';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function WorkModal({ work }: IWorkResponse) {
   const router = useRouter();
+  const { isDark } = useTheme();
 
   const handleClose = () => {
     router.back();
@@ -22,7 +24,10 @@ export default function WorkModal({ work }: IWorkResponse) {
 
   return (
     <Modal isOpen={true} onClose={handleClose} maxWidth="2xl">
-      <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900">
+      <div
+        className={`bg-gradient-to-br ${
+          isDark ? 'from-gray-900 via-black to-gray-900' : 'from-gray-50 via-white to-gray-100'
+        }`}>
         {/* Hero Section */}
         <HeroWork work={work} />
 

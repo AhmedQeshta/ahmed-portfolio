@@ -1,17 +1,29 @@
+'use client';
+
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { getImageUrl } from '@/sanity/lib/image';
 import { IWorkResponse } from '@/features/works/types/work';
 import { Building, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function CompanyInformation({ work: { logo, company, companyUrl } }: IWorkResponse) {
   if (!logo) return null;
+  const { isDark } = useTheme();
 
   return (
-    <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8">
+    <div
+      className={`${
+        isDark
+          ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
+          : 'bg-white/80 backdrop-blur-sm border border-gray-200'
+      } rounded-xl p-8`}>
       <ScrollAnimation direction="down" delay={0.1}>
-        <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-          <Building size={28} className="text-purple-400" />
+        <h2
+          className={`text-2xl font-bold mb-6 flex items-center gap-3 ${
+            isDark ? 'text-white' : 'text-gray-900'
+          }`}>
+          <Building size={28} className={isDark ? 'text-purple-400' : 'text-purple-600'} />
           Company
         </h2>
       </ScrollAnimation>
@@ -28,13 +40,19 @@ export default function CompanyInformation({ work: { logo, company, companyUrl }
             </div>
           </ScrollAnimation>
           <ScrollAnimation direction="down" delay={0.4}>
-            <h3 className="text-xl font-bold text-white mb-2">{company}</h3>
+            <h3 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              {company}
+            </h3>
             {companyUrl && (
               <a
                 href={companyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-purple-300 hover:text-purple-200 transition-colors flex items-center gap-2">
+                className={`transition-colors flex items-center gap-2 ${
+                  isDark
+                    ? 'text-purple-300 hover:text-purple-200'
+                    : 'text-purple-600 hover:text-purple-700'
+                }`}>
                 Visit Company Website
                 <ExternalLink size={16} />
               </a>

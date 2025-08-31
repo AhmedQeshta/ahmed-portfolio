@@ -1,3 +1,5 @@
+'use client';
+
 import Modal from '@/features/shard/components/ui/Modal';
 import ButtonsNav from '@/features/projects/components/projectGallery/ButtonsNav';
 import MainImage from '@/features/projects/components/projectGallery/MainImage';
@@ -6,6 +8,7 @@ import ThumbnailNav from '@/features/projects/components/projectGallery/Thumbnai
 import KeyboardHint from '@/features/projects/components/projectGallery/KeyboardHint';
 import { IImagePreviewProps } from '@/features/projects/types/project';
 import { fileProcess } from '@/features/projects/utils/gallery';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function ImagePreview({
   selectedImageIndex,
@@ -18,6 +21,7 @@ export default function ImagePreview({
   title,
 }: IImagePreviewProps) {
   if (!gallery || gallery.length === 0 || selectedImageIndex === null) return null;
+  const { isDark } = useTheme();
 
   const currentItem = gallery[selectedImageIndex];
   const { isVideo } = fileProcess(currentItem);
@@ -25,12 +29,15 @@ export default function ImagePreview({
   return (
     <Modal isOpen={selectedImageIndex !== null} onClose={closeModal} maxWidth="2xl">
       <div
-        className="relative bg-black/95 rounded-xl overflow-hidden"
+        className={`relative rounded-xl overflow-hidden ${isDark ? 'bg-black/95' : 'bg-white/95'}`}
         onKeyDown={handleKeyPress}
         tabIndex={0}>
         {/* Modal Header */}
-        <div className="absolute top-6 left-6 z-20 bg-black/70 backdrop-blur-md rounded-lg px-4 py-2">
-          <p className="text-white text-sm font-medium">
+        <div
+          className={`absolute top-6 left-6 z-20 backdrop-blur-md rounded-lg px-4 py-2 ${
+            isDark ? 'bg-black/70' : 'bg-white/70'
+          }`}>
+          <p className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>
             {selectedImageIndex + 1} of {gallery.length}
           </p>
         </div>
