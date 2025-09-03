@@ -27,7 +27,7 @@ export default function Tags({ tags }: ITags) {
             key={index}
             direction="down"
             delay={0.5 + index * 0.1}
-            className="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm border border-blue-600/30">
+            className="px-3 py-1 bg-purple-600/20 text-purple-500 border-purple-600/20 rounded-full text-sm border ">
             #{tag}
           </ScrollAnimation>
         ))}
