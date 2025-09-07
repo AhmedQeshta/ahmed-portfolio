@@ -30,3 +30,8 @@ export interface IWorkGridProps {
 export interface ISortByDate {
   works: WorkExperienceResponse[];
 }
+
+export interface IArrow {
+  onClick?: () => void;
+  isNext?: boolean | null;
+}

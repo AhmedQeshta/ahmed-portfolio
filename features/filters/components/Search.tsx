@@ -5,8 +5,10 @@ import { XIcon } from 'lucide-react';
 import { useSearch } from '@/features/filters/hooks/useSearch';
 import DefaultInput from '@/features/shard/components/form/DefaultInput';
 import { ISearch } from '@/features/filters/types/search';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 const Search = ({ action, placeholder }: ISearch) => {
+  const { isDark } = useTheme();
   const { query, handleInputChange, handleSearch } = useSearch(action);
 
   return (
@@ -23,6 +25,7 @@ const Search = ({ action, placeholder }: ISearch) => {
             autoCorrect="off"
             style={{ WebkitAppearance: 'none' }}
             placeholder={placeholder}
+            customStyle={`${isDark ? 'bg-white/5 border-white/20' : 'text-purple-500 bg-purple-500/5 border-purple-500/20'}  hover:border-purple-400/50 focus:border-purple-400 focus:ring-purple-400/25 rounded-lg h-12 transition-all duration-300`}
           />
           {query && (
             <button
@@ -36,7 +39,7 @@ const Search = ({ action, placeholder }: ISearch) => {
         </div>
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-bold">
+          className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 font-bold">
           Search
         </button>
       </form>

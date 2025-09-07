@@ -1,11 +1,15 @@
+'use client';
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function ContactFooter() {
+  const { isDark } = useTheme();
   return (
     <div className="mt-16 lg:mt-20 text-center">
       <ScrollAnimation direction="up" delay={0.6}>
         <div className="bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 border border-purple-500/20 rounded-2xl p-8 sm:p-10">
-          <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+          <h3
+            className={`text-2xl sm:text-3xl font-bold ${isDark ? 'text-white' : 'bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent '} mb-4`}>
             Ready to Start Your Project?
           </h3>
           <p className="text-text-secondary mb-6 max-w-2xl mx-auto">
@@ -28,7 +32,7 @@ export default function ContactFooter() {
             </a>
             <a
               href="/projects"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-white/30 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105">
+              className={`inline-flex items-center justify-center gap-2 px-6 py-3 border ${isDark ? 'border-white/20 hover:border-white/30 bg-white/5 hover:bg-white/10' : 'border-black/20 hover:border-black/30 bg-black/5 hover:bg-black/10 '}  rounded-full font-semibold text-white transition-all duration-300 hover:scale-105`}>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"

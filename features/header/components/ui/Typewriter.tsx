@@ -12,7 +12,7 @@ export default function Typewriter({ titles }: ITypewriterProps) {
   });
   return (
     <>
-      <h2 className="text-xl min-h-10 h-10 sm:text-2xl lg:text-3xl font-semibold text-white/90 leading-tight">
+      <h2 className="text-xl min-h-10 h-10 sm:text-2xl lg:text-3xl font-semibold text-text-primary leading-tight">
         {text}
       </h2>
       <div className="flex items-center gap-3">

@@ -6,7 +6,6 @@ import Project from '@/features/projects/components/Project';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import { IProjectPage } from '@/features/projects/types/project';
 import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
 
 import {
   generateProjectMetadata,

@@ -15,10 +15,12 @@ import ScrollAnimation from '../../shard/components/ui/ScrollAnimation';
 import { IProjectResponse } from '@/features/projects/types/project';
 import ImagePreview from './ui/ImagePreview';
 import useGalleryModal from '../hooks/useGalleryModal';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function ProjectModal({ project }: IProjectResponse) {
   const { technologies, liveUrl, repoUrl, categories, description, title, gallery } = project;
   const router = useRouter();
+  const { isDark } = useTheme();
 
   const handleClose = () => {
     router.back();
@@ -54,7 +56,12 @@ export default function ProjectModal({ project }: IProjectResponse) {
         {/* Header with Categories */}
         <ScrollAnimation direction="down" delay={0.2} className="mb-8">
           <Categories categories={categories || []} delay={0.1} className="mb-4" />
-          <h1 className="text-2xl md:text-3xl font-bold text-white mb-4">{title}</h1>
+          <h1
+            className={`text-2xl md:text-3xl font-bold mb-4 ${
+              isDark ? 'text-white' : 'text-gray-900'
+            }`}>
+            {title}
+          </h1>
         </ScrollAnimation>
 
         {/* Two Column Layout */}
@@ -65,8 +72,17 @@ export default function ProjectModal({ project }: IProjectResponse) {
             <ScrollAnimation
               direction="down"
               delay={0.3}
-              className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 mb-6">
-              <p className="text-lg text-gray-300 leading-relaxed mb-6">{description}</p>
+              className={`${
+                isDark
+                  ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
+                  : 'bg-white/80 backdrop-blur-sm border border-gray-200'
+              } rounded-xl p-6 mb-6`}>
+              <p
+                className={`text-lg leading-relaxed mb-6 ${
+                  isDark ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                {description}
+              </p>
 
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-3">
@@ -78,7 +94,11 @@ export default function ProjectModal({ project }: IProjectResponse) {
             <ScrollAnimation
               direction="down"
               delay={0.4}
-              className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 mb-6">
+              className={`${
+                isDark
+                  ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
+                  : 'bg-white/80 backdrop-blur-sm border border-gray-200'
+              } rounded-xl p-6 mb-6`}>
               <FullDescription project={project} />
             </ScrollAnimation>
 
@@ -89,7 +109,11 @@ export default function ProjectModal({ project }: IProjectResponse) {
             <ScrollAnimation
               direction="down"
               delay={0.5}
-              className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 mt-6">
+              className={`${
+                isDark
+                  ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
+                  : 'bg-white/80 backdrop-blur-sm border border-gray-200'
+              } rounded-xl p-6 mt-6`}>
               <ProjectGallery project={project} openModal={openModal} />
             </ScrollAnimation>
           </div>

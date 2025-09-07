@@ -1,19 +1,30 @@
+'use client';
+
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { formatDate, formatReadingTime } from '@/features/shard/utils/date';
 import { IBlogPostResponse } from '@/features/blogs/types/blog';
 import { Calendar, Clock } from 'lucide-react';
 import Image from 'next/image';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function HeroBlog({ blog }: IBlogPostResponse) {
   if (!blog) return null;
+  const { isDark } = useTheme();
+
   const { thumbnail, title, categories, publishedAt, readingTime, featured } = blog;
-  //  make it
+
   return (
     <div className="relative h-[50vh] overflow-hidden">
       <Image src={thumbnail} alt={title} fill className="object-cover" priority />
 
       {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
+      <div
+        className={`absolute inset-0 bg-gradient-to-t ${
+          isDark
+            ? 'from-black via-black/70 to-transparent'
+            : 'from-white via-white/70 to-transparent'
+        }`}
+      />
 
       {/* Hero Content */}
       <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
@@ -35,7 +46,9 @@ export default function HeroBlog({ blog }: IBlogPostResponse) {
           <ScrollAnimation
             direction="down"
             delay={0.5}
-            className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+            className={`text-4xl md:text-5xl font-bold mb-4 leading-tight ${
+              isDark ? 'text-white' : 'text-gray-900'
+            }`}>
             {title}
           </ScrollAnimation>
 
@@ -43,7 +56,9 @@ export default function HeroBlog({ blog }: IBlogPostResponse) {
           <ScrollAnimation
             direction="down"
             delay={0.6}
-            className="flex flex-wrap items-center gap-6 text-gray-200">
+            className={`flex flex-wrap items-center gap-6 ${
+              isDark ? 'text-gray-200' : 'text-gray-700'
+            }`}>
             <ScrollAnimation direction="down" delay={0.7} className="flex items-center gap-2">
               <Calendar size={16} />
               <span>{formatDate(publishedAt)}</span>

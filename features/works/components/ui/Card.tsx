@@ -1,3 +1,4 @@
+'use client';
 import { getImageUrl } from '@/sanity/lib/image';
 import OptimizedLink from '@/features/shard/components/ui/OptimizedLink';
 import Image from 'next/image';
@@ -8,6 +9,7 @@ import { Briefcase, Calendar, MapPin, ExternalLink } from 'lucide-react';
 import React from 'react';
 import MouseMoveWrapper from '@/features/shard/components/ui/MouseMoveWrapper';
 import { IWorkResponse } from '@/features/works/types/work';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Card({
   work: {
@@ -25,6 +27,8 @@ export default function Card({
     technologies,
   },
 }: IWorkResponse) {
+  const { isDark } = useTheme();
+
   return (
     <MouseMoveWrapper>
       <OptimizedLink
@@ -48,7 +52,8 @@ export default function Card({
           </div>
 
           <div className="flex-1 min-w-0">
-            <h3 className="text-xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors line-clamp-2">
+            <h3
+              className={`text-xl font-bold  ${isDark ? 'text-white mb-1 group-hover:text-blue-400 transition-colors' : 'text-blue-500 mb-1 group-hover:text-blue-600 transition-colors'} line-clamp-2`}>
               {title}
             </h3>
             <div className="flex items-center gap-1 text-text-accent font-medium">
@@ -58,7 +63,7 @@ export default function Card({
           </div>
 
           {current && (
-            <span className="bg-green-500/20 text-green-300 border border-green-500/30 px-2 py-1 rounded-lg text-xs font-medium">
+            <span className="bg-green-500/20 text-green-400 border border-green-500/30 px-2 py-1 rounded-lg text-xs font-medium">
               Current
             </span>
           )}
@@ -111,7 +116,8 @@ export default function Card({
         )}
 
         {/* Call to Action */}
-        <div className="flex items-center justify-end pt-4 border-t border-white/10">
+        <div
+          className={`flex items-center justify-end pt-4 border-t ${isDark ? ' border-white/10' : 'border-black/10'}`}>
           <div className="flex items-center gap-2 text-text-accent text-sm font-medium group-hover:text-white transition-colors">
             <span>View Details</span>
             <ExternalLink className="w-4 h-4 text-text-accent group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />

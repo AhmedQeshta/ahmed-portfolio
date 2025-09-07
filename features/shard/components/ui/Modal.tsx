@@ -3,9 +3,11 @@
 import { X } from 'lucide-react';
 import { IModal } from '@/features/shard/types/common';
 import useModal from '@/features/shard/hooks/useModal';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Modal({ isOpen, onClose, children, title, maxWidth = 'lg' }: IModal) {
   // Handle escape key press
+  const { isDark } = useTheme();
 
   const maxWidthClasses = useModal({ isOpen, onClose });
 
@@ -20,16 +22,26 @@ export default function Modal({ isOpen, onClose, children, title, maxWidth = 'lg
       <div
         className={`relative w-full ${maxWidthClasses[maxWidth]} max-h-[90vh] overflow-hidden`}
         data-testid="modal-content">
-        <div className="bg-gray-900 border border-white/20 rounded-xl shadow-2xl">
+        <div
+          className={`${
+            isDark ? 'bg-gray-900 border border-white/20' : 'bg-white border border-gray-200'
+          } rounded-xl shadow-2xl`}>
           {/* Header */}
           {title && (
-            <div className="flex items-center justify-between p-6 border-b border-white/20">
-              <h2 className="text-xl font-bold text-white">{title}</h2>
+            <div
+              className={`flex items-center justify-between p-6 border-b ${
+                isDark ? 'border-white/20' : 'border-gray-200'
+              }`}>
+              <h2 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                {title}
+              </h2>
               <button
                 onClick={onClose}
-                className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                className={`p-2 rounded-lg transition-colors ${
+                  isDark ? 'hover:bg-white/10' : 'hover:bg-gray-100'
+                }`}
                 aria-label="Close modal">
-                <X className="w-5 h-5 text-gray-400" />
+                <X className={`w-5 h-5 ${isDark ? 'text-gray-400' : 'text-gray-500'}`} />
               </button>
             </div>
           )}
@@ -41,9 +53,11 @@ export default function Modal({ isOpen, onClose, children, title, maxWidth = 'lg
           {!title && (
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-lg transition-colors z-10"
+              className={`absolute top-4 right-4 p-2 rounded-lg transition-colors z-10 ${
+                isDark ? 'hover:bg-white/10' : 'hover:bg-gray-100'
+              }`}
               aria-label="Close modal">
-              <X className="w-5 h-5 text-gray-400" />
+              <X className={`w-5 h-5 ${isDark ? 'text-gray-400' : 'text-gray-500'}`} />
             </button>
           )}
         </div>

@@ -7,6 +7,7 @@ import SubmitButton from '@/features/contact/components/ui/SubmitButton';
 import Label from '@/features/shard/components/form/Label';
 import DefaultTextarea from '@/features/shard/components/form/DefaultTextarea';
 import DefaultInput from '@/features/shard/components/form/DefaultInput';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function ContactForm() {
   const {
@@ -20,29 +21,39 @@ export default function ContactForm() {
     displayErrors,
   } = useContact();
 
+  const { isDark } = useTheme();
+
   // Show success message
   if (state?.success) return <SuccessMessage state={state} resetForm={resetForm} />;
 
   return (
     <div className="w-full">
       <form action={formAction} onSubmit={handleSubmit} className="space-y-5">
-        <ScrollAnimation direction="up" delay={0.1} className="mb-4">
+        <ScrollAnimation direction="up" delay={0.05} duration={0.25} className="mb-4">
           <div className="space-y-1">
-            <Label htmlFor="name" title="Full Name" customStyle="text-white font-medium" />
+            <Label
+              htmlFor="name"
+              title="Full Name"
+              customStyle={`${isDark ? 'text-white' : 'text-purple-600'} font-medium`}
+            />
             <DefaultInput
               name="name"
               value={formData.name}
               handleInputChange={handleInputChange}
               placeholder="Enter your full name"
               displayErrors={displayErrors.name}
-              customStyle="bg-white/5 border-white/20 hover:border-purple-400/50 focus:border-purple-400 focus:ring-purple-400/25 rounded-lg h-12 transition-all duration-300"
+              customStyle={`${isDark ? 'bg-white/5 border-white/20' : 'text-purple-500 bg-purple-500/5 border-purple-500/20'}  hover:border-purple-400/50 focus:border-purple-400 focus:ring-purple-400/25 rounded-lg h-12 transition-all duration-300`}
             />
           </div>
         </ScrollAnimation>
 
         <ScrollAnimation direction="up" delay={0.2} className="mb-4">
           <div className="space-y-1">
-            <Label htmlFor="email" title="Email Address" customStyle="text-white font-medium" />
+            <Label
+              htmlFor="email"
+              title="Email Address"
+              customStyle={`${isDark ? 'text-white' : 'text-purple-600'} font-medium`}
+            />
             <DefaultInput
               name="email"
               type="email"
@@ -50,14 +61,18 @@ export default function ContactForm() {
               handleInputChange={handleInputChange}
               placeholder="Enter your email address"
               displayErrors={displayErrors.email}
-              customStyle="bg-white/5 border-white/20 hover:border-purple-400/50 focus:border-purple-400 focus:ring-purple-400/25 rounded-lg h-12 transition-all duration-300"
+              customStyle={`${isDark ? 'bg-white/5 border-white/20' : 'text-purple-500 bg-purple-500/5 border-purple-500/20'} hover:border-purple-400/50 focus:border-purple-400 focus:ring-purple-400/25 rounded-lg h-12 transition-all duration-300`}
             />
           </div>
         </ScrollAnimation>
 
         <ScrollAnimation direction="up" delay={0.3} className="mb-4">
           <div className="space-y-1">
-            <Label htmlFor="message" title="Message" customStyle="text-white font-medium" />
+            <Label
+              htmlFor="message"
+              title="Message"
+              customStyle={`${isDark ? 'text-white' : 'text-purple-600'} font-medium`}
+            />
             <DefaultTextarea
               name="message"
               rows={6}
@@ -65,14 +80,15 @@ export default function ContactForm() {
               handleInputChange={handleInputChange}
               placeholder="Tell me about your project, ideas, or how I can help you..."
               displayErrors={displayErrors.message}
-              customStyle="bg-white/5 border-white/20 hover:border-purple-400/50 focus:border-purple-400 focus:ring-purple-400/25 rounded-lg resize-none transition-all duration-300"
+              customStyle={`${isDark ? 'bg-white/5 border-white/20' : 'text-purple-500 bg-purple-500/5 border-purple-500/20'} hover:border-purple-400/50 focus:border-purple-400 focus:ring-purple-400/25 rounded-lg resize-none transition-all duration-300`}
             />
           </div>
         </ScrollAnimation>
 
         <ScrollAnimation direction="up" delay={0.4} className="mb-4">
           <div className="relative">
-            <div className="flex items-start gap-4 p-4 bg-white/5 border border-white/10 rounded-lg hover:border-purple-400/30 transition-all duration-300 group">
+            <div
+              className={`flex items-start gap-4 p-4 ${isDark ? 'bg-white/5 border-white/10' : 'bg-purple-200/15 border-purple-200/30'} border  rounded-lg hover:border-purple-400/30 transition-all duration-300 group`}>
               <div className="relative flex-shrink-0">
                 <input
                   id="newsletter"
@@ -82,11 +98,11 @@ export default function ContactForm() {
                   onChange={(e) => {
                     handleInputChange('newsletter', e.target.checked);
                   }}
-                  className="w-5 h-5 border-2 border-white/30 rounded-md bg-transparent focus:ring-2 focus:ring-purple-400/50 focus:ring-offset-2 focus:ring-offset-transparent checked:bg-purple-500 checked:border-purple-500 checked:hover:bg-purple-600 transition-all duration-200 cursor-pointer appearance-none relative"
+                  className={`w-5 h-5 border-2 ${isDark ? 'border-white/30' : 'border-purple-400/30'}  rounded-md bg-transparent focus:ring-2 focus:ring-purple-400/50 focus:ring-offset-2 focus:ring-offset-transparent checked:bg-purple-500 checked:border-purple-500 checked:hover:bg-purple-600 transition-all duration-200 cursor-pointer appearance-none relative`}
                 />
                 {formData.newsletter && (
                   <svg
-                    className="absolute inset-0 w-5 h-5 text-white pointer-events-none flex items-center justify-center"
+                    className={`absolute inset-0 w-5 h-5 text-white pointer-events-none flex items-center justify-center`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24">
@@ -103,9 +119,10 @@ export default function ContactForm() {
                 <Label
                   htmlFor="newsletter"
                   title="Subscribe to my newsletter"
-                  customStyle="text-white font-semibold text-base cursor-pointer group-hover:text-purple-300 transition-colors duration-200"
+                  customStyle={`${isDark ? 'text-white group-hover:text-purple-300' : 'text-purple-500 group-hover:text-purple-500/80'} font-semibold text-base cursor-pointer  transition-colors duration-200`}
                 />
-                <p className="text-sm text-white/70 mt-1 leading-relaxed">
+                <p
+                  className={`text-sm ${isDark ? 'text-white/70 ' : 'text-purple-500/80'} mt-1 leading-relaxed`}>
                   Get updates about new projects, tech insights, and exclusive content delivered to
                   your inbox.
                 </p>

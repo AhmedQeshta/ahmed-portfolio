@@ -1,6 +1,7 @@
 import '@/app/globals.css';
 import Navbar from '@/features/navbar/components/Navbar';
 import OrbBackground from '@/features/shard/components/ui/OrbBackground';
+import { ThemeProvider } from '@/features/theme/context/ThemeContext';
 import { linksPages } from '@/features/navbar/utils/navLinks';
 import FloatingActions from '@/features/shard/components/ui/FloatingActions';
 import { metadata, viewport } from '@/features/shard/utils/metadata';
@@ -11,12 +12,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <OrbBackground />
+        <ThemeProvider defaultTheme="system" storageKey="portfolio-theme">
+          <OrbBackground />
 
-        <Navbar links={linksPages} />
-        {children}
+          <Navbar links={linksPages} />
+          {children}
 
-        <FloatingActions />
+          <FloatingActions />
+        </ThemeProvider>
       </body>
     </html>
   );
