@@ -1,6 +1,6 @@
 import { sanityFetch } from '@/sanity/lib/client';
-import { blogPostsQuery } from '@/sanity/lib/queries';
-import { BlogPostResponse } from '@/sanity/lib/types';
+import { blogPostsQuery, categoriesQuery } from '@/sanity/lib/queries';
+import { BlogPostResponse, CategoryResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import BlogCard from '@/features/blogs/components/BlogCard';
 import Search from '@/features/filters/components/Search';
@@ -11,11 +11,16 @@ import EmptyItem from '@/features/shard/components/ui/EmptyItem';
 
 export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
   try {
-    // Fetch all blogs
-    let blogs = await sanityFetch<BlogPostResponse[]>({
-      query: blogPostsQuery,
-      tags: ['blogPosts'],
-    });
+    let [blogs, categories] = await Promise.all([
+      sanityFetch<BlogPostResponse[]>({
+        query: blogPostsQuery,
+        tags: ['blogPosts'],
+      }),
+      sanityFetch<CategoryResponse[]>({
+        query: categoriesQuery,
+        tags: ['categories'],
+      }),
+    ]);
 
     // Filter blogs based on search query if provided
     if (query && query.trim() !== '') {
@@ -50,7 +55,7 @@ export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
               icon="📝"
             />
           ) : (
-            <BlogCard blogs={blogs} readMore={readMore} />
+            <BlogCard blogs={blogs} readMore={readMore} categories={categories} />
           )}
         </ScrollAnimation>
       </section>

@@ -1,4 +1,4 @@
-import { ProjectGalleryItem, ProjectResponse } from '@/sanity/lib/types';
+import { CategoryResponse, ProjectGalleryItem, ProjectResponse } from '@/sanity/lib/types';
 
 export interface IProjectLayout {
   readonly children: React.ReactNode;
@@ -29,6 +29,7 @@ export interface ICardProps {
 
 export interface IProjectCardProps {
   projects: ProjectResponse[];
+  categories: CategoryResponse[];
   readMore: boolean;
 }
 

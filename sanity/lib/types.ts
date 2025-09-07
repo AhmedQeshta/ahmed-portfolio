@@ -91,6 +91,7 @@ export interface Category {
   _id: string;
   name: string;
   order: number;
+  isForFilter: boolean;
   slug: {
     current: string;
   };

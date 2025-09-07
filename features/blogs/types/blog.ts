@@ -1,4 +1,4 @@
-import { BlogPostResponse } from '@/sanity/lib/types';
+import { BlogPostResponse, CategoryResponse } from '@/sanity/lib/types';
 
 export interface IBlogsPage {
   searchParams: { q?: string };
@@ -28,6 +28,7 @@ export interface IBlogPostResponse {
 
 export interface IBlogCardProps {
   blogs: BlogPostResponse[];
+  categories: CategoryResponse[];
   readMore: boolean;
 }
 
