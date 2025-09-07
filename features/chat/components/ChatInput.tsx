@@ -3,10 +3,12 @@ import DefaultInput from '@/features/shard/components/form/DefaultInput';
 import { Send } from 'lucide-react';
 import useChat from '@/features/chat/hooks/useChat';
 import { IChatInputProps } from '@/features/chat/types/chat-system';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function ChatInput({ sendMessage }: IChatInputProps) {
   const { formAction, handleSubmit, isPending, formData, handleInputChange, displayErrors } =
     useChat({ sendMessage });
+  const { isDark } = useTheme();
 
   return (
     <form action={formAction} onSubmit={handleSubmit}>
@@ -24,8 +26,8 @@ export default function ChatInput({ sendMessage }: IChatInputProps) {
             autoCorrect="off"
             autoFocus={true}
             style={{ WebkitAppearance: 'none' }}
-            customStyle="text-text-primary placeholder-text-secondary bg-card-bg/50 backdrop-blur-sm border border-white/20 rounded-xl focus:border-white/40 focus:ring-2 focus:ring-white/20 transition-all duration-300
-            hover:border-white/30 hover:bg-card-bg/70"
+            // customStyle="text-text-primary placeholder-text-secondary bg-card-bg/50 backdrop-blur-sm border border-white/20 rounded-xl focus:border-white/40 focus:ring-2 focus:ring-white/20 transition-all duration-300 hover:border-white/30 hover:bg-card-bg/70"
+            customStyle={`${isDark ? 'bg-white/5 border-white/20' : 'text-purple-500 bg-purple-500/5 border-purple-500/20'}  hover:border-purple-400/50 focus:border-purple-400 focus:ring-purple-400/25 rounded-xl transition-all duration-300`}
           />
         </div>
 

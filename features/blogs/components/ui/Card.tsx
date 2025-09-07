@@ -1,3 +1,5 @@
+'use client';
+
 import ImageHeader from '@/features/shard/components/ui/ImageHeader';
 import MouseMoveWrapper from '@/features/shard/components/ui/MouseMoveWrapper';
 import TechnologiesDisplay from '@/features/shard/components/ui/TechnologiesDisplay';
@@ -5,10 +7,13 @@ import { ArrowRight } from 'lucide-react';
 import OptimizedLink from '@/features/shard/components/ui/OptimizedLink';
 import MetaInfo from '@/features/blogs/components/ui/MetaInfo';
 import { ICardProps } from '@/features/blogs/types/blog';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Card({
   blog: { slug, thumbnail, title, technologies, publishedAt, readingTime, description },
 }: ICardProps) {
+  const { isDark } = useTheme();
+
   return (
     <MouseMoveWrapper>
       <OptimizedLink
@@ -16,9 +21,11 @@ export default function Card({
         aria-label={`Read article: ${title}`}
         className="group block w-full h-full"
         data-testid="blog-link">
-        <article className="bg-card-bg backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:border-white/20 hover:bg-card-hover transition-all duration-300 group-hover:scale-[1.02] hover:shadow-2xl relative z-10 min-h-[500px] flex flex-col h-full">
+        <article
+          className={`bg-card-bg backdrop-blur-md border ${isDark ? 'border-white/10 hover:border-white/20' : 'border-black/10 hover:border-black/20'}  rounded-2xl p-6  hover:bg-card-hover transition-all duration-300 group-hover:scale-[1.02] hover:shadow-2xl relative z-10 min-h-[500px] flex flex-col h-full`}>
           {/* Blog Image Header - Enhanced Design */}
-          <div className="relative w-full h-56 rounded-xl overflow-hidden mb-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-white/10">
+          <div
+            className={`relative w-full h-56 rounded-xl overflow-hidden mb-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 border ${isDark ? 'border-white/10' : 'border-black/10'}`}>
             <ImageHeader image={thumbnail} title={title} />
 
             {/* Enhanced Hover Overlay with Gradient */}
@@ -37,7 +44,8 @@ export default function Card({
           <div className="space-y-4 flex-1 flex flex-col">
             {/* Title - Now as heading without nested link */}
             <header>
-              <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-1 mb-2">
+              <h3
+                className={`text-xl font-bold ${isDark ? 'text-white group-hover:text-blue-400' : 'text-blue-500 group-hover:text-blue-600'}  transition-colors line-clamp-1 mb-2`}>
                 {title}
               </h3>
             </header>
@@ -56,7 +64,8 @@ export default function Card({
             )}
 
             {/* Call to Action - Visual only, no separate link */}
-            <div className="flex items-center justify-end pt-4 border-t border-white/10 mt-auto">
+            <div
+              className={`flex items-center justify-end pt-4 border-t ${isDark ? 'border-white/10' : 'border-black/10'} mt-auto`}>
               <div className="flex items-center gap-2 text-text-accent text-sm font-medium group-hover:text-white transition-colors">
                 <span>Read Article</span>
                 <ArrowRight className="w-4 h-4 text-text-accent group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />

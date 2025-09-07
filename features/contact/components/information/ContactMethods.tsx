@@ -1,12 +1,18 @@
+'use client';
+
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { IBaseInfo } from '@/features/contact/types/contact';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function ContactMethods({ baseInfo }: IBaseInfo) {
   const { email, phone, address, cvUrl } = baseInfo;
+
+  const { isDark } = useTheme();
+
   return (
     <ScrollAnimation direction="down" delay={0.3}>
       <div className="space-y-4 mb-8">
-        <h4 className="text-lg font-semibold text-white mb-4">Get In Touch</h4>
+        <h4 className="text-lg font-semibold text-text-primary mb-4">Get In Touch</h4>
 
         {/* Email Contact */}
         <a
@@ -14,7 +20,7 @@ export default function ContactMethods({ baseInfo }: IBaseInfo) {
           className="group flex items-center gap-4 p-4 bg-gradient-to-r from-blue-500/5 to-blue-600/5 hover:from-blue-500/10 hover:to-blue-600/10 border border-blue-500/20 hover:border-blue-500/40 rounded-xl transition-all duration-300 hover:transform hover:scale-[1.02]">
           <div className="flex-shrink-0 w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center group-hover:bg-blue-500/30 transition-colors">
             <svg
-              className="w-6 h-6 text-blue-400 group-hover:text-blue-300"
+              className={`w-6 h-6 ${isDark ? 'text-blue-400 group-hover:text-blue-300' : 'text-blue-600 group-hover:text-blue-500'} `}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24">
@@ -27,7 +33,8 @@ export default function ContactMethods({ baseInfo }: IBaseInfo) {
             </svg>
           </div>
           <div className="flex-1 min-w-0">
-            <h5 className="text-white font-medium group-hover:text-blue-300 transition-colors">
+            <h5
+              className={`${isDark ? 'text-white group-hover:text-blue-300' : 'text-blue-600 group-hover:text-blue-500'} font-medium transition-colors`}>
               Email
             </h5>
             <p className="text-text-secondary text-sm truncate group-hover:text-blue-200">
@@ -35,7 +42,7 @@ export default function ContactMethods({ baseInfo }: IBaseInfo) {
             </p>
           </div>
           <svg
-            className="w-5 h-5 text-blue-400 group-hover:text-blue-300 group-hover:translate-x-1 transition-all duration-300"
+            className={`w-5 h-5 ${isDark ? 'text-blue-400 group-hover:text-blue-300' : 'text-blue-600 group-hover:text-blue-500'} group-hover:translate-x-1 transition-all duration-300`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24">
@@ -49,7 +56,7 @@ export default function ContactMethods({ baseInfo }: IBaseInfo) {
           className="group flex items-center gap-4 p-4 bg-gradient-to-r from-green-500/5 to-green-600/5 hover:from-green-500/10 hover:to-green-600/10 border border-green-500/20 hover:border-green-500/40 rounded-xl transition-all duration-300 hover:transform hover:scale-[1.02]">
           <div className="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
             <svg
-              className="w-6 h-6 text-green-400 group-hover:text-green-300"
+              className={`w-6 h-6 ${isDark ? 'text-green-400 group-hover:text-green-300' : 'text-green-600 group-hover:text-green-500'} `}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24">
@@ -62,13 +69,14 @@ export default function ContactMethods({ baseInfo }: IBaseInfo) {
             </svg>
           </div>
           <div className="flex-1 min-w-0">
-            <h5 className="text-white font-medium group-hover:text-green-300 transition-colors">
+            <h5
+              className={`${isDark ? 'text-white group-hover:text-green-300' : 'text-green-600 group-hover:text-green-500'} font-medium transition-colors`}>
               Phone
             </h5>
             <p className="text-text-secondary text-sm group-hover:text-green-200">{phone}</p>
           </div>
           <svg
-            className="w-5 h-5 text-green-400 group-hover:text-green-300 group-hover:translate-x-1 transition-all duration-300"
+            className={`w-5 h-5 ${isDark ? 'text-green-400 group-hover:text-green-300' : 'text-green-600 group-hover:text-green-500'} group-hover:translate-x-1 transition-all duration-300`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24">
@@ -85,7 +93,7 @@ export default function ContactMethods({ baseInfo }: IBaseInfo) {
             className="group flex items-center gap-4 p-4 bg-gradient-to-r from-purple-500/5 to-purple-600/5 hover:from-purple-500/10 hover:to-purple-600/10 border border-purple-500/20 hover:border-purple-500/40 rounded-xl transition-all duration-300 hover:transform hover:scale-[1.02]">
             <div className="flex-shrink-0 w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center group-hover:bg-purple-500/30 transition-colors">
               <svg
-                className="w-6 h-6 text-purple-400 group-hover:text-purple-300"
+                className={`w-6 h-6 ${isDark ? 'text-purple-400 group-hover:text-purple-300' : 'text-purple-600 group-hover:text-purple-500'} `}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24">
@@ -98,7 +106,8 @@ export default function ContactMethods({ baseInfo }: IBaseInfo) {
               </svg>
             </div>
             <div className="flex-1 min-w-0">
-              <h5 className="text-white font-medium group-hover:text-purple-300 transition-colors">
+              <h5
+                className={`${isDark ? 'text-white group-hover:text-purple-300' : 'text-purple-600 group-hover:text-purple-500'} font-medium transition-colors`}>
                 Download CV
               </h5>
               <p className="text-text-secondary text-sm truncate group-hover:text-purple-200">
@@ -106,7 +115,7 @@ export default function ContactMethods({ baseInfo }: IBaseInfo) {
               </p>
             </div>
             <svg
-              className="w-5 h-5 text-purple-400 group-hover:text-purple-300 group-hover:translate-x-1 transition-all duration-300"
+              className={`w-5 h-5 ${isDark ? 'text-purple-400 group-hover:text-purple-300' : 'text-purple-600 group-hover:text-purple-500'} group-hover:translate-x-1 transition-all duration-300`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24">
@@ -119,7 +128,7 @@ export default function ContactMethods({ baseInfo }: IBaseInfo) {
         <div className="flex items-center gap-4 p-4 bg-gradient-to-r from-amber-500/5 to-amber-600/5 border border-amber-500/20 rounded-xl">
           <div className="flex-shrink-0 w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
             <svg
-              className="w-6 h-6 text-amber-400"
+              className={`w-6 h-6 ${isDark ? 'text-amber-400 group-hover:text-amber-300' : 'text-amber-600 group-hover:text-amber-500'} `}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24">
@@ -138,7 +147,10 @@ export default function ContactMethods({ baseInfo }: IBaseInfo) {
             </svg>
           </div>
           <div className="flex-1 min-w-0">
-            <h5 className="text-white font-medium">Location</h5>
+            <h5
+              className={`${isDark ? 'text-white group-hover:text-amber-300' : 'text-amber-600 group-hover:text-amber-500'} font-medium transition-colors`}>
+              Location
+            </h5>
             <p className="text-text-secondary text-sm">{address}</p>
           </div>
         </div>
