@@ -8,6 +8,7 @@
   /* Dark theme colors (default) */
   --card-bg: rgba(15, 15, 15, 0.8);
   --card-bg-glass: rgba(25, 25, 25, 0.2);
+  --card-bg-glass-filter: rgba(25, 25, 25, 0.2);
   --card-bg-glass-dark: rgba(25, 25, 25, 0.5);
   --card-hover: rgba(25, 25, 25, 0.9);
   --text-primary: #ffffff;
@@ -35,6 +36,7 @@
   --card-bg: rgba(255, 255, 255, 0.9);
   --card-bg-glass: rgba(255, 255, 255, 0.7);
   --card-bg-glass-dark: rgba(255, 255, 255, 0.8);
+  --card-bg-glass-filter: rgba(31, 11, 41, 0.5);
   --card-hover: rgba(255, 255, 255, 0.95);
   --text-primary: #1f2937;
   --text-secondary: #69576b;
@@ -142,6 +144,12 @@ a {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bg-btn-filter {
+  background-color: var(--card-bg-glass-filter);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 /* section styles */

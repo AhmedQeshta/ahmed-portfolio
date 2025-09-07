@@ -15,3 +15,9 @@ export interface IFilterProps {
   categories: CategoryResponse[];
   activeFilter: string;
 }
+
+export interface IFilterButton {
+  name: string;
+  activeFilter: string;
+  handleFilter: (category: string) => void;
+}
