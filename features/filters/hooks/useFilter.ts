@@ -1,10 +1,10 @@
+import React, { useEffect, useState } from 'react';
 import { BlogPostResponse, ProjectResponse } from '@/sanity/lib/types';
-import { useEffect, useState } from 'react';
-import { IFilterHookProps } from '@/features/filters/types/search';
+import { IUseFilter } from '@/features/filters/types/search';
 
 export function useFilter<T extends ProjectResponse[] | BlogPostResponse[]>(
   data: T,
-): IFilterHookProps<T> {
+): IUseFilter<T> {
   const [filtered, setFiltered] = useState<T>([] as unknown as T);
   const [activeFilter, setActiveFilter] = useState('all');
 

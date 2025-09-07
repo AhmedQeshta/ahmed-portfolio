@@ -4,7 +4,7 @@ export interface ISearch {
   action: string;
   placeholder: string;
 }
-export interface IFilterHookProps<T> {
+export interface IUseFilter<T> {
   filtered: T;
   handleFilter: (category: string) => void;
   activeFilter: string;
