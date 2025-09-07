@@ -1,6 +1,6 @@
 import { sanityFetch } from '@/sanity/lib/client';
-import { projectsQuery } from '@/sanity/lib/queries';
-import { ProjectResponse } from '@/sanity/lib/types';
+import { categoriesQuery, projectsQuery } from '@/sanity/lib/queries';
+import { CategoryResponse, ProjectResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import ProjectCard from '@/features/projects/components/ProjectCard';
 import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
@@ -11,10 +11,16 @@ import Search from '@/features/filters/components/Search';
 
 export default async function ProjectGrid({ readMore = true, query }: IProjectGrid) {
   try {
-    let projects = await sanityFetch<ProjectResponse[]>({
-      query: projectsQuery,
-      tags: ['projects'],
-    });
+    let [projects, categories] = await Promise.all([
+      sanityFetch<ProjectResponse[]>({
+        query: projectsQuery,
+        tags: ['projects'],
+      }),
+      sanityFetch<CategoryResponse[]>({
+        query: categoriesQuery,
+        tags: ['categories'],
+      }),
+    ]);
 
     // Filter projects based on search query if provided
     if (query && query.trim() !== '') {
@@ -49,14 +55,12 @@ export default async function ProjectGrid({ readMore = true, query }: IProjectGr
               icon="🚀"
             />
           ) : (
-            <ProjectCard projects={projects} readMore={readMore} />
+            <ProjectCard projects={projects} categories={categories} readMore={readMore} />
           )}
         </ScrollAnimation>
       </section>
     );
   } catch (error) {
-    console.error('Error fetching projects:', error);
-
     return (
       <ErrorHandle
         id={'projects'}

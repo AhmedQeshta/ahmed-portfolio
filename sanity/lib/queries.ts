@@ -232,3 +232,13 @@ export const featuresQuery = groq`
     order
   }
 `;
+
+export const categoriesQuery = groq`
+*[_type == "category" && isForFilter == true] | order(order asc){
+    _id,
+    name,
+    slug,
+    isForFilter,
+    order
+  }
+`;

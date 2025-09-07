@@ -22,6 +22,12 @@ export const category = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'isForFilter',
+      title: 'Show For Filter',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'order',
       title: 'Display Order',
       type: 'number',
