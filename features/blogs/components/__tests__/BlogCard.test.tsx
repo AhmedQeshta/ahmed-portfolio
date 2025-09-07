@@ -81,6 +81,26 @@ jest.mock('@/features/shard/utils/date', () => ({
   formatReadingTime: jest.fn(() => '5 min read'),
 }));
 
+// Mock the useFilter hook
+jest.mock('@/features/filters/hooks/useFilter', () => ({
+  useFilter: jest.fn((data) => ({
+    filtered: data,
+    handleFilter: jest.fn(),
+    activeFilter: 'all',
+  })),
+}));
+
+// Mock the Filter component
+jest.mock('@/features/filters/components/Filter', () => {
+  return function MockFilter({ categories, handleFilter, activeFilter }: any) {
+    return (
+      <div data-testid="filter-component">
+        Filter: {categories?.length || 0} categories, Active: {activeFilter}
+      </div>
+    );
+  };
+});
+
 const mockBlog: BlogPostResponse = {
   _id: '1',
   slug: 'test-blog-post',

@@ -16,24 +16,26 @@ export default async function Page(props: FixedPageProps) {
   const { slug } = await props.params;
 
   try {
-    const blog = await sanityFetch<BlogPostResponse>({
-      query: blogPostBySlugQuery,
-      params: { slug },
-      tags: ['blogPost'],
-    });
-    const latestBlogs = await sanityFetch<BlogPostResponse[]>({
-      query: blogPostsQuery,
-      tags: ['blogPosts'],
-      params: {
-        limit: 3,
-        order: 'desc',
-        orderBy: 'publishedAt',
-      },
-    });
+    const [blog, latestBlogs] = await Promise.all([
+      sanityFetch<BlogPostResponse>({
+        query: blogPostBySlugQuery,
+        params: { slug },
+        tags: ['blogPost'],
+      }),
+      sanityFetch<BlogPostResponse[]>({
+        query: blogPostsQuery,
+        tags: ['latestBlogs'],
+        params: {
+          limit: 3,
+          order: 'desc',
+          orderBy: 'publishedAt',
+        },
+      }),
+    ]);
 
     const relatedBlogs = await sanityFetch<BlogPostResponse[]>({
       query: blogPostsQuery,
-      tags: ['blogPosts'],
+      tags: ['relatedBlogs'],
       params: {
         limit: 3,
         order: 'desc',
