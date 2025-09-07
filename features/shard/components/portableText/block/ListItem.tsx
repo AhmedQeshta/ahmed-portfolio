@@ -1,5 +1,12 @@
-import { IListBullet, IListNumber } from '@/features/shard/types/common';
+'use client';
 
-export default function ListItem({ children }: IListBullet | IListNumber) {
-  return <li className="text-gray-300 leading-relaxed">{children}</li>;
+import { IListBullet } from '@/features/shard/types/common';
+import { useTheme } from '@/features/theme/hooks/useTheme';
+
+export default function ListItem({ children }: IListBullet) {
+  const { isDark } = useTheme();
+
+  return (
+    <li className={`leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{children}</li>
+  );
 }

@@ -10,7 +10,7 @@ export function urlFor(source: SanityImageValue) {
 
 // Helper function for common image transformations
 export function getImageUrl(
-  source: SanityImageValue,
+  source: any, //SanityImageValue,
   width?: number,
   height?: number,
   quality?: number,

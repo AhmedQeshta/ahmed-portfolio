@@ -14,9 +14,11 @@ import { IProjectResponse } from '@/features/projects/types/project';
 import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
 import useGalleryModal from '../hooks/useGalleryModal';
 import ImagePreview from './ui/ImagePreview';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Project({ project }: IProjectResponse) {
   const { technologies, liveUrl, repoUrl, description, title, gallery } = project;
+  const { isDark } = useTheme();
 
   const { openModal, ...restProps } = useGalleryModal(gallery || []);
 
@@ -40,7 +42,10 @@ export default function Project({ project }: IProjectResponse) {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <div
+      className={`min-h-screen bg-gradient-to-br ${
+        isDark ? 'from-gray-900 via-black to-gray-900' : 'from-gray-50 via-white to-gray-100'
+      }`}>
       {/* Navigation Header */}
       <NavigationHeader link="/projects" text="Back to Projects" />
 
@@ -58,8 +63,15 @@ export default function Project({ project }: IProjectResponse) {
               <ScrollAnimation
                 direction="down"
                 delay={0.2}
-                className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 mb-8 text-justify">
-                <p className="text-xl text-gray-300 leading-relaxed mb-6 text-justify">
+                className={`${
+                  isDark
+                    ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
+                    : 'bg-white/80 backdrop-blur-sm border border-gray-200'
+                } rounded-xl p-8 mb-8 text-justify`}>
+                <p
+                  className={`text-xl leading-relaxed mb-6 text-justify ${
+                    isDark ? 'text-gray-300' : 'text-gray-700'
+                  }`}>
                   {description}
                 </p>
 
@@ -73,7 +85,11 @@ export default function Project({ project }: IProjectResponse) {
               <ScrollAnimation
                 direction="down"
                 delay={0.3}
-                className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 mb-8">
+                className={`${
+                  isDark
+                    ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
+                    : 'bg-white/80 backdrop-blur-sm border border-gray-200'
+                } rounded-xl p-8 mb-8`}>
                 <FullDescription project={project} />
               </ScrollAnimation>
 
@@ -81,7 +97,11 @@ export default function Project({ project }: IProjectResponse) {
               <ScrollAnimation
                 direction="down"
                 delay={0.4}
-                className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 mt-8">
+                className={`${
+                  isDark
+                    ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
+                    : 'bg-white/80 backdrop-blur-sm border border-gray-200'
+                } rounded-xl p-8 mt-8`}>
                 <ProjectGallery project={project} openModal={openModal} />
               </ScrollAnimation>
             </div>

@@ -1,3 +1,5 @@
+'use client';
+
 import Technologies from '@/features/shard/components/ui/Technologies';
 import HeroWork from '@/features/works/components/ui/HeroWork';
 import Location from '@/features/works/components/ui/Location';
@@ -8,12 +10,17 @@ import CompanyInformation from '@/features/works/components/ui/CompanyInformatio
 import { IWorkResponse } from '@/features/works/types/work';
 import WorkDetails from '@/features/works/components/ui/WorkDetails';
 import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
+import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Work({ work }: IWorkResponse) {
   const { technologies } = work;
+  const { isDark } = useTheme();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <div
+      className={`min-h-screen bg-gradient-to-br ${
+        isDark ? 'from-gray-900 via-black to-gray-900' : 'from-gray-50 via-white to-gray-100'
+      }`}>
       {/* Navigation Header */}
 
       <NavigationHeader link="/works" text="Back to Work Experience" />

@@ -9,7 +9,7 @@ export default function ScrollAnimation({
   className = '',
   delay = 0,
   direction = 'up',
-  duration = 0.5,
+  duration = 0.3,
 }: IScrollAnimation) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
@@ -17,9 +17,9 @@ export default function ScrollAnimation({
   const variants: Variants = {
     hidden: {
       opacity: 0,
-      y: direction === 'up' ? 50 : direction === 'down' ? -50 : 0,
-      x: direction === 'left' ? 50 : direction === 'right' ? -50 : 0,
-      filter: 'blur(10px)',
+      y: direction === 'up' ? 30 : direction === 'down' ? -30 : 0,
+      x: direction === 'left' ? 30 : direction === 'right' ? -30 : 0,
+      filter: 'blur(4px)',
     },
     visible: {
       opacity: 1,
