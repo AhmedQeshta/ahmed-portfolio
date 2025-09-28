@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import ShareCard from '@/features/blogs/components/ui/ShareCard';
+import ShareCard from '@/features/shard/components/ui/ShareCard';
 
 // Mock the ScrollAnimation component
 jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {

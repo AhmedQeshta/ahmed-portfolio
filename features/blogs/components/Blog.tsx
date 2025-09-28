@@ -2,7 +2,7 @@
 
 import Technologies from '@/features/shard/components/ui/Technologies';
 import Tags from '@/features/shard/components/ui/Tags';
-import ShareCard from '@/features/blogs/components/ui/ShareCard';
+import ShareCard from '@/features/shard/components/ui/ShareCard';
 import LatestBlogs from '@/features/blogs/components/ui/LatestBlogs';
 import RelatedBlogs from '@/features/blogs/components/ui/RelatedBlogs';
 import PostDetails from '@/features/blogs/components/ui/PostDetails';
@@ -17,7 +17,7 @@ import { useTheme } from '@/features/theme/hooks/useTheme';
 export default function Blog({ blog, latestBlogs, relatedBlogs }: IBlog) {
   const { technologies, tags, description, slug, title } = blog;
   const { isDark } = useTheme();
-  const url = `${process.env.SITE_URL}/blogs/${slug}`;
+  const url = `${process.env.SITE_URL ?? 'https://ahmedqeshta.vercel.app'}/blogs/${slug}`;
 
   return (
     <div
