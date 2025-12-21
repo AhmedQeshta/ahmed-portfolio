@@ -96,11 +96,21 @@ export async function generateWorkMetadata({
 
 // Generate static params for all blog routes at build time
 export async function generateWorkStaticParams() {
+  // Early return if Sanity env vars are missing to prevent build crash
+  if (!process.env.SANITY_PROJECT_ID && !process.env.SANITY_DATASET) {
+    console.warn('[generateWorkStaticParams] Sanity env vars missing, returning empty array');
+    return [];
+  }
+
   try {
     const works = await sanityFetch<WorkExperienceResponse[]>({
       query: workExperienceQuery,
       tags: ['works'],
     });
+
+    if (!works || !Array.isArray(works)) {
+      return [];
+    }
 
     return works.map(({ slug }) => ({
       slug,

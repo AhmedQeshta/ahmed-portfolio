@@ -1,6 +1,10 @@
 /** @type {import('next').Config} */
 const nextConfig = {
   /* config options here */
+  // Disable ESLint during production builds to prevent circular structure errors
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       {
