@@ -15,9 +15,12 @@ import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
 import useGalleryModal from '../hooks/useGalleryModal';
 import ImagePreview from './ui/ImagePreview';
 import { useTheme } from '@/features/theme/hooks/useTheme';
+import ShareCard from '@/features/shard/components/ui/ShareCard';
 
 export default function Project({ project }: IProjectResponse) {
-  const { technologies, liveUrl, repoUrl, description, title, gallery } = project;
+  const { technologies, liveUrl, repoUrl, description, title, gallery, slug } = project;
+  const url = `${process.env.SITE_URL ?? 'https://ahmedqeshta.vercel.app'}/projects/${slug}`;
+
   const { isDark } = useTheme();
 
   const { openModal, ...restProps } = useGalleryModal(gallery || []);
@@ -116,6 +119,9 @@ export default function Project({ project }: IProjectResponse) {
 
               {/* Project Stats */}
               <StatsProject project={project} />
+
+              {/* Share Card */}
+              <ShareCard url={url} title={title} heading="Share This Project" />
             </div>
           </div>
         </div>

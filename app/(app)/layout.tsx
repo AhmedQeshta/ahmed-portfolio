@@ -9,6 +9,7 @@ import { ThemeProvider } from '@/features/theme/context/ThemeContext';
 import { linksApp } from '@/features/navbar/utils/navLinks';
 import { metadata, viewport } from '@/features/shard/utils/metadata';
 import Script from 'next/script';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export { metadata, viewport };
 
@@ -62,6 +63,7 @@ export default function RootLayout({
           <FloatingActions />
           <PWAInstallPrompt />
           <Footer />
+          <SpeedInsights />
           <Script src="/sw-register.js" strategy="afterInteractive" />
         </ThemeProvider>
       </body>

@@ -6,7 +6,11 @@ import { useState } from 'react';
 import { IShareCard } from '@/features/shard/types/common';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
-export default function ShareCard({ url = '', title = '' }: IShareCard) {
+export default function ShareCard({
+  url = '',
+  title = '',
+  heading = 'Share This Post',
+}: IShareCard) {
   const [copied, setCopied] = useState(false);
   const { isDark } = useTheme();
 
@@ -52,7 +56,7 @@ export default function ShareCard({ url = '', title = '' }: IShareCard) {
             isDark ? 'text-white' : 'text-gray-900'
           }`}>
           <Share2 size={20} className="text-blue-400" />
-          Share This Post
+          {heading}
         </h3>
         <div className="flex flex-col gap-2">
           <button

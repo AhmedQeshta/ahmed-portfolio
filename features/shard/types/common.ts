@@ -80,6 +80,7 @@ export interface IScrollAnimation {
 export interface IShareCard {
   url?: string;
   title?: string;
+  heading?: string;
 }
 
 export interface ITags {

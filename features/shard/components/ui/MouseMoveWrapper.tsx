@@ -20,13 +20,13 @@ export default function MouseMoveWrapper({ children, className }: IMouseMoveWrap
         style={{
           position: 'absolute',
           pointerEvents: 'none',
-          width: 400,
-          height: 400,
+          width: 500,
+          height: 500,
           borderRadius: '50%',
           zIndex: 1,
-          transition: 'opacity 0.3s, left 0.2s, top 0.2s',
+          transition: 'opacity 1.5s, left 1s, top 1s',
           background:
-            'radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, rgba(236, 72, 153, 0) 70%)',
+            'radial-gradient(circle, rgba(236, 72, 154, 0.178) 0%, rgba(236, 72, 153, 0) 70%)',
           ...gradientStyle,
         }}
         data-testid="gradient-overlay"
