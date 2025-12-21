@@ -24,18 +24,9 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react'],
     // Enable faster client-side navigation
     optimizeCss: true,
-    // Enable faster page transitions
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
   },
   // Enable static optimization
-  output: process.env.NEXT_OUTPUT_MODE || 'standalone',
+  output: 'standalone',
   // Optimize bundle size
   swcMinify: true,
   // Enable compression
