@@ -74,11 +74,21 @@ export async function generateProjectMetadata({
 
 // Generate static params for all blog routes at build time
 export async function generateProjectStaticParams() {
+  // Early return if Sanity env vars are missing to prevent build crash
+  if (!process.env.SANITY_PROJECT_ID && !process.env.SANITY_DATASET) {
+    console.warn('[generateProjectStaticParams] Sanity env vars missing, returning empty array');
+    return [];
+  }
+
   try {
     const projects = await sanityFetch<ProjectResponse[]>({
       query: projectsQuery,
       tags: ['projects'],
     });
+
+    if (!projects || !Array.isArray(projects)) {
+      return [];
+    }
 
     return projects.map(({ slug }) => ({
       slug,

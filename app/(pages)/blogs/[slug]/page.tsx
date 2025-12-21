@@ -45,7 +45,7 @@ export default async function Page(props: FixedPageProps) {
     });
 
     return <Blog blog={blog} latestBlogs={latestBlogs} relatedBlogs={relatedBlogs} />;
-  } catch (error) {
+  } catch {
     return (
       <ErrorHandle id={'blog'} description={'Failed to load blog post. Please try again later.'} />
     );

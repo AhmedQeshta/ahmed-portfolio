@@ -41,7 +41,7 @@ const BlogPage = async ({ searchParams }: { searchParams: Promise<{ q?: string }
     });
 
     const blogFeature = features.filter(
-      (_, { name, status }: any) => name === 'blogs' && status === 'publish',
+      (feature) => feature.name === 'blogs' && feature.status === 'publish',
     );
 
     if (!blogFeature) notFound();
@@ -51,7 +51,7 @@ const BlogPage = async ({ searchParams }: { searchParams: Promise<{ q?: string }
     const query = resolvedSearchParams?.q || '';
 
     return <BlogGrid readMore={false} query={query} />;
-  } catch (error) {
+  } catch {
     return (
       <ErrorHandle
         id={'blog-page'}

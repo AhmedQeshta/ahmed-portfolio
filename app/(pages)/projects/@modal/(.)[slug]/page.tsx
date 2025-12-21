@@ -16,7 +16,7 @@ const Project = async (props: IProjectPageModal) => {
       tags: ['features'],
     });
     const projectFeature = features.filter(
-      (_, { name, status }: any) => name === 'projects' && status === 'publish',
+      (feature) => feature.name === 'projects' && feature.status === 'publish',
     );
 
     if (!projectFeature) notFound();
