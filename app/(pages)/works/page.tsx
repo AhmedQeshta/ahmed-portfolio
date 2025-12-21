@@ -19,7 +19,7 @@ const WorksPage = async () => {
 
     if (!workFeature) notFound();
     return <WorkGrid />;
-  } catch (error) {
+  } catch {
     return (
       <ErrorHandle
         id={'work-page'}

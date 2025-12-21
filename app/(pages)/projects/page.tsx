@@ -13,7 +13,7 @@ const ProjectsPage = async ({ searchParams }: { searchParams: Promise<{ q?: stri
     });
 
     const projectFeature = features.filter(
-      (_, { name, status }: any) => name === 'projects' && status === 'publish',
+      (feature) => feature.name === 'projects' && feature.status === 'publish',
     );
 
     if (!projectFeature) notFound();
@@ -23,7 +23,7 @@ const ProjectsPage = async ({ searchParams }: { searchParams: Promise<{ q?: stri
     const query = resolvedSearchParams?.q || '';
 
     return <ProjectGrid readMore={false} query={query} />;
-  } catch (error) {
+  } catch {
     return (
       <ErrorHandle
         id={'project-page'}

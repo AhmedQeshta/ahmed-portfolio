@@ -34,7 +34,7 @@ const WorkPage = async (props: IWorkPage) => {
     });
 
     return <Work work={workExperience} />;
-  } catch (error) {
+  } catch {
     return (
       <ErrorHandle
         id={'work'}
