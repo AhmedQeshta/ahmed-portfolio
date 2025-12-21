@@ -19,13 +19,13 @@ export default function ProfileImage({ baseInfo }: IBaseInfoResponse) {
         {/* Enhanced Background Effects */}
         <BackgroundEffect mounted={mounted} />
 
-        <MouseMoveWrapper className="relative overflow-visible h-[280px] w-[280px] sm:h-[400px] sm:w-[400px] flex items-center justify-center">
+        <div className="relative overflow-visible h-[280px] w-[280px] sm:h-[400px] sm:w-[400px] flex items-center justify-center">
           {/* Technology Orbit - First 8 technologies */}
           <TechnologiesOrbit orbitTechnologies={orbitTechnologies} />
 
           {/* Main Profile Image */}
           <ProfilePicture profilePicture={profilePicture} name={name} />
-        </MouseMoveWrapper>
+        </div>
       </div>
     </div>
   );
