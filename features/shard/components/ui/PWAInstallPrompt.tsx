@@ -21,20 +21,23 @@ export default function PWAInstallPrompt() {
           <div className="flex space-x-2">
             <button
               onClick={handleInstall}
-              className="flex items-center px-3 py-1.5 bg-purple-600 text-white text-xs font-medium rounded-md hover:bg-purple-700 transition-colors">
+              aria-label="Install app"
+              className="flex items-center px-3 py-1.5 bg-purple-600 text-white text-xs font-medium rounded-md hover:bg-purple-700 transition-colors cursor-pointer">
               <Download className="w-3 h-3 mr-1" />
               Install
             </button>
             <button
               onClick={handleDismiss}
-              className="px-3 py-1.5 text-gray-600 dark:text-gray-300 text-xs font-medium hover:text-gray-800 dark:hover:text-white transition-colors">
+              aria-label="Dismiss install prompt"
+              className="px-3 py-1.5 text-gray-600 dark:text-gray-300 text-xs font-medium hover:text-gray-800 dark:hover:text-white transition-colors cursor-pointer">
               Not now
             </button>
           </div>
         </div>
         <button
           onClick={handleDismiss}
-          className="ml-2 text-white hover:text-gray-200transition-colors">
+          aria-label="Dismiss install prompt"
+          className="ml-2 text-white hover:text-gray-200 transition-colors cursor-pointer">
           <X className="w-4 h-4" />
         </button>
       </div>
