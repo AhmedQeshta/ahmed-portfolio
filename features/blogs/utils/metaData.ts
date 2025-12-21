@@ -112,11 +112,21 @@ export async function generateBlogMetadata({
 
 // Generate static params for all blog routes at build time
 export async function generateBlogStaticParams() {
+  // Early return if Sanity env vars are missing to prevent build crash
+  if (!process.env.SANITY_PROJECT_ID && !process.env.SANITY_DATASET) {
+    console.warn('[generateBlogStaticParams] Sanity env vars missing, returning empty array');
+    return [];
+  }
+
   try {
     const blogs = await sanityFetch<BlogPostResponse[]>({
       query: blogPostsQuery,
       tags: ['blogPosts'],
     });
+
+    if (!blogs || !Array.isArray(blogs)) {
+      return [];
+    }
 
     return blogs.map(({ slug }) => ({
       slug,

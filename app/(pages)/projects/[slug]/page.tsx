@@ -1,5 +1,5 @@
 import { sanityFetch } from '@/sanity/lib/client';
-import { featuresQuery, projectBySlugQuery, projectsQuery } from '@/sanity/lib/queries';
+import { featuresQuery, projectBySlugQuery } from '@/sanity/lib/queries';
 import { FeatureResponse, ProjectResponse } from '@/sanity/lib/types';
 import React from 'react';
 import Project from '@/features/projects/components/Project';
@@ -26,7 +26,7 @@ const ProjectPage = async (props: IProjectPage) => {
       tags: ['features'],
     });
     const projectFeature = features.filter(
-      (_, { name, status }: any) => name === 'projects' && status === 'publish',
+      (feature) => feature.name === 'projects' && feature.status === 'publish',
     );
 
     if (!projectFeature) notFound();
@@ -38,7 +38,7 @@ const ProjectPage = async (props: IProjectPage) => {
     });
 
     return <Project project={project} />;
-  } catch (error) {
+  } catch {
     return (
       <ErrorHandle
         id={'projects'}

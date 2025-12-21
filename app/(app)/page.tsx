@@ -11,7 +11,7 @@ import { FeatureResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import ContactSection from '@/features/contact/components/ContactSection';
 
-const sectionOfPage: any = {
+const sectionOfPage: Record<string, JSX.Element> = {
   header: <Header />,
   works: <WorkGridSlider />,
   projects: <ProjectGrid />,
@@ -38,7 +38,7 @@ export default async function Home() {
           ))}
       </main>
     );
-  } catch (error) {
+  } catch {
     return (
       <ErrorHandle id={'home'} description={'Failed to load Home Page. Please try again later.'} />
     );

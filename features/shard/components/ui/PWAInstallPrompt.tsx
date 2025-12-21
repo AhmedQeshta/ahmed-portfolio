@@ -34,7 +34,7 @@ export default function PWAInstallPrompt() {
         </div>
         <button
           onClick={handleDismiss}
-          className="ml-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+          className="ml-2 text-white hover:text-gray-200transition-colors">
           <X className="w-4 h-4" />
         </button>
       </div>
