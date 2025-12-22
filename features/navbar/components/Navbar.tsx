@@ -18,8 +18,8 @@ export default function Navbar({ links }: INavLinks) {
       aria-label="Main Navigation"
       className={`fixed top-0 w-full backdrop-blur-md border-b border-purple-500/20 z-50 transition-all duration-300 ease-in-out ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
-      }`}
-      style={{ backgroundColor: 'var(--navbar-bg)' }}>
+      }`}>
+      {/* style={{ backgroundColor: 'var(--navbar-bg)' }} */}
       <div className="mx-auto max-w-[1450px] px-5 sm:px-7 lg:px-5">
         <div className="flex items-center justify-between py-3 sm:py-4">
           {/* Logo */}

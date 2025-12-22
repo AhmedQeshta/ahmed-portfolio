@@ -11,10 +11,10 @@ export default function ThemeToggle() {
     useThemeToggle();
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative bg-items-nav p-2 rounded-full" ref={dropdownRef}>
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-purple-500/10 rounded-lg transition-all duration-200 border border-transparent hover:border-purple-500/20"
+        className="flex items-center gap-2 px-1 py-1 text-sm font-medium  items-nav rounded-full  transition-all duration-200 border border-transparent hover:border-purple-500/20"
         aria-label="Toggle theme"
         aria-expanded={isOpen}
         whileHover={{ scale: 1.02 }}

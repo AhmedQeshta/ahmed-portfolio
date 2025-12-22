@@ -32,7 +32,7 @@ const nextConfig = {
   // Optimize runtime for faster navigation
   poweredByHeader: false,
   // Enable faster page transitions
-  reactStrictMode: true,
+  reactStrictMode: false,
   // Optimize for better navigation performance
   compiler: {
     // Remove console logs in production
