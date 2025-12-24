@@ -1,6 +1,5 @@
 'use client';
 import { IProjectCardProps } from '@/features/projects/types/project';
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import Card from './ui/Card';
 import ReadMore from '@/features/shard/components/ui/ReadMore';
 import Filter from '@/features/filters/components/Filter';
@@ -26,20 +25,13 @@ export default function ProjectCard({ projects, categories, readMore }: IProject
         />
       ) : (
         <>
-          <ScrollAnimation
-            direction="up"
-            delay={0.3}
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {filtered?.map((project, index) => (
-              <ScrollAnimation
-                key={project._id}
-                direction="up"
-                delay={0.4 + index * 0.1}
-                className="h-full">
+              <div key={project._id} className="h-full">
                 <Card project={project} />
-              </ScrollAnimation>
+              </div>
             ))}
-          </ScrollAnimation>
+          </div>
           {/* Read More Section */}
           <ReadMore
             link="/projects"

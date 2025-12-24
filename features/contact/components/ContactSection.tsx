@@ -32,27 +32,23 @@ export default async function ContactSection() {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
             {/* Contact Information */}
             <div className="order-2 lg:order-1">
-              <ScrollAnimation direction="left" delay={0.4}>
-                <div className="bg-section-glass lg:min-h-[1060px] backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 h-full">
-                  <ContactInfo baseInfo={baseInfo} />
-                </div>
-              </ScrollAnimation>
+              <div className="bg-section-glass lg:min-h-[1060px] backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 h-full">
+                <ContactInfo baseInfo={baseInfo} />
+              </div>
             </div>
 
             {/* Contact Form */}
             <div className="order-1 lg:order-2">
-              <ScrollAnimation direction="right" delay={0.4}>
-                <div className="bg-section-glass lg:min-h-[1060px] backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 h-full">
-                  {/* Form Header */}
-                  <ContactFormHeader />
+              <div className="bg-section-glass lg:min-h-[1060px] backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 h-full">
+                {/* Form Header */}
+                <ContactFormHeader />
 
-                  {/* Contact Form */}
-                  <ContactForm />
+                {/* Contact Form */}
+                <ContactForm />
 
-                  {/* Quick Contact Options */}
-                  <QuickContact baseInfo={baseInfo} />
-                </div>
-              </ScrollAnimation>
+                {/* Quick Contact Options */}
+                <QuickContact baseInfo={baseInfo} />
+              </div>
             </div>
           </div>
 

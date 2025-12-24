@@ -11,7 +11,7 @@ import { FeatureResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import ContactSection from '@/features/contact/components/ContactSection';
 
-const sectionOfPage: Record<string, JSX.Element> = {
+const sectionOfPage = {
   header: <Header />,
   works: <WorkGridSlider />,
   projects: <ProjectGrid />,
@@ -32,7 +32,7 @@ export default async function Home() {
           features.map(({ _id, name, status }) => (
             <Fragment key={_id}>
               <Suspense fallback={<LoadingSpinner />}>
-                {status === 'publish' && sectionOfPage[name]}
+                {status === 'publish' && sectionOfPage[name as keyof typeof sectionOfPage]}
               </Suspense>
             </Fragment>
           ))}

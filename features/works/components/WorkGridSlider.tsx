@@ -20,17 +20,12 @@ export default async function WorkGridSlider() {
 
     return (
       <section id="works" className="py-10">
-        <ScrollAnimation
-          direction="down"
-          delay={0.1}
-          className="mx-auto max-w-[1450px] px-5 sm:px-7 lg:px-5">
-          {/* Header Animation*/}
+        <div className="mx-auto max-w-[1450px] px-5 sm:px-7 lg:px-5">
           <HeaderTitle
             title="Works Experience"
             subtitle="Explore my latest works and creative solutions"
           />
 
-          {/* Content Animation */}
           {sortedWorks.length === 0 ? (
             <EmptyItem
               title="No work experience found"
@@ -38,11 +33,9 @@ export default async function WorkGridSlider() {
               icon="👨‍💼"
             />
           ) : (
-            <ScrollAnimation direction="up" delay={0.3}>
-              <WorkSlider works={sortedWorks} />
-            </ScrollAnimation>
+            <WorkSlider works={sortedWorks} />
           )}
-        </ScrollAnimation>
+        </div>
       </section>
     );
   } catch (error) {

@@ -4,7 +4,6 @@ import { BlogPostResponse, CategoryResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import BlogCard from '@/features/blogs/components/BlogCard';
 import Search from '@/features/filters/components/Search';
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { IBlogGrid } from '@/features/blogs/types/blog';
 import HeaderTitle from '@/features/shard/components/ui/HeaderTitle';
 import EmptyItem from '@/features/shard/components/ui/EmptyItem';
@@ -36,10 +35,7 @@ export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
 
     return (
       <section id="blogs" className={`py-10 ${!readMore && 'mt-20 lg:mt-20'}`}>
-        <ScrollAnimation
-          direction="down"
-          delay={0.1}
-          className="mx-auto max-w-[1450px] px-5 sm:px-7 lg:px-5">
+        <div className="mx-auto max-w-[1450px] px-5 sm:px-7 lg:px-5">
           <HeaderTitle
             title="Blogs"
             subtitle="Explore my latest thoughts, tutorials, and insights"
@@ -57,7 +53,7 @@ export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
           ) : (
             <BlogCard blogs={blogs} readMore={readMore} categories={categories} />
           )}
-        </ScrollAnimation>
+        </div>
       </section>
     );
   } catch (error) {

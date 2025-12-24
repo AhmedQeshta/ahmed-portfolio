@@ -1,4 +1,3 @@
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { EmptyItemProps } from '@/features/shard/types/common';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
@@ -6,7 +5,7 @@ export default function EmptyItem({ title, subTitle, icon = null }: EmptyItemPro
   const { isDark } = useTheme();
 
   return (
-    <ScrollAnimation direction="down" delay={0.3}>
+    <div className="text-center py-16">
       <div className="text-center py-16">
         <div
           className={`
@@ -38,6 +37,6 @@ export default function EmptyItem({ title, subTitle, icon = null }: EmptyItemPro
           </p>
         </div>
       </div>
-    </ScrollAnimation>
+    </div>
   );
 }

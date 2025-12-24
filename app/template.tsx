@@ -2,7 +2,6 @@
 
 import LightRays from '@/features/shard/components/ui/LightRays';
 import LoadingSpinner from '@/features/shard/components/ui/LoadingSpinner';
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import useLoading from '@/features/shard/hooks/useLoading';
 
 export default function Template({ children }: { children: React.ReactNode }) {
@@ -12,10 +11,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <ScrollAnimation
-        direction="up"
-        delay={0.2}
-        className="absolute inset-0 top-0 z-[-1] min-h-screen">
+      <div className="absolute inset-0 top-0 z-[-1] min-h-screen">
         <LightRays
           raysOrigin="top-center"
           raysColor="#e941c5"
@@ -27,7 +23,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
           noiseAmount={0.0}
           distortion={0.05}
         />
-      </ScrollAnimation>
+      </div>
       {children}
     </>
   );
