@@ -1,6 +1,5 @@
 'use client';
 
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import Categories from '@/features/shard/components/ui/Categories';
 import { getStatusColor } from '@/features/shard/utils/statusColor';
 import { IProjectResponse } from '@/features/projects/types/project';
@@ -39,26 +38,22 @@ export default function HeroProject({ project }: IProjectResponse) {
           <Categories categories={categories || []} delay={0.2} className="mb-4" />
 
           {/* Status Badge */}
-          <ScrollAnimation direction="down" delay={0.1}>
-            <ScrollAnimation direction="down" delay={0.3} className="mb-4">
-              <span
-                className={`inline-block px-4 py-2 text-sm font-medium rounded-full border ${getStatusColor(
-                  status,
-                )}`}>
-                {status.replace('-', ' ').toUpperCase()}
-              </span>
-            </ScrollAnimation>
+          <div className="mb-4">
+            <span
+              className={`inline-block px-4 py-2 text-sm font-medium rounded-full border ${getStatusColor(
+                status,
+              )}`}>
+              {status.replace('-', ' ').toUpperCase()}
+            </span>
+          </div>
 
-            {/* Title and Description */}
-            <ScrollAnimation direction="down" delay={0.4}>
-              <h1
-                className={`text-4xl md:text-6xl font-bold mb-4 leading-tight ${
-                  isDark ? 'text-white' : 'text-gray-900'
-                }`}>
-                {title}
-              </h1>
-            </ScrollAnimation>
-          </ScrollAnimation>
+          {/* Title and Description */}
+          <h1
+            className={`text-4xl md:text-6xl font-bold mb-4 leading-tight ${
+              isDark ? 'text-white' : 'text-gray-900'
+            }`}>
+            {title}
+          </h1>
         </div>
       </div>
     </div>

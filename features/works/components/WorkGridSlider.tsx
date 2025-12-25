@@ -3,7 +3,6 @@ import { sanityFetch } from '@/sanity/lib/client';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import WorkSlider from '@/features/works/components/WorkSlider';
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import HeaderTitle from '@/features/shard/components/ui/HeaderTitle';
 import EmptyItem from '@/features/shard/components/ui/EmptyItem';
 import sortByDate from '@/features/works/utils/date';

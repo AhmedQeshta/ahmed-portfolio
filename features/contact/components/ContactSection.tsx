@@ -2,7 +2,6 @@ import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import { sanityFetch } from '@/sanity/lib/client';
 import { baseInfoQuery } from '@/sanity/lib/queries';
 import { BaseInfoResponse } from '@/sanity/lib/types';
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import ContactInfo from '@/features/contact/components/ContactInfo';
 import ContactForm from '@/features/contact/components/form/ContactForm';
 import ContactHeader from '@/features/contact/components/ContactHeader';

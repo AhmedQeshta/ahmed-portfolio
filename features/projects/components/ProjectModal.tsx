@@ -11,7 +11,6 @@ import TimelineProject from '@/features/projects/components/ui/TimelineProject';
 import StatsProject from '@/features/projects/components/ui/StatsProject';
 import ActionButtons from '@/features/shard/components/ui/ActionButtons';
 import HeroModal from './ui/HeroModal';
-import ScrollAnimation from '../../shard/components/ui/ScrollAnimation';
 import { IProjectResponse } from '@/features/projects/types/project';
 import ImagePreview from './ui/ImagePreview';
 import useGalleryModal from '../hooks/useGalleryModal';
@@ -57,7 +56,7 @@ export default function ProjectModal({ project }: IProjectResponse) {
       {/* Content */}
       <div className="p-6">
         {/* Header with Categories */}
-        <ScrollAnimation direction="down" delay={0.2} className="mb-8">
+        <div className="mb-8">
           <Categories categories={categories || []} delay={0.1} className="mb-4" />
           <h1
             className={`text-2xl md:text-3xl font-bold mb-4 ${
@@ -65,16 +64,14 @@ export default function ProjectModal({ project }: IProjectResponse) {
             }`}>
             {title}
           </h1>
-        </ScrollAnimation>
+        </div>
 
         {/* Two Column Layout */}
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Content Column */}
           <div className="lg:col-span-2">
             {/* Project Description */}
-            <ScrollAnimation
-              direction="down"
-              delay={0.3}
+            <div
               className={`${
                 isDark
                   ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
@@ -91,34 +88,30 @@ export default function ProjectModal({ project }: IProjectResponse) {
               <div className="flex flex-wrap gap-3">
                 <ActionButtons listLinks={listLinks} />
               </div>
-            </ScrollAnimation>
+            </div>
 
             {/* Full Description */}
-            <ScrollAnimation
-              direction="down"
-              delay={0.4}
+            <div
               className={`${
                 isDark
                   ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
                   : 'bg-white/80 backdrop-blur-sm border border-gray-200'
               } rounded-xl p-6 mb-6`}>
               <FullDescription project={project} />
-            </ScrollAnimation>
+            </div>
 
             {/* Technologies Used */}
             <Technologies technologies={technologies} />
 
             {/* Project Gallery */}
-            <ScrollAnimation
-              direction="down"
-              delay={0.5}
+            <div
               className={`${
                 isDark
                   ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
                   : 'bg-white/80 backdrop-blur-sm border border-gray-200'
               } rounded-xl p-6 mt-6`}>
               <ProjectGallery project={project} openModal={openModal} />
-            </ScrollAnimation>
+            </div>
           </div>
 
           {/* Sidebar Column */}

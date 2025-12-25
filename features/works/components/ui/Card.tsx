@@ -42,6 +42,7 @@ export default function Card({
                 src={getImageUrl(logo, 56, 56, 90)}
                 alt={company}
                 fill
+                sizes="56px"
                 className="object-contain"
               />
             ) : (

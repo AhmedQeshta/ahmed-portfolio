@@ -1,4 +1,3 @@
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import ProfileImage from '@/features/contact/components/information/ProfileImage';
 import Availability from '@/features/contact/components/information/Availability';
 import HeadLine from '@/features/contact/components/information/Headline';
@@ -10,16 +9,14 @@ export default function ContactInfo({ baseInfo }: IBaseInfo) {
   return (
     <div className="h-full flex flex-col">
       {/* Profile Section */}
-      <ScrollAnimation direction="down" delay={0.1}>
-        <div className="text-center mb-8">
-          {/* Profile Image */}
-          <ProfileImage baseInfo={baseInfo} />
+      <div className="text-center mb-8">
+        {/* Profile Image */}
+        <ProfileImage baseInfo={baseInfo} />
 
-          {/* Availability Status */}
+        {/* Availability Status */}
 
-          <Availability baseInfo={baseInfo} />
-        </div>
-      </ScrollAnimation>
+        <Availability baseInfo={baseInfo} />
+      </div>
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col">

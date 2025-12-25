@@ -1,6 +1,5 @@
 'use client';
 
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { getImageUrl } from '@/sanity/lib/image';
 import { formatReadingTime } from '@/features/shard/utils/date';
 import { IRelatedBlogs } from '@/features/blogs/types/blog';
@@ -13,20 +12,16 @@ export default function RelatedBlogs({ relatedBlogs }: IRelatedBlogs) {
   const { isDark } = useTheme();
 
   return (
-    <ScrollAnimation
-      direction="down"
-      delay={0.2}
+    <div
       className={`${
         isDark
           ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
           : 'bg-white/80 backdrop-blur-sm border border-gray-200'
       } rounded-xl p-6`}>
-      <ScrollAnimation direction="down" delay={0.3}>
-        <h3 className={`text-lg font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-          Related Posts
-        </h3>
-      </ScrollAnimation>
-      <ScrollAnimation direction="down" delay={0.4} className="space-y-4">
+      <h3 className={`text-lg font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+        Related Posts
+      </h3>
+      <div className="space-y-4">
         {relatedBlogs.slice(0, 3).map(({ _id, slug, thumbnail, title, readingTime }) => (
           <OptimizedLink key={_id} href={`/blogs/${slug}`} className="block group">
             <div
@@ -58,7 +53,7 @@ export default function RelatedBlogs({ relatedBlogs }: IRelatedBlogs) {
             </div>
           </OptimizedLink>
         ))}
-      </ScrollAnimation>
-    </ScrollAnimation>
+      </div>
+    </div>
   );
 }

@@ -35,20 +35,6 @@ jest.mock('next/image', () => ({
   },
 }));
 
-// Mock framer-motion
-jest.mock('framer-motion', () => ({
-  ...jest.requireActual('framer-motion'),
-  motion: {
-    ...jest.requireActual('framer-motion').motion,
-    div: jest.requireActual('react').forwardRef(({ children, ...props }, ref) => (
-      <div {...props} ref={ref}>
-        {children}
-      </div>
-    )),
-  },
-  AnimatePresence: ({ children }) => <>{children}</>,
-}));
-
 // Global test setup
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),

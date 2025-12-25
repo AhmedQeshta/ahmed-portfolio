@@ -69,13 +69,6 @@ export interface ILinkNavigation {
   dataLength?: number;
 }
 
-export interface IScrollAnimation {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-  direction?: 'up' | 'down' | 'left' | 'right';
-  duration?: number;
-}
 
 export interface IShareCard {
   url?: string;

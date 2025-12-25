@@ -9,7 +9,6 @@ import PostDetails from '@/features/blogs/components/ui/PostDetails';
 import HeroBlog from '@/features/blogs/components/ui/HeroBlog';
 import BlogContent from '@/features/blogs/components/ui/BlogContent';
 import BackgroundEffects from '@/features/shard/components/ui/BackgroundEffects';
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { IBlog } from '@/features/blogs/types/blog';
 import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
 import { useTheme } from '@/features/theme/hooks/useTheme';
@@ -38,9 +37,7 @@ export default function Blog({ blog, latestBlogs, relatedBlogs }: IBlog) {
             {/* Main Content Column */}
             <div className="lg:col-span-2">
               {/* Blog Description */}
-              <ScrollAnimation
-                direction="down"
-                delay={0.2}
+              <div
                 className={`${
                   isDark
                     ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
@@ -52,7 +49,7 @@ export default function Blog({ blog, latestBlogs, relatedBlogs }: IBlog) {
                   }`}>
                   {description}
                 </p>
-              </ScrollAnimation>
+              </div>
 
               {/* Blog Content */}
               <BlogContent blog={blog} />

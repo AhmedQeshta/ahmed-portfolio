@@ -26,8 +26,6 @@ const customJestConfig = {
     '^@/features/contact/utils/email$': '<rootDir>/features/shard/utils/email',
     '^@/features/shard/components/ui/DefaultInput$':
       '<rootDir>/features/shard/components/ui/DefaultInput',
-    '^@/features/shard/components/ui/ScrollAnimation$':
-      '<rootDir>/features/shard/components/uiScrollAnimation',
     '^@/features/shard/components/ui/TechnologiesHome$': '<rootDir>/components/ui/TechnologiesHome',
     '^@/features/shard/components/ui/Technologies$':
       '<rootDir>/features/blogs/components/ui/Technologies',
