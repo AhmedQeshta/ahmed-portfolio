@@ -24,6 +24,7 @@ export default function TechnologiesHome({ technologies, link }: ITechnologies) 
                   src={getImageUrl(logo, 12, 12, 90)}
                   alt={name}
                   fill
+                  sizes="12px"
                   className="object-contain"
                 />
               </div>

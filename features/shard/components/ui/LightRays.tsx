@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import { Renderer, Program, Triangle, Mesh } from 'ogl';
 
 export type RaysOrigin =
@@ -109,6 +109,9 @@ const LightRays: React.FC<LightRaysProps> = ({
   const cleanupFunctionRef = useRef<(() => void) | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
+
+  // Memoize color conversion to prevent unnecessary recalculations
+  const rgbColor = useMemo(() => hexToRgb(raysColor), [raysColor]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -279,7 +282,7 @@ void main() {
         rayPos: { value: [0, 0] },
         rayDir: { value: [0, 1] },
 
-        raysColor: { value: hexToRgb(raysColor) },
+        raysColor: { value: rgbColor },
         raysSpeed: { value: raysSpeed },
         lightSpread: { value: lightSpread },
         rayLength: { value: rayLength },
@@ -412,7 +415,7 @@ void main() {
     const u = uniformsRef.current;
     const renderer = rendererRef.current;
 
-    u.raysColor.value = hexToRgb(raysColor);
+    u.raysColor.value = rgbColor;
     u.raysSpeed.value = raysSpeed;
     u.lightSpread.value = lightSpread;
     u.rayLength.value = rayLength;
@@ -429,7 +432,7 @@ void main() {
     u.rayPos.value = anchor;
     u.rayDir.value = dir;
   }, [
-    raysColor,
+    rgbColor,
     raysSpeed,
     lightSpread,
     raysOrigin,

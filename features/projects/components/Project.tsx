@@ -8,7 +8,6 @@ import ProjectGallery from '@/features/projects/components/ui/ProjectGallery';
 import TimelineProject from '@/features/projects/components/ui/TimelineProject';
 import StatsProject from '@/features/projects/components/ui/StatsProject';
 import FullDescription from '@/features/projects/components/ui/FullDescription';
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { ExternalLink, Github } from 'lucide-react';
 import { IProjectResponse } from '@/features/projects/types/project';
 import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
@@ -63,9 +62,7 @@ export default function Project({ project }: IProjectResponse) {
             {/* Main Content Column */}
             <div className="lg:col-span-2">
               {/* Project Description */}
-              <ScrollAnimation
-                direction="down"
-                delay={0.2}
+              <div
                 className={`${
                   isDark
                     ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
@@ -82,31 +79,27 @@ export default function Project({ project }: IProjectResponse) {
                 <div className="flex flex-wrap gap-4">
                   <ActionButtons listLinks={listLinks} />
                 </div>
-              </ScrollAnimation>
+              </div>
 
               {/* Full Description */}
-              <ScrollAnimation
-                direction="down"
-                delay={0.3}
+              <div
                 className={`${
                   isDark
                     ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
                     : 'bg-white/80 backdrop-blur-sm border border-gray-200'
                 } rounded-xl p-8 mb-8`}>
                 <FullDescription project={project} />
-              </ScrollAnimation>
+              </div>
 
               {/* Project Gallery */}
-              <ScrollAnimation
-                direction="down"
-                delay={0.4}
+              <div
                 className={`${
                   isDark
                     ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
                     : 'bg-white/80 backdrop-blur-sm border border-gray-200'
                 } rounded-xl p-8 mt-8`}>
                 <ProjectGallery project={project} openModal={openModal} />
-              </ScrollAnimation>
+              </div>
             </div>
 
             {/* Sidebar Column */}

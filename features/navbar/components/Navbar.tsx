@@ -9,7 +9,6 @@ import Overlay from '@/features/navbar/components/ui/Overlay';
 import Logo from '@/features/navbar/components/ui/Logo';
 import ThemeToggle from '@/features/theme/components/ThemeToggle';
 import { INavLinks } from '@/features/navbar/types/navbar';
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 
 export default function Navbar({ links }: INavLinks) {
   const { isVisible, toggleMobileMenu, isMobileMenuOpen, closeMobileMenu } = useNavbar();

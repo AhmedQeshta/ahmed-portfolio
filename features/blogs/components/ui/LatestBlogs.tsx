@@ -1,6 +1,5 @@
 'use client';
 
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { getImageUrl } from '@/sanity/lib/image';
 import { formatDate } from '@/features/shard/utils/date';
 import { ILatestBlogs } from '@/features/blogs/types/blog';
@@ -13,20 +12,16 @@ export default function LatestBlogs({ latestBlogs }: ILatestBlogs) {
   const { isDark } = useTheme();
 
   return (
-    <ScrollAnimation
-      direction="down"
-      delay={0.2}
+    <div
       className={`${
         isDark
           ? 'bg-gray-900/50 backdrop-blur-sm border border-gray-800'
           : 'bg-white/80 backdrop-blur-sm border border-gray-200'
       } rounded-xl p-6`}>
-      <ScrollAnimation direction="down" delay={0.3}>
-        <h3 className={`text-lg font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-          Latest Posts
-        </h3>
-      </ScrollAnimation>
-      <ScrollAnimation direction="down" delay={0.4} className="space-y-4">
+      <h3 className={`text-lg font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+        Latest Posts
+      </h3>
+      <div className="space-y-4">
         {latestBlogs.slice(0, 3).map(({ _id, slug, thumbnail, title, publishedAt }) => (
           <OptimizedLink href={`/blogs/${slug}`} key={_id} className="block group">
             <div
@@ -42,7 +37,7 @@ export default function LatestBlogs({ latestBlogs }: ILatestBlogs) {
                   className="object-cover"
                 />
               </div>
-              <ScrollAnimation direction="down" delay={0.5} className="flex-1 min-w-0">
+              <div className="flex-1 min-w-0">
                 <h4
                   className={`text-sm font-medium line-clamp-2 transition-colors ${
                     isDark
@@ -54,19 +49,17 @@ export default function LatestBlogs({ latestBlogs }: ILatestBlogs) {
                 <p className={`text-xs mt-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                   {formatDate(publishedAt)}
                 </p>
-              </ScrollAnimation>
+              </div>
             </div>
           </OptimizedLink>
         ))}
-      </ScrollAnimation>
-      <ScrollAnimation
-        direction="down"
-        delay={0.5}
+      </div>
+      <div
         className={`inline-block mt-4 text-sm transition-colors ${
           isDark ? 'text-purple-400 hover:text-purple-300' : 'text-purple-600 hover:text-purple-700'
         }`}>
         <OptimizedLink href="/blogs">View all posts →</OptimizedLink>
-      </ScrollAnimation>
-    </ScrollAnimation>
+      </div>
+    </div>
   );
 }

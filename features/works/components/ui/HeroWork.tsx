@@ -1,6 +1,5 @@
 'use client';
 
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { getEmploymentTypeColor, getLocationTypeColor } from '@/features/shard/utils/statusColor';
 import { IWorkResponse } from '@/features/works/types/work';
 import { Building, ExternalLink } from 'lucide-react';
@@ -45,76 +44,63 @@ export default function HeroWork({ work }: IWorkResponse) {
         <div className="max-w-6xl mx-auto">
           {/* Status Badges */}
           <div className="flex flex-wrap gap-3 mb-4">
-            <ScrollAnimation direction="down" delay={0.1}>
-              <span
-                className={`inline-block px-4 py-2 text-sm font-medium rounded-full border ${getEmploymentTypeColor(
-                  employmentType,
-                )}`}>
-                {employmentType.replace('-', ' ').toUpperCase()}
-              </span>
-            </ScrollAnimation>
+            <span
+              className={`inline-block px-4 py-2 text-sm font-medium rounded-full border ${getEmploymentTypeColor(
+                employmentType,
+              )}`}>
+              {employmentType.replace('-', ' ').toUpperCase()}
+            </span>
             {current && (
-              <ScrollAnimation direction="down" delay={0.1}>
-                <span className="inline-block px-4 py-2 text-sm font-medium rounded-full border border-emerald-500/30 text-emerald-400 bg-emerald-500/10">
-                  CURRENT POSITION
-                </span>
-              </ScrollAnimation>
+              <span className="inline-block px-4 py-2 text-sm font-medium rounded-full border border-emerald-500/30 text-emerald-400 bg-emerald-500/10">
+                CURRENT POSITION
+              </span>
             )}
             {locationType && (
-              <ScrollAnimation direction="down" delay={0.1}>
-                <span
-                  className={`inline-block px-4 py-2 text-sm font-medium rounded-full border ${getLocationTypeColor(
-                    locationType,
-                  )}`}>
-                  {locationType.replace('-', ' ').toUpperCase()}
-                </span>
-              </ScrollAnimation>
+              <span
+                className={`inline-block px-4 py-2 text-sm font-medium rounded-full border ${getLocationTypeColor(
+                  locationType,
+                )}`}>
+                {locationType.replace('-', ' ').toUpperCase()}
+              </span>
             )}
           </div>
 
           {/* Title and Company */}
-          <ScrollAnimation direction="down" delay={0.1}>
-            <h1
-              className={`text-4xl md:text-6xl font-bold mb-4 leading-tight ${
-                isDark ? 'text-white' : 'text-gray-900'
-              }`}>
-              {title}
-            </h1>
-          </ScrollAnimation>
-          <ScrollAnimation direction="down" delay={0.2}>
-            <div className="flex items-center gap-3 mb-4">
-              <Building size={28} className={isDark ? 'text-purple-400' : 'text-purple-600'} />
-              {companyUrl ? (
-                <a
-                  href={companyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-2xl md:text-3xl transition-colors flex items-center gap-2 ${
-                    isDark
-                      ? 'text-purple-300 hover:text-purple-200'
-                      : 'text-purple-700 hover:text-purple-600'
-                  }`}>
-                  {company}
-                  <ExternalLink size={24} />
-                </a>
-              ) : (
-                <span
-                  className={`text-2xl md:text-3xl ${isDark ? 'text-gray-200' : 'text-gray-800'}`}>
-                  {company}
-                </span>
-              )}
-            </div>
-            {description && (
-              <ScrollAnimation direction="down" delay={0.3}>
-                <p
-                  className={`text-lg md:text-xl max-w-3xl leading-relaxed ${
-                    isDark ? 'text-gray-200' : 'text-gray-700'
-                  }`}>
-                  {description}
-                </p>
-              </ScrollAnimation>
+          <h1
+            className={`text-4xl md:text-6xl font-bold mb-4 leading-tight ${
+              isDark ? 'text-white' : 'text-gray-900'
+            }`}>
+            {title}
+          </h1>
+          <div className="flex items-center gap-3 mb-4">
+            <Building size={28} className={isDark ? 'text-purple-400' : 'text-purple-600'} />
+            {companyUrl ? (
+              <a
+                href={companyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`text-2xl md:text-3xl transition-colors flex items-center gap-2 ${
+                  isDark
+                    ? 'text-purple-300 hover:text-purple-200'
+                    : 'text-purple-700 hover:text-purple-600'
+                }`}>
+                {company}
+                <ExternalLink size={24} />
+              </a>
+            ) : (
+              <span className={`text-2xl md:text-3xl ${isDark ? 'text-gray-200' : 'text-gray-800'}`}>
+                {company}
+              </span>
             )}
-          </ScrollAnimation>
+          </div>
+          {description && (
+            <p
+              className={`text-lg md:text-xl max-w-3xl leading-relaxed ${
+                isDark ? 'text-gray-200' : 'text-gray-700'
+              }`}>
+              {description}
+            </p>
+          )}
         </div>
       </div>
     </div>

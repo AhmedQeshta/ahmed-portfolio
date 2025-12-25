@@ -1,7 +1,6 @@
 'use client';
 
 import { cn } from '@/features/shard/utils/statusColor';
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import OptimizedLink from '@/features/shard/components/ui/OptimizedLink';
 import { IActionButtons } from '@/features/shard/types/common';
 import { useTheme } from '@/features/theme/hooks/useTheme';
@@ -11,7 +10,7 @@ export default function ActionButtons({ listLinks }: IActionButtons) {
   const { isDark } = useTheme();
 
   return (
-    <ScrollAnimation direction="down" delay={0.4} className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-4">
       {listLinks?.map(({ id, text, link, customStyle, icon }) => {
         // Only render if link exists and is not empty
         if (!link || link.trim() === '') {
@@ -39,6 +38,6 @@ export default function ActionButtons({ listLinks }: IActionButtons) {
           </OptimizedLink>
         );
       })}
-    </ScrollAnimation>
+    </div>
   );
 }

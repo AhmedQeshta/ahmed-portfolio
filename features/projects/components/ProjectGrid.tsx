@@ -3,7 +3,6 @@ import { categoriesQuery, projectsQuery } from '@/sanity/lib/queries';
 import { CategoryResponse, ProjectResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import ProjectCard from '@/features/projects/components/ProjectCard';
-import ScrollAnimation from '@/features/shard/components/ui/ScrollAnimation';
 import { IProjectGrid } from '@/features/projects/types/project';
 import HeaderTitle from '@/features/shard/components/ui/HeaderTitle';
 import EmptyItem from '@/features/shard/components/ui/EmptyItem';
