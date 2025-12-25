@@ -9,7 +9,7 @@ import useMounted from '@/features/header/hooks/useMounted';
 
 export default function ProfileImage({ baseInfo }: IBaseInfoResponse) {
   const { profilePicture, name, technologies } = baseInfo;
-  const mounted = useMounted();
+  // const mounted = useMounted();
   // Get the first 8 technologies for the orbit
   const orbitTechnologies = technologies?.slice(0, 8) || [];
 
@@ -17,7 +17,7 @@ export default function ProfileImage({ baseInfo }: IBaseInfoResponse) {
     <div className="w-full flex justify-start lg:justify-end">
       <div className="relative">
         {/* Enhanced Background Effects */}
-        <BackgroundEffect mounted={mounted} />
+        {/* <BackgroundEffect mounted={mounted} /> */}
 
         <div className="relative overflow-visible h-[280px] w-[280px] sm:h-[400px] sm:w-[400px] flex items-center justify-center">
           {/* Technology Orbit - First 8 technologies */}

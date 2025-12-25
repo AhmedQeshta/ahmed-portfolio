@@ -23,6 +23,7 @@ export default function GalleryItem({ file, title, index, openModal }: IGalleryI
           aria-label={`${title} gallery image ${index + 1}`}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-110"
+          loading="lazy"
         />
       )}
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />

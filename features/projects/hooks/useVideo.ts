@@ -14,12 +14,27 @@ export default function useVideo(selectedImageIndex: number) {
 
   // Reset video state when gallery item changes
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
+    const video = videoRef.current;
+    if (video) {
+      // Pause and reset current video
+      video.pause();
+      video.currentTime = 0;
+      // Clear video source to free memory
+      video.src = '';
+      video.load();
       setCurrentTime(0);
       setIsPlaying(false);
       setIsLoading(true); // Start loading when video changes
     }
+
+    // Cleanup: pause and clear video when component unmounts or index changes
+    return () => {
+      if (video) {
+        video.pause();
+        video.src = '';
+        video.load();
+      }
+    };
   }, [selectedImageIndex]);
 
   // Handle controls visibility with delay

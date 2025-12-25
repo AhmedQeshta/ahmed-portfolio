@@ -10,12 +10,9 @@ export default function ProfilePicture({ profilePicture, name }: IProfilePicture
       <div className="absolute -inset-1 rounded-full border border-purple-500/40 animate-spin-slow" />
       <div
         className="absolute inset-0 rounded-full border border-blue-500/40 animate-spin-slow"
-        style={{ animationDirection: 'reverse', animationDelay: '0.5s' }}
+        style={{ animationDirection: 'reverse' }}
       />
-      <div
-        className="absolute inset-1 rounded-full border border-pink-500/40 animate-spin-slow"
-        style={{ animationDelay: '1s' }}
-      />
+      <div className="absolute inset-1 rounded-full border border-pink-500/40 animate-spin-slow" />
 
       {/* Inner Glow */}
       <div className="absolute inset-1 rounded-full bg-gradient-to-br from-purple-500/15 via-blue-500/15 to-pink-500/15 blur-md" />

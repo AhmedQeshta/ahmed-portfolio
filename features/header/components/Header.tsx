@@ -14,7 +14,7 @@ export default async function Header() {
     });
 
     return (
-      <section id="home" className="relative min-h-screen overflow-hidden flex items-center ">
+      <section id="home" className="relative min-h-screen overflow-hidden flex items-center">
         {/* Main Content */}
         <div className="relative mx-auto max-w-[1450px] px-5 sm:px-7 lg:px-5 w-full py-20 lg:py-32 min-h-full">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
