@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website built with Next.js 15 and Sanity CMS, showcasing projects, blog posts, work experience, and professional information.
 
-<img width="1847" height="1849" alt="Image" src="https://github.com/user-attachments/assets/eda2ca64-f856-447e-967d-d916f4e756d0" />
+<img width="1847" height="1849" alt="Image" src="https://github.com/user-attachments/assets/797265d5-73e6-47b3-b582-02ab329408c1" />
 
 ## 🌟 Features
 
