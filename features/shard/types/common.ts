@@ -112,6 +112,10 @@ export interface ICodeBlock {
   value: ICode;
 }
 
+export interface IBreakline {
+  value?: Record<string, never>;
+}
+
 // normal
 export interface IBlockNormal {
   children: React.ReactNode;

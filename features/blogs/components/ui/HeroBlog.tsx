@@ -1,20 +1,60 @@
 'use client';
 
+import { useState, useMemo } from 'react';
 import { formatDate, formatReadingTime } from '@/features/shard/utils/date';
 import { IBlogPostResponse } from '@/features/blogs/types/blog';
 import { Calendar, Clock } from 'lucide-react';
 import Image from 'next/image';
 import { useTheme } from '@/features/theme/hooks/useTheme';
+import { getImageUrl } from '@/sanity/lib/image';
 
 export default function HeroBlog({ blog }: IBlogPostResponse) {
-  if (!blog) return null;
-  const { isDark } = useTheme();
-
   const { thumbnail, title, categories, publishedAt, readingTime, featured } = blog;
+
+  const { isDark } = useTheme();
+  const [imageError, setImageError] = useState(false);
+
+  // Process thumbnail image URL
+  const imageUrl = useMemo(() => {
+    if (!thumbnail) return null;
+    try {
+      return getImageUrl(thumbnail, 1920, 1080, 90);
+    } catch {
+      return null;
+    }
+  }, [thumbnail]);
 
   return (
     <div className="relative h-[50vh] overflow-hidden">
-      <Image src={thumbnail} alt={title} fill className="object-cover" priority />
+      {/* Fallback background gradient */}
+
+      {/* Image */}
+      {imageUrl && !imageError ? (
+        <Image
+          src={imageUrl}
+          alt={title}
+          fill
+          className="object-cover"
+          priority
+          onError={() => setImageError(true)}
+        />
+      ) : (
+        <div
+          className={`absolute inset-0 bg-gradient-to-br ${
+            isDark
+              ? 'from-purple-900/80 via-blue-900/80 to-pink-900/80'
+              : 'from-purple-500/60 via-blue-500/60 to-pink-500/60'
+          }`}>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div
+              className={`text-6xl md:text-8xl font-bold ${
+                isDark ? 'text-white/30' : 'text-white/40'
+              }`}>
+              {title?.charAt(0).toUpperCase()}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Gradient Overlays */}
       <div

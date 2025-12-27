@@ -10,12 +10,22 @@ import { sanityFetch } from '@/sanity/lib/client';
 import { FeatureResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import ContactSection from '@/features/contact/components/ContactSection';
+import BlogGridSkeleton from '@/features/blogs/components/BlogGridSkeleton';
+import ProjectGridSkeleton from '@/features/projects/components/ProjectGridSkeleton';
 
 const sectionOfPage = {
   header: <Header />,
   works: <WorkGridSlider />,
-  projects: <ProjectGrid />,
-  blogs: <BlogGrid />,
+  projects: (
+    <Suspense fallback={<ProjectGridSkeleton />}>
+      <ProjectGrid />
+    </Suspense>
+  ),
+  blogs: (
+    <Suspense fallback={<BlogGridSkeleton />}>
+      <BlogGrid />
+    </Suspense>
+  ),
   contact: <ContactSection />,
 };
 
@@ -31,9 +41,7 @@ export default async function Home() {
         {features &&
           features.map(({ _id, name, status }) => (
             <Fragment key={_id}>
-              <Suspense fallback={<LoadingSpinner />}>
-                {status === 'publish' && sectionOfPage[name as keyof typeof sectionOfPage]}
-              </Suspense>
+              {status === 'publish' && sectionOfPage[name as keyof typeof sectionOfPage]}
             </Fragment>
           ))}
       </main>

@@ -12,7 +12,7 @@ export {
   generateBlogStaticParams as generateStaticParams,
 };
 // Use our fixed type to avoid the "not satisfying PageProps" error
-export default async function Page(props: FixedPageProps) {
+export default async function blogDetailPage(props: FixedPageProps) {
   const { slug } = await props.params;
 
   try {
