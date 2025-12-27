@@ -4,8 +4,9 @@ import { sanityFetch } from '@/sanity/lib/client';
 import { featuresQuery } from '@/sanity/lib/queries';
 import { FeatureResponse } from '@/sanity/lib/types';
 import { notFound } from 'next/navigation';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Metadata } from 'next';
+import BlogGridSkeleton from '@/features/blogs/components/BlogGridSkeleton';
 
 // Mark this page as dynamic
 export const dynamic = 'force-dynamic';
@@ -50,7 +51,11 @@ const BlogPage = async ({ searchParams }: { searchParams: Promise<{ q?: string }
     const resolvedSearchParams = await searchParams;
     const query = resolvedSearchParams?.q || '';
 
-    return <BlogGrid readMore={false} query={query} />;
+    return (
+      <Suspense fallback={<BlogGridSkeleton readMore={false} />}>
+        <BlogGrid readMore={false} query={query} />
+      </Suspense>
+    );
   } catch {
     return (
       <ErrorHandle

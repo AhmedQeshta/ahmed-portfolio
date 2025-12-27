@@ -4,6 +4,8 @@ import { sanityFetch } from '@/sanity/lib/client';
 import { featuresQuery } from '@/sanity/lib/queries';
 import { FeatureResponse } from '@/sanity/lib/types';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
+import ProjectGridSkeleton from '@/features/projects/components/ProjectGridSkeleton';
 
 const ProjectsPage = async ({ searchParams }: { searchParams: Promise<{ q?: string }> }) => {
   try {
@@ -22,7 +24,11 @@ const ProjectsPage = async ({ searchParams }: { searchParams: Promise<{ q?: stri
     const resolvedSearchParams = await searchParams;
     const query = resolvedSearchParams?.q || '';
 
-    return <ProjectGrid readMore={false} query={query} />;
+    return (
+      <Suspense fallback={<ProjectGridSkeleton readMore={false} />}>
+        <ProjectGrid readMore={false} query={query} />
+      </Suspense>
+    );
   } catch {
     return (
       <ErrorHandle

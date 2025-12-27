@@ -74,6 +74,26 @@ export const blogPost = defineType({
         },
         {
           type: 'object',
+          name: 'breakline',
+          title: 'Line Break',
+          fields: [
+            {
+              name: 'spacer',
+              type: 'boolean',
+              initialValue: true,
+              hidden: true,
+            },
+          ],
+          preview: {
+            prepare() {
+              return {
+                title: 'Line Break',
+              };
+            },
+          },
+        },
+        {
+          type: 'object',
           name: 'codeBlock',
           title: 'Code Block',
           fields: [

@@ -7,6 +7,7 @@ import {
   IBlockH6,
   IBlockNormal,
   IBlockQuote,
+  IBreakline,
   ICodeBlock,
   IListBullet,
   IListNumber,
@@ -33,12 +34,14 @@ import Strong from '@/features/shard/components/portableText/block/Strong';
 import Link from '@/features/shard/components/portableText/block/Link';
 import Code from '@/features/shard/components/portableText/block/Code';
 import Em from '@/features/shard/components/portableText/block/Em';
+import Breakline from '@/features/shard/components/portableText/block/Breakline';
 
 // Shared PortableText components for consistent rich text rendering
 export const portableTextComponents = {
   types: {
     image: ({ value }: IPortableTextComponentsProps) => <PortableImage value={value} />,
     codeBlock: ({ value }: ICodeBlock) => <CodeBlock value={value} />,
+    breakline: () => <Breakline />,
   },
   block: {
     normal: ({ children }: IBlockNormal) => <Normal>{children}</Normal>,
