@@ -105,6 +105,7 @@ export const metadata: Metadata = {
     'msapplication-TileColor': '#000000',
     'msapplication-TileImage': '/images/ms-icon-144x144.png',
     'msapplication-config': '/browserconfig.xml',
+    'google-adsense-account': 'ca-pub-4380405094521784',
   },
 };
 
