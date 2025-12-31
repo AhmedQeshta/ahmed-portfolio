@@ -3,8 +3,6 @@ import Slider from 'react-slick';
 import { IWorkSlider } from '@/features/works/types/work';
 import Card from '@/features/works/components/ui/Card';
 import Arrow from '@/features/works/components/ui/Arrow';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { useSlider } from '@/features/works/hooks/useSlider';
 
 export default function WorkSlider({ works }: IWorkSlider) {
