@@ -22,13 +22,18 @@ const nextConfig = {
   // Performance optimizations for faster navigation
   experimental: {
     optimizePackageImports: ['lucide-react'],
-    // Enable faster client-side navigation
+    // Enable faster client-side navigation and CSS optimization
     optimizeCss: true,
   },
+  // CSS optimization and critical CSS extraction
+  // Note: Next.js 15 handles CSS optimization automatically with optimizeCss: true
+  // Critters is available for critical CSS extraction if needed
   // Enable static optimization
   output: 'standalone',
-  // Enable compression
+  // Enable compression (includes CSS compression)
   compress: true,
+  // Optimize CSS loading and reduce render-blocking
+  // Next.js 15 automatically optimizes CSS with optimizeCss: true
   // Optimize runtime for faster navigation
   poweredByHeader: false,
   // Enable faster page transitions
@@ -40,13 +45,18 @@ const nextConfig = {
   },
   // Enable better caching for navigation
   generateEtags: false,
-  // Optimize for faster page loads
+  // Optimize for faster page loads and client-side navigation
   onDemandEntries: {
     // Period (in ms) where the server will keep pages in the buffer
     maxInactiveAge: 25 * 1000,
     // Number of pages that should be kept simultaneously without being disposed
     pagesBufferLength: 2,
   },
+  // Ensure client-side navigation works properly
+  // Don't use trailingSlash as it can cause redirects that trigger full reloads
+  trailingSlash: false,
+  // Ensure proper routing without basePath interference
+  // basePath should only be set if deploying to a subdirectory
 };
 
 export default nextConfig;

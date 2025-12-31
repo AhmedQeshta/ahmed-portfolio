@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';
 
 :root {
   --foreground-rgb: 255, 255, 255;
@@ -150,11 +152,15 @@ a {
   text-decoration: none;
 }
 
-/* Card styles */
-.bg-card-bg {
+/* Glass effect utility - consolidated backdrop-filter */
+.bg-card-bg,
+.bg-navbar-glass {
   background-color: var(--card-bg-glass);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+
+.bg-card-bg {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -164,16 +170,8 @@ a {
   -webkit-backdrop-filter: blur(10px);
 }
 
-/* section styles */
 .bg-section-glass {
   background-color: var(--card-bg-glass-dark);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-/* Card styles */
-.bg-navbar-glass {
-  background-color: var(--card-bg-glass);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -207,21 +205,6 @@ a {
   background-color: var(--orb-pink);
 }
 
-/* Animations */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
 /* Smooth button interactions */
 @keyframes buttonPress {
   0% {
@@ -251,98 +234,16 @@ a {
   box-shadow: 0 8px 25px rgba(168, 85, 247, 0.15);
 }
 
-/* Chat message animations */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes bounceIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  70% {
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes pulseGlow {
-  0%,
-  100% {
-    box-shadow: 0 0 5px rgba(169, 85, 247, 0.8);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
-  }
-}
-
-.animate-fadeInUp {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-.animate-slideInLeft {
-  animation: slideInLeft 0.5s ease-out forwards;
-}
-
-.animate-slideInRight {
-  animation: slideInRight 0.5s ease-out forwards;
-}
-
-.animate-bounceIn {
-  animation: bounceIn 0.6s ease-out forwards;
-}
-
-.animate-pulseGlow {
-  animation: pulseGlow 2s ease-in-out infinite;
-}
-
 /* Utility classes */
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* Custom Scrollbar Styles */
-/* Firefox */
+/* Custom Scrollbar Styles - Optimized */
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(139, 92, 246, 0.8) rgba(15, 23, 42, 0.3);

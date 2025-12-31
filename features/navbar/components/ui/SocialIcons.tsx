@@ -1,5 +1,4 @@
 import { mediaList } from '@/features/navbar/utils/navLinks';
-import Link from 'next/link';
 
 export default function SocialIcons() {
   return (
@@ -10,11 +9,11 @@ export default function SocialIcons() {
           <div
             key={index}
             className="w-8 h-8 p-1.5 items-nav  rounded-full transition-all duration-200 hover:scale-110">
-            <Link href={href} target={target} rel={rel} aria-label={title}>
+            <a href={href} target={target} rel={rel} aria-label={title}>
               <svg fill={fill} viewBox={viewBox} className={'w-full h-full'}>
                 <path d={path?.d} />
               </svg>
-            </Link>
+            </a>
           </div>
         );
       })}

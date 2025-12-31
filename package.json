@@ -31,7 +31,6 @@
     "react-slick": "^0.30.3",
     "sanity": "^3.92.0",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^6.1.18",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.25.51"
