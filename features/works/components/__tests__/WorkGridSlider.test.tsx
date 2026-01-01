@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { render } from '@/features/shard/utils/test-utils';
 import WorkGridSlider from '@/features/works/components/WorkGridSlider';
 import { sanityFetch } from '@/sanity/lib/client';
 import { WorkExperienceResponse } from '@/sanity/lib/types';

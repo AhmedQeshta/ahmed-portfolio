@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render } from '../../utils/test-utils';
 import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
 
 describe('NavigationHeader', () => {

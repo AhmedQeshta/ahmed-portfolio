@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { render } from '@/features/shard/utils/test-utils';
 import '@testing-library/jest-dom';
 import BlogGrid from '@/features/blogs/components/BlogGrid';
 import { sanityFetch } from '@/sanity/lib/client';

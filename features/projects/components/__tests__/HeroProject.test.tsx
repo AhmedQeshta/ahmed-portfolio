@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { render } from '@/features/shard/utils/test-utils';
 import HeroProject from '@/features/projects/components/ui/HeroProject';
 import { IProjectResponse } from '@/features/projects/types/project';
 import { ProjectResponse } from '@/sanity/lib/types';

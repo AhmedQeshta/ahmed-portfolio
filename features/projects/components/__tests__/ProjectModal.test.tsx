@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
+import { render } from '@/features/shard/utils/test-utils';
 import ProjectModal from '@/features/projects/components/ProjectModal';
 import { IProjectResponse } from '@/features/projects/types/project';
 

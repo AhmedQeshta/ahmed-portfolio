@@ -49,54 +49,54 @@ describe('statusColor utilities', () => {
   describe('getEmploymentTypeColor function', () => {
     it('should return green color for full-time employment', () => {
       const result = getEmploymentTypeColor('full-time');
-      expect(result).toBe('text-green-400 bg-green-500/10 border-green-500/30');
+      expect(result).toBe('text-green-500 bg-green-600/10 border-green-600/30');
     });
 
     it('should return blue color for part-time employment', () => {
       const result = getEmploymentTypeColor('part-time');
-      expect(result).toBe('text-blue-400 bg-blue-500/10 border-blue-500/30');
+      expect(result).toBe('text-blue-500 bg-blue-600/10 border-blue-600/30');
     });
 
     it('should return purple color for freelance employment', () => {
       const result = getEmploymentTypeColor('freelance');
-      expect(result).toBe('text-purple-400 bg-purple-500/10 border-purple-500/30');
+      expect(result).toBe('text-purple-500 bg-purple-600/10 border-purple-600/30');
     });
 
     it('should return orange color for contract employment', () => {
       const result = getEmploymentTypeColor('contract');
-      expect(result).toBe('text-orange-400 bg-orange-500/10 border-orange-500/30');
+      expect(result).toBe('text-orange-500 bg-orange-600/10 border-orange-600/30');
     });
 
     it('should return cyan color for internship employment', () => {
       const result = getEmploymentTypeColor('internship');
-      expect(result).toBe('text-cyan-400 bg-cyan-500/10 border-cyan-500/30');
+      expect(result).toBe('text-cyan-500 bg-cyan-600/10 border-cyan-600/30');
     });
 
     it('should return default gray color for unknown employment type', () => {
       const result = getEmploymentTypeColor('unknown-type');
-      expect(result).toBe('text-gray-400 bg-gray-500/10 border-gray-500/30');
+      expect(result).toBe('text-gray-500 bg-gray-600/10 border-gray-600/30');
     });
   });
 
   describe('getLocationTypeColor function', () => {
     it('should return blue color for remote location', () => {
       const result = getLocationTypeColor('remote');
-      expect(result).toBe('text-blue-400 bg-blue-500/10 border-blue-500/30');
+      expect(result).toBe('text-blue-500 bg-blue-600/10 border-blue-600/30');
     });
 
     it('should return green color for on-site location', () => {
       const result = getLocationTypeColor('on-site');
-      expect(result).toBe('text-green-400 bg-green-500/10 border-green-500/30');
+      expect(result).toBe('text-green-500 bg-green-600/10 border-green-600/30');
     });
 
     it('should return purple color for hybrid location', () => {
       const result = getLocationTypeColor('hybrid');
-      expect(result).toBe('text-purple-400 bg-purple-500/10 border-purple-500/30');
+      expect(result).toBe('text-purple-500 bg-purple-600/10 border-purple-600/30');
     });
 
     it('should return default gray color for unknown location type', () => {
       const result = getLocationTypeColor('unknown-location');
-      expect(result).toBe('text-gray-400 bg-gray-500/10 border-gray-500/30');
+      expect(result).toBe('text-gray-500 bg-gray-600/10 border-gray-600/30');
     });
   });
 });

@@ -1,5 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render } from '@/features/shard/utils/test-utils';
 import Search from '@/features/filters/components/Search';
 import { IDefaultInput } from '@/features/contact/types/contact';
 
@@ -175,10 +176,10 @@ describe('Search', () => {
     expect(searchButton).toHaveClass(
       'px-4',
       'py-2',
-      'bg-blue-500',
+      'bg-purple-500',
       'text-white',
       'rounded-lg',
-      'hover:bg-blue-600',
+      'hover:bg-purple-600',
       'font-bold',
     );
   });

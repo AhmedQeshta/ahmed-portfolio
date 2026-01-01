@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { render } from '@/features/shard/utils/test-utils';
 import Card from '@/features/works/components/ui/Card';
 import { IWorkResponse } from '@/features/works/types/work';
 import { durationOfWork } from '@/features/shard/utils/date';

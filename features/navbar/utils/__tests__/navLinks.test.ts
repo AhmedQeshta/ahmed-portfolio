@@ -18,7 +18,7 @@ describe('navLinks utilities', () => {
         expect.objectContaining({
           id: 3,
           name: 'Projects',
-          url: '#projects',
+          url: 'projects',
         }),
       );
 

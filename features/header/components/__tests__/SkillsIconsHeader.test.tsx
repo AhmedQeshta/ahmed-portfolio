@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render } from '@/features/shard/utils/test-utils';
 import SkillsIconsHeader from '@/features/header/components/skillsIcons/SkillsIconsHeader';
 import { ITechnologiesResponse } from '@/features/shard/types/technology';
 

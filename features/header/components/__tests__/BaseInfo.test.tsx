@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render } from '@/features/shard/utils/test-utils';
 import BaseInfo from '@/features/header/components/BaseInfo';
 import { IBaseInfoResponse } from '@/features/header/types/header';
 

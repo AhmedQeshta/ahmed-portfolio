@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { render } from '@/features/shard/utils/test-utils';
 import '@testing-library/jest-dom';
 import BlogCard from '@/features/blogs/components/BlogCard';
 import { BlogPostResponse } from '@/sanity/lib/types';

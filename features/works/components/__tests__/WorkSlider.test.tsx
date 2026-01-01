@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { render } from '@/features/shard/utils/test-utils';
 import WorkSlider from '@/features/works/components/WorkSlider';
 import { IWorksResponse } from '@/features/works/types/work';
 

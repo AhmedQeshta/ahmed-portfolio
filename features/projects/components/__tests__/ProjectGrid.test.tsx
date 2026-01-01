@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { render } from '@/features/shard/utils/test-utils';
 import ProjectGrid from '@/features/projects/components/ProjectGrid';
 import { IProjectResponse } from '@/features/projects/types/project';
 
