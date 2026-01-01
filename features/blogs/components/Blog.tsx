@@ -16,7 +16,7 @@ import { useTheme } from '@/features/theme/hooks/useTheme';
 export default function Blog({ blog, latestBlogs, relatedBlogs }: IBlog) {
   const { technologies, tags, description, slug, title } = blog;
   const { isDark } = useTheme();
-  const url = `${process.env.SITE_URL ?? 'https://ahmedqeshta.vercel.app'}/blogs/${slug}`;
+  const url = `${process.env.SITE_URL ?? 'https://ahmedqeshta.tech'}/blogs/${slug}`;
 
   return (
     <div

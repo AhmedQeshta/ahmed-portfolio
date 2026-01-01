@@ -9,6 +9,7 @@ import {
   IBlockQuote,
   IBreakline,
   ICodeBlock,
+  IEmbedBlock,
   IListBullet,
   IListNumber,
   IMarkCode,
@@ -19,6 +20,7 @@ import {
 } from '@/features/shard/types/common';
 import PortableImage from '@/features/shard/components/portableText/PortableImage';
 import CodeBlock from '@/features/shard/components/portableText/CodeBlock';
+import Embed from '@/features/shard/components/portableText/Embed';
 import Normal from '@/features/shard/components/portableText/block/Normal';
 import Header1 from '@/features/shard/components/portableText/block/Header1';
 import Header2 from '@/features/shard/components/portableText/block/Header2';
@@ -41,6 +43,7 @@ export const portableTextComponents = {
   types: {
     image: ({ value }: IPortableTextComponentsProps) => <PortableImage value={value} />,
     codeBlock: ({ value }: ICodeBlock) => <CodeBlock value={value} />,
+    embed: ({ value }: IEmbedBlock) => <Embed value={value} />,
     breakline: () => <Breakline />,
   },
   block: {

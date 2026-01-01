@@ -155,6 +155,45 @@ export const blogPost = defineType({
             },
           ],
         },
+        {
+          type: 'object',
+          name: 'embed',
+          title: 'Embed (YouTube, iframe, etc.)',
+          fields: [
+            {
+              name: 'url',
+              title: 'Embed URL',
+              type: 'url',
+              description: 'Paste the embed URL (e.g., YouTube embed URL, iframe src)',
+              validation: (rule) => rule.required(),
+            },
+            {
+              name: 'title',
+              title: 'Title (optional)',
+              type: 'string',
+              description: 'Optional title for the embed (e.g., video title)',
+            },
+            {
+              name: 'height',
+              title: 'Height',
+              type: 'number',
+              description: 'Height in pixels (default: 400)',
+              initialValue: 400,
+            },
+          ],
+          preview: {
+            select: {
+              title: 'title',
+              url: 'url',
+            },
+            prepare({ title, url }: { title?: string; url?: string }) {
+              return {
+                title: title || 'Embed',
+                subtitle: url || 'No URL provided',
+              };
+            },
+          },
+        },
       ],
       validation: (rule) => rule.required(),
     }),

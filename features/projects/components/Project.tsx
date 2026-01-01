@@ -18,7 +18,7 @@ import ShareCard from '@/features/shard/components/ui/ShareCard';
 
 export default function Project({ project }: IProjectResponse) {
   const { technologies, liveUrl, repoUrl, description, title, gallery, slug } = project;
-  const url = `${process.env.SITE_URL ?? 'https://ahmedqeshta.vercel.app'}/projects/${slug}`;
+  const url = `${process.env.SITE_URL ?? 'https://ahmedqeshta.tech'}/projects/${slug}`;
 
   const { isDark } = useTheme();
 
