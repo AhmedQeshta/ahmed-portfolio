@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { render } from '@/features/shard/utils/test-utils';
 import TimelineProject from '@/features/projects/components/ui/TimelineProject';
 import { IProjectResponse } from '@/features/projects/types/project';
 import { formatDate } from '@/features/shard/utils/date';

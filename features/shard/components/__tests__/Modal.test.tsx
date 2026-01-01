@@ -1,5 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render } from '../../utils/test-utils';
 import Modal from '@/features/shard/components/ui/Modal';
 
 describe('Modal', () => {

@@ -112,6 +112,16 @@ export interface ICodeBlock {
   value: ICode;
 }
 
+export interface IEmbed {
+  url: string;
+  title?: string;
+  height?: number;
+}
+
+export interface IEmbedBlock {
+  value: IEmbed;
+}
+
 export interface IBreakline {
   value?: Record<string, never>;
 }

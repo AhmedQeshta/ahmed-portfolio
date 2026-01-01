@@ -1,5 +1,6 @@
-import { render, screen, waitFor, act } from '@testing-library/react';
+import { screen, waitFor, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render } from '../../utils/test-utils';
 import PortableImage from '../portableText/PortableImage';
 import { ImageValue } from '../../types/common';
 

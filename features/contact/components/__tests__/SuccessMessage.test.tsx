@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { render } from '@/features/shard/utils/test-utils';
 import '@testing-library/jest-dom';
 import SuccessMessage from '@/features/contact/components/form/SuccessMessage';
 

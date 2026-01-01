@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import WorkModal from '@/features/works/components/WorkModal';
 import { IWorkResponse } from '@/features/works/types/work';
 
