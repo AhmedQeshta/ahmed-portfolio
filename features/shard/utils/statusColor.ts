@@ -48,8 +48,7 @@ export const getLocationTypeColor = (type: string) => {
   }
 };
 
-export // Language-specific color mapping
-const getLanguageColor = (language: string): string => {
+export const getLanguageColor = (language: string): string => {
   const languageColors: Record<string, string> = {
     javascript: 'text-yellow-600 bg-yellow-600/10 border-yellow-600/20',
     typescript: 'text-blue-600 bg-blue-600/10 border-blue-600/20',
