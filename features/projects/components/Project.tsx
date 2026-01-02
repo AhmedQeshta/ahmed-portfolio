@@ -15,10 +15,10 @@ import useGalleryModal from '../hooks/useGalleryModal';
 import ImagePreview from './ui/ImagePreview';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 import ShareCard from '@/features/shard/components/ui/ShareCard';
+import { getCustomUrl } from '@/features/shard/utils/url';
 
 export default function Project({ project }: IProjectResponse) {
   const { technologies, liveUrl, repoUrl, description, title, gallery, slug } = project;
-  const url = `${process.env.SITE_URL ?? 'https://ahmedqeshta.tech'}/projects/${slug}`;
 
   const { isDark } = useTheme();
 
@@ -114,7 +114,11 @@ export default function Project({ project }: IProjectResponse) {
               <StatsProject project={project} />
 
               {/* Share Card */}
-              <ShareCard url={url} title={title} heading="Share This Project" />
+              <ShareCard
+                url={getCustomUrl(slug, 'projects')}
+                title={title}
+                heading="Share This Project"
+              />
             </div>
           </div>
         </div>

@@ -1,8 +1,5 @@
 import { Metadata, Viewport } from 'next';
-
-const siteUrl = process.env.SITE_URL || 'https://ahmedqeshta.tech';
-
-// Metadata for the blogs listing page
+import { siteUrl } from '@/features/shard/utils/url';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

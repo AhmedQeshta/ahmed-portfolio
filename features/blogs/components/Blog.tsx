@@ -13,11 +13,11 @@ import { IBlog } from '@/features/blogs/types/blog';
 import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 import useViews from '@/features/blogs/hooks/useViews';
+import { getCustomUrl } from '@/features/shard/utils/url';
 
 export default function Blog({ blog, latestBlogs, relatedBlogs, viewCount }: IBlog) {
   const { technologies, tags, description, slug, title } = blog;
   const { isDark } = useTheme();
-  const url = `${process.env.SITE_URL ?? 'https://ahmedqeshta.tech'}/blogs/${slug}`;
 
   useViews(slug);
 
@@ -61,7 +61,7 @@ export default function Blog({ blog, latestBlogs, relatedBlogs, viewCount }: IBl
             {/* Sidebar Column */}
             <div className="space-y-8">
               {/* Share Card */}
-              <ShareCard url={url} title={title} />
+              <ShareCard url={getCustomUrl(slug, 'blogs')} title={title} />
 
               {/* Latest Blogs Card */}
               <LatestBlogs latestBlogs={latestBlogs} />

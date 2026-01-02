@@ -1,3 +1,4 @@
+import { getCustomUrl, siteUrl } from '@/features/shard/utils/url';
 import { sanityFetch } from '@/sanity/lib/client';
 import { blogPostBySlugQuery, blogPostsQuery, featuresQuery } from '@/sanity/lib/queries';
 import { BlogPostResponse, FeatureResponse } from '@/sanity/lib/types';
@@ -31,8 +32,7 @@ export async function generateBlogMetadata({
 
     if (!blog) return {};
 
-    const siteUrl = process.env.SITE_URL || 'https://ahmedqeshta.vercel.app';
-    const url = `${siteUrl}/blogs/${blog.slug}`;
+    const url = getCustomUrl(blog.slug, 'blogs');
     const title = blog.seo?.metaTitle || `${blog.title} - Ahmed Qeshta`;
     const description =
       blog.seo?.metaDescription ||
