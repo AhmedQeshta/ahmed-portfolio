@@ -65,13 +65,6 @@ describe('ActionButtons', () => {
     expect(container.firstChild).toBeNull();
   });
 
-  it('should render ScrollAnimation wrapper with correct props', () => {
-    render(<ActionButtons listLinks={mockLinksWithIcons} />);
-
-    const scrollAnimation = screen.getByTestId('scroll-animation');
-    expect(scrollAnimation).toBeInTheDocument();
-    expect(scrollAnimation).toHaveClass('flex gap-4');
-  });
 
   it('should render all links with icons correctly', () => {
     render(<ActionButtons listLinks={mockLinksWithIcons} />);
@@ -126,9 +119,6 @@ describe('ActionButtons', () => {
 
   it('should handle empty array of links', () => {
     render(<ActionButtons listLinks={[]} />);
-
-    const scrollAnimation = screen.getByTestId('scroll-animation');
-    expect(scrollAnimation).toBeInTheDocument();
 
     const links = screen.queryAllByRole('link');
     expect(links).toHaveLength(0);

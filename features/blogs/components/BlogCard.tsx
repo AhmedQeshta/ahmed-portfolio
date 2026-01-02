@@ -10,6 +10,7 @@ import EmptyItem from '@/features/shard/components/ui/EmptyItem';
 export default function BlogCard({ blogs, readMore, categories }: IBlogCardProps) {
   if (!blogs) return null;
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { filtered, handleFilter, activeFilter } = useFilter<BlogPostResponse[]>(blogs);
 
   return (

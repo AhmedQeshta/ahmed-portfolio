@@ -38,9 +38,11 @@ export interface IMetaInfoProps {
 }
 
 export interface ICardProps {
-  blog: BlogPostResponse;
+  blog: BlogPostResponse & { viewCount?: number };
 }
-export interface IBlog extends IRelatedBlogs, ILatestBlogs, IBlogPostResponse {}
+export interface IBlog extends IRelatedBlogs, ILatestBlogs, IBlogPostResponse {
+  viewCount?: number;
+}
 
 export interface ISeeBlogButton {
   slug: string;

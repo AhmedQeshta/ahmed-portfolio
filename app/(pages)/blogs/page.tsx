@@ -8,31 +8,9 @@ import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import BlogGridSkeleton from '@/features/blogs/components/BlogGridSkeleton';
 
-// Mark this page as dynamic
+// Mark this page as dynamic for real-time view updates
 export const dynamic = 'force-dynamic';
-
-// Metadata for the blogs listing page
-export const metadata: Metadata = {
-  title: 'Blog - Ahmed Qeshta',
-  description:
-    'Explore insights, tutorials, and thoughts on software development, technology, and programming by Ahmed Qeshta.',
-  keywords: 'blog, software development, programming, technology, tutorials, Ahmed Qeshta',
-  openGraph: {
-    title: 'Blog - Ahmed Qeshta',
-    description:
-      'Explore insights, tutorials, and thoughts on software development, technology, and programming by Ahmed Qeshta.',
-    type: 'website',
-    images: ['/images/ahmed-qeshta-og.png'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Blog - Ahmed Qeshta',
-    description:
-      'Explore insights, tutorials, and thoughts on software development, technology, and programming by Ahmed Qeshta.',
-    images: ['/images/ahmed-qeshta-og.png'],
-    creator: '@ahmedqeshta',
-  },
-};
+export const revalidate = 0;
 
 const BlogPage = async ({ searchParams }: { searchParams: Promise<{ q?: string }> }) => {
   try {

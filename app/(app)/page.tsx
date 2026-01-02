@@ -2,9 +2,7 @@ import Header from '@/features/header/components/Header';
 import WorkGridSlider from '@/features/works/components/WorkGridSlider';
 import ProjectGrid from '@/features/projects/components/ProjectGrid';
 import BlogGrid from '@/features/blogs/components/BlogGrid';
-
 import { Fragment, Suspense } from 'react';
-import LoadingSpinner from '@/features/shard/components/ui/LoadingSpinner';
 import { featuresQuery } from '@/sanity/lib/queries';
 import { sanityFetch } from '@/sanity/lib/client';
 import { FeatureResponse } from '@/sanity/lib/types';

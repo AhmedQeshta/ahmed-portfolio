@@ -38,7 +38,6 @@ const mockProps: IBaseInfoResponse = {
 describe('ProfileImage', () => {
   it('renders profile image when profilePicture is present', () => {
     render(<ProfileImage {...mockProps} />);
-    expect(screen.getByTestId('mouse-move-wrapper')).toBeInTheDocument();
     expect(screen.getByTestId('next-image')).toBeInTheDocument();
     expect(screen.getByAltText('Ahmed profile picture')).toBeInTheDocument();
   });

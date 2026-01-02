@@ -1,11 +1,14 @@
 import { Metadata, Viewport } from 'next';
 
-const siteUrl = process.env.SITE_URL || 'https://ahmedqeshta.vercel.app';
+const siteUrl = process.env.SITE_URL || 'https://ahmedqeshta.tech';
+
+// Metadata for the blogs listing page
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Ahmed Qeshta - Software Engineer',
-  description: 'Ahmed Qeshta - Software Engineer Portfolio',
+  description:
+    'Explore insights, tutorials, and thoughts on software development, technology, and programming by Ahmed Qeshta.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },

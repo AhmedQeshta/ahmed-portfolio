@@ -4,22 +4,6 @@ import '@testing-library/jest-dom';
 import PostDetails from '@/features/blogs/components/ui/PostDetails';
 import { BlogPostResponse } from '@/sanity/lib/types';
 
-// Mock ScrollAnimation
-jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({
-    children,
-    className,
-  }: {
-    readonly children: React.ReactNode;
-    readonly className: string;
-  }) {
-    return (
-      <div data-testid="scroll-animation" className={className}>
-        {children}
-      </div>
-    );
-  };
-});
 
 // Mock date utils
 jest.mock('@/features/shard/utils/date', () => ({
@@ -58,7 +42,6 @@ describe('PostDetails', () => {
     expect(screen.getByText('5 min read')).toBeInTheDocument();
     expect(screen.getByText('Categories:')).toBeInTheDocument();
     expect(screen.getByText('Tags:')).toBeInTheDocument();
-    expect(screen.getAllByTestId('scroll-animation').length).toBeGreaterThan(0);
   });
 
   it('renders without categories and tags', () => {

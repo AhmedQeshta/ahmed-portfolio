@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render } from '@/features/shard/utils/test-utils';
 import ProjectCard from '@/features/projects/components/ProjectCard';
 import { IProjectResponse } from '@/features/projects/types/project';
 

@@ -139,3 +139,9 @@ export interface CategoryResponse extends Omit<Category, 'slug'> {
 export interface BaseInfoResponse extends BaseInfo {}
 
 export interface FeatureResponse extends Feature {}
+
+export interface PageViewResponse {
+  _id: string;
+  slug: string;
+  count: number;
+}

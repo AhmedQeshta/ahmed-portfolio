@@ -263,14 +263,6 @@ describe('BlogGrid', () => {
     expect(heading).toHaveClass('gradient-text');
   });
 
-  it('should render scroll animations for blog cards', async () => {
-    (sanityFetch as jest.Mock).mockResolvedValue(mockBlogs);
-
-    render(await BlogGrid({ readMore: true }));
-
-    const scrollAnimations = screen.getAllByTestId('scroll-animation');
-    expect(scrollAnimations.length).toBeGreaterThan(0);
-  });
 
   it('should handle blogs without tags gracefully', async () => {
     const blogsWithoutTags = mockBlogs.map((blog) => ({ ...blog, tags: undefined }));

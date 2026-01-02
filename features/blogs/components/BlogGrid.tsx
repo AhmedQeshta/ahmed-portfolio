@@ -1,6 +1,6 @@
 import { sanityFetch } from '@/sanity/lib/client';
-import { blogPostsQuery, categoriesQuery } from '@/sanity/lib/queries';
-import { BlogPostResponse, CategoryResponse } from '@/sanity/lib/types';
+import { blogPostsQuery, categoriesQuery, pageViewsBySlugsQuery } from '@/sanity/lib/queries';
+import { BlogPostResponse, CategoryResponse, PageViewResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import BlogCard from '@/features/blogs/components/BlogCard';
 import Search from '@/features/filters/components/Search';
@@ -33,6 +33,40 @@ export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
       );
     }
 
+    // Fetch view counts for all blogs (no cache for real-time updates)
+    const slugs = blogs.map((blog) => blog.slug);
+    const pageViews =
+      slugs.length > 0
+        ? await sanityFetch<PageViewResponse[]>({
+            query: pageViewsBySlugsQuery,
+            params: { slugs },
+            tags: ['pageViews'],
+            cache: false,
+            revalidate: 0,
+          })
+        : [];
+
+    // Debug: Log fetched pageViews
+    if (process.env.NODE_ENV === 'development') {
+      console.log('[BlogGrid] Fetched pageViews:', pageViews);
+      console.log('[BlogGrid] Blog slugs:', slugs);
+    }
+
+    // Create a map of slug to view count for quick lookup
+    const viewCountMap = new Map(pageViews.map((pv) => [pv.slug, pv.count]));
+
+    // Merge view counts with blogs
+    const blogsWithViews = blogs.map((blog) => {
+      const viewCount = viewCountMap.get(blog.slug);
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`[BlogGrid] Blog "${blog.slug}": viewCount =`, viewCount);
+      }
+      return {
+        ...blog,
+        viewCount: viewCount !== undefined ? viewCount : undefined,
+      };
+    });
+
     return (
       <section id="blogs" className={`py-10 ${!readMore && 'mt-20 lg:mt-20'}`}>
         <div className="mx-auto max-w-[1450px] px-5 sm:px-7 lg:px-5">
@@ -51,7 +85,7 @@ export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
               icon="📝"
             />
           ) : (
-            <BlogCard blogs={blogs} readMore={readMore} categories={categories} />
+            <BlogCard blogs={blogsWithViews} readMore={readMore} categories={categories} />
           )}
         </div>
       </section>
