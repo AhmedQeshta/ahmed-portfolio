@@ -7,6 +7,7 @@ import {
 import { FeatureResponse, WorkExperienceResponse } from '@/sanity/lib/types';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { getCustomUrl, siteUrl } from '@/features/shard/utils/url';
 
 // Metadata generation function
 export async function generateWorkMetadata({
@@ -35,8 +36,7 @@ export async function generateWorkMetadata({
 
     if (!workExperience) return {};
 
-    const siteUrl = process.env.SITE_URL || 'https://ahmedqeshta.vercel.app';
-    const url = `${siteUrl}/works/${workExperience.slug}`;
+    const url = getCustomUrl(workExperience.slug, 'works');
     const title = `${workExperience.title} - Ahmed Qeshta`;
     const description =
       workExperience.description ||

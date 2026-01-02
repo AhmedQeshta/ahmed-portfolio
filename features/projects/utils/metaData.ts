@@ -1,3 +1,4 @@
+import { getCustomUrl } from '@/features/shard/utils/url';
 import { sanityFetch } from '@/sanity/lib/client';
 import { featuresQuery, projectBySlugQuery, projectsQuery } from '@/sanity/lib/queries';
 import { FeatureResponse, ProjectResponse } from '@/sanity/lib/types';
@@ -31,8 +32,7 @@ export async function generateProjectMetadata({
 
     if (!project) return {};
 
-    const siteUrl = process.env.SITE_URL || 'http://localhost:3000';
-    const url = `${siteUrl}/projects/${project.slug}`;
+    const url = getCustomUrl(project.slug, 'projects');
     const title = project.title;
     const description = project.description;
     const image = project.screenshot;
