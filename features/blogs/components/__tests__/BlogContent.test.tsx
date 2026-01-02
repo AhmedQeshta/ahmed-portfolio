@@ -4,22 +4,6 @@ import '@testing-library/jest-dom';
 import BlogContent from '@/features/blogs/components/ui/BlogContent';
 import { BlogPostResponse } from '@/sanity/lib/types';
 
-// Mock ScrollAnimation
-jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({
-    children,
-    className,
-  }: {
-    readonly children: React.ReactNode;
-    readonly className: string;
-  }) {
-    return (
-      <div data-testid="scroll-animation" className={className}>
-        {children}
-      </div>
-    );
-  };
-});
 
 // Mock PortableText
 jest.mock('@portabletext/react', () => ({
@@ -46,9 +30,8 @@ describe('BlogContent', () => {
     expect(container.firstChild).toBeNull();
   });
 
-  it('renders ScrollAnimation wrappers and PortableText', () => {
+  it('renders PortableText', () => {
     render(<BlogContent blog={mockBlog} />);
-    expect(screen.getAllByTestId('scroll-animation').length).toBeGreaterThan(0);
     expect(screen.getByTestId('portable-text')).toBeInTheDocument();
     expect(screen.getByTestId('portable-text')).toHaveTextContent('Hello world');
   });

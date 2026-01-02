@@ -4,7 +4,11 @@ import { formatDate, formatReadingTime } from '@/features/shard/utils/date';
 import { IBlogPostResponse } from '@/features/blogs/types/blog';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
-export default function PostDetails({ blog }: IBlogPostResponse) {
+interface PostDetailsProps extends IBlogPostResponse {
+  viewCount?: number;
+}
+
+export default function PostDetails({ blog, viewCount }: PostDetailsProps) {
   if (!blog) return null;
   const { isDark } = useTheme();
 
@@ -46,6 +50,14 @@ export default function PostDetails({ blog }: IBlogPostResponse) {
             <span className={isDark ? 'text-gray-400' : 'text-gray-500'}>Tags:</span>
             <span className={`font-medium ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
               {tags.length}
+            </span>
+          </div>
+        )}
+        {viewCount !== undefined && (
+          <div className="flex justify-between">
+            <span className={isDark ? 'text-gray-400' : 'text-gray-500'}>Views:</span>
+            <span className={`font-medium ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+              {viewCount.toLocaleString()}
             </span>
           </div>
         )}

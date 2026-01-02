@@ -101,7 +101,7 @@ describe('BaseInfo', () => {
       'sm:text-5xl',
       'lg:text-6xl',
       'font-bold',
-      'gradient-text',
+      'text-text-primary',
       'leading-tight',
     );
 
@@ -111,7 +111,7 @@ describe('BaseInfo', () => {
       'sm:text-2xl',
       'lg:text-3xl',
       'font-semibold',
-      'text-white/90',
+      'text-text-primary',
       'leading-tight',
     );
   });

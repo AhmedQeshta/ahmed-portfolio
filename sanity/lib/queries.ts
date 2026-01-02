@@ -242,3 +242,19 @@ export const categoriesQuery = groq`
     order
   }
 `;
+
+export const pageViewBySlugQuery = groq`
+  *[_type == "pageView" && slug == $slug][0] {
+    _id,
+    slug,
+    count
+  }
+`;
+
+export const pageViewsBySlugsQuery = groq`
+  *[_type == "pageView" && slug in $slugs] {
+    _id,
+    slug,
+    count
+  }
+`;

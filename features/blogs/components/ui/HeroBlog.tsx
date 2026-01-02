@@ -9,6 +9,8 @@ import { useTheme } from '@/features/theme/hooks/useTheme';
 import { getImageUrl } from '@/sanity/lib/image';
 
 export default function HeroBlog({ blog }: IBlogPostResponse) {
+  if (!blog) return null;
+  
   const { thumbnail, title, categories, publishedAt, readingTime, featured } = blog;
 
   const { isDark } = useTheme();

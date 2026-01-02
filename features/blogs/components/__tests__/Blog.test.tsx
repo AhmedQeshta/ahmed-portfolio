@@ -20,7 +20,7 @@ jest.mock('@/features/shard/components/ui/Tags', () => {
   };
 });
 
-jest.mock('@/features/blogs/components/ui/ShareCard', () => {
+jest.mock('@/features/shard/components/ui/ShareCard', () => {
   return function MockShareCard({ url, title }: IShareCard) {
     return <div data-testid="share-card">Share: {title}</div>;
   };
@@ -53,6 +53,13 @@ jest.mock('@/features/blogs/components/ui/HeroBlog', () => {
 jest.mock('@/features/blogs/components/ui/BlogContent', () => {
   return function MockBlogContent({ blog }: IBlog) {
     return <div data-testid="blog-content">Content: {blog.title}</div>;
+  };
+});
+
+// Mock useViews hook to avoid fetch errors in tests
+jest.mock('@/features/blogs/hooks/useViews', () => {
+  return function useViews() {
+    // No-op in tests
   };
 });
 

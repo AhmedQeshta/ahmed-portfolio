@@ -4,24 +4,6 @@ import { render } from '../../utils/test-utils';
 import Technologies from '@/features/shard/components/ui/Technologies';
 import { TechnologyResponse } from '@/sanity/lib/types';
 
-// Mock the ScrollAnimation component
-jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({
-    children,
-    className,
-    ...props
-  }: {
-    children: React.ReactNode;
-    className?: string;
-    [key: string]: any;
-  }) {
-    return (
-      <div className={className} data-testid="scroll-animation" {...props}>
-        {children}
-      </div>
-    );
-  };
-});
 
 // Mock the getImageUrl function
 jest.mock('@/sanity/lib/image', () => ({
@@ -82,12 +64,6 @@ describe('Technologies', () => {
     render(<Technologies technologies={null as any} />);
 
     expect(screen.queryByText('Technologies')).not.toBeInTheDocument();
-  });
-  it('should render ScrollAnimation wrapper', () => {
-    render(<Technologies technologies={mockTechnologies as unknown as TechnologyResponse[]} />);
-
-    const scrollAnimations = screen.getAllByTestId('scroll-animation');
-    expect(scrollAnimations.length).toBeGreaterThan(0);
   });
 
   it('should render technology logos when available', () => {

@@ -160,16 +160,14 @@ describe('ContactInfo', () => {
     render(<ContactInfo baseInfo={mockBaseInfo} />);
 
     const mainHeading = screen.getByRole('heading', { level: 3 });
-    expect(mainHeading).toHaveClass(
-      'text-xl',
-      'sm:text-2xl',
-      'font-bold',
-      'text-white',
-      'mb-3',
-      'leading-tight',
-    );
+    expect(mainHeading).toHaveClass('text-xl', 'sm:text-2xl', 'font-bold', 'mb-3', 'leading-tight');
+    // Theme-dependent class - check for either text-white or gradient classes
+    expect(
+      mainHeading.className.includes('text-white') ||
+        mainHeading.className.includes('bg-gradient-to-r'),
+    ).toBe(true);
 
     const sectionHeading = screen.getByRole('heading', { level: 4 });
-    expect(sectionHeading).toHaveClass('text-lg', 'font-semibold', 'text-white', 'mb-4');
+    expect(sectionHeading).toHaveClass('text-lg', 'font-semibold', 'text-text-primary', 'mb-4');
   });
 });

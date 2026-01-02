@@ -6,7 +6,8 @@ import { technology } from '@/sanity/schemaTypes/technology';
 import { category } from '@/sanity/schemaTypes/category';
 import { baseInfo } from '@/sanity/schemaTypes/baseInfo';
 import { feature } from '@/sanity/schemaTypes/feature';
+import { pageView } from '@/sanity/schemaTypes/pageView';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [technology, workExperience, project, blogPost, category, baseInfo, feature],
+  types: [technology, workExperience, project, blogPost, category, baseInfo, feature, pageView],
 };

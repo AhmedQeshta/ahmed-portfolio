@@ -12,11 +12,14 @@ import BackgroundEffects from '@/features/shard/components/ui/BackgroundEffects'
 import { IBlog } from '@/features/blogs/types/blog';
 import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
 import { useTheme } from '@/features/theme/hooks/useTheme';
+import useViews from '@/features/blogs/hooks/useViews';
 
-export default function Blog({ blog, latestBlogs, relatedBlogs }: IBlog) {
+export default function Blog({ blog, latestBlogs, relatedBlogs, viewCount }: IBlog) {
   const { technologies, tags, description, slug, title } = blog;
   const { isDark } = useTheme();
   const url = `${process.env.SITE_URL ?? 'https://ahmedqeshta.tech'}/blogs/${slug}`;
+
+  useViews(slug);
 
   return (
     <div
@@ -73,7 +76,7 @@ export default function Blog({ blog, latestBlogs, relatedBlogs }: IBlog) {
               <Tags tags={tags} />
 
               {/* Blog Stats Card */}
-              <PostDetails blog={blog} />
+              <PostDetails blog={blog} viewCount={viewCount} />
             </div>
           </div>
         </div>

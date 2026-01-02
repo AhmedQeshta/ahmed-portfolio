@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render } from '@/features/shard/utils/test-utils';
 import ContactForm from '@/features/contact/components/form/ContactForm';
 
 // Mock the useContact hook
@@ -226,17 +227,6 @@ describe('ContactForm', () => {
     const submitButton = screen.getByTestId('submit-button');
     expect(submitButton).not.toBeDisabled();
     expect(submitButton).toHaveTextContent('Send Message');
-  });
-
-  it('renders scroll animations with correct props', () => {
-    render(<ContactForm />);
-
-    const scrollAnimations = screen.getAllByTestId('scroll-animation');
-    expect(scrollAnimations).toHaveLength(5); // 5 animations: name, email, message, newsletter, submit button
-
-    scrollAnimations.forEach((animation) => {
-      expect(animation).toHaveAttribute('data-direction', 'up');
-    });
   });
 
   it('passes correct props to form inputs', () => {

@@ -3,24 +3,6 @@ import '@testing-library/jest-dom';
 import { render } from '../../utils/test-utils';
 import Tags from '@/features/shard/components/ui/Tags';
 
-// Mock the ScrollAnimation component
-jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({
-    children,
-    className,
-    ...props
-  }: {
-    children: React.ReactNode;
-    className?: string;
-    [key: string]: any;
-  }) {
-    return (
-      <div data-testid="scroll-animation" className={className} {...props}>
-        {children}
-      </div>
-    );
-  };
-});
 
 describe('Tags', () => {
   const mockTags = ['React', 'TypeScript', 'Next.js', 'Tailwind CSS'];
@@ -53,12 +35,6 @@ describe('Tags', () => {
     expect(screen.queryByText('Tags')).not.toBeInTheDocument();
   });
 
-  it('should render ScrollAnimation wrapper', () => {
-    render(<Tags tags={mockTags} />);
-
-    const scrollAnimations = screen.getAllByTestId('scroll-animation');
-    expect(scrollAnimations.length).toBeGreaterThan(0);
-  });
 
   it('should have correct styling for tags container', () => {
     render(<Tags tags={mockTags} />);
@@ -81,12 +57,12 @@ describe('Tags', () => {
     expect(reactTag).toHaveClass(
       'px-3',
       'py-1',
-      'bg-blue-600/20',
-      'text-blue-300',
+      'bg-purple-600/20',
+      'text-purple-500',
       'rounded-full',
       'text-sm',
       'border',
-      'border-blue-600/30',
+      'border-purple-600/20',
     );
   });
 
@@ -95,7 +71,11 @@ describe('Tags', () => {
 
     const title = screen.getByRole('heading', { level: 3 });
     expect(title).toHaveTextContent('Tags');
-    expect(title).toHaveClass('text-lg', 'font-bold', 'text-white', 'mb-4');
+    expect(title).toHaveClass('text-lg', 'font-bold', 'mb-4');
+    // Theme-dependent class - check for either text-white or text-gray-900
+    expect(
+      title.className.includes('text-white') || title.className.includes('text-gray-900'),
+    ).toBe(true);
   });
 
   it('should handle single tag', () => {

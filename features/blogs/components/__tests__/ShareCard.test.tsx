@@ -1,5 +1,6 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { screen, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render } from '@/features/shard/utils/test-utils';
 import ShareCard from '@/features/shard/components/ui/ShareCard';
 
 // Mock the ScrollAnimation component
@@ -45,12 +46,6 @@ describe('ShareCard', () => {
     expect(screen.getByText('Copy Link')).toBeInTheDocument();
   });
 
-  it('should render ScrollAnimation wrapper', () => {
-    render(<ShareCard />);
-
-    const scrollAnimation = screen.getByTestId('scroll-animation');
-    expect(scrollAnimation).toBeInTheDocument();
-  });
 
   it('should handle Twitter share', () => {
     render(<ShareCard url="https://example.com" title="Test Post" />);

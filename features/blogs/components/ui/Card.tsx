@@ -10,7 +10,7 @@ import { ICardProps } from '@/features/blogs/types/blog';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Card({
-  blog: { slug, thumbnail, title, technologies, publishedAt, readingTime, description },
+  blog: { slug, thumbnail, title, technologies, publishedAt, readingTime, description, viewCount },
 }: ICardProps) {
   const { isDark } = useTheme();
 
@@ -65,7 +65,12 @@ export default function Card({
 
             {/* Call to Action - Visual only, no separate link */}
             <div
-              className={`flex items-center justify-end pt-4 border-t ${isDark ? 'border-white/10' : 'border-black/10'} mt-auto`}>
+              className={`flex items-center justify-between pt-4 border-t ${isDark ? 'border-white/10' : 'border-black/10'} mt-auto`}>
+              {viewCount !== undefined && viewCount > 0 && (
+                <span className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                  {viewCount.toLocaleString()} views
+                </span>
+              )}
               <div className="flex items-center gap-2 text-text-accent text-sm font-medium group-hover:text-white transition-colors">
                 <span>Read Article</span>
                 <ArrowRight className="w-4 h-4 text-text-accent group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
