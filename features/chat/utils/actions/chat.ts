@@ -54,11 +54,6 @@ export async function sendChatMessage(prevState: IFormState, formData: FormData)
         });
 
         aiResponse = response.content;
-
-        // Log usage for monitoring (optional)
-        if (response.usage) {
-          console.log('AI Usage:', response.usage);
-        }
       } catch (aiError) {
         console.error('AI generation failed, using fallback:', aiError);
         aiResponse = await getFallbackResponse(message);

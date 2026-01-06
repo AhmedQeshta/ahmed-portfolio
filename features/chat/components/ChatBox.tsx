@@ -1,12 +1,12 @@
 'use client';
 import { IChatBoxProps, IChatBoxRef } from '@/features/chat/types/chat-system';
 import Message from '@/features/chat/components/Message';
-import { forwardRef } from 'react';
+import { forwardRef, Ref } from 'react';
 import useChatBox from '../hooks/useChatBox';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
-const ChatBox = forwardRef<IChatBoxRef, IChatBoxProps>(({ messages }, ref) => {
-  const { chatContainerRef } = useChatBox(messages, ref);
+function ChatBox({ messages }: IChatBoxProps, ref: IChatBoxRef) {
+  const { chatContainerRef } = useChatBox(messages, ref as unknown as Ref<IChatBoxRef>);
   const { isDark } = useTheme();
 
   return (
@@ -20,6 +20,6 @@ const ChatBox = forwardRef<IChatBoxRef, IChatBoxProps>(({ messages }, ref) => {
       </div>
     </div>
   );
-});
+}
 
 export default ChatBox;

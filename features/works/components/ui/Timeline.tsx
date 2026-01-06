@@ -6,8 +6,8 @@ import { Calendar } from 'lucide-react';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Timeline({ work }: IWorkResponse) {
-  if (!work) return null;
   const { isDark } = useTheme();
+  if (!work) return null;
 
   const { endDate, startDate, current } = work;
 

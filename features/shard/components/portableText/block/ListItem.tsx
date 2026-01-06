@@ -5,7 +5,7 @@ import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function ListItem({ children }: IListBullet) {
   const { isDark } = useTheme();
-
+  if (!children) return null;
   return (
     <li className={`leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{children}</li>
   );

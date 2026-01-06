@@ -6,8 +6,8 @@ import { IActionButtons } from '@/features/shard/types/common';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function ActionButtons({ listLinks }: IActionButtons) {
-  if (!listLinks) return null;
   const { isDark } = useTheme();
+  if (!listLinks) return null;
 
   return (
     <div className="grid grid-cols-2 gap-4">

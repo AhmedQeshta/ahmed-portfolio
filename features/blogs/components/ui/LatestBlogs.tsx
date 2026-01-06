@@ -8,8 +8,8 @@ import OptimizedLink from '@/features/shard/components/ui/OptimizedLink';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function LatestBlogs({ latestBlogs }: ILatestBlogs) {
-  if (!latestBlogs || latestBlogs.length === 0) return null;
   const { isDark } = useTheme();
+  if (!latestBlogs || latestBlogs.length === 0) return null;
 
   return (
     <div

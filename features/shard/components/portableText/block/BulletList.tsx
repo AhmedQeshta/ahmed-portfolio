@@ -5,7 +5,7 @@ import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function BulletList({ children }: IListBullet) {
   const { isDark } = useTheme();
-
+  if (!children) return null;
   return (
     <ul
       className={`list-disc list-inside mb-4 space-y-2 ${

@@ -7,8 +7,8 @@ import { Calendar, ExternalLink, Github } from 'lucide-react';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function TimelineProject({ project }: IProjectResponse) {
-  if (!project) return null;
   const { isDark } = useTheme();
+  if (!project) return null;
 
   const { startDate, endDate } = project;
 

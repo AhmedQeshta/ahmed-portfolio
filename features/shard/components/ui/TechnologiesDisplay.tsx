@@ -5,8 +5,8 @@ import { useTheme } from '@/features/theme/hooks/useTheme';
 import { ITechnologiesDisplay } from '@/features/shard/types/technology';
 
 export default function TechnologiesDisplay({ technologies }: ITechnologiesDisplay) {
-  if (!technologies || technologies.length === 0) return null;
   const { isDark } = useTheme();
+  if (!technologies || technologies.length === 0) return null;
 
   return (
     <div className="mb-4">

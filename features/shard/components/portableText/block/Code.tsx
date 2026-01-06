@@ -5,7 +5,7 @@ import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Code({ children }: IMarkCode) {
   const { isDark } = useTheme();
-
+  if (!children) return null;
   return (
     <code
       className={`px-2 py-1 rounded text-sm font-mono ${

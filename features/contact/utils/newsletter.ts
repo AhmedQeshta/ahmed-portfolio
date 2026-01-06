@@ -33,10 +33,7 @@ export const mailChimpRequest = async ({ email, name, newsletter }: IMailChimpRe
 
     if (!response.ok) {
       const mailChimpError = await response.json();
-      console.log('Mail Chimp subscription failed:', mailChimpError);
       throw new Error(mailChimpError);
-    } else {
-      console.log('Successfully subscribed to newsletter:', email);
     }
   } catch (error) {
     console.error('Newsletter subscription error:', error);

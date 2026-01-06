@@ -46,21 +46,12 @@ export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
           })
         : [];
 
-    // Debug: Log fetched pageViews
-    if (process.env.NODE_ENV === 'development') {
-      console.log('[BlogGrid] Fetched pageViews:', pageViews);
-      console.log('[BlogGrid] Blog slugs:', slugs);
-    }
-
     // Create a map of slug to view count for quick lookup
     const viewCountMap = new Map(pageViews.map((pv) => [pv.slug, pv.count]));
 
     // Merge view counts with blogs
     const blogsWithViews = blogs.map((blog) => {
       const viewCount = viewCountMap.get(blog.slug);
-      if (process.env.NODE_ENV === 'development') {
-        console.log(`[BlogGrid] Blog "${blog.slug}": viewCount =`, viewCount);
-      }
       return {
         ...blog,
         viewCount: viewCount !== undefined ? viewCount : undefined,

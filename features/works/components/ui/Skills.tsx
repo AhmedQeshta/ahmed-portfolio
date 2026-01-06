@@ -4,8 +4,8 @@ import { IWorkResponse } from '@/features/works/types/work';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Skills({ work: { skills } }: IWorkResponse) {
-  if (!skills) return null;
   const { isDark } = useTheme();
+  if (!skills) return null;
 
   return (
     <div

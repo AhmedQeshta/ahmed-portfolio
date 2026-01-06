@@ -8,8 +8,8 @@ import OptimizedLink from '@/features/shard/components/ui/OptimizedLink';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function RelatedBlogs({ relatedBlogs }: IRelatedBlogs) {
-  if (!relatedBlogs || relatedBlogs.length === 0) return null;
   const { isDark } = useTheme();
+  if (!relatedBlogs || relatedBlogs.length === 0) return null;
 
   return (
     <div

@@ -7,11 +7,10 @@ import useCopy from '@/features/shard/hooks/useCopy';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function ButtonCopy({ value }: ICodeBlock) {
-  if (!value?.code) return null;
-
   const { copied, handleCopyCode } = useCopy({ value });
   const { isDark } = useTheme();
 
+  if (!value?.code) return null;
   return (
     <button
       onClick={handleCopyCode}
