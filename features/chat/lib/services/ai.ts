@@ -3,10 +3,16 @@ import { AIResponse, ChatMessage } from '@/features/chat/types/chat-system';
 import { getCachedSiteContent } from '@/features/chat/lib/services/sanity-content';
 import { examplesResponses, fallbackResponse, instructions } from '@/features/chat/lib/constant';
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-});
+// Lazy initialization of OpenAI client - only create when API key exists
+function getOpenAIClient(): OpenAI | null {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey || !apiKey.startsWith('sk-')) {
+    return null;
+  }
+  return new OpenAI({
+    apiKey,
+  });
+}
 
 /**
  * Generate AI response using OpenAI GPT
@@ -37,6 +43,14 @@ ${examplesResponses}\n
       content: userMessage,
     },
   ];
+
+  const openai = getOpenAIClient();
+  if (!openai) {
+    // No API key configured, use fallback
+    return {
+      content: await getFallbackResponse(userMessage),
+    };
+  }
 
   try {
     const completion = await openai.chat.completions.create({
@@ -69,7 +83,7 @@ ${examplesResponses}\n
 
     // Fallback response
     return {
-      content: fallbackResponse,
+      content: await getFallbackResponse(userMessage),
     };
   }
 }

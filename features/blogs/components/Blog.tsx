@@ -14,6 +14,7 @@ import NavigationHeader from '@/features/shard/components/ui/NavigationHeader';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 import useViews from '@/features/blogs/hooks/useViews';
 import { getCustomUrl } from '@/features/shard/utils/url';
+import { AdSlot } from '@/features/shard/components/ui/AdSlot';
 
 export default function Blog({ blog, latestBlogs, relatedBlogs, viewCount }: IBlog) {
   const { technologies, tags, description, slug, title } = blog;
@@ -62,6 +63,13 @@ export default function Blog({ blog, latestBlogs, relatedBlogs, viewCount }: IBl
             <div className="space-y-8">
               {/* Share Card */}
               <ShareCard url={getCustomUrl(slug, 'blogs')} title={title} />
+
+              {/* Ad Slot */}
+              {process.env.NEXT_PUBLIC_GOOGLE_ADS_CLIENT_ID && (
+                <div className="w-full">
+                  <AdSlot slot="8788870054" />
+                </div>
+              )}
 
               {/* Latest Blogs Card */}
               <LatestBlogs latestBlogs={latestBlogs} />

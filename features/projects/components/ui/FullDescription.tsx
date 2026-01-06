@@ -6,13 +6,16 @@ import { portableTextComponents } from '@/features/shard/components/ui/PortableT
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function FullDescription({ project }: IProjectResponse) {
-  if (!project) return null;
   const { isDark } = useTheme();
 
   const { fullDescription } = project;
 
   // Handle empty or invalid fullDescription
-  if (!fullDescription || (Array.isArray(fullDescription) && fullDescription.length === 0)) {
+  if (
+    !project ||
+    !fullDescription ||
+    (Array.isArray(fullDescription) && fullDescription.length === 0)
+  ) {
     return null;
   }
 

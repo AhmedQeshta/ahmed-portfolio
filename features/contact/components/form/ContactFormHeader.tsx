@@ -11,7 +11,7 @@ export default function ContactFormHeader() {
         Send Message
       </h3>
       <p className="text-text-secondary">
-        Fill out the form below and I'll get back to you as soon as possible.
+        Fill out the form below and I&apos;ll get back to you as soon as possible.
       </p>
     </div>
   );

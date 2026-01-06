@@ -7,8 +7,8 @@ import Image from 'next/image';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function CompanyInformation({ work: { logo, company, companyUrl } }: IWorkResponse) {
-  if (!logo) return null;
   const { isDark } = useTheme();
+  if (!logo || !company) return null;
 
   return (
     <div

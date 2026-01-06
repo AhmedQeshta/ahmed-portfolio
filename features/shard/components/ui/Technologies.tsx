@@ -7,8 +7,8 @@ import { ITechnologiesResponse } from '@/features/shard/types/technology';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Technologies({ technologies }: ITechnologiesResponse) {
-  if (!technologies || technologies.length === 0) return null;
   const { isDark } = useTheme();
+  if (!technologies || technologies.length === 0) return null;
 
   return (
     <div

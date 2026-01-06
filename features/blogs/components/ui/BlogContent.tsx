@@ -4,10 +4,12 @@ import { PortableText, PortableTextComponents } from '@portabletext/react';
 import { IBlogPostResponse } from '@/features/blogs/types/blog';
 import { portableTextComponents } from '@/features/shard/components/ui/PortableTextComponents';
 import { useTheme } from '@/features/theme/hooks/useTheme';
+import { AdSlot } from '@/features/shard/components/ui/AdSlot';
 
 export default function BlogContent({ blog }: IBlogPostResponse) {
-  if (!blog) return null;
   const { isDark } = useTheme();
+
+  if (!blog) return null;
 
   const { content } = blog;
 
@@ -28,6 +30,13 @@ export default function BlogContent({ blog }: IBlogPostResponse) {
           value={content}
           components={portableTextComponents as unknown as PortableTextComponents}
         />
+
+        {/* Ad Slot */}
+        {process.env.NEXT_PUBLIC_GOOGLE_ADS_CLIENT_ID && (
+          <div className="w-full mt-8">
+            <AdSlot slot="8788870054" layout="in-article" />
+          </div>
+        )}
       </div>
     </div>
   );

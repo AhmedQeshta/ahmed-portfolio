@@ -20,8 +20,8 @@ export default function ImagePreview({
   gallery,
   title,
 }: IImagePreviewProps) {
-  if (!gallery || gallery.length === 0 || selectedImageIndex === null) return null;
   const { isDark } = useTheme();
+  if (!gallery || gallery.length === 0 || selectedImageIndex === null) return null;
 
   const currentItem = gallery[selectedImageIndex];
   const { isVideo } = fileProcess(currentItem);

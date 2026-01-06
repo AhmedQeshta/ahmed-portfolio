@@ -20,23 +20,19 @@ const STATIC_FILES = [
 ];
 
 self.addEventListener('install', (event) => {
-  console.log('Service Worker installing...');
   event.waitUntil(
     caches
       .open(STATIC_CACHE)
       .then((cache) => {
-        console.log('Caching static files');
         return cache.addAll(STATIC_FILES);
       })
       .then(() => {
-        console.log('Service Worker installed');
         return self.skipWaiting();
       }),
   );
 });
 
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker activating...');
   event.waitUntil(
     caches
       .keys()
@@ -44,14 +40,12 @@ self.addEventListener('activate', (event) => {
         return Promise.all(
           cacheNames.map((cacheName) => {
             if (cacheName !== STATIC_CACHE && cacheName !== DYNAMIC_CACHE) {
-              console.log('Deleting old cache:', cacheName);
               return caches.delete(cacheName);
             }
           }),
         );
       })
       .then(() => {
-        console.log('Service Worker activated');
         return self.clients.claim();
       }),
   );

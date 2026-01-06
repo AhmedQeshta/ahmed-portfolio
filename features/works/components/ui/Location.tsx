@@ -5,8 +5,8 @@ import { MapPin } from 'lucide-react';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Location({ work: { locationType, location } }: IWorkResponse) {
-  if (!location) return null;
   const { isDark } = useTheme();
+  if (!location) return null;
 
   return (
     <div

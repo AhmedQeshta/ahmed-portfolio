@@ -5,7 +5,7 @@ import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Strong({ children }: IMarkStrong) {
   const { isDark } = useTheme();
-
+  if (!children) return null;
   return (
     <strong className={`font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{children}</strong>
   );

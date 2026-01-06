@@ -6,8 +6,8 @@ import { getLanguageColor } from '@/features/shard/utils/statusColor';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function CodeBlock({ value }: ICodeBlock) {
-  if (!value?.code) return null;
   const { isDark } = useTheme();
+  if (!value?.code) return null;
 
   const languageColors = getLanguageColor(value.language || '');
 

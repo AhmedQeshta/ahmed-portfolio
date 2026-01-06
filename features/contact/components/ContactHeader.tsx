@@ -18,7 +18,7 @@ export default function ContactHeader() {
       <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
         <span
           className={`${isDark ? 'gradient-text' : 'bg-gradient-to-r from-purple-500 via-pink-500 to-blue-300 bg-clip-text text-transparent '}`}>
-          Let's Create
+          Let&apos;s Create
         </span>
         <br />
         <span
@@ -28,8 +28,8 @@ export default function ContactHeader() {
       </h2>
 
       <p className="text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-        Ready to bring your ideas to life? Whether it's a new project, collaboration, or just a
-        friendly chat about technology, I'm here to help.
+        Ready to bring your ideas to life? Whether it&apos;s a new project, collaboration, or just a
+        friendly chat about technology, I&apos;m here to help.
       </p>
     </div>
   );

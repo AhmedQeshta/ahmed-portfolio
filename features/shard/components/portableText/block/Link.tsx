@@ -5,7 +5,7 @@ import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Link({ children, value }: IMarkLinkProps) {
   const { isDark } = useTheme();
-
+  if (!children) return null;
   return (
     <a
       href={value?.href}

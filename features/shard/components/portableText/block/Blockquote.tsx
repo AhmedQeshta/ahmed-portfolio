@@ -5,7 +5,7 @@ import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Blockquote({ children }: IBlockQuote) {
   const { isDark } = useTheme();
-
+  if (!children) return null;
   return (
     <blockquote
       className={`border-l-4 border-purple-500 pl-6 py-4 my-6 rounded-r-lg ${

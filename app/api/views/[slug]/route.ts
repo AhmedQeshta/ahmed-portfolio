@@ -6,7 +6,6 @@ export async function POST(
   { params }: { params: Promise<{ slug: string }> },
 ) {
   try {
-    console.log('request', request);
     const { slug } = await params;
 
     // Validate slug exists

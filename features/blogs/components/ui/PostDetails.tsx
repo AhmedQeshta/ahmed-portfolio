@@ -9,8 +9,8 @@ interface PostDetailsProps extends IBlogPostResponse {
 }
 
 export default function PostDetails({ blog, viewCount }: PostDetailsProps) {
-  if (!blog) return null;
   const { isDark } = useTheme();
+  if (!blog) return null;
 
   const { publishedAt, readingTime, categories, tags } = blog;
 

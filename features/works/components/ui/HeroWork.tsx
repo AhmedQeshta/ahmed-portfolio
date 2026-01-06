@@ -6,9 +6,9 @@ import { Building, ExternalLink } from 'lucide-react';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function HeroWork({ work }: IWorkResponse) {
+  const { isDark } = useTheme();
   if (!work) return null;
   const { employmentType, current, locationType, title, companyUrl, company, description } = work;
-  const { isDark } = useTheme();
 
   return (
     <div className="relative h-[50vh] overflow-hidden">
@@ -88,7 +88,8 @@ export default function HeroWork({ work }: IWorkResponse) {
                 <ExternalLink size={24} />
               </a>
             ) : (
-              <span className={`text-2xl md:text-3xl ${isDark ? 'text-gray-200' : 'text-gray-800'}`}>
+              <span
+                className={`text-2xl md:text-3xl ${isDark ? 'text-gray-200' : 'text-gray-800'}`}>
                 {company}
               </span>
             )}

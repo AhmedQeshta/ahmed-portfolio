@@ -12,10 +12,12 @@ export function AdSlot({
   slot,
   format = 'auto',
   responsive = true,
+  layout,
 }: {
   slot: string;
   format?: string;
   responsive?: boolean;
+  layout?: string;
 }) {
   useEffect(() => {
     try {
@@ -27,9 +29,10 @@ export function AdSlot({
     <ins
       className="adsbygoogle"
       style={{ display: 'block' }}
-      data-ad-client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT}
+      data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADS_CLIENT_ID}
       data-ad-slot={slot}
       data-ad-format={format}
+      data-ad-layout={layout}
       data-full-width-responsive={responsive ? 'true' : 'false'}
     />
   );

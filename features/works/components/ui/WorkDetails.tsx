@@ -5,9 +5,8 @@ import { IWorkResponse } from '@/features/works/types/work';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function WorkDetails({ work }: IWorkResponse) {
-  if (!work) return null;
   const { isDark } = useTheme();
-
+  if (!work) return null;
   const { employmentType, locationType, current } = work;
   return (
     <div

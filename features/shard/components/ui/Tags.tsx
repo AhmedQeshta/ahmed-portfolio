@@ -4,8 +4,8 @@ import { ITags } from '@/features/shard/types/common';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Tags({ tags }: ITags) {
-  if (!tags || tags.length === 0) return null;
   const { isDark } = useTheme();
+  if (!tags || tags.length === 0) return null;
 
   return (
     <div
@@ -15,9 +15,7 @@ export default function Tags({ tags }: ITags) {
           : 'bg-white/80 backdrop-blur-sm border border-gray-200'
       } rounded-xl p-8`}
       data-testid="tags-container">
-      <h3 className={`text-lg font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-        Tags
-      </h3>
+      <h3 className={`text-lg font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Tags</h3>
       <div className="flex flex-wrap gap-2">
         {tags.map((tag, index) => (
           <div

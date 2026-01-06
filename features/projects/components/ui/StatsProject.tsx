@@ -5,8 +5,8 @@ import { IProjectResponse } from '@/features/projects/types/project';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function StatsProject({ project }: IProjectResponse) {
-  if (!project) return null;
   const { isDark } = useTheme();
+  if (!project) return null;
 
   const { status, technologies, gallery } = project;
 

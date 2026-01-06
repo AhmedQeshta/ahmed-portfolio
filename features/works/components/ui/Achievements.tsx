@@ -5,8 +5,8 @@ import { Award } from 'lucide-react';
 import { useTheme } from '@/features/theme/hooks/useTheme';
 
 export default function Achievements({ work: { achievements } }: IWorkResponse) {
-  if (!achievements || achievements.length == 0) return null;
   const { isDark } = useTheme();
+  if (!achievements || achievements.length == 0) return null;
 
   return (
     <div
