@@ -3,7 +3,7 @@ import { useState, useActionState, FormEvent } from 'react';
 import { z } from 'zod';
 import { IContactInputs, IErrors } from '@/features/contact/types/contact';
 import { contactSchema } from '@/features/contact/utils/schema';
-import { useRecaptcha } from './useRecaptcha';
+import { useRecaptcha } from '@/features/contact/hooks/useRecaptcha';
 
 export function useContact() {
   const initialStatus = {

@@ -54,8 +54,8 @@ describe('HeroBlog', () => {
     thumbnail: 'img.jpg',
     technologies: [],
     categories: [
-      { _id: 'cat1', name: 'Tech', order: 1, slug: 'tech' },
-      { _id: 'cat2', name: 'News', order: 2, slug: 'news' },
+      { _id: 'cat1', name: 'Tech', order: 1, slug: 'tech', isForFilter: false },
+      { _id: 'cat2', name: 'News', order: 2, slug: 'news', isForFilter: false },
     ],
     publishedAt: '2023-01-01',
     readingTime: 5,

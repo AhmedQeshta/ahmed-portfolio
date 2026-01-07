@@ -4,7 +4,6 @@ import '@testing-library/jest-dom';
 import PostDetails from '@/features/blogs/components/ui/PostDetails';
 import { BlogPostResponse } from '@/sanity/lib/types';
 
-
 // Mock date utils
 jest.mock('@/features/shard/utils/date', () => ({
   formatDate: () => 'Jan 1, 2023',
@@ -21,8 +20,8 @@ describe('PostDetails', () => {
     thumbnail: 'img.jpg',
     technologies: [],
     categories: [
-      { _id: 'cat1', name: 'Tech', order: 1, slug: 'tech' },
-      { _id: 'cat2', name: 'News', order: 2, slug: 'news' },
+      { _id: 'cat1', name: 'Tech', order: 1, slug: 'tech', isForFilter: false },
+      { _id: 'cat2', name: 'News', order: 2, slug: 'news', isForFilter: false },
     ],
     tags: ['tag1', 'tag2'],
     publishedAt: '2023-01-01',

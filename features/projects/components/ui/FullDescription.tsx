@@ -8,14 +8,15 @@ import { useTheme } from '@/features/theme/hooks/useTheme';
 export default function FullDescription({ project }: IProjectResponse) {
   const { isDark } = useTheme();
 
+  // Handle null or invalid project
+  if (!project) {
+    return null;
+  }
+
   const { fullDescription } = project;
 
   // Handle empty or invalid fullDescription
-  if (
-    !project ||
-    !fullDescription ||
-    (Array.isArray(fullDescription) && fullDescription.length === 0)
-  ) {
+  if (!fullDescription || (Array.isArray(fullDescription) && fullDescription.length === 0)) {
     return null;
   }
 

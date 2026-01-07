@@ -103,9 +103,11 @@ const mockProject: IProjectResponse['project'] = {
   order: 0,
 };
 
+const mockCategories = [{ _id: '1', name: 'Web', order: 1, slug: 'web', isForFilter: false }];
+
 describe('ProjectCard', () => {
   it('should render project article with semantic structure', () => {
-    render(<ProjectCard projects={[mockProject]} readMore={false} />);
+    render(<ProjectCard projects={[mockProject]} readMore={false} categories={mockCategories} />);
 
     const article = screen.getByRole('article');
     expect(article).toBeInTheDocument();
@@ -113,7 +115,7 @@ describe('ProjectCard', () => {
   });
 
   it('should render project title as heading', () => {
-    render(<ProjectCard projects={[mockProject]} readMore={false} />);
+    render(<ProjectCard projects={[mockProject]} readMore={false} categories={mockCategories} />);
 
     const heading = screen.getByRole('heading', { level: 3 });
     expect(heading).toBeInTheDocument();
@@ -121,7 +123,7 @@ describe('ProjectCard', () => {
   });
 
   it('should render project description', () => {
-    render(<ProjectCard projects={[mockProject]} readMore={false} />);
+    render(<ProjectCard projects={[mockProject]} readMore={false} categories={mockCategories} />);
 
     expect(
       screen.getByText('This is a test project description that should be displayed in the card.'),
@@ -129,7 +131,7 @@ describe('ProjectCard', () => {
   });
 
   it('should render formatted duration with semantic time element', () => {
-    render(<ProjectCard projects={[mockProject]} readMore={false} />);
+    render(<ProjectCard projects={[mockProject]} readMore={false} categories={mockCategories} />);
 
     const timeElement = screen.getByRole('time');
     expect(timeElement).toBeInTheDocument();

@@ -11,13 +11,31 @@ declare global {
 }
 
 /**
+ * Get reCAPTCHA site key from environment variables
+ * NEXT_PUBLIC_ vars are embedded at build time in Next.js
+ */
+function getRecaptchaSiteKey(): string | undefined {
+  // Access the env var directly - it's embedded at build time
+  const key = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
+  // Return undefined if key is empty string, null, or undefined
+  if (!key || typeof key !== 'string' || key.trim() === '') {
+    return undefined;
+  }
+
+  return key;
+}
+
+/**
  * Custom hook to handle Google reCAPTCHA v3
  * Loads the reCAPTCHA script and provides execute function
  */
 export function useRecaptcha() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isReady, setIsReady] = useState(false);
-  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
+  // Use useMemo to ensure siteKey is stable and only computed once
+  const siteKey = getRecaptchaSiteKey();
 
   // Load reCAPTCHA script
   useEffect(() => {

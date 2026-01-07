@@ -8,9 +8,10 @@ describe('SuccessMessage', () => {
   const mockState = {
     message: 'Your message has been sent successfully!',
   };
+  const mockResetForm = jest.fn();
 
   it('renders success message with correct content', () => {
-    render(<SuccessMessage state={mockState} />);
+    render(<SuccessMessage state={mockState} resetForm={mockResetForm} />);
 
     expect(screen.getByText('✓ Message Sent!')).toBeInTheDocument();
     expect(screen.getByText('Your message has been sent successfully!')).toBeInTheDocument();
@@ -18,21 +19,21 @@ describe('SuccessMessage', () => {
   });
 
   it('displays the success icon and message', () => {
-    render(<SuccessMessage state={mockState} />);
+    render(<SuccessMessage state={mockState} resetForm={mockResetForm} />);
 
     const successIcon = screen.getByText('✓ Message Sent!');
     expect(successIcon).toHaveClass('text-green-400', 'mb-2');
   });
 
   it('displays the state message with correct styling', () => {
-    render(<SuccessMessage state={mockState} />);
+    render(<SuccessMessage state={mockState} resetForm={mockResetForm} />);
 
     const message = screen.getByText('Your message has been sent successfully!');
     expect(message).toHaveClass('text-white');
   });
 
   it('renders the send another message button', () => {
-    render(<SuccessMessage state={mockState} />);
+    render(<SuccessMessage state={mockState} resetForm={mockResetForm} />);
 
     const button = screen.getByRole('button', { name: 'Send Another Message' });
     expect(button).toBeInTheDocument();
@@ -54,7 +55,7 @@ describe('SuccessMessage', () => {
       message: 'Thank you for contacting us! We will get back to you soon.',
     };
 
-    render(<SuccessMessage state={customState} />);
+    render(<SuccessMessage state={customState} resetForm={mockResetForm} />);
 
     expect(
       screen.getByText('Thank you for contacting us! We will get back to you soon.'),
@@ -66,7 +67,7 @@ describe('SuccessMessage', () => {
       message: '',
     };
 
-    render(<SuccessMessage state={emptyState} />);
+    render(<SuccessMessage state={emptyState} resetForm={mockResetForm} />);
 
     expect(screen.getByText('✓ Message Sent!')).toBeInTheDocument();
     // Check that the message paragraph exists but is empty
@@ -79,7 +80,7 @@ describe('SuccessMessage', () => {
       message: 'Message sent! 🎉 Please check your email for confirmation.',
     };
 
-    render(<SuccessMessage state={specialState} />);
+    render(<SuccessMessage state={specialState} resetForm={mockResetForm} />);
 
     expect(
       screen.getByText('Message sent! 🎉 Please check your email for confirmation.'),
@@ -87,21 +88,21 @@ describe('SuccessMessage', () => {
   });
 
   it('has correct semantic structure', () => {
-    render(<SuccessMessage state={mockState} />);
+    render(<SuccessMessage state={mockState} resetForm={mockResetForm} />);
 
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
   });
 
   it('applies hover effects to button', () => {
-    render(<SuccessMessage state={mockState} />);
+    render(<SuccessMessage state={mockState} resetForm={mockResetForm} />);
 
     const button = screen.getByRole('button');
     expect(button).toHaveClass('hover:bg-green-500/30');
   });
 
   it('applies transition effects to button', () => {
-    render(<SuccessMessage state={mockState} />);
+    render(<SuccessMessage state={mockState} resetForm={mockResetForm} />);
 
     const button = screen.getByRole('button');
     expect(button).toHaveClass('transition-colors');

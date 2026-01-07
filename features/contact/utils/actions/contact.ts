@@ -1,11 +1,10 @@
 'use server';
 
-import nodemailer from 'nodemailer';
 import { mailOptions, transporter } from '@/features/contact/utils/email';
 import { IErrors, IFormState } from '@/features/contact/types/contact';
 import { contactSchema } from '@/features/contact/utils/schema';
-import { mailChimpRequest } from '../newsletter';
-import { verifyRecaptcha } from '../recaptcha';
+import { mailChimpRequest } from '@/features/contact/utils/newsletter';
+import { verifyRecaptcha } from '@/features/contact/utils/recaptcha';
 
 export async function sendMessage(prevState: IFormState, formData: FormData) {
   // Check if this is a reset request

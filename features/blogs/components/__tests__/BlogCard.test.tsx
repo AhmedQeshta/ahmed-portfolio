@@ -119,32 +119,36 @@ const mockBlog: BlogPostResponse = {
       logo: 'ts-logo.png',
     },
   ],
-  categories: [{ _id: '1', name: 'Technology', order: 1, slug: 'technology' }],
+  categories: [{ _id: '1', name: 'Technology', order: 1, slug: 'technology', isForFilter: false }],
   tags: ['React', 'TypeScript'],
   publishedAt: '2023-01-01',
   readingTime: 5,
   featured: true,
 };
 
+const mockCategories = [
+  { _id: '1', name: 'Technology', order: 1, slug: 'technology', isForFilter: false },
+];
+
 describe('BlogCard', () => {
-  it('should render blog article with semantic structure', async () => {
-    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
+  it('should render blog article with semantic structure', () => {
+    render(<BlogCard blogs={[mockBlog]} readMore={false} categories={mockCategories} />);
 
     const article = screen.getByRole('article');
     expect(article).toBeInTheDocument();
     expect(article).toHaveClass('bg-card-bg', 'backdrop-blur-md', 'border', 'border-white/10');
   });
 
-  it('should render blog title as heading', async () => {
-    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
+  it('should render blog title as heading', () => {
+    render(<BlogCard blogs={[mockBlog]} readMore={false} categories={mockCategories} />);
 
     const heading = screen.getByRole('heading', { level: 3 });
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveTextContent('Test Blog Post Title');
   });
 
-  it('should render blog description', async () => {
-    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
+  it('should render blog description', () => {
+    render(<BlogCard blogs={[mockBlog]} readMore={false} categories={mockCategories} />);
 
     expect(
       screen.getByText(
@@ -153,8 +157,8 @@ describe('BlogCard', () => {
     ).toBeInTheDocument();
   });
 
-  it('should render formatted date with semantic time element', async () => {
-    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
+  it('should render formatted date with semantic time element', () => {
+    render(<BlogCard blogs={[mockBlog]} readMore={false} categories={mockCategories} />);
 
     const timeElement = screen.getByRole('time');
     expect(timeElement).toBeInTheDocument();
@@ -162,29 +166,31 @@ describe('BlogCard', () => {
     expect(timeElement).toHaveTextContent('Jan 1, 2023');
   });
 
-  it('should render formatted reading time', async () => {
-    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
+  it('should render formatted reading time', () => {
+    render(<BlogCard blogs={[mockBlog]} readMore={false} categories={mockCategories} />);
 
     expect(screen.getByText('5 min read')).toBeInTheDocument();
   });
 
-  it('should render technologies with correct count', async () => {
-    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
+  it('should render technologies with correct count', () => {
+    render(<BlogCard blogs={[mockBlog]} readMore={false} categories={mockCategories} />);
 
     expect(screen.getByText('Technologies: 2')).toBeInTheDocument();
   });
 
-  it('should render image with optimized properties', async () => {
-    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
+  it('should render image with optimized properties', () => {
+    render(<BlogCard blogs={[mockBlog]} readMore={false} categories={mockCategories} />);
 
     const image = screen.getByTestId('blog-image');
     expect(image).toHaveAttribute('src', 'https://example.com/image-600x400-q90.jpg');
     expect(image).toHaveAttribute('alt', 'Cover image for Test Blog Post Title');
   });
 
-  it('should render fallback div when no thumbnail', async () => {
+  it('should render fallback div when no thumbnail', () => {
     const blogWithoutThumbnail = { ...mockBlog, thumbnail: '' };
-    render(await BlogCard({ blogs: [blogWithoutThumbnail], readMore: false }));
+    render(
+      <BlogCard blogs={[blogWithoutThumbnail]} readMore={false} categories={mockCategories} />,
+    );
 
     const fallbackText = screen.getByText('T');
     expect(fallbackText).toBeInTheDocument();
@@ -199,8 +205,8 @@ describe('BlogCard', () => {
     );
   });
 
-  it('should render call to action without separate link', async () => {
-    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
+  it('should render call to action without separate link', () => {
+    render(<BlogCard blogs={[mockBlog]} readMore={false} categories={mockCategories} />);
 
     expect(screen.getByText('Read Article')).toBeInTheDocument();
     // Should not be a separate link since the whole card is clickable
@@ -209,24 +215,28 @@ describe('BlogCard', () => {
     expect(readArticleElement.closest('div')).not.toBeNull();
   });
 
-  it('should handle blog without description', async () => {
+  it('should handle blog without description', () => {
     const blogWithoutDescription = { ...mockBlog, description: '' };
-    render(await BlogCard({ blogs: [blogWithoutDescription], readMore: false }));
+    render(
+      <BlogCard blogs={[blogWithoutDescription]} readMore={false} categories={mockCategories} />,
+    );
 
     expect(screen.getByText('Test Blog Post Title')).toBeInTheDocument();
     expect(screen.getByText('Jan 1, 2023')).toBeInTheDocument();
     expect(screen.getByText('5 min read')).toBeInTheDocument();
   });
 
-  it('should handle blog with empty technologies array', async () => {
+  it('should handle blog with empty technologies array', () => {
     const blogWithoutTechnologies = { ...mockBlog, technologies: [] };
-    render(await BlogCard({ blogs: [blogWithoutTechnologies], readMore: false }));
+    render(
+      <BlogCard blogs={[blogWithoutTechnologies]} readMore={false} categories={mockCategories} />,
+    );
 
     expect(screen.getByText('Technologies: 0')).toBeInTheDocument();
   });
 
-  it('should render floating read indicator', async () => {
-    render(await BlogCard({ blogs: [mockBlog], readMore: false }));
+  it('should render floating read indicator', () => {
+    render(<BlogCard blogs={[mockBlog]} readMore={false} categories={mockCategories} />);
 
     expect(screen.getByText('Read')).toBeInTheDocument();
   });

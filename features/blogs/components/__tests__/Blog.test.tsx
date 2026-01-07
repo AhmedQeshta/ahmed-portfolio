@@ -118,7 +118,7 @@ const mockBlog: BlogPostResponse = {
     },
   ],
   tags: ['web', 'development'],
-  categories: [{ _id: '1', name: 'Technology', order: 1, slug: 'technology' }],
+  categories: [{ _id: '1', name: 'Technology', order: 1, slug: 'technology', isForFilter: false }],
   publishedAt: '2023-01-01',
   readingTime: 5,
   featured: false,

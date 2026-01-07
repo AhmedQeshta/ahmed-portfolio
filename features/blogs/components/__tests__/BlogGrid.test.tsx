@@ -64,7 +64,7 @@ const mockBlogs = [
     technologies: [
       { _id: '1', name: 'React', website: 'https://reactjs.org', order: 1, logo: 'react-logo.png' },
     ],
-    categories: [{ _id: '1', name: 'Frontend', order: 1, slug: 'frontend' }],
+    categories: [{ _id: '1', name: 'Frontend', order: 1, slug: 'frontend', isForFilter: false }],
     publishedAt: '2023-01-01',
     readingTime: 5,
     featured: false,
@@ -86,7 +86,7 @@ const mockBlogs = [
         logo: 'ts-logo.png',
       },
     ],
-    categories: [{ _id: '2', name: 'Backend', order: 2, slug: 'backend' }],
+    categories: [{ _id: '2', name: 'Backend', order: 2, slug: 'backend', isForFilter: false }],
     publishedAt: '2023-01-02',
     readingTime: 7,
     featured: true,
@@ -108,7 +108,9 @@ const mockBlogs = [
         logo: 'nextjs-logo.png',
       },
     ],
-    categories: [{ _id: '3', name: 'Full Stack', order: 3, slug: 'full-stack' }],
+    categories: [
+      { _id: '3', name: 'Full Stack', order: 3, slug: 'full-stack', isForFilter: false },
+    ],
     publishedAt: '2023-01-03',
     readingTime: 10,
     featured: false,
@@ -262,7 +264,6 @@ describe('BlogGrid', () => {
     const heading = screen.getByText('Blogs');
     expect(heading).toHaveClass('gradient-text');
   });
-
 
   it('should handle blogs without tags gracefully', async () => {
     const blogsWithoutTags = mockBlogs.map((blog) => ({ ...blog, tags: undefined }));

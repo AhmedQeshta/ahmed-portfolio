@@ -21,6 +21,16 @@ jest.mock('@/features/contact/utils/email', () => ({
   }),
 }));
 
+// Mock reCAPTCHA verification
+jest.mock('@/features/contact/utils/recaptcha', () => ({
+  verifyRecaptcha: jest.fn().mockResolvedValue(true),
+}));
+
+// Mock newsletter
+jest.mock('@/features/contact/utils/newsletter', () => ({
+  mailChimpRequest: jest.fn().mockResolvedValue(undefined),
+}));
+
 describe('contact actions', () => {
   // Setup environment variables that would be normally in the process.env
   const originalEnv = process.env;
@@ -77,6 +87,7 @@ describe('contact actions', () => {
       formData.append('name', 'John Doe');
       formData.append('email', 'john.doe@example.com');
       formData.append('message', 'This is a test message');
+      formData.append('recaptcha_token', 'valid-token');
       const prevState = { errors: {} };
       const result = await sendMessage(prevState, formData);
 
@@ -95,17 +106,14 @@ describe('contact actions', () => {
       formData.append('name', 'John Doe');
       formData.append('email', 'john.doe@example.com');
       formData.append('message', 'This is a test message');
+      formData.append('recaptcha_token', 'valid-token');
       const prevState = { errors: {} };
       const result = await sendMessage(prevState, formData);
       // Verify error response
       expect(result).toHaveProperty('errors');
-      if ('general' in result.errors) {
-        expect((result.errors as any).general).toBe(
-          'An unexpected error occurred. Please try again later.',
-        );
-      } else {
-        expect(result.errors).toEqual({});
-      }
+      expect((result.errors as any).general).toBe(
+        'An unexpected error occurred. Please try again later.',
+      );
     });
   });
 });
