@@ -44,8 +44,9 @@ export function useContact() {
     }
   };
 
-  // Handle form submission with client-side validation
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  // Handle form submission with client-side validation and reCAPTCHA
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const formDataObj = new FormData(event.currentTarget);
     const data = {
       name: formDataObj.get('name') as string,
@@ -57,7 +58,6 @@ export function useContact() {
     const validation = contactSchema.safeParse(data);
 
     if (!validation.success) {
-      event.preventDefault();
       const errors: IErrors = {};
 
       validation.error.errors.forEach((error) => {
@@ -73,6 +73,33 @@ export function useContact() {
 
     // Clear client errors if validation passes
     setClientErrors({});
+
+    // Execute reCAPTCHA v3 and attach token to form data
+    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+    if (siteKey) {
+      try {
+        // Check if grecaptcha is available (script loaded)
+        if (typeof window !== 'undefined' && (window as any).grecaptcha) {
+          // Execute reCAPTCHA with action "contact_submit"
+          const token = await (window as any).grecaptcha.execute(siteKey, {
+            action: 'contact_submit',
+          });
+          // Attach token to FormData for server-side verification
+          formDataObj.append('recaptcha_token', token);
+        } else {
+          // reCAPTCHA script not loaded yet - log warning but allow submission
+          // Server will handle missing token validation
+          console.warn('reCAPTCHA script not loaded, proceeding without token');
+        }
+      } catch (error) {
+        // reCAPTCHA execution failed - log error but allow submission
+        // Server will handle missing token validation
+        console.error('reCAPTCHA execution failed:', error);
+      }
+    }
+
+    // Submit form with FormData (includes reCAPTCHA token if available)
+    formAction(formDataObj);
   };
 
   const resetForm = () => {

@@ -25,6 +25,13 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+        {/* Google reCAPTCHA v3 script - loads lazily for performance */}
+        {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
+          <Script
+            src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+            strategy="lazyOnload"
+          />
+        )}
         <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
           {/* <OrbBackground /> */}
           <Navbar links={linksApp} />
