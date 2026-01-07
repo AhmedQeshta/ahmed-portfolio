@@ -3,6 +3,7 @@ import { useState, useActionState, FormEvent } from 'react';
 import { z } from 'zod';
 import { IContactInputs, IErrors } from '@/features/contact/types/contact';
 import { contactSchema } from '@/features/contact/utils/schema';
+import { useRecaptcha } from './useRecaptcha';
 
 export function useContact() {
   const initialStatus = {
@@ -19,6 +20,9 @@ export function useContact() {
     newsletter: true,
   });
   const [clientErrors, setClientErrors] = useState<IErrors>({});
+
+  // Initialize reCAPTCHA hook
+  const { isReady, executeRecaptcha } = useRecaptcha();
 
   // Handle input changes and real-time validation
   const handleInputChange = (field: keyof IContactInputs, value: string | boolean) => {
@@ -44,8 +48,10 @@ export function useContact() {
     }
   };
 
-  // Handle form submission with client-side validation
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  // Handle form submission with client-side validation and reCAPTCHA
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     const formDataObj = new FormData(event.currentTarget);
     const data = {
       name: formDataObj.get('name') as string,
@@ -53,11 +59,11 @@ export function useContact() {
       message: formDataObj.get('message') as string,
       newsletter: !!formDataObj.get('newsletter') as boolean,
     };
+
     // Client-side validation
     const validation = contactSchema.safeParse(data);
 
     if (!validation.success) {
-      event.preventDefault();
       const errors: IErrors = {};
 
       validation.error.errors.forEach((error) => {
@@ -73,6 +79,18 @@ export function useContact() {
 
     // Clear client errors if validation passes
     setClientErrors({});
+
+    // Execute reCAPTCHA v3 and attach token to form data
+    // If reCAPTCHA is not ready or fails, still submit (graceful degradation)
+    // Server will verify the token
+    const recaptchaToken = isReady ? await executeRecaptcha('contact_submit') : null;
+
+    if (recaptchaToken) {
+      formDataObj.append('recaptcha_token', recaptchaToken);
+    }
+
+    // Submit form with reCAPTCHA token
+    formAction(formDataObj);
   };
 
   const resetForm = () => {

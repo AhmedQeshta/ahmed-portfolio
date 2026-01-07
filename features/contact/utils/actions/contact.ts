@@ -5,6 +5,7 @@ import { mailOptions, transporter } from '@/features/contact/utils/email';
 import { IErrors, IFormState } from '@/features/contact/types/contact';
 import { contactSchema } from '@/features/contact/utils/schema';
 import { mailChimpRequest } from '../newsletter';
+import { verifyRecaptcha } from '../recaptcha';
 
 export async function sendMessage(prevState: IFormState, formData: FormData) {
   // Check if this is a reset request
@@ -39,6 +40,18 @@ export async function sendMessage(prevState: IFormState, formData: FormData) {
     });
 
     return { errors };
+  }
+
+  // Verify reCAPTCHA token
+  const recaptchaToken = formData.get('recaptcha_token') as string | null;
+  const isRecaptchaValid = await verifyRecaptcha(recaptchaToken, 'contact_submit', 0.5);
+
+  if (!isRecaptchaValid) {
+    return {
+      errors: {
+        general: 'reCAPTCHA verification failed. Please try again.',
+      },
+    };
   }
 
   const { name, email, message } = validation.data;
