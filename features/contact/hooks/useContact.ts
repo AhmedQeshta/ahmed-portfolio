@@ -1,5 +1,5 @@
 import { sendMessage } from '@/features/contact/utils/actions/contact';
-import { useState, useActionState, FormEvent } from 'react';
+import { useState, useActionState, FormEvent, startTransition } from 'react';
 import { z } from 'zod';
 import { IContactInputs, IErrors } from '@/features/contact/types/contact';
 import { contactSchema } from '@/features/contact/utils/schema';
@@ -99,7 +99,10 @@ export function useContact() {
     }
 
     // Submit form with FormData (includes reCAPTCHA token if available)
-    formAction(formDataObj);
+    // Wrap in startTransition to properly handle async action with useActionState
+    startTransition(() => {
+      formAction(formDataObj);
+    });
   };
 
   const resetForm = () => {
