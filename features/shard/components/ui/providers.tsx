@@ -3,6 +3,7 @@
 import { PostHogProvider } from 'posthog-js/react';
 import posthog from 'posthog-js';
 import { useEffect, useState } from 'react';
+import setupLocatorUI from '@locator/runtime';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -18,6 +19,13 @@ export function Providers({ children }: { children: React.ReactNode }) {
         // We'll handle pageviews manually via usePageView hook
       });
       setIsInitialized(true);
+    }
+  }, []);
+
+  // Initialize Locator UI in development mode
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      setupLocatorUI();
     }
   }, []);
 

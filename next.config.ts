@@ -1,5 +1,6 @@
-/** @type {import('next').Config} */
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   /* config options here */
   // Disable ESLint during production builds to prevent circular structure errors
   eslint: {
@@ -57,6 +58,17 @@ const nextConfig = {
   trailingSlash: false,
   // Ensure proper routing without basePath interference
   // basePath should only be set if deploying to a subdirectory
+  // Locator configuration for Turbopack (Next.js 15+)
+  turbopack: {
+    rules: {
+      "**/*.{tsx,jsx}": {
+        loaders: [{
+          loader: "@locator/webpack-loader",
+          options: { env: "development" }
+        }]
+      }
+    }
+  }
 };
 
 export default nextConfig;
