@@ -8,6 +8,7 @@ import { ThemeProvider } from '@/features/theme/context/ThemeContext';
 import { linksApp } from '@/features/navbar/utils/navLinks';
 import { metadata, viewport } from '@/features/shard/utils/metadata';
 import Script from 'next/script';
+import { Suspense } from 'react';
 import { Providers } from '@/features/shard/components/ui/providers';
 import PageViewTracker from '@/features/shard/components/ui/PageViewTracker';
 
@@ -35,7 +36,9 @@ export default function RootLayout({
           />
         )}
         <Providers>
-          <PageViewTracker />
+          <Suspense fallback={null}>
+            <PageViewTracker />
+          </Suspense>
           <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
             {/* <OrbBackground /> */}
             <Navbar links={linksApp} />
