@@ -8,6 +8,8 @@ import { ThemeProvider } from '@/features/theme/context/ThemeContext';
 import { linksApp } from '@/features/navbar/utils/navLinks';
 import { metadata, viewport } from '@/features/shard/utils/metadata';
 import Script from 'next/script';
+import { Providers } from '@/features/shard/components/ui/providers';
+import PageViewTracker from '@/features/shard/components/ui/PageViewTracker';
 
 export { metadata, viewport };
 
@@ -32,15 +34,18 @@ export default function RootLayout({
             strategy="lazyOnload"
           />
         )}
-        <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
-          {/* <OrbBackground /> */}
-          <Navbar links={linksApp} />
+        <Providers>
+          <PageViewTracker />
+          <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
+            {/* <OrbBackground /> */}
+            <Navbar links={linksApp} />
 
-          {children}
-          <FloatingActions />
-          <PWAInstallPrompt />
-          <Footer />
-        </ThemeProvider>
+            {children}
+            <FloatingActions />
+            <PWAInstallPrompt />
+            <Footer />
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
