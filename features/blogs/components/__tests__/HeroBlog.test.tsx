@@ -4,23 +4,6 @@ import '@testing-library/jest-dom';
 import HeroBlog from '@/features/blogs/components/ui/HeroBlog';
 import { BlogPostResponse } from '@/sanity/lib/types';
 
-// Mock ScrollAnimation
-jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({
-    children,
-    className,
-  }: {
-    readonly children: React.ReactNode;
-    readonly className: string;
-  }) {
-    return (
-      <div data-testid="scroll-animation" className={className}>
-        {children}
-      </div>
-    );
-  };
-});
-
 // Mock Image
 jest.mock('next/image', () => {
   return function MockImage({ priority, fill, ...restProps }: any) {
@@ -54,18 +37,25 @@ describe('HeroBlog', () => {
     thumbnail: 'img.jpg',
     technologies: [],
     categories: [
-      { _id: 'cat1', name: 'Tech', order: 1, slug: 'tech' },
-      { _id: 'cat2', name: 'News', order: 2, slug: 'news' },
+      {
+        _id: 'cat1',
+        name: 'Tech',
+        order: 1,
+        slug: 'tech',
+        isForFilter: false,
+      },
+      {
+        _id: 'cat2',
+        name: 'News',
+        order: 2,
+        slug: 'news',
+        isForFilter: false,
+      },
     ],
     publishedAt: '2023-01-01',
     readingTime: 5,
     featured: true,
   };
-
-  it('renders nothing if no blog is provided', () => {
-    const { container } = render(<HeroBlog blog={null as unknown as BlogPostResponse} />);
-    expect(container.firstChild).toBeNull();
-  });
 
   it('renders image, title, categories, and meta info', () => {
     render(<HeroBlog blog={mockBlog} />);

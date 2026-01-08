@@ -38,16 +38,6 @@ jest.mock('@/features/shard/components/ui/ReadMore', () => {
   };
 });
 
-jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({ children, className }: any) {
-    return (
-      <div data-testid="scroll-animation" className={className}>
-        {children}
-      </div>
-    );
-  };
-});
-
 jest.mock('@/features/shard/components/ui/ErrorHandle', () => {
   return function MockErrorHandle({ id, title, description }: any) {
     return <div data-testid="error-handle">{description}</div>;
@@ -262,7 +252,6 @@ describe('BlogGrid', () => {
     const heading = screen.getByText('Blogs');
     expect(heading).toHaveClass('gradient-text');
   });
-
 
   it('should handle blogs without tags gracefully', async () => {
     const blogsWithoutTags = mockBlogs.map((blog) => ({ ...blog, tags: undefined }));

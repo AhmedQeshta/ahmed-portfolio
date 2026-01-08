@@ -222,6 +222,27 @@ a {
   animation: buttonPress 0.15s ease-out;
 }
 
+/* Floating animation for orbit items */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-8px) translateX(4px);
+  }
+  50% {
+    transform: translateY(-12px) translateX(0px);
+  }
+  75% {
+    transform: translateY(-8px) translateX(-4px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
 /* Enhanced hover animations */
 .hover-lift {
   transition:

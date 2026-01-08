@@ -42,22 +42,6 @@ jest.mock('@/features/shard/components/ui/MouseMoveWrapper', () => {
   };
 });
 
-jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({
-    children,
-    className,
-  }: {
-    readonly children: React.ReactNode;
-    className?: string;
-  }) {
-    return (
-      <div data-testid="scroll-animation" className={className}>
-        {children}
-      </div>
-    );
-  };
-});
-
 jest.mock('@/features/shard/components/ui/ReadMore', () => {
   return function MockReadMore({ link, text, readMore, dataLength }: any) {
     return (
@@ -105,7 +89,7 @@ const mockProject: IProjectResponse['project'] = {
 
 describe('ProjectCard', () => {
   it('should render project article with semantic structure', () => {
-    render(<ProjectCard projects={[mockProject]} readMore={false} />);
+    render(<ProjectCard projects={[mockProject]} readMore={false} categories={[]} />);
 
     const article = screen.getByRole('article');
     expect(article).toBeInTheDocument();
@@ -113,7 +97,7 @@ describe('ProjectCard', () => {
   });
 
   it('should render project title as heading', () => {
-    render(<ProjectCard projects={[mockProject]} readMore={false} />);
+    render(<ProjectCard projects={[mockProject]} readMore={false} categories={[]} />);
 
     const heading = screen.getByRole('heading', { level: 3 });
     expect(heading).toBeInTheDocument();
@@ -121,7 +105,7 @@ describe('ProjectCard', () => {
   });
 
   it('should render project description', () => {
-    render(<ProjectCard projects={[mockProject]} readMore={false} />);
+    render(<ProjectCard projects={[mockProject]} readMore={false} categories={[]} />);
 
     expect(
       screen.getByText('This is a test project description that should be displayed in the card.'),
@@ -129,7 +113,7 @@ describe('ProjectCard', () => {
   });
 
   it('should render formatted duration with semantic time element', () => {
-    render(<ProjectCard projects={[mockProject]} readMore={false} />);
+    render(<ProjectCard projects={[mockProject]} readMore={false} categories={[]} />);
 
     const timeElement = screen.getByRole('time');
     expect(timeElement).toBeInTheDocument();
@@ -137,20 +121,20 @@ describe('ProjectCard', () => {
   });
 
   it('should render technologies with correct count', () => {
-    render(<ProjectCard projects={[mockProject]} readMore={false} />);
+    render(<ProjectCard projects={[mockProject]} readMore={false} categories={[]} />);
 
     expect(screen.getByTestId('technologies-display')).toHaveTextContent('Technologies: 2');
   });
 
   it('should render image with optimized properties', () => {
-    render(<ProjectCard projects={[mockProject]} readMore={false} />);
+    render(<ProjectCard projects={[mockProject]} readMore={false} categories={[]} />);
 
     const image = screen.getByTestId('project-image');
     expect(image).toBeInTheDocument();
   });
 
   it('should render project status badges when URLs are provided', () => {
-    render(<ProjectCard projects={[mockProject]} readMore={false} />);
+    render(<ProjectCard projects={[mockProject]} readMore={false} categories={[]} />);
 
     expect(screen.getByText('Live')).toBeInTheDocument();
     expect(screen.getByText('Open Source')).toBeInTheDocument();
@@ -158,7 +142,7 @@ describe('ProjectCard', () => {
 
   it('should render fallback div when no screenshot', () => {
     const projectWithoutScreenshot = { ...mockProject, screenshot: '' };
-    render(<ProjectCard projects={[projectWithoutScreenshot]} readMore={false} />);
+    render(<ProjectCard projects={[projectWithoutScreenshot]} readMore={false} categories={[]} />);
 
     // The fallback shows the first letter of the title
     const fallbackDiv = screen.getByText('T');
@@ -166,7 +150,7 @@ describe('ProjectCard', () => {
   });
 
   it('should render call to action without separate link', () => {
-    render(<ProjectCard projects={[mockProject]} readMore={false} />);
+    render(<ProjectCard projects={[mockProject]} readMore={false} categories={[]} />);
 
     const actionText = screen.getByText('View Details');
     expect(actionText).toBeInTheDocument();
@@ -174,20 +158,20 @@ describe('ProjectCard', () => {
 
   it('should handle project without description', () => {
     const projectWithoutDescription = { ...mockProject, description: '' };
-    render(<ProjectCard projects={[projectWithoutDescription]} readMore={false} />);
+    render(<ProjectCard projects={[projectWithoutDescription]} readMore={false} categories={[]} />);
 
     expect(screen.queryByText(/this is a test project description/i)).not.toBeInTheDocument();
   });
 
   it('should handle project with empty technologies array', () => {
     const projectWithoutTech = { ...mockProject, technologies: [] };
-    render(<ProjectCard projects={[projectWithoutTech]} readMore={false} />);
+    render(<ProjectCard projects={[projectWithoutTech]} readMore={false} categories={[]} />);
 
     expect(screen.getByTestId('technologies-display')).toHaveTextContent('Technologies: 0');
   });
 
   it('should render floating view indicator', () => {
-    render(<ProjectCard projects={[mockProject]} readMore={false} />);
+    render(<ProjectCard projects={[mockProject]} readMore={false} categories={[]} />);
 
     // The view indicator shows "View" text
     const viewIndicator = screen.getByText('View');
@@ -196,7 +180,7 @@ describe('ProjectCard', () => {
 
   it('should not render status badges when URLs are not provided', () => {
     const projectWithoutUrls = { ...mockProject, liveUrl: undefined, repoUrl: undefined };
-    render(<ProjectCard projects={[projectWithoutUrls]} readMore={false} />);
+    render(<ProjectCard projects={[projectWithoutUrls]} readMore={false} categories={[]} />);
 
     expect(screen.queryByText('Live')).not.toBeInTheDocument();
     expect(screen.queryByText('Open Source')).not.toBeInTheDocument();

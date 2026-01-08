@@ -42,22 +42,6 @@ jest.mock('@/features/shard/components/ui/MouseMoveWrapper', () => {
   };
 });
 
-jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({
-    children,
-    className,
-  }: {
-    readonly children: React.ReactNode;
-    className?: string;
-  }) {
-    return (
-      <div data-testid="scroll-animation" className={className}>
-        {children}
-      </div>
-    );
-  };
-});
-
 jest.mock('@/features/shard/components/ui/ReadMore', () => {
   return function MockReadMore({ link, text, readMore, dataLength }: any) {
     return (
