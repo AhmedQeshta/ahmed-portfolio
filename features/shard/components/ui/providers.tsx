@@ -2,9 +2,11 @@
 
 import { PostHogProvider } from 'posthog-js/react';
 import posthog from 'posthog-js';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export function Providers({ children }: { children: React.ReactNode }) {
+  const [isInitialized, setIsInitialized] = useState(false);
+
   useEffect(() => {
     const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
     const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST;
@@ -15,18 +17,18 @@ export function Providers({ children }: { children: React.ReactNode }) {
         capture_pageview: false, // Disable automatic pageview capture
         // We'll handle pageviews manually via usePageView hook
       });
+      setIsInitialized(true);
     }
   }, []);
 
   const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
   const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST;
 
-  // Only wrap with PostHogProvider if env vars are present
-  if (posthogKey && posthogHost) {
+  // Only wrap with PostHogProvider if env vars are present and posthog is initialized
+  if (posthogKey && posthogHost && isInitialized) {
     return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
   }
 
-  // Return children without PostHogProvider if env vars are missing
+  // Return children without PostHogProvider if env vars are missing or not initialized
   return <>{children}</>;
 }
-
