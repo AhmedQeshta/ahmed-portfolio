@@ -2,11 +2,28 @@
 
 import { IBaseInfo } from '@/features/contact/types/contact';
 import { useTheme } from '@/features/theme/hooks/useTheme';
+import { usePostHog } from 'posthog-js/react';
+import { usePathname } from 'next/navigation';
 
 export default function ContactMethods({ baseInfo }: IBaseInfo) {
   const { email, phone, address, cvUrl } = baseInfo;
 
   const { isDark } = useTheme();
+  const posthog = usePostHog();
+  const pathname = usePathname();
+
+  const handleCvDownload = () => {
+    if (!posthog || !cvUrl) return;
+
+    // Extract file name from URL (last segment after last slash)
+    const fileName = cvUrl.split('/').pop() || 'cv.pdf';
+
+    posthog.capture('cv_download', {
+      source_page: pathname,
+      file_name: fileName,
+      file_url: cvUrl,
+    });
+  };
 
   return (
     <div className="space-y-4 mb-8">
@@ -86,6 +103,7 @@ export default function ContactMethods({ baseInfo }: IBaseInfo) {
           href={cvUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleCvDownload}
           className="group flex items-center gap-4 p-4 bg-gradient-to-r from-purple-500/5 to-purple-600/5 hover:from-purple-500/10 hover:to-purple-600/10 border border-purple-500/20 hover:border-purple-500/40 rounded-xl transition-all duration-300 hover:transform hover:scale-[1.02]">
           <div className="flex-shrink-0 w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center group-hover:bg-purple-500/30 transition-colors">
             <svg

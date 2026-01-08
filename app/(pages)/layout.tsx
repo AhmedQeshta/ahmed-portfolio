@@ -5,6 +5,9 @@ import { linksPages } from '@/features/navbar/utils/navLinks';
 import FloatingActions from '@/features/shard/components/ui/FloatingActions';
 import { metadata, viewport } from '@/features/shard/utils/metadata';
 import Script from 'next/script';
+import { Suspense } from 'react';
+import { Providers } from '@/features/shard/components/ui/providers';
+import PageViewTracker from '@/features/shard/components/ui/PageViewTracker';
 
 export { metadata, viewport };
 
@@ -22,12 +25,17 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        <ThemeProvider defaultTheme="system" storageKey="portfolio-theme">
-          <Navbar links={linksPages} />
-          {children}
+        <Providers>
+          <Suspense fallback={null}>
+            <PageViewTracker />
+          </Suspense>
+          <ThemeProvider defaultTheme="system" storageKey="portfolio-theme">
+            <Navbar links={linksPages} />
+            {children}
 
-          <FloatingActions />
-        </ThemeProvider>
+            <FloatingActions />
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
