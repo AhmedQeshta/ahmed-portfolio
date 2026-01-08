@@ -75,22 +75,6 @@ jest.mock('@/features/shard/components/ui/BackgroundEffects', () => {
   };
 });
 
-jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({
-    children,
-    className,
-  }: {
-    readonly children: React.ReactNode;
-    readonly className: string;
-  }) {
-    return (
-      <div data-testid="scroll-animation" className={className}>
-        {children}
-      </div>
-    );
-  };
-});
-
 // Mock environment variable
 const originalEnv = process.env;
 beforeAll(() => {
@@ -118,7 +102,15 @@ const mockBlog: BlogPostResponse = {
     },
   ],
   tags: ['web', 'development'],
-  categories: [{ _id: '1', name: 'Technology', order: 1, slug: 'technology' }],
+  categories: [
+    {
+      _id: '1',
+      name: 'Technology',
+      order: 1,
+      slug: 'technology',
+      isForFilter: false,
+    },
+  ],
   publishedAt: '2023-01-01',
   readingTime: 5,
   featured: false,

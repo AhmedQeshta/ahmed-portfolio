@@ -4,23 +4,6 @@ import '@testing-library/jest-dom';
 import LatestBlogs from '@/features/blogs/components/ui/LatestBlogs';
 import { BlogPostResponse } from '@/sanity/lib/types';
 
-// Mock ScrollAnimation
-jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({
-    children,
-    className,
-  }: {
-    readonly children: React.ReactNode;
-    readonly className: string;
-  }) {
-    return (
-      <div data-testid="scroll-animation" className={className}>
-        {children}
-      </div>
-    );
-  };
-});
-
 // Mock Image
 jest.mock('next/image', () => {
   return function MockImage(props: React.ImgHTMLAttributes<HTMLImageElement>) {

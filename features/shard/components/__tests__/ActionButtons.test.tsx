@@ -4,23 +4,6 @@ import { render } from '../../utils/test-utils';
 import ActionButtons from '@/features/shard/components/ui/ActionButtons';
 import { ExternalLink, Github } from 'lucide-react';
 
-// Mock the ScrollAnimation component
-jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({
-    children,
-    className,
-  }: {
-    children: React.ReactNode;
-    className?: string;
-  }) {
-    return (
-      <div data-testid="scroll-animation" className={className}>
-        {children}
-      </div>
-    );
-  };
-});
-
 // Mock the cn utility function
 jest.mock('@/features/shard/utils/statusColor', () => ({
   cn: (...classes: (string | undefined)[]) => classes.filter(Boolean).join(' '),
@@ -64,7 +47,6 @@ describe('ActionButtons', () => {
     const { container } = render(<ActionButtons listLinks={null as any} />);
     expect(container.firstChild).toBeNull();
   });
-
 
   it('should render all links with icons correctly', () => {
     render(<ActionButtons listLinks={mockLinksWithIcons} />);

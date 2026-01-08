@@ -3,13 +3,6 @@ import '@testing-library/jest-dom';
 import { render } from '@/features/shard/utils/test-utils';
 import ShareCard from '@/features/shard/components/ui/ShareCard';
 
-// Mock the ScrollAnimation component
-jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({ children }: { children: React.ReactNode }) {
-    return <div data-testid="scroll-animation">{children}</div>;
-  };
-});
-
 // Mock window.open
 const mockWindowOpen = jest.fn();
 Object.defineProperty(window, 'open', {
@@ -45,7 +38,6 @@ describe('ShareCard', () => {
     expect(screen.getByText('Share on LinkedIn')).toBeInTheDocument();
     expect(screen.getByText('Copy Link')).toBeInTheDocument();
   });
-
 
   it('should handle Twitter share', () => {
     render(<ShareCard url="https://example.com" title="Test Post" />);

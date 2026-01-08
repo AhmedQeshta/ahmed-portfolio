@@ -41,16 +41,6 @@ jest.mock('@/features/contact/components/form/SuccessMessage', () => {
   };
 });
 
-jest.mock('@/features/shard/components/ui/ScrollAnimation', () => {
-  return function MockScrollAnimation({ children, direction, delay }: any) {
-    return (
-      <div data-testid="scroll-animation" data-direction={direction} data-delay={delay}>
-        {children}
-      </div>
-    );
-  };
-});
-
 jest.mock('@/features/shard/components/form/DefaultInput', () => {
   return function MockDefaultInput({
     name,
