@@ -42,6 +42,9 @@
     "glob": "^11.0.0"
   },
   "devDependencies": {
+    "@locator/babel-jsx": "^0.5.1",
+    "@locator/runtime": "^0.5.1",
+    "@locator/webpack-loader": "^0.5.1",
     "@sanity/eslint-config-studio": "^5.0.2",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.0",
