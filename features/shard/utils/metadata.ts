@@ -106,6 +106,9 @@ export const metadata: Metadata = {
     'msapplication-TileImage': '/images/ms-icon-144x144.png',
     'msapplication-config': '/browserconfig.xml',
     'google-adsense-account': process.env.NEXT_PUBLIC_GOOGLE_ADS_CLIENT_ID || '',
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
+      'google-site-verification': process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    }),
   },
 };
 
