@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import OptimizedLink from '@/features/shard/components/ui/OptimizedLink';
 import { useThemeToggle } from '@/features/theme/hooks/useThemeToggle';
 import { Dot } from 'lucide-react';
@@ -11,13 +12,16 @@ export default function Logo() {
     : '#0f172af2';
   return (
     <OptimizedLink href="/" className="flex-shrink-0">
-      <span
-        className={`relative ${styleLogo}  font-bold uppercase text-xl sm:text-2xl hover:scale-105 transition-transform duration-200`}>
-        Ahmed
-        <span className="absolute -top-2 left-18">
-          <Dot size={50} color={color} />
-        </span>
-      </span>
+      <div className="relative hover:scale-105 transition-transform duration-200">
+        <Image
+          src="/logo.png"
+          alt="Ahmed Qeshta"
+          width={60}
+          height={20}
+          className="object-contain"
+          priority
+        />
+      </div>
     </OptimizedLink>
   );
 }
