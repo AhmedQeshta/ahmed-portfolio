@@ -7,7 +7,6 @@ import { usePostHog } from 'posthog-js/react';
 import { usePathname } from 'next/navigation';
 
 export default function BioContent({ bio, cvUrl }: IBioContent) {
-  const { isDark } = useTheme();
   const posthog = usePostHog();
   const pathname = usePathname();
 
@@ -27,7 +26,14 @@ export default function BioContent({ bio, cvUrl }: IBioContent) {
   return (
     <div className="prose prose-lg max-w-none">
       <div className={`text-lg leading-relaxed text-justify flex flex-col gap-4 text-text-primary`}>
-        <PortableText value={bio} />
+        <div className="text-2xl leading-relaxed">
+          <PortableText
+            value={bio}
+            components={{
+              block: ({ children }) => <p className="text-2xl leading-relaxed">{children}</p>,
+            }}
+          />
+        </div>
 
         {cvUrl && (
           <div>

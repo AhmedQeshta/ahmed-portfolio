@@ -1,6 +1,7 @@
 'use client';
 
 import { useTheme } from '@/features/theme/hooks/useTheme';
+import OptimizedLink from '@/features/shard/components/ui/OptimizedLink';
 
 export default function Footer() {
   const { isDark } = useTheme();
@@ -27,6 +28,21 @@ export default function Footer() {
         <div className="mx-auto max-w-5xl px-4">
           {/* Main content container */}
           <div className="text-center space-y-6">
+            {/* Footer Links */}
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
+              <OptimizedLink
+                href="/about"
+                className={`${isDark ? 'text-white/70 hover:text-white' : 'text-black/70 hover:text-black'} transition-colors duration-200`}>
+                About
+              </OptimizedLink>
+              <span className={`${isDark ? 'text-white/40' : 'text-black/40'}`}>•</span>
+              <OptimizedLink
+                href="/privacy"
+                className={`${isDark ? 'text-white/70 hover:text-white' : 'text-black/70 hover:text-black'} transition-colors duration-200`}>
+                Privacy Policy
+              </OptimizedLink>
+            </div>
+
             {/* Decorative line */}
             <div className="flex items-center justify-center space-x-4">
               <div

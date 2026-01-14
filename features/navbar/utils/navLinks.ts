@@ -4,29 +4,29 @@ export const linksApp: ILinksApp[] = [
   {
     id: 1,
     name: 'Home',
-    url: '#home',
+    url: '/#home',
   },
   {
     id: 2,
-    name: 'Work',
-    url: 'works',
+    name: 'Works',
+    url: '/works',
   },
   {
     id: 3,
     name: 'Projects',
-    url: 'projects',
+    url: '/projects',
   },
 
   {
     id: 4,
     name: 'Blogs',
-    url: 'blogs',
+    url: '/blogs',
   },
 
   {
     id: 5,
     name: 'Contact',
-    url: '#contact',
+    url: '/#contact',
   },
 ];
 
