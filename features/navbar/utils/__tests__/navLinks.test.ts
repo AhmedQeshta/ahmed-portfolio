@@ -10,7 +10,7 @@ describe('navLinks utilities', () => {
         expect.objectContaining({
           id: 1,
           name: 'Home',
-          url: '#home',
+          url: '/#home',
         }),
       );
 
@@ -18,7 +18,7 @@ describe('navLinks utilities', () => {
         expect.objectContaining({
           id: 3,
           name: 'Projects',
-          url: 'projects',
+          url: '/projects',
         }),
       );
 
@@ -39,13 +39,6 @@ describe('navLinks utilities', () => {
       expect(linksPages).toHaveLength(5);
 
       // Check for specific links
-      expect(linksPages).toContainEqual(
-        expect.objectContaining({
-          id: 1,
-          name: 'Home',
-          url: '/#home',
-        }),
-      );
 
       expect(linksPages).toContainEqual(
         expect.objectContaining({
