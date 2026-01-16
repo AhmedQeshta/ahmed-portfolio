@@ -26,7 +26,7 @@ export const linksApp: ILinksApp[] = [
   {
     id: 5,
     name: 'Contact',
-    url: '/#contact',
+    url: '/contact',
   },
 ];
 
@@ -56,7 +56,7 @@ export const linksPages: ILinksApp[] = [
   {
     id: 5,
     name: 'Contact',
-    url: '/#contact',
+    url: '/contact',
   },
 ];
 
