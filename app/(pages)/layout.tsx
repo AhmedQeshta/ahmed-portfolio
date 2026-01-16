@@ -8,6 +8,7 @@ import Script from 'next/script';
 import { Suspense } from 'react';
 import { Providers } from '@/features/shard/components/ui/providers';
 import PageViewTracker from '@/features/shard/components/ui/PageViewTracker';
+import Footer from '@/features/shard/components/layout/Footer';
 
 export { metadata, viewport };
 
@@ -34,6 +35,7 @@ export default function RootLayout({
             {children}
 
             <FloatingActions />
+            <Footer />
           </ThemeProvider>
         </Providers>
       </body>
