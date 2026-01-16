@@ -25,7 +25,7 @@ export const usePrivacy = () => {
     {
       name: 'Google AdSense',
       description:
-        'Our website uses Google AdSense to display advertisements. Google AdSense uses cookies and similar technologies to serve ads based on your prior visits to our website or other websites.',
+        'Our website partners with Google AdSense to use advertising on our site. Google AdSense uses cookies and other tracking technologies to place advertising based on your previous visits to our site or other sites.',
       links: [
         {
           text: "Google's Ads Settings",
@@ -40,7 +40,7 @@ export const usePrivacy = () => {
     {
       name: 'Sanity CMS',
       description:
-        'Our website content is managed through Sanity CMS. Sanity may collect technical information about your device and usage patterns when you access content from their servers.',
+        'The content on our website is managed on Sanity CMS. Sanity may gather technical information about your device when you visit their server for content.',
       links: [
         {
           text: "Sanity's Privacy Policy",
@@ -51,7 +51,7 @@ export const usePrivacy = () => {
     {
       name: 'Google reCAPTCHA',
       description:
-        'We use Google reCAPTCHA v3 to protect our contact form from spam and abuse. reCAPTCHA works by collecting hardware and software information, such as device and application data, and sending this data to Google for analysis.',
+        'To avoid spammers and unwanted activities on the website, we employ Google reCAPTCHA v3. Note that this service collects users’ hardware and software attributes through their device and applications, which are then submitted to Google for evaluation.',
       links: [
         {
           text: "Google's Privacy Policy",
@@ -66,7 +66,7 @@ export const usePrivacy = () => {
     {
       name: 'MailChimp',
       description:
-        'We use MailChimp to manage our newsletter subscriptions. When you subscribe to our newsletter, your email address and name are stored in MailChimp.',
+        'For our newsletter service, we use a tool from MailChimp. If you subscribe to our newsletters, your email and name will be recorded on a database maintained by MailChimp.',
       links: [
         {
           text: "MailChimp's Privacy Policy",
@@ -79,54 +79,53 @@ export const usePrivacy = () => {
   const cookieTypes = [
     {
       name: 'Essential Cookies',
-      description: 'These cookies are necessary for the website to function properly.',
+      description: 'These cookies are required for the functionality of the website.',
     },
     {
       name: 'Analytics Cookies',
       description:
-        'These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.',
+        'These cookies allow us to track interactions with our website to collect information for anonymous reporting.',
     },
     {
       name: 'Advertising Cookies',
       description:
-        'These cookies are used to deliver advertisements relevant to you and your interests.',
+        'These cookies are designed for the delivery of ads relevant to you and your interests.',
     },
   ];
 
   const userRights = [
     {
       title: 'Right to Access',
-      description: 'You have the right to request copies of your personal data.',
+      description: 'You are entitled to access copies of your personal data.',
     },
     {
       title: 'Right to Rectification',
       description:
-        'You have the right to request that we correct any information you believe is inaccurate or complete information you believe is incomplete.',
+        'You have the right to request that we correct any information that you believe is inaccurate or complete your information that you believe is incomplete.',
     },
     {
       title: 'Right to Erasure',
-      description:
-        'You have the right to request that we erase your personal data, under certain conditions.',
+      description: 'You can ask us to delete your personal data. There are conditions.',
     },
     {
       title: 'Right to Restrict Processing',
       description:
-        'You have the right to request that we restrict the processing of your personal data, under certain conditions.',
+        'You have a right to request that we restrict the processing of your personal data.',
     },
     {
       title: 'Right to Object to Processing',
       description:
-        'You have the right to object to our processing of your personal data, under certain conditions.',
+        'You may exercise your right to object to us processing your personal data in certain circumstances.',
     },
     {
       title: 'Right to Data Portability',
       description:
-        'You have the right to request that we transfer the data that we have collected to another organization, or directly to you, under certain conditions.',
+        'You have the right, under certain circumstances, to ask for the transfer of the information that we have collected to a new organization, or directly to you.',
     },
     {
       title: 'Right to Withdraw Consent',
       description:
-        'You have the right to withdraw your consent at any time where we rely on consent to process your personal information.',
+        'You can withdraw your consent to the processing of your personal data at any time if the basis for processing is consent.',
     },
   ];
 
@@ -139,10 +138,10 @@ export const usePrivacy = () => {
       content: (
         <>
           <p className="text-lg leading-relaxed">
-            Welcome to Ahmed Qeshta&apos;s portfolio website (the &quot;Site&quot;). This Privacy
-            Policy explains how we collect, use, disclose, and safeguard your information when you
+            Welcome to Ahmed Qeshta&apos;s portfolio website the &ldquo;Site&ldquo;. This Privacy
+            Policy describes how we collect, use, disclose, and protect your information when you
             visit our website. Please read this privacy policy carefully. If you do not agree with
-            the terms of this privacy policy, please do not access the site.
+            the terms of this Privacy Policy, please do not access the site.
           </p>
         </>
       ),
@@ -156,12 +155,12 @@ export const usePrivacy = () => {
         <>
           <p className="text-lg leading-relaxed mb-4">We use the information we collect to:</p>
           <ul className="space-y-2 ml-6 list-disc">
-            <li>Respond to your inquiries and provide customer support</li>
-            <li>Send you newsletters and updates (with your consent)</li>
-            <li>Improve our website and user experience</li>
-            <li>Analyze website traffic and usage patterns</li>
-            <li>Comply with legal obligations</li>
-            <li>Prevent fraud and ensure website security</li>
+            <li>Address your questions and issues and provide customer service </li>
+            <li>Send newsletters and updates (with your consent)</li>
+            <li>Ensure improvement in website & user experience</li>
+            <li>Analyzing website traffic and usage patterns</li>
+            <li>Comply with the law</li>
+            <li>Prevent Frauds and Website Security</li>
           </ul>
         </>
       ),
@@ -174,10 +173,10 @@ export const usePrivacy = () => {
       content: (
         <>
           <p className="text-lg leading-relaxed">
-            We implement appropriate technical and organizational security measures to protect your
-            personal information against unauthorized access, alteration, disclosure, or
-            destruction. However, no method of transmission over the Internet or electronic storage
-            is 100% secure, and we cannot guarantee absolute security.
+            Those necessary technical and organizational measures are used to ensure the protection
+            of your personal data against unauthorized access, change, disclosure, or destruction.
+            Nevertheless, the transmission of data over the Internet or electronic data storage is
+            not 100% secure.
           </p>
         </>
       ),
@@ -190,10 +189,9 @@ export const usePrivacy = () => {
       content: (
         <>
           <p className="text-lg leading-relaxed">
-            Our website is not intended for children under the age of 13. We do not knowingly
-            collect personal information from children under 13. If you are a parent or guardian and
-            believe that your child has provided us with personal information, please contact us
-            immediately so we can delete such information.
+            Our website is not aimed at persons under the age of 13 years. We do not collect
+            personal information from persons under the age of 13 years. If your child has provided
+            personal information, please inform us so that the information can be deleted.
           </p>
         </>
       ),
@@ -242,8 +240,8 @@ export const usePrivacy = () => {
       content: (
         <>
           <p className="text-lg leading-relaxed mb-4">
-            We use cookies and similar tracking technologies to track activity on our website and
-            hold certain information. Cookies are files with a small amount of data which may
+            We use cookies and similar tracking technologies to track activities on our website and
+            store certain information. Cookies are files with a small amount of data that may
             include an anonymous unique identifier. Cookies are sent to your browser from a website
             and stored on your device.
           </p>
@@ -265,9 +263,9 @@ export const usePrivacy = () => {
             ))}
           </div>
           <p className="text-lg leading-relaxed">
-            You can instruct your browser to refuse all cookies or to indicate when a cookie is
-            being sent. However, if you do not accept cookies, you may not be able to use some
-            portions of our website.
+            You may choose to have your browser refuse our cookies, or you may, if you wish, alert
+            you before a cookie is sent to you. However, if you decline a cookie, you may not be
+            able to fully use our website.
           </p>
         </>
       ),
@@ -299,16 +297,15 @@ export const usePrivacy = () => {
                 {service.name === 'Google AdSense' && (
                   <p
                     className={`text-base leading-relaxed mb-3 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                    You may opt out of personalized advertising by visiting the links below. You can
-                    also opt out of third-party vendor&apos;s use of cookies for personalized
-                    advertising.
+                    You can opt out of advertising targeting by clicking on the following links. You
+                    can also opt out of third-party vendors use of cookies for advertising.
                   </p>
                 )}
                 {service.name === 'Google Analytics' && (
                   <p
                     className={`text-base leading-relaxed mb-3 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                    You can prevent Google Analytics from recognizing you on return visits by
-                    disabling cookies in your browser or by installing the opt-out add-on.
+                    You can opt out of Google Analytics tracking on future visits by opting out of
+                    the use of cookies or using the opt-out add-on.
                   </p>
                 )}
                 <div className="flex flex-wrap gap-3 mt-4">
@@ -376,10 +373,10 @@ export const usePrivacy = () => {
       content: (
         <>
           <p className="text-lg leading-relaxed">
-            We may update our Privacy Policy from time to time. We will notify you of any changes by
-            posting the new Privacy Policy on this page and updating the &quot;Last updated&quot;
-            date. You are advised to review this Privacy Policy periodically for any changes.
-            Changes to this Privacy Policy are effective when they are posted on this page.
+            We reserve the right to make changes to this Privacy Policy from time to time. By
+            notifying you through our Privacy Policy being posted on this page with a notice under
+            the “Last Updated” heading, changes become effective. So, it is always best to keep a
+            check on the Privacy Policy from time to time for any changes.
           </p>
         </>
       ),
@@ -430,8 +427,8 @@ export const usePrivacy = () => {
               </div>
             </div>
             <p className={`mt-4 text-base ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-              You can also use the contact form on our website to reach out regarding
-              privacy-related inquiries.
+              You can also contact us through the contact form available on our website with regards
+              to privacy-related queries.
             </p>
           </div>
         </>

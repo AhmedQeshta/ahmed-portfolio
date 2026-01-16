@@ -8,25 +8,30 @@ export const linksApp: ILinksApp[] = [
   },
   {
     id: 2,
+    name: 'About',
+    url: '/about',
+  },
+  {
+    id: 3,
     name: 'Works',
     url: '/works',
   },
   {
-    id: 3,
+    id: 4,
     name: 'Projects',
     url: '/projects',
   },
 
   {
-    id: 4,
+    id: 5,
     name: 'Blogs',
     url: '/blogs',
   },
 
   {
-    id: 5,
+    id: 6,
     name: 'Contact',
-    url: '/#contact',
+    url: '/contact',
   },
 ];
 
@@ -38,25 +43,30 @@ export const linksPages: ILinksApp[] = [
   },
   {
     id: 2,
+    name: 'About',
+    url: '/about',
+  },
+  {
+    id: 3,
     name: 'Works',
     url: '/#works',
   },
   {
-    id: 3,
+    id: 4,
     name: 'Projects',
     url: '/#projects',
   },
 
   {
-    id: 4,
+    id: 5,
     name: 'Blogs',
     url: '/#blogs',
   },
 
   {
-    id: 5,
+    id: 6,
     name: 'Contact',
-    url: '/#contact',
+    url: '/contact',
   },
 ];
 

@@ -14,17 +14,18 @@ export const useAbout = () => {
       content: (
         <>
           <p className="text-lg leading-relaxed mb-4">
-            I&apos;m Ahmed Qeshta, a passionate software engineer dedicated to building innovative
-            digital solutions that make a difference. With a strong foundation in both frontend and
-            backend development, I specialize in creating modern, scalable web applications and
-            mobile experiences that combine functionality with exceptional user design.
+            Hello, I&apos;m Ahmed Qeshta. A passionate software engineer with quite a determination
+            to create innovative digital solutions that make a difference. Backed by a solid
+            foundation in both frontend and backend development, I specialize in creating modern,
+            scalable web applications along with mobile experiences that merge functionality with
+            exceptional user design.
           </p>
           <p className="text-lg leading-relaxed">
-            My journey in software development began with a curiosity about how things work behind
-            the scenes. Over the years, I&apos;ve honed my skills across various technologies and
-            frameworks, always staying current with the latest industry trends and best practices. I
-            believe in writing clean, maintainable code and following software engineering
-            principles that ensure long-term project success.
+            My software development experience began as a result of my curiosity to know the
+            mechanics behind the scenes. Over the years, I have sharpened my skills on a number of
+            technologies, keeping myself up to date with the latest developments. My interests
+            include coding with clean, scalable code, as well as software development principles to
+            ensure a successful end product.
           </p>
         </>
       ),
@@ -37,23 +38,23 @@ export const useAbout = () => {
       content: (
         <>
           <p className="text-lg leading-relaxed mb-4">
-            As a full-stack developer, I work across the entire technology stack, from designing
-            intuitive user interfaces to building robust server-side architectures. My technical
-            expertise spans multiple programming languages, frameworks, and tools, allowing me to
-            choose the right technology for each project&apos;s unique requirements.
+            As a full stack developer, I have exposure to the whole technology stack. This ranges
+            from designing user-friendly interfaces to constructing complex server-side solutions.
+            Technically proficient in a number of programming languages and tools, I decide which
+            tools to apply to which task based on its requirements.
           </p>
           <p className="text-lg leading-relaxed mb-4">
-            I have extensive experience with modern web technologies including React, Next.js,
-            TypeScript, and Node.js. I&apos;m proficient in building responsive, mobile-first
-            applications that perform seamlessly across all devices. On the backend, I work with
-            various databases, API design, and cloud services to create scalable solutions that can
-            grow with your business needs.
+            I possess industry expertise with current web development technologies such as React,
+            Next.js, TypeScript, and Node.js. Moreover, I am knowledgeable about developing
+            mobile-first websites that are fully responsive. Furthermore, having expertise with
+            databases, REST API, as well as cloud-based solutions, I am capable of developing
+            scalable solutions that are upgradable as per your growing business requirements.
           </p>
           <p className="text-lg leading-relaxed">
-            Beyond web development, I also have experience in mobile app development, allowing me to
-            create cross-platform solutions that provide consistent experiences across web and
-            mobile platforms. I&apos;m well-versed in modern development practices including version
-            control, testing, continuous integration, and agile methodologies.
+            Besides web development, I also possess experience in mobile app development, which
+            enables me to develop cross-platform apps offering unified experiences across various
+            web and mobile platforms. I possess good knowledge about contemporary web development
+            techniques, version control, testing, integration, and agile.
           </p>
         </>
       ),
@@ -66,17 +67,16 @@ export const useAbout = () => {
       content: (
         <>
           <p className="text-lg leading-relaxed mb-4">
-            I believe that great software is built through collaboration, clear communication, and a
-            deep understanding of user needs. Every project I work on starts with understanding the
-            problem we&apos;re solving and the people we&apos;re solving it for. This user-centric
-            approach ensures that the solutions I build are not just technically sound, but also
-            genuinely useful and intuitive.
+            I think that excellent software can be created through collaboration, communication, and
+            a good understanding of what our users need. Every software development project that I
+            undertake begins with a process of understanding that problem we are trying to solve, as
+            well as the people we are trying to solve it for.
           </p>
           <p className="text-lg leading-relaxed">
-            Quality and attention to detail are at the core of my work. I&apos;m committed to
-            writing code that is not only functional but also maintainable, well-documented, and
-            follows industry best practices. I understand that software development is an iterative
-            process, and I&apos;m always open to feedback and continuous improvement.
+            Quality and attention to detail are the very foundation of everything I do. I am
+            dedicated to ensuring that the code I write is not only efficient but maintainable and
+            follows industry best practices. I recognize that software development is a continuous
+            process and am eager to accept feedback.
           </p>
         </>
       ),
@@ -89,29 +89,30 @@ export const useAbout = () => {
       content: (
         <>
           <p className="text-lg leading-relaxed mb-6">
-            I offer a range of services to help bring your digital ideas to life:
+            Here are some of the services I provide in making your digital concepts come into
+            reality:
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             {[
               {
                 title: 'Web Development',
-                desc: 'Building responsive, modern web applications using the latest technologies and frameworks',
+                desc: 'Creating responsive and modern web applications based on contemporary technologies and tools',
               },
               {
                 title: 'Mobile App Development',
-                desc: 'Creating cross-platform mobile applications that work seamlessly on iOS and Android',
+                desc: 'Developing cross-platform mobile applications that are compatible with both iOS and Android operating systems',
               },
               {
                 title: 'Full-Stack Solutions',
-                desc: 'Developing end-to-end applications from database design to user interface',
+                desc: 'Creating end-to-end applications ranging from database design to UI',
               },
               {
                 title: 'Consulting',
-                desc: 'Providing technical guidance and expertise to help you make informed decisions about your technology stack',
+                desc: 'Offering technical guidance and expertise to assist with decision making regarding your technology choices',
               },
               {
                 title: 'Code Review & Optimization',
-                desc: 'Improving existing codebases for better performance, maintainability, and scalability',
+                desc: 'Enhancing existing codes to improve performance, maintenance, and scalability',
               },
             ].map((service, index) => (
               <div
@@ -139,16 +140,17 @@ export const useAbout = () => {
       content: (
         <>
           <p className="text-lg leading-relaxed mb-4">
-            The technology landscape is constantly evolving, and I&apos;m committed to staying at
-            the forefront of these changes. I regularly engage in continuous learning through online
-            courses, technical blogs, open-source contributions, and hands-on experimentation with
-            new technologies. This commitment to growth ensures that I can bring the most current
-            and effective solutions to every project.
+            The technology environment undergoes dynamic evolution, which is something that I am
+            eager to be up-to-date with. Through continuous learning, such as completing online
+            courses, following technical blogs, working with open source projects, as well as
+            experimenting with new technologies, it becomes possible for me to bring the most
+            up-to-date solutions to each of the projects that I work on.
           </p>
           <p className="text-lg leading-relaxed">
-            I also believe in sharing knowledge with the community. Through my blog posts and
-            technical writing, I aim to help other developers learn and grow while documenting my
-            own journey and discoveries in software development.
+            I also believe that sharing knowledge within the community is part of my role. Through
+            my blog postings and tech writing expertise, I can facilitate learning for some
+            developers and document my experience and findings within the industry of software
+            development.
           </p>
         </>
       ),
@@ -161,9 +163,10 @@ export const useAbout = () => {
       content: (
         <>
           <p className="text-lg leading-relaxed mb-4">
-            I&apos;m always interested in discussing new projects, opportunities, or just connecting
-            with fellow developers and technology enthusiasts. Whether you have a project in mind,
-            want to collaborate, or simply want to chat about technology, feel free to reach out.
+            I&apos;m always eager to explore new projects, ideas, or just connect with developers
+            and tech enthusiasts. Whether you&apos;d like to discuss a project you&apos;d like to
+            undertake, work together on a project, or simply want to chat about the world of tech,
+            I&apos;m here for you.
           </p>
           <div
             className={`p-6 rounded-lg border ${
@@ -172,7 +175,7 @@ export const useAbout = () => {
                 : 'bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200'
             }`}>
             <p className="text-lg leading-relaxed mb-4">
-              You can explore my work through the{' '}
+              You can explore my work through the
               <OptimizedLink
                 href="/projects"
                 className={`font-semibold transition-colors ${
@@ -181,8 +184,8 @@ export const useAbout = () => {
                     : 'text-purple-600 hover:text-purple-700'
                 } hover:underline`}>
                 projects
-              </OptimizedLink>{' '}
-              and{' '}
+              </OptimizedLink>
+              and
               <OptimizedLink
                 href="/works"
                 className={`font-semibold transition-colors ${
@@ -191,8 +194,8 @@ export const useAbout = () => {
                     : 'text-purple-600 hover:text-purple-700'
                 } hover:underline`}>
                 work experience
-              </OptimizedLink>{' '}
-              sections, read my thoughts on{' '}
+              </OptimizedLink>
+              sections, read my thoughts on
               <OptimizedLink
                 href="/blogs"
                 className={`font-semibold transition-colors ${
@@ -202,7 +205,7 @@ export const useAbout = () => {
                 } hover:underline`}>
                 my blog
               </OptimizedLink>
-              , or get in touch through the{' '}
+              , or get in touch through the
               <OptimizedLink
                 href="/#contact"
                 className={`font-semibold transition-colors ${
