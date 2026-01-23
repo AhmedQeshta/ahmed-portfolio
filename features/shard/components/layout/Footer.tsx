@@ -41,6 +41,12 @@ export default function Footer() {
                 className={`${isDark ? 'text-white/70 hover:text-white' : 'text-black/70 hover:text-black'} transition-colors duration-200`}>
                 Privacy Policy
               </OptimizedLink>
+              <span className={`${isDark ? 'text-white/40' : 'text-black/40'}`}>•</span>
+              <OptimizedLink
+                href="/terms"
+                className={`${isDark ? 'text-white/70 hover:text-white' : 'text-black/70 hover:text-black'} transition-colors duration-200`}>
+                Terms & Conditions
+              </OptimizedLink>
             </div>
 
             {/* Decorative line */}
