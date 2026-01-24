@@ -15,6 +15,7 @@ import { useTheme } from '@/features/theme/hooks/useTheme';
 import useViews from '@/features/blogs/hooks/useViews';
 import { getCustomUrl } from '@/features/shard/utils/url';
 import { AdSlot } from '@/features/shard/components/ui/AdSlot';
+import SchemaScript from '@/features/blogs/components/SchemaScript';
 
 export default function Blog({ blog, latestBlogs, relatedBlogs, viewCount }: IBlog) {
   const { technologies, tags, description, slug, title } = blog;
@@ -30,7 +31,11 @@ export default function Blog({ blog, latestBlogs, relatedBlogs, viewCount }: IBl
       {/* Navigation Header */}
       <NavigationHeader link="/blogs" text="Back to Blogs" />
 
+      {/* Structured Data */}
+      <SchemaScript blog={blog} />
+
       {/* Hero Section */}
+
       <HeroBlog blog={blog} />
 
       {/* Main Content */}
