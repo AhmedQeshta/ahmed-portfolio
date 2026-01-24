@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react';
 import { render } from '@/features/shard/utils/test-utils';
 import WorkGridSlider from '@/features/works/components/WorkGridSlider';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 import { IWorkSlider } from '@/features/works/types/work';
 
-jest.mock('@/sanity/lib/client');
+jest.mock('@/sanity/lib/sanityFetch');
 jest.mock('@/features/shard/components/ui/ErrorHandle', () => ({
   __esModule: true,
   default: ({ description }: { description: string }) => <div>{description}</div>,

@@ -1,6 +1,6 @@
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import WorkModal from '@/features/works/components/WorkModal';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { featuresQuery, workExperienceBySlugQuery } from '@/sanity/lib/queries';
 import { FeatureResponse, WorkExperienceResponse } from '@/sanity/lib/types';
 import { IWorkPage } from '@/features/works/types/work';
@@ -13,7 +13,7 @@ const Work = async (props: IWorkPage) => {
   try {
     const features = await sanityFetch<FeatureResponse[]>({
       query: featuresQuery,
-      tags: ['features'],
+      tags: ['sanity', 'works', 'features'],
     });
     const workFeature = features.filter(
       ({ name, status }) => name === 'works' && status === 'publish',
@@ -24,7 +24,7 @@ const Work = async (props: IWorkPage) => {
     const workExperience = await sanityFetch<WorkExperienceResponse>({
       query: workExperienceBySlugQuery,
       params: { slug },
-      tags: ['workExperience'],
+      tags: ['sanity', 'works', `work:${slug}`],
     });
 
     return <WorkModal work={workExperience} />;

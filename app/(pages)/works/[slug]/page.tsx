@@ -1,5 +1,5 @@
 import React from 'react';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { featuresQuery, workExperienceBySlugQuery } from '@/sanity/lib/queries';
 import { FeatureResponse, WorkExperienceResponse } from '@/sanity/lib/types';
 import Work from '@/features/works/components/Work';
@@ -19,7 +19,7 @@ const WorkPage = async (props: IWorkPage) => {
   try {
     const features = await sanityFetch<FeatureResponse[]>({
       query: featuresQuery,
-      tags: ['features'],
+      tags: ['sanity', 'works', 'features'],
     });
     const workFeature = features.filter(
       ({ name, status }) => name === 'works' && status === 'publish',
@@ -30,7 +30,7 @@ const WorkPage = async (props: IWorkPage) => {
     const workExperience = await sanityFetch<WorkExperienceResponse>({
       query: workExperienceBySlugQuery,
       params: { slug },
-      tags: ['workExperience'],
+      tags: ['sanity', 'works', `work:${slug}`],
     });
 
     return <Work work={workExperience} />;

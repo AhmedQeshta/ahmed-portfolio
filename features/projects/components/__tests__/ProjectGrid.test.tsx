@@ -4,11 +4,11 @@ import ProjectGrid from '@/features/projects/components/ProjectGrid';
 import { IProjectResponse } from '@/features/projects/types/project';
 
 // Mock sanityFetch
-jest.mock('@/sanity/lib/client', () => ({
+jest.mock('@/sanity/lib/sanityFetch', () => ({
   sanityFetch: jest.fn(),
 }));
 
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { ProjectResponse } from '@/sanity/lib/types';
 
 jest.mock('@/features/shard/components/ui/ErrorHandle', () => ({

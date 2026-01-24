@@ -1,5 +1,5 @@
 import { getCustomUrl } from '@/features/shard/utils/url';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { featuresQuery, projectBySlugQuery, projectsQuery } from '@/sanity/lib/queries';
 import { FeatureResponse, ProjectResponse } from '@/sanity/lib/types';
 import { Metadata } from 'next';
@@ -16,7 +16,7 @@ export async function generateProjectMetadata({
   try {
     const features = await sanityFetch<FeatureResponse[]>({
       query: featuresQuery,
-      tags: ['features'],
+      tags: ['sanity', 'projects', 'features'],
     });
     const projectFeature = features.filter(
       ({ name, status }) => name === 'projects' && status === 'publish',
@@ -27,7 +27,7 @@ export async function generateProjectMetadata({
     const project = await sanityFetch<ProjectResponse>({
       query: projectBySlugQuery,
       params: { slug },
-      tags: ['project'],
+      tags: ['sanity', 'projects', `project:${slug}`],
     });
 
     if (!project) return {};
@@ -83,7 +83,7 @@ export async function generateProjectStaticParams() {
   try {
     const projects = await sanityFetch<ProjectResponse[]>({
       query: projectsQuery,
-      tags: ['projects'],
+      tags: ['sanity', 'projects'],
     });
 
     if (!projects || !Array.isArray(projects)) {

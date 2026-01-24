@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { siteUrl, getCustomUrl } from '@/features/shard/utils/url';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { blogPostsQuery, projectsQuery, workExperienceQuery } from '@/sanity/lib/queries';
 import { BlogPostResponse, ProjectResponse, WorkExperienceResponse } from '@/sanity/lib/types';
 
@@ -65,18 +65,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const [blogs, projects, works] = await Promise.all([
       sanityFetch<BlogPostResponse[]>({
         query: blogPostsQuery,
-        tags: ['blogPosts'],
-        cache: 'dynamic',
+        tags: ['sanity', 'blogPosts'],
       }),
       sanityFetch<ProjectResponse[]>({
         query: projectsQuery,
-        tags: ['projects'],
-        cache: 'dynamic',
+        tags: ['sanity', 'projects'],
       }),
       sanityFetch<WorkExperienceResponse[]>({
         query: workExperienceQuery,
-        tags: ['workExperience'],
-        cache: 'dynamic',
+        tags: ['sanity', 'workExperience'],
       }),
     ]);
 

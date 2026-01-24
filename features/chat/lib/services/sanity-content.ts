@@ -1,4 +1,4 @@
-import { client } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { IContentCache, SiteContent } from '@/features/chat/types/chat-system';
 import { fallbackContentBaseInfo, siteNavigation } from '@/features/chat/lib/constant';
 import {
@@ -7,6 +7,7 @@ import {
   projectsQuery,
   workExperienceQuery,
 } from '@/sanity/lib/queries';
+import { BaseInfoResponse, ProjectResponse, BlogPostResponse, WorkExperienceResponse } from '@/sanity/lib/types';
 
 let contentCache: IContentCache = {
   data: null,
@@ -22,17 +23,45 @@ export async function fetchSiteContent(): Promise<SiteContent> {
   try {
     // Execute all queries in parallel
     const [baseInfo, projects, blogPosts, workExperience] = await Promise.all([
-      client.fetch(baseInfoQuery),
-      client.fetch(projectsQuery),
-      client.fetch(blogPostsQuery),
-      client.fetch(workExperienceQuery),
+      sanityFetch<BaseInfoResponse>({ query: baseInfoQuery, tags: ['sanity', 'baseInfo'] }),
+      sanityFetch<ProjectResponse[]>({ query: projectsQuery, tags: ['sanity', 'projects'] }),
+      sanityFetch<BlogPostResponse[]>({ query: blogPostsQuery, tags: ['sanity', 'blogPosts'] }),
+      sanityFetch<WorkExperienceResponse[]>({
+        query: workExperienceQuery,
+        tags: ['sanity', 'works'],
+      }),
     ]);
 
+    const mappedBaseInfo = baseInfo
+      ? {
+          ...baseInfo,
+          skills: baseInfo.technologies?.map((t) => t.name) || [],
+          title: Array.isArray(baseInfo.title) ? baseInfo.title.join(' & ') : baseInfo.title,
+          bio: JSON.stringify(baseInfo.bio || ''),
+        }
+      : fallbackContentBaseInfo;
+
+    const mappedProjects = (projects || []).map((p) => ({
+      ...p,
+      technologies: p.technologies?.map((t) => t.name) || [],
+    }));
+
+    const mappedBlogPosts = (blogPosts || []).map((b) => ({
+      ...b,
+      tags: b.tags || [],
+    }));
+
+    const mappedWorkExperience = (workExperience || []).map((w) => ({
+      ...w,
+      description: w.description || '',
+      technologies: w.technologies?.map((t) => t.name) || [],
+    }));
+
     return {
-      baseInfo: baseInfo || fallbackContentBaseInfo,
-      projects: projects || [],
-      blogPosts: blogPosts || [],
-      workExperience: workExperience || [],
+      baseInfo: mappedBaseInfo,
+      projects: mappedProjects,
+      blogPosts: mappedBlogPosts,
+      workExperience: mappedWorkExperience,
     };
   } catch (error) {
     console.error('Error fetching site content:', error);

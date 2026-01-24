@@ -1,5 +1,5 @@
 import { workExperienceQuery } from '@/sanity/lib/queries';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import WorkCard from '@/features/works/components/WorkCard';
@@ -11,7 +11,7 @@ export default async function WorkGrid({ readMore = false }: IWorkGridProps) {
   try {
     const works = await sanityFetch<WorkExperienceResponse[]>({
       query: workExperienceQuery,
-      tags: ['workExperiences'],
+      tags: ['sanity', 'works'],
     });
 
     return (

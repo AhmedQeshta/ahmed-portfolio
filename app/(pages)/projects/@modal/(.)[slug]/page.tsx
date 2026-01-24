@@ -1,6 +1,6 @@
 import ProjectModal from '@/features/projects/components/ProjectModal';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { featuresQuery, projectBySlugQuery } from '@/sanity/lib/queries';
 import { FeatureResponse, ProjectResponse } from '@/sanity/lib/types';
 import { IProjectPageModal } from '@/features/projects/types/project';
@@ -13,7 +13,7 @@ const Project = async (props: IProjectPageModal) => {
   try {
     const features = await sanityFetch<FeatureResponse[]>({
       query: featuresQuery,
-      tags: ['features'],
+      tags: ['sanity', 'features'],
     });
     const projectFeature = features.filter(
       (feature) => feature.name === 'projects' && feature.status === 'publish',
@@ -24,7 +24,7 @@ const Project = async (props: IProjectPageModal) => {
     const project = await sanityFetch<ProjectResponse>({
       query: projectBySlugQuery,
       params: { slug },
-      tags: ['project'],
+      tags: ['sanity', 'projects', `project:${slug}`],
     });
 
     if (!project) notFound();

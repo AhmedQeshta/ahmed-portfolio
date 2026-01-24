@@ -1,4 +1,4 @@
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { categoriesQuery, projectsQuery } from '@/sanity/lib/queries';
 import { CategoryResponse, ProjectResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
@@ -13,11 +13,11 @@ export default async function ProjectGrid({ readMore = true, query }: IProjectGr
     let [projects, categories] = await Promise.all([
       sanityFetch<ProjectResponse[]>({
         query: projectsQuery,
-        tags: ['projects'],
+        tags: ['sanity', 'projects'],
       }),
       sanityFetch<CategoryResponse[]>({
         query: categoriesQuery,
-        tags: ['categories'],
+        tags: ['sanity', 'categories'],
       }),
     ]);
 

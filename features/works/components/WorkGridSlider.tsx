@@ -1,5 +1,5 @@
 import { workExperienceQuery } from '@/sanity/lib/queries';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import WorkSlider from '@/features/works/components/WorkSlider';
@@ -12,7 +12,7 @@ export default async function WorkGridSlider() {
     // Fetch work experiences
     const works = await sanityFetch<WorkExperienceResponse[]>({
       query: workExperienceQuery,
-      tags: ['works'],
+      tags: ['sanity', 'works'],
     });
 
     const sortedWorks = sortByDate({ works });

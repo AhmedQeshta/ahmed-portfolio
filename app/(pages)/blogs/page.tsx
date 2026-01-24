@@ -1,6 +1,6 @@
 import BlogGrid from '@/features/blogs/components/BlogGrid';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { featuresQuery } from '@/sanity/lib/queries';
 import { FeatureResponse } from '@/sanity/lib/types';
 import { notFound } from 'next/navigation';
@@ -8,15 +8,14 @@ import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import BlogGridSkeleton from '@/features/blogs/components/BlogGridSkeleton';
 
-// Mark this page as dynamic for real-time view updates
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+// Mark this page as ISR with 300s revalidation
+export const revalidate = 300;
 
 const BlogPage = async ({ searchParams }: { searchParams: Promise<{ q?: string }> }) => {
   try {
     const features = await sanityFetch<FeatureResponse[]>({
       query: featuresQuery,
-      tags: ['features'],
+      tags: ['sanity', 'blogs', 'features'], 
     });
 
     const blogFeature = features.filter(
