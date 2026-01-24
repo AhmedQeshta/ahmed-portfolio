@@ -1,4 +1,4 @@
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import {
   featuresQuery,
   workExperienceBySlugQuery,
@@ -20,7 +20,7 @@ export async function generateWorkMetadata({
   try {
     const features = await sanityFetch<FeatureResponse[]>({
       query: featuresQuery,
-      tags: ['features'],
+      tags: ['sanity', 'works', 'features'],
     });
     const workFeature = features.filter(
       ({ name, status }) => name === 'works' && status === 'publish',
@@ -31,7 +31,7 @@ export async function generateWorkMetadata({
     const workExperience = await sanityFetch<WorkExperienceResponse>({
       query: workExperienceBySlugQuery,
       params: { slug },
-      tags: ['workExperience'],
+      tags: ['sanity', 'works', `work:${slug}`],
     });
 
     if (!workExperience) return {};
@@ -105,7 +105,7 @@ export async function generateWorkStaticParams() {
   try {
     const works = await sanityFetch<WorkExperienceResponse[]>({
       query: workExperienceQuery,
-      tags: ['works'],
+      tags: ['sanity', 'works'],
     });
 
     if (!works || !Array.isArray(works)) {

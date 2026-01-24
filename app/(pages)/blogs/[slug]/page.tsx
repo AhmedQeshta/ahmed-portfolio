@@ -1,6 +1,6 @@
 import Blog from '@/features/blogs/components/Blog';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { blogPostBySlugQuery, blogPostsQuery, pageViewBySlugQuery } from '@/sanity/lib/queries';
 import { BlogPostResponse, PageViewResponse } from '@/sanity/lib/types';
 import { FixedPageProps } from '@/types/app-router';
@@ -9,9 +9,8 @@ import { generateBlogMetadata } from '@/features/blogs/utils/metaData';
 
 export { generateBlogMetadata as generateMetadata };
 
-// Force dynamic rendering for faster updates
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+// Enable ISR
+export const revalidate = 300;
 
 // Use our fixed type to avoid the "not satisfying PageProps" error
 export default async function blogDetailPage(props: FixedPageProps) {
@@ -22,11 +21,11 @@ export default async function blogDetailPage(props: FixedPageProps) {
       sanityFetch<BlogPostResponse>({
         query: blogPostBySlugQuery,
         params: { slug },
-        tags: ['blogPost'],
+        tags: ['sanity', 'blogs', `blog:${slug}`],
       }),
       sanityFetch<BlogPostResponse[]>({
         query: blogPostsQuery,
-        tags: ['latestBlogs'],
+        tags: ['sanity', 'blogs'],
         params: {
           limit: 3,
           order: 'desc',
@@ -36,15 +35,14 @@ export default async function blogDetailPage(props: FixedPageProps) {
       sanityFetch<PageViewResponse | null>({
         query: pageViewBySlugQuery,
         params: { slug },
-        tags: ['pageViews'],
-        cache: false,
-        revalidate: 0,
+        tags: ['sanity', 'pageViews', `pageView:${slug}`],
+        revalidate: 0, // Keep page views dynamic for now if possible, or short cache
       }),
     ]);
 
     const relatedBlogs = await sanityFetch<BlogPostResponse[]>({
       query: blogPostsQuery,
-      tags: ['relatedBlogs'],
+      tags: ['sanity', 'blogs'],
       params: {
         limit: 3,
         order: 'desc',

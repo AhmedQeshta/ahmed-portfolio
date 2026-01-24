@@ -1,17 +1,19 @@
 import ProjectGrid from '@/features/projects/components/ProjectGrid';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { featuresQuery } from '@/sanity/lib/queries';
 import { FeatureResponse } from '@/sanity/lib/types';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import ProjectGridSkeleton from '@/features/projects/components/ProjectGridSkeleton';
 
+export const revalidate = 300;
+
 const ProjectsPage = async ({ searchParams }: { searchParams: Promise<{ q?: string }> }) => {
   try {
     const features = await sanityFetch<FeatureResponse[]>({
       query: featuresQuery,
-      tags: ['features'],
+      tags: ['sanity', 'features'],
     });
 
     const projectFeature = features.filter(

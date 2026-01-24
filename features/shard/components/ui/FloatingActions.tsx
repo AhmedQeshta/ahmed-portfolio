@@ -1,6 +1,6 @@
 import ChatButton from '@/features/chat/components/ChatButton';
 import ScrollTopButton from '@/features/shard/components/ui/ScrollTopButton';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { featuresQuery } from '@/sanity/lib/queries';
 import { FeatureResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
@@ -9,7 +9,7 @@ export default async function FloatingActions() {
   try {
     const featureChat = await sanityFetch<FeatureResponse[]>({
       query: featuresQuery,
-      tags: ['featureChat'],
+      tags: ['sanity', 'featureChat'],
     });
 
     // get featureChat that have name chat-system and status publish

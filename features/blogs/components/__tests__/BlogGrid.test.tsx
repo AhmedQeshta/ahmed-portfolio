@@ -2,10 +2,10 @@ import { screen } from '@testing-library/react';
 import { render } from '@/features/shard/utils/test-utils';
 import '@testing-library/jest-dom';
 import BlogGrid from '@/features/blogs/components/BlogGrid';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 
 // Mock the sanity client and queries
-jest.mock('@/sanity/lib/client', () => ({
+jest.mock('@/sanity/lib/sanityFetch', () => ({
   sanityFetch: jest.fn(),
 }));
 

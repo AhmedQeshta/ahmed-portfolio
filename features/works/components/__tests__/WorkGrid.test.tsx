@@ -1,10 +1,10 @@
 import { screen } from '@testing-library/react';
 import { render } from '@/features/shard/utils/test-utils';
 import WorkGrid from '@/features/works/components/WorkGrid';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { WorkExperienceResponse } from '@/sanity/lib/types';
 
-jest.mock('@/sanity/lib/client');
+jest.mock('@/sanity/lib/sanityFetch');
 jest.mock('@/sanity/lib/image', () => ({
   getImageUrl: (source: any) => source,
 }));

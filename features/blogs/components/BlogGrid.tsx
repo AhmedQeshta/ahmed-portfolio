@@ -1,4 +1,4 @@
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { blogPostsQuery, categoriesQuery, pageViewsBySlugsQuery } from '@/sanity/lib/queries';
 import { BlogPostResponse, CategoryResponse, PageViewResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
@@ -13,11 +13,11 @@ export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
     let [blogs, categories] = await Promise.all([
       sanityFetch<BlogPostResponse[]>({
         query: blogPostsQuery,
-        tags: ['blogPosts'],
+        tags: ['sanity', 'blogs'],
       }),
       sanityFetch<CategoryResponse[]>({
         query: categoriesQuery,
-        tags: ['categories'],
+        tags: ['sanity', 'categories'],
       }),
     ]);
 
@@ -40,8 +40,7 @@ export default async function BlogGrid({ readMore = true, query }: IBlogGrid) {
         ? await sanityFetch<PageViewResponse[]>({
             query: pageViewsBySlugsQuery,
             params: { slugs },
-            tags: ['pageViews'],
-            cache: false,
+            tags: ['sanity', 'pageViews'],
             revalidate: 0,
           })
         : [];

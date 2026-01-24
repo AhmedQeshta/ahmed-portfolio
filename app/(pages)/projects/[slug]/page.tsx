@@ -1,4 +1,4 @@
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { featuresQuery, projectBySlugQuery } from '@/sanity/lib/queries';
 import { FeatureResponse, ProjectResponse } from '@/sanity/lib/types';
 import React from 'react';
@@ -23,7 +23,7 @@ const ProjectPage = async (props: IProjectPage) => {
   try {
     const features = await sanityFetch<FeatureResponse[]>({
       query: featuresQuery,
-      tags: ['features'],
+      tags: ['sanity', 'features'],
     });
     const projectFeature = features.filter(
       (feature) => feature.name === 'projects' && feature.status === 'publish',
@@ -34,7 +34,7 @@ const ProjectPage = async (props: IProjectPage) => {
     const project = await sanityFetch<ProjectResponse>({
       query: projectBySlugQuery,
       params: { slug },
-      tags: ['project'],
+      tags: ['sanity', 'projects', `project:${slug}`],
     });
 
     return <Project project={project} />;

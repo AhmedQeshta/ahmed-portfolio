@@ -1,5 +1,5 @@
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { baseInfoQuery } from '@/sanity/lib/queries';
 import { BaseInfoResponse } from '@/sanity/lib/types';
 import ContactInfo from '@/features/contact/components/ContactInfo';
@@ -13,7 +13,7 @@ export default async function ContactSection() {
   try {
     const baseInfo = await sanityFetch<BaseInfoResponse>({
       query: baseInfoQuery,
-      tags: ['baseInfo'],
+      tags: ['sanity', 'baseInfo'],
     });
 
     return (

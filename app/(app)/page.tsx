@@ -4,7 +4,7 @@ import ProjectGrid from '@/features/projects/components/ProjectGrid';
 import BlogGrid from '@/features/blogs/components/BlogGrid';
 import { Fragment, Suspense } from 'react';
 import { featuresQuery } from '@/sanity/lib/queries';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { FeatureResponse } from '@/sanity/lib/types';
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import ContactSection from '@/features/contact/components/ContactSection';
@@ -31,7 +31,7 @@ export default async function Home() {
   try {
     const features = await sanityFetch<FeatureResponse[]>({
       query: featuresQuery,
-      tags: ['features'],
+      tags: ['sanity', 'features'],
     });
 
     return (

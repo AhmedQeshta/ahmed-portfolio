@@ -1,5 +1,5 @@
 import { getCustomUrl, siteUrl } from '@/features/shard/utils/url';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { blogPostBySlugQuery, blogPostsQuery, featuresQuery } from '@/sanity/lib/queries';
 import { BlogPostResponse, FeatureResponse } from '@/sanity/lib/types';
 import { Metadata } from 'next';
@@ -16,7 +16,7 @@ export async function generateBlogMetadata({
   try {
     const features = await sanityFetch<FeatureResponse[]>({
       query: featuresQuery,
-      tags: ['features'],
+      tags: ['sanity', 'blogs', 'features'],
     });
     const blogFeature = features.filter(
       ({ name, status }) => name === 'blogs' && status === 'publish',
@@ -27,7 +27,7 @@ export async function generateBlogMetadata({
     const blog = await sanityFetch<BlogPostResponse>({
       query: blogPostBySlugQuery,
       params: { slug },
-      tags: ['blogPost'],
+      tags: ['sanity', 'blogs', `blog:${slug}`],
     });
 
     if (!blog) return {};
@@ -121,7 +121,7 @@ export async function generateBlogStaticParams() {
   try {
     const blogs = await sanityFetch<BlogPostResponse[]>({
       query: blogPostsQuery,
-      tags: ['blogPosts'],
+      tags: ['sanity', 'blogs'],
     });
 
     if (!blogs || !Array.isArray(blogs)) {

@@ -1,6 +1,6 @@
 import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import { BaseInfoResponse } from '@/sanity/lib/types';
-import { sanityFetch } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { baseInfoQuery } from '@/sanity/lib/queries';
 import BaseInfo from '@/features/header/components/BaseInfo';
 import ProfileImage from '@/features/header/components/ProfileImage';
@@ -10,7 +10,7 @@ export default async function Header() {
   try {
     const baseInfo = await sanityFetch<BaseInfoResponse>({
       query: baseInfoQuery,
-      tags: ['baseInfo'],
+      tags: ['sanity', 'baseInfo'],
     });
 
     return (

@@ -146,6 +146,21 @@ Access the Sanity Studio at `/studio` to manage:
 - **Technologies**: Skills and technology stack
 - **Categories**: Content categorization
 
+## 🔄 Revalidation Webhook
+To enable on-demand revalidation when content is published in Sanity:
+
+1. Go to your Sanity Project Dashboard -> API -> Webhooks.
+2. Create a new webhook:
+   - **Name**: Portfolio Revalidation
+   - **URL**: `https://your-site.com/api/revalidate/sanity`
+   - **Trigger on**: Create, Update, Delete
+   - **Filter**: `_type in ["blogPost", "project", "workExperience", "baseInfo", "technology", "category", "feature"]`
+   - **Secret**: Set a strong secret string.
+3. Add the secret to your deployment environment variables:
+   ```env
+   SANITY_REVALIDATE_SECRET=your_secret_here
+   ```
+
 ## 🧪 Testing
 
 Run the test suite:
