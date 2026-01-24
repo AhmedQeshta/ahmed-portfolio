@@ -374,3 +374,30 @@ a {
   background: transparent;
   border: none;
 }
+
+
+/* loading page */
+.loading-spinner-path {
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+  animation: loading-spinner-draw 2s ease-in-out infinite;
+}
+
+@keyframes loading-spinner-draw {
+  0% {
+    stroke-dashoffset: 3000;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -3000;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner-path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

@@ -1,45 +1,51 @@
+'use client';
+
+import { useTheme } from '@/features/theme/hooks/useTheme';
+import { cn } from '@/features/shard/utils/statusColor';
+
 export default function LoadingSpinner() {
+  const { isDark } = useTheme();
+
   return (
     <div
-      className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center"
-      data-testid="loading-container">
-      <div className="text-center space-y-8" data-testid="loading-content">
-        {/* Animated background elements */}
-        <div
-          className="absolute inset-0 overflow-hidden pointer-events-none"
-          data-testid="background-elements">
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-          <div className="absolute top-3/4 right-1/4 w-32 h-32 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-500"></div>
-        </div>
-
-        {/* Main spinner */}
-        <div className="relative flex justify-center min-h-12" data-testid="spinner-container">
-          {/* Outer spinning ring */}
-          <div className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] w-20 h-20  border-4 border-transparent border-t-purple-500 border-r-blue-500 rounded-full animate-spin"></div>
-
-          {/* Inner spinning ring */}
-          <div className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] w-16 h-16 border-4 border-transparent border-b-pink-500 border-l-purple-400 rounded-full animate-spin animate-reverse"></div>
-
-          {/* Center dot */}
-          <div className="absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
-        </div>
-
-        {/* Loading text */}
-        <div className="space-y-2" data-testid="loading-text">
-          <h2 className="text-2xl font-bold gradient-text animate-pulse">Loading</h2>
-          <p className="text-gray-400 text-sm animate-pulse delay-200">
-            Please wait while we prepare your content...
-          </p>
-        </div>
-
-        {/* Progress dots */}
-        <div className="flex justify-center space-x-2" data-testid="progress-dots">
-          <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce"></div>
-          <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce delay-100"></div>
-          <div className="w-2 h-2 bg-pink-500 rounded-full animate-bounce delay-200"></div>
-        </div>
-      </div>
+      className={cn(
+        'fixed inset-0 z-[9999] flex items-center justify-center flex-col gap-2',
+        isDark ? 'bg-gray-900' : 'bg-white',
+      )}
+      data-testid="loading-container"
+      role="status"
+      aria-live="polite"
+      aria-label="Loading">
+      <svg
+        width="100"
+        height="100"
+        viewBox="0 0 363 220"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className={cn('w-64 h-auto', isDark ? 'text-white' : 'text-gray-900')}>
+        <path
+          d="M107.796.394c-2.921.702-5.609 2.513-7.128 4.85-.643.993-6.66 12.561-13.321 25.766-6.66 13.145-14.957 29.446-18.404 36.224a7215 7215 0 0 0-16.944 33.302c-5.843 11.569-13.38 26.292-16.651 32.719-3.272 6.427-9.874 19.281-14.607 28.629-4.732 9.289-11.334 22.26-14.665 28.687C2.746 197.056 0 202.607 0 203.016c0 .467 7.128.642 26.525.642h26.526l9.056-17.411 9.056-17.352 35.289-.175 35.289-.117 3.681 4.674c4.733 6.018 12.854 13.671 18.054 17.177 9.231 6.135 23.487 11.51 35.581 13.496 13.613 2.221 35.406 2.221 48.961 0 8.355-1.343 19.807-4.732 26.058-7.712 3.214-1.46 5.784-2.804 5.784-2.921 0-.175-18.638-23.779-23.136-29.33-.059-.058-2.746.76-5.901 1.87-15.308 5.433-34.881 5.842-49.253 1.051-7.07-2.395-11.802-5.375-17.295-10.808-7.42-7.362-11.568-14.256-30.323-50.305-16.008-30.732-19.689-37.685-20.098-37.685-.526 0-21.501 40.314-21.968 42.067-.234 1.11.818 3.914 4.09 10.809 2.453 5.141 4.615 9.698 4.79 10.049.351.876-24.947 1.052-49.837.292-14.665-.409-14.898-.409-7.537-.76 4.207-.233 12.094-.409 17.586-.467 7.245-.058 10.167-.234 10.634-.818.292-.351 3.155-5.55 6.252-11.51a3112 3112 0 0 1 9.348-17.528c2.045-3.68 7.303-13.671 11.685-22.201 17.528-33.654 29.68-56.44 32.134-60.12 5.843-8.765 11.861-12.913 23.37-16.068l5.259-1.46h-31.842C130.29.335 114.69.218 113.054.043c-1.577-.117-3.973 0-5.258.35"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="loading-spinner-path"
+        />
+        <path
+          d="M203.907.394c-11.101 1.169-21.91 4.09-28.921 7.713-7.011 3.622-14.198 11.042-18.229 18.871-1.695 3.214-3.739 8.355-4.616 11.393-1.344 4.85-1.577 6.895-1.811 17.06L150.038 67l6.894-6.894c7.888-7.888 14.84-13.088 22.786-17.178 5.2-2.629 13.204-5.55 18.93-6.894 9.699-2.22 28.454-3.038 40.898-1.753 14.899 1.52 26.993 5.434 36.517 11.803 4.907 3.271 12.386 11.159 15.19 15.95 6.544 11.16 8.531 18.404 8.94 33.186.35 13.029-.818 23.253-3.448 31.082-.116.351.935 1.578 2.396 2.688 2.804 2.103 8.881 9.114 19.689 22.611 7.83 9.757 6.719 9.698 11.335.292 12.036-24.831 14.431-61.99 5.784-88.983-1.986-6.076-6.543-16.125-9.523-20.8-3.506-5.608-9.115-12.444-14.139-17.118C298.148 11.787 280.678 4.25 256.198.862 250.18.044 210.45-.307 203.907.394"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="loading-spinner-path"
+        />
+        <path
+          d="M224.706 65.364a1455 1455 0 0 1-6.193 15.015c-1.87 4.324-5.2 12.212-7.478 17.528-2.279 5.317-5.025 11.802-6.194 14.432l-2.044 4.849h11.451l6.602-15.366c10.575-24.656 18.112-42.593 18.112-43.119 0-.292-2.571-.525-5.667-.525h-5.726zM242.877 72.492c-1.169 2.045-2.162 3.856-2.162 4.031 0 .293 9.407 6.077 16.301 9.991 3.973 2.279 4.732 2.922 4.031 3.447-.526.35-5.375 3.272-10.867 6.486s-9.991 6.018-10.049 6.31c0 .233 1.11 1.986 2.512 3.914l2.512 3.447 16.652-9.991c9.114-5.433 16.826-10.166 17.06-10.4.292-.233-1.811-1.869-4.674-3.622-4.791-3.038-28.862-17.41-29.038-17.41-.058 0-1.051 1.694-2.278 3.797M189.183 71.79c-2.103 1.345-9.64 5.843-16.768 10.05-7.07 4.148-12.854 7.712-12.912 7.888 0 .233 33.069 19.748 34.471 20.332.234.058 1.578-1.578 2.98-3.739 1.402-2.162 2.279-4.032 1.928-4.149s-3.856-2.044-7.888-4.382c-3.973-2.278-8.647-4.907-10.283-5.842-1.694-.935-3.096-1.928-3.096-2.162 0-.292 2.045-1.694 4.557-3.097 2.454-1.46 7.303-4.265 10.751-6.31l6.251-3.622-2.454-3.74c-1.344-1.986-2.687-3.68-3.038-3.68-.292.058-2.337 1.168-4.499 2.454M236.625 126.069c0 .292 3.506 4.791 7.771 9.99 9.348 11.335 34.413 42.476 52.291 64.853 7.186 8.939 13.847 16.769 14.899 17.353 1.752 1.11 3.096 1.168 26.583 1.168 13.555 0 24.656-.175 24.656-.35 0-.176-4.031-5.2-8.939-11.218s-11.159-13.672-13.847-17.002c-2.746-3.389-8.121-9.932-11.977-14.665s-12.036-14.782-18.171-22.26c-12.444-15.249-17.586-20.391-23.429-23.487-8.296-4.382-10.458-4.674-31.257-4.791-10.751-.059-18.58.117-18.58.409M131.517 179.762c1.928 3.506 12.678 14.139 18.462 18.229 11.101 7.887 24.247 12.912 40.197 15.366 6.953 1.052 27.227 1.285 32.719.351 2.395-.409 1.285-.526-6.719-.877-15.366-.584-27.635-2.863-40.606-7.478-13.964-4.967-29.564-14.081-39.963-23.312-5.434-4.791-5.492-4.85-4.09-2.279"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="loading-spinner-path"
+        />
+      </svg>
+      <span className="text-xl font-bold">Loading...</span>
     </div>
   );
 }

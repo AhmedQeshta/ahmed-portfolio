@@ -10,6 +10,7 @@ import ErrorHandle from '@/features/shard/components/ui/ErrorHandle';
 import ContactSection from '@/features/contact/components/ContactSection';
 import BlogGridSkeleton from '@/features/blogs/components/BlogGridSkeleton';
 import ProjectGridSkeleton from '@/features/projects/components/ProjectGridSkeleton';
+import LoadingSpinner from '@/features/shard/components/ui/LoadingSpinner';
 
 const sectionOfPage = {
   header: <Header />,
