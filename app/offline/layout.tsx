@@ -2,6 +2,7 @@ import '@/app/globals.css';
 
 import { metadata, viewport } from '@/features/shard/utils/metadata';
 import Script from 'next/script';
+import { ThemeProvider } from '@/features/theme/context/ThemeContext';
 
 export { metadata, viewport };
 
@@ -15,7 +16,9 @@ export default function OfflineLayout({ children }: { children: React.ReactNode 
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        {children}
+        <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
